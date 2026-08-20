@@ -77,7 +77,7 @@ grader:
 agents:
   count: 1
   runtime: pi
-  model: openai/gpt-5.3-codex
+  model: deepseek/deepseek-v4-pro
 
 workspace:
   results_dir: "./results"
