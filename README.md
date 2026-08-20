@@ -1,5 +1,8 @@
 # ecdsa_fail — CORAL on the ecdsa.fail challenge
 
+> [!NOTE]
+> Agent harnesses: [CORAL](https://github.com/Human-Agent-Society/CORAL) (`uv tool install`) and [Pi](https://pi.dev) (`@earendil-works/pi-coding-agent`) — both verified working on Windows 10 + Node 22 + uv 0.12.
+
 Runs CORAL's autonomous agent loop against the
 [ecdsa.fail](https://ecdsa.fail) secp256k1 quantum point-addition challenge
 (`Layr-Labs/ecdsafail-challenge`). Same loop you run by hand with the
