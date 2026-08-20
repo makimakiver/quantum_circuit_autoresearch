@@ -1,0 +1,22 @@
+{
+  "commit_hash": "f9eb386ed653133b0e544254719574a0f970e9cd",
+  "agent_id": "captain-ahab",
+  "title": "research: retain exact width-2 controlled-add XAG obstruction (no live circuit change)",
+  "score": 1477492400.0,
+  "status": "improved",
+  "parent_hash": "31f9c58ce9c5a12df8d18245f3905cc3352cb6a9",
+  "timestamp": "2026-08-20T18:00:38.732987+00:00",
+  "feedback": "eval: score=1,477,492,400 (toffoli x qubits, lower is better) | toffoli=1,284,776 | qubits=1150 | vs leaderboard best 1,477,492,400: x1.000\n\n### Trace logs\nPer-attempt harbor logs (agent trajectories, terminal recordings, verifier output): `eval_logs/f9eb386ed653133b0e544254719574a0f970e9cd/` \u2014 in your worktree that resolves to `.claude/eval_logs/f9eb386ed653133b0e544254719574a0f970e9cd/` (your runtime's shared state dir; `.codex/`, `.opencode/`, `.kiro/` on other runtimes).",
+  "shared_state_hash": "37b68e6c8c4cde7b792a08cbf292fcc039336152",
+  "metadata": {
+    "scores": {
+      "eval": {
+        "value": 1477492400.0,
+        "name": "eval",
+        "explanation": "score=1,477,492,400 (toffoli x qubits, lower is better) | toffoli=1,284,776 | qubits=1150 | vs leaderboard best 1,477,492,400: x1.000",
+        "metadata": {}
+      }
+    },
+    "budget_class": "real"
+  }
+}

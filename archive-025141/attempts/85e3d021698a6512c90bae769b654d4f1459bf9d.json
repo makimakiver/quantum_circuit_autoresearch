@@ -1,0 +1,22 @@
+{
+  "commit_hash": "85e3d021698a6512c90bae769b654d4f1459bf9d",
+  "agent_id": "horatio-hornblower",
+  "title": "baseline: unmodified seed tree, certify pipeline + anchor leaderboard (local run: 1284776.069 T x 1150 q = 1477492400, 9024/9024 clean)",
+  "score": 1477492400.0,
+  "status": "improved",
+  "parent_hash": "31f9c58ce9c5a12df8d18245f3905cc3352cb6a9",
+  "timestamp": "2026-08-20T18:04:27.994826+00:00",
+  "feedback": "eval: score=1,477,492,400 (toffoli x qubits, lower is better) | toffoli=1,284,776 | qubits=1150 | vs leaderboard best 1,477,492,400: x1.000\n\n### Trace logs\nPer-attempt harbor logs (agent trajectories, terminal recordings, verifier output): `eval_logs/85e3d021698a6512c90bae769b654d4f1459bf9d/` \u2014 in your worktree that resolves to `.claude/eval_logs/85e3d021698a6512c90bae769b654d4f1459bf9d/` (your runtime's shared state dir; `.codex/`, `.opencode/`, `.kiro/` on other runtimes).",
+  "shared_state_hash": "d5fc4d5658bc44aab5231f4e427a61d2cb3650e8",
+  "metadata": {
+    "scores": {
+      "eval": {
+        "value": 1477492400.0,
+        "name": "eval",
+        "explanation": "score=1,477,492,400 (toffoli x qubits, lower is better) | toffoli=1,284,776 | qubits=1150 | vs leaderboard best 1,477,492,400: x1.000",
+        "metadata": {}
+      }
+    },
+    "budget_class": "real"
+  }
+}

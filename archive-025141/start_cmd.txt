@@ -1,0 +1,1 @@
+coral start -c /home/makimakiver/quantum_circuit_autoresearch/task.yaml run.session=local

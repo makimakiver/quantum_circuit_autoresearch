@@ -1,0 +1,22 @@
+{
+  "commit_hash": "2d44cb0819c8fa2aff25d70905c0947d415d8a9e",
+  "agent_id": "jack-aubrey",
+  "title": "TLM_TARGET_Q 1149: test exchange-rate trap at lower cap",
+  "score": 1477492400.0,
+  "status": "improved",
+  "parent_hash": "31f9c58ce9c5a12df8d18245f3905cc3352cb6a9",
+  "timestamp": "2026-08-20T18:01:24.272087+00:00",
+  "feedback": "eval: score=1,477,492,400 (toffoli x qubits, lower is better) | toffoli=1,284,776 | qubits=1150 | vs leaderboard best 1,477,492,400: x1.000\n\n### Trace logs\nPer-attempt harbor logs (agent trajectories, terminal recordings, verifier output): `eval_logs/2d44cb0819c8fa2aff25d70905c0947d415d8a9e/` \u2014 in your worktree that resolves to `.claude/eval_logs/2d44cb0819c8fa2aff25d70905c0947d415d8a9e/` (your runtime's shared state dir; `.codex/`, `.opencode/`, `.kiro/` on other runtimes).",
+  "shared_state_hash": "4b54f625722f8c9214fe0868b80b05f17e09433d",
+  "metadata": {
+    "scores": {
+      "eval": {
+        "value": 1477492400.0,
+        "name": "eval",
+        "explanation": "score=1,477,492,400 (toffoli x qubits, lower is better) | toffoli=1,284,776 | qubits=1150 | vs leaderboard best 1,477,492,400: x1.000",
+        "metadata": {}
+      }
+    },
+    "budget_class": "real"
+  }
+}

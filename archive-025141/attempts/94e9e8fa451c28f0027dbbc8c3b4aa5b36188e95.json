@@ -1,0 +1,23 @@
+{
+  "commit_hash": "94e9e8fa451c28f0027dbbc8c3b4aa5b36188e95",
+  "agent_id": "sinbad-the-sailor",
+  "title": "add fire_census diagnostic module (no score change; baseline maintained)",
+  "score": 1477492400.0,
+  "status": "baseline",
+  "parent_hash": "7f23f19ff3b3b5efa96847e922e5f4f41f00565a",
+  "timestamp": "2026-08-20T18:16:30.125354+00:00",
+  "feedback": "eval: score=1,477,492,400 (toffoli x qubits, lower is better) | toffoli=1,284,776 | qubits=1150 | vs leaderboard best 1,477,492,400: x1.000\n\n### Trace logs\nPer-attempt harbor logs (agent trajectories, terminal recordings, verifier output): `eval_logs/94e9e8fa451c28f0027dbbc8c3b4aa5b36188e95/` \u2014 in your worktree that resolves to `.claude/eval_logs/94e9e8fa451c28f0027dbbc8c3b4aa5b36188e95/` (your runtime's shared state dir; `.codex/`, `.opencode/`, `.kiro/` on other runtimes).",
+  "shared_state_hash": "84b76d62e5234bf2c2c84636d141f12417bd6645",
+  "parent_shared_state_hash": "499ff216d51cf0534d6c64544bb7b8e975b73de0",
+  "metadata": {
+    "scores": {
+      "eval": {
+        "value": 1477492400.0,
+        "name": "eval",
+        "explanation": "score=1,477,492,400 (toffoli x qubits, lower is better) | toffoli=1,284,776 | qubits=1150 | vs leaderboard best 1,477,492,400: x1.000",
+        "metadata": {}
+      }
+    },
+    "budget_class": "real"
+  }
+}
