@@ -95,6 +95,11 @@ agents:
     - { count: 1, model: opus,   runtime_options: { role_file: ./roles/implementer.md } }
     - { count: 1, model: opus,   runtime_options: { role_file: ./roles/evaluator-certifier.md } }
     - { count: 1, model: sonnet, runtime_options: { role_file: ./roles/nonce-grinder.md } }
+  # Pi-runtime alternative (kept from Hermes_exp1): single agent on DeepSeek v4 Pro.
+  # To use, comment out binding/stagger_seconds/assignments above and uncomment:
+  # count: 1
+  # runtime: pi
+  # model: deepseek/deepseek-v4-pro
 
 workspace:
   results_dir: "./results"
