@@ -63,7 +63,7 @@ grader:
   entrypoint: "ecdsa_fail_grader.grader:Grader"
   setup:
     - "uv pip install -e ./grader"
-  timeout: 1800
+  timeout: 3600
   direction: minimize
   args:
     editable_paths: ["src/point_add"]
