@@ -97,6 +97,7 @@ agents:
     # GLM reasoning / audit roles
     - { count: 1, binding: pi-glm, runtime_options: { role_file: ./roles/frontier-auditor.md } }
     - { count: 1, binding: pi-glm, runtime_options: { role_file: ./roles/exploitation-tuner.md } }
+    - { count: 1, binding: pi-glm, runtime_options: { role_file: ./roles/experiment-deduplicator.md } }
 
     # DeepSeek long-context grinding roles
     - { count: 1, binding: pi-deepseek, runtime_options: { role_file: ./roles/lambda-metrologist.md } }
