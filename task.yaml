@@ -75,9 +75,26 @@ grader:
   max_pending_per_agent: 1
 
 agents:
-  count: 1
-  runtime: pi
-  model: openai/gpt-5.3-codex
+  # Claude Code subagents, one per role. Roles are Coral translations of the Pi fleet in
+  # ~/ecdsafail-challenge/.pi/agents/*.md (see ./roles/). Coral copies each role_file into
+  # .claude/roles/<agent_id>.md as that agent's gen-0 role; Pi frontmatter (tools/acceptanceRole)
+  # is not enforced by Coral, so the permission boundary is spelled out in each file's body.
+  # Grader is serial (grader.parallel.max_workers=1, shared cargo target) so evals queue.
+  binding: claude-opus              # ~/.config/coral/agents.yaml: runtime claude_code, model opus
+  stagger_seconds: 30
+  assignments:                      # total agents = sum of counts (10)
+    # model: per-role override (claude_code aliases: opus | sonnet | haiku, or a full model id).
+    # Per-entry `binding:` / `runtime:` also work, e.g. `binding: pi-codex` to mix runtimes.
+    - { count: 1, model: opus,   runtime_options: { role_file: ./roles/orchestrator-reviewer.md } }
+    - { count: 1, model: sonnet, runtime_options: { role_file: ./roles/frontier-auditor.md } }
+    - { count: 1, model: sonnet, runtime_options: { role_file: ./roles/exploitation-tuner.md } }
+    - { count: 1, model: opus,   runtime_options: { role_file: ./roles/structural-researcher.md } }
+    - { count: 1, model: opus,   runtime_options: { role_file: ./roles/cross-cell-reframer.md } }
+    - { count: 1, model: sonnet, runtime_options: { role_file: ./roles/lambda-metrologist.md } }
+    - { count: 1, model: sonnet, runtime_options: { role_file: ./roles/strip-census-miner.md } }
+    - { count: 1, model: opus,   runtime_options: { role_file: ./roles/implementer.md } }
+    - { count: 1, model: opus,   runtime_options: { role_file: ./roles/evaluator-certifier.md } }
+    - { count: 1, model: sonnet, runtime_options: { role_file: ./roles/nonce-grinder.md } }
 
 workspace:
   results_dir: "./results"
