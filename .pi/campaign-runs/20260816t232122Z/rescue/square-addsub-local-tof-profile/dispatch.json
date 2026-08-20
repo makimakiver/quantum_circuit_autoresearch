@@ -1,0 +1,12 @@
+{
+  "authority": "one candidate TRACE_TLM_TOF build only; no source edit, eval, metrology, census, grind, promotion, commit, merge, push, submit",
+  "command": "TLM_SQUARE_ADDSUB_LOCAL=1 TRACE_TLM_TOF=1 CARGO_TARGET_DIR=/tmp/fleet-v3-square-addsub-local-20260816t233502Z/target-tof cargo run --release --bin build_circuit",
+  "experimentId": "RESCUE-SQUARE-ADDSUB-LOCAL",
+  "goal": "extract deterministic emitted-Toffoli phase totals and compare candidate T/Q break-even requirement; do not call emitted counts executed score",
+  "kind": "parent-owned-rescue-pricing-receipt",
+  "parentCandidateOpsSha256": "0e2afb690e0a6e01865e1962a850ed146f29a3112bf8c790c9ca7e3c64766dbc",
+  "role": "exploitation-tuner",
+  "sandbox": "/tmp/fleet-v3-square-addsub-local-20260816t233502Z",
+  "schemaVersion": 1,
+  "scientificVerdictOnInterruption": null
+}

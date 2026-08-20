@@ -1,0 +1,24 @@
+{
+  "experiment_id": "FRONTIER-AUDIT",
+  "kind": "control-plane frontier audit",
+  "timestamp_utc_note": "results.tsv row epoch 1786907851",
+  "status": "HISTORICAL_AUDIT_SUPERSEDED",
+  "superseded_by": "CAMPAIGN_FINDINGS.md and .pi/frontier.json schema_version 2",
+  "do_not_use_for_current_state": true,
+  "source_commit": "a2067dcf3c991bcecfd51a4bf07cd7d1cc56c3a5",
+  "git_status_porcelain": "?? .pi/\n?? AGENTS.md",
+  "reproduction_command": "cargo run --release --bin build_circuit && cargo run --release --bin eval_circuit",
+  "checks": {
+    "live_reachability": "build() mod.rs:2007 -> build_trailmix_ludicrous_ops() mod.rs:2302 (def trailmix_ludicrous/mod.rs:453); strip stack present; dialog_gcd/build_builder path dead (zero callers)",
+    "sub4_tail_nonce": "env override mod.rs:2410-2413, default 1337610097, applied at mod.rs:2414 via apply_tail_nonce (mod.rs:1790) on the live path",
+    "geometry": "JUMP=2, ITERS=261, BAKED_ITERS=258 (schedule.rs:2,4,9), SCHED_J2/GAP_J2 live in gcd.rs:3; dialog_tape_qubits=609 (codec.rs:528, tail4 off, retained y3 test green)",
+    "measurements": "four checks green 9024/9024; T avg 1283487.051 (round 1283487); Q 1154 (artifact max qubit id 1153); S 1481143998; emitted ops 8958690",
+    "artifact_hashes": {
+      "ops_bin_compressed_sha256": "6519bd01424d5513cd7f8232d4c15dfcbfe67561eb1b7f05b2cfec87c233a097",
+      "canonical_semantic_sha256": "0a4a412c939b05f59fa4bc33c2410e5bc110b07c7faded5e6db5f6b5db3ed0b0"
+    },
+    "determinism": "second build_circuit run reproduced ops.bin byte-identically",
+    "lambda": "null -- no current dirty-scan evidence for this commit; 23.29 (n=700) predates a2067dcf (ITERS=258 era)"
+  },
+  "outcome": "Historical audit that first pinned a2067dcf. Current state and later 400x64 lambda evidence live in .pi/frontier.json; drift recorded in the campaign snapshot."
+}

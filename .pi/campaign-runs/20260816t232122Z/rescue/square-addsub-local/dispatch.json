@@ -1,0 +1,15 @@
+{
+  "authority": "one isolated flag-on build only; no source edit, eval, metrology, grind, promotion, commit, merge, push, or submit",
+  "baseCommit": "a2067dcf3c991bcecfd51a4bf07cd7d1cc56c3a5",
+  "baselineOpsSha256": "6519bd01424d5513cd7f8232d4c15dfcbfe67561eb1b7f05b2cfec87c233a097",
+  "experimentId": "RESCUE-SQUARE-ADDSUB-LOCAL",
+  "falsifier": "build failure or byte-identical candidate is a scoped probe result, not a global ceiling",
+  "flag": "TLM_SQUARE_ADDSUB_LOCAL",
+  "kind": "parent-owned-rescue-probe-receipt",
+  "parentCampaign": "../../",
+  "parentReceiptSha256": "53ec484db53ef0991c665ebd354bcfc52e8e412e30a14ca8c007b6ef671ac67f",
+  "role": "exploitation-tuner",
+  "sandbox": "/tmp/fleet-v3-square-addsub-local-20260816t233502Z",
+  "schemaVersion": 1,
+  "scientificVerdictOnInterruption": null
+}

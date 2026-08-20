@@ -1,0 +1,63 @@
+{
+  "schema_version": 2,
+  "experiment_id": "EXP-SQ-02",
+  "role": "implementer",
+  "status": "IMPLEMENTED",
+  "frontier_id": "2026-08-16-a2067dcf",
+  "candidate_ops_sha256": "6519bd01424d5513cd7f8232d4c15dfcbfe67561eb1b7f05b2cfec87c233a097",
+  "canonical_ops_sha256": "0a4a412c939b05f59fa4bc33c2410e5bc110b07c7faded5e6db5f6b5db3ed0b0",
+  "changed_paths": [],
+  "evidence": {
+    "findings_ref": "/Users/makimakiver/.pi/agent/sessions/--Users-makimakiver-ecdsafail-challenge--/subagent-artifacts/outputs/f485ecd4-0e53-4daf-acd4-f19daf22090b/impl-sq02.md",
+    "trace_ref": ".pi/campaigns/campaign-20260817t082219z/runs/impl-sq02-20260817t083749z/build1-trace.log",
+    "stdout_ref": ".pi/campaigns/campaign-20260817t082219z/runs/impl-sq02-20260817t083749z/build1-stdout.log",
+    "measurement_rows": [
+      "TLM_TOF phase=tlm_coord_x_sub emitted=332 expected=320.0 discount=0.036",
+      "TLM_COMPARE_DIRECT call=0 phase=tlm_coord_x_sub n=19 k=19 split=0 ops_start=5288 ops_end=5562",
+      "TLM_PROFILE peak_qubits=1154 emitted_ops=8971392",
+      "fingerprint: compressed 6519bd01424d5513cd7f8232d4c15dfcbfe67561eb1b7f05b2cfec87c233a097 canonical 0a4a412c939b05f59fa4bc33c2410e5bc110b07c7faded5e6db5f6b5db3ed0b0 Q=1154 emitted 8958690"
+    ],
+    "falsifier": "phase discount < 0.2 (predeclared)",
+    "falsifier_observation": "conditionable Toffoli <= 21 of 332 (comparator forward ccx n=19 + 2 adder i=0 gates); ceiling discount 0.063; realistic expected ~0.03",
+    "builder_conditioning_support": "CCX/CCZ/CX/CZ/X/Z/Hmr all allow c_condition (circuit.rs schema); x_if_bit idiom live in baseline stream; no UNSUPPORTED family",
+    "no_source_edits": true,
+    "worktree": "/Users/makimakiver/ecdsafail-wt/sq02 @ a2067dcf3c991bcecfd51a4bf07cd7d1cc56c3a5 clean"
+  },
+  "metrics": {
+    "site_emitted_toffoli": 332,
+    "site_expected_executed_toffoli": 320.0,
+    "site_current_discount": 0.036,
+    "conditionable_toffoli_ceiling": 21,
+    "discount_ceiling": 0.063,
+    "discount_realistic_estimate": 0.03,
+    "frontier_score": 1481143998,
+    "best_case_delta_score_projection": -46160,
+    "realistic_delta_score_projection": -26542
+  },
+  "verification": {
+    "ownership_scope": "PASS: ownership_violations(implementer, planned paths)=[]; zero edits",
+    "default_off_identity": "PASS: both pinned hashes reproduced pre-edit with trace env (stream-neutral)",
+    "candidate_anti_noop": "NOT_REACHED: falsifier fired before candidate implementation",
+    "selftests": "build #1 built-in selftests green",
+    "full_evaluation": "not run (prohibited by dispatch)",
+    "score_sign_gate": "moot: best-case dT<=-40 => dS<=-46,160 (-0.003%)"
+  },
+  "nonce_env": "SUB4_TAIL_NONCE",
+  "commands": [
+    "cd /Users/makimakiver/ecdsafail-wt/sq02 && CARGO_TARGET_DIR=/Users/makimakiver/ecdsafail-wt/shared-target TRACE_TLM_PROFILE=1 TRACE_TLM_CCX=1 TRACE_TLM_TOF=1 TRACE_PHASE_ACTIVE=1 TRACE_TLM_COMPARE_DIRECT=1 cargo run --release --bin build_circuit",
+    "PYTHONPATH=.pi python3 -m harness.ownership.ownership_violations check (via harness.ownership)",
+    "artifact_io.fingerprint(ops.bin)"
+  ],
+  "recovery": {
+    "status": "REFUTED",
+    "reason": "Predeclared falsifier (phase discount < 0.2) fired at the measurement gate; zero source edits; no rollback needed",
+    "bundle_ref": ".pi/campaigns/campaign-20260817t082219z/runs/impl-sq02-20260817t083749z/recovery/EXP-SQ-02"
+  },
+  "timestamp": "2026-08-17T09:01:00Z",
+  "run_id": "impl-sq02-20260817t083749z",
+  "dispatch_ref": ".pi/campaigns/campaign-20260817t082219z/runs/impl-sq02-20260817t083749z/dispatch.json",
+  "checkpoint_ref": ".pi/campaigns/campaign-20260817t082219z/runs/impl-sq02-20260817t083749z/checkpoint.json",
+  "terminal_ref": ".pi/campaigns/campaign-20260817t082219z/runs/impl-sq02-20260817t083749z/terminal.log",
+  "recovery_ref": ".pi/campaigns/campaign-20260817t082219z/runs/impl-sq02-20260817t083749z/recovery/EXP-SQ-02",
+  "scientific_verdict": "REFUTED"
+}

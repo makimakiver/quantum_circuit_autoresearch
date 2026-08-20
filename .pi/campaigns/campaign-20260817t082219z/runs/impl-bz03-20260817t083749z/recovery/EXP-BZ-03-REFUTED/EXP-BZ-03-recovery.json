@@ -1,0 +1,36 @@
+{
+  "artifacts": [
+    {
+      "exists": true,
+      "path": "/Users/makimakiver/ecdsafail-challenge/.pi/campaigns/campaign-20260817t082219z/runs/impl-bz03-20260817t083749z/probe-table.json",
+      "resolved_path": "/Users/makimakiver/ecdsafail-challenge/.pi/campaigns/campaign-20260817t082219z/runs/impl-bz03-20260817t083749z/probe-table.json",
+      "sha256": "2eba92322559dbfa764d325e90d62e0209e975499b082d49380f65b64d602cfe",
+      "size": 3562
+    }
+  ],
+  "commands": [
+    "cd /Users/makimakiver/ecdsafail-wt/bz03 && env -i HOME=$HOME PATH=$PATH CARGO_TARGET_DIR=/Users/makimakiver/ecdsafail-wt/shared-target TRACE_TLM_COUT=1 TRACE_TLM_TOF=1 TLM_COUT_K_CALL_OVERRIDES=258:7,259:7,260:7,261:7,262:7,263:7 cargo run --release --bin build_circuit"
+  ],
+  "continuation": null,
+  "experiment_id": "EXP-BZ-03",
+  "logs": [
+    {
+      "exists": true,
+      "path": "/Users/makimakiver/ecdsafail-challenge/.pi/campaigns/campaign-20260817t082219z/runs/impl-bz03-20260817t083749z/terminal.log",
+      "resolved_path": "/Users/makimakiver/ecdsafail-challenge/.pi/campaigns/campaign-20260817t082219z/runs/impl-bz03-20260817t083749z/terminal.log",
+      "size": 1048,
+      "tail": [
+        "[impl-bz03] 2026-08-17T08:4xZ gates: g1-ownership PASS (0 edits, ownership_violations=[]); g2-default-identity PASS (ops.bin=6519bd...a097, canonical=0a4a41...3ed0b0, Q=1154, clean-env build)",
+        "[impl-bz03] tail slots identified empirically: COUT cursor 258,259 (inverse pass tail) + 262,263 (forward pass tail); cursor 260,261 are skipped adds (no take); fill value base=24 selected=22 effective=19/18 (TLM_TARGET_Q=1154 headroom cap) \u2014 card premise of wide-138 endpoint duplication is factually wrong",
+        "[impl-bz03] probes K6,K7,K9,K12,K14,K16,K18,K19: all change artifact except K19 == baseline byte-identical (anti-noop calibration + proof that k>=20 is capped to no-op); emitted ops -185..-10553 but expected-executed Toffoli +15..+213 (strip stale keys 793..1958 remove executed-T credits); K7 Q=1154 unchanged",
+        "[impl-bz03] FALSIFIER FIRED (condition 2): every candidate has positive score projection; best K18 +15 executed T => +17310 score. Verdict REFUTED for the local cout-k tail-fill cell. No source edit; no Stage-2 bake; no evaluator run."
+      ]
+    }
+  ],
+  "reason": "Predeclared falsifier fired: every reachable tail cout-k candidate (K6..K18) has positive executed-Toffoli delta and thus nonnegative score projection; K19+ provably no-op under TLM_TARGET_Q headroom cap. Local cell only.",
+  "repository": "/Users/makimakiver/ecdsafail-challenge",
+  "schema_version": 1,
+  "source_commit": "a2067dcf3c991bcecfd51a4bf07cd7d1cc56c3a5",
+  "status": "REFUTED",
+  "timestamp_utc": "2026-08-17T09:01:49.905188+00:00"
+}

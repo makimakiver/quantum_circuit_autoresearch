@@ -1,0 +1,177 @@
+{
+  "approvals": {
+    "grind": null,
+    "long_compute": []
+  },
+  "authoritative_snapshot": "CAMPAIGN_FINDINGS.md",
+  "baseline_frontier_id": "2026-08-16-a2067dcf",
+  "campaign_id": "performance-2026-08-16",
+  "continuations": [
+    ".pi/continuations/EXP-P2-BZ-METRO.json",
+    ".pi/continuations/EXP-SM-01.json"
+  ],
+  "frontier_id": "2026-08-16-a2067dcf",
+  "frontier_ref": ".pi/frontier.json",
+  "policy": {
+    "default_behavior": "preserve",
+    "full_evaluation_shots": 9024,
+    "nonce_env": "SUB4_TAIL_NONCE",
+    "promotion_requires": [
+      "default-artifact identity",
+      "SAFE lambda verdict where lambda-exposed",
+      "9024-shot four-check evaluation",
+      "GRIND_APPROVED bound to candidate stream",
+      "ground nonce bound through SUB4_TAIL_NONCE",
+      "CERTIFIED result with strictly lower score"
+    ],
+    "scored_source_owner": "implementer",
+    "trusted_source_mutable": false,
+    "working_tree_lock": {
+      "allowed_scored_changes": [],
+      "meaning": "Certified frontier scored source is clean. EXP-SQ-01 is preserved only as a hashed recovery patch for isolated-worktree research. Because the current harness hashes the complete tracked diff when allowed_scored_changes is empty, this lock also binds the preserved results.tsv baseline-evidence diff.",
+      "scored_diff_sha256": "f392cf81926f6d8c6539d2b246ec4aceb9b6f8bac970c33d73554b6120650e33",
+      "trusted_source_must_be_clean": true
+    }
+  },
+  "promotions": [],
+  "records": [
+    {
+      "adjudication": "REFUTED",
+      "card_path": ".pi/experiments/EXP-SLOPE-01.md",
+      "experiment_id": "EXP-SLOPE-01",
+      "lane": "EXPLOITATION",
+      "note": "Lambda falsifier fired; gcd.rs was reverted.",
+      "owner": "exploitation-tuner",
+      "status": "REVERTED"
+    },
+    {
+      "adjudication": "REFUTED_AS_SHIPPED",
+      "card_path": ".pi/experiments/EXP-SQ-01.md",
+      "continuation_id": "EXP-SM-01",
+      "experiment_id": "EXP-SQ-01",
+      "lane": "STRIP",
+      "note": "The refuted-as-shipped implementation was removed from the root scored source and is preserved as the hashed recovery patch .pi/campaign-runs/20260816t232122Z/rescue/structural-sq01-early-sum/artifacts/square.rs.patch with SHA-256 a32dba36a39ef7112049d94e5d5f7335bf2e58bcc3d884eff6ad043afa611ca1. Reopen only in an isolated worktree after a stream-specific re-mine.",
+      "owner": "structural-researcher",
+      "status": "PARKED"
+    },
+    {
+      "card_path": ".pi/experiments/EXP-P2-01.md",
+      "continuation_id": "EXP-P2-BZ-METRO",
+      "experiment_id": "EXP-P2-01",
+      "lane": "STRUCTURAL",
+      "note": "Detached scan complete (EXP-P2-BZ-METRO COMPLETE, arms verified). Paired dCI +4.5825 [+1.85,+7.32] wholly above +0.5: not SAFE; classical mean 17.98<=30 and round-max coverage only 32/400: not REFUTED. Scan predates post-pass stack (TLM_DIRTY_SCAN vs FINAL). Evidence: .pi/campaigns/campaign-20260817t082219z/runs/lambda-20260817t082608z/findings.md",
+      "owner": "lambda-metrologist",
+      "status": "INCONCLUSIVE"
+    },
+    {
+      "card_path": ".pi/experiments/EXP-BZ-01.md",
+      "continuation_id": "EXP-P2-BZ-METRO",
+      "experiment_id": "EXP-BZ-01",
+      "lane": "STRUCTURAL",
+      "note": "Detached scan complete (EXP-P2-BZ-METRO COMPLETE, arms verified). Paired dCI +0.705 [-1.16,+2.57]: not SAFE; final post-strip +485 CCX adverse score sign bars evaluation independently. Evidence: .pi/campaigns/campaign-20260817t082219z/runs/lambda-20260817t082608z/findings.md",
+      "owner": "lambda-metrologist",
+      "status": "INCONCLUSIVE"
+    },
+    {
+      "card_path": ".pi/experiments/EXP-SM-01.md",
+      "continuation_id": "EXP-SM-01",
+      "experiment_id": "EXP-SM-01",
+      "lane": "STRIP",
+      "note": "Miner rebuild is not started; pilot and full census have no compute approval.",
+      "owner": "strip-census-miner",
+      "status": "PARKED"
+    },
+    {
+      "card_path": ".pi/experiments/EXP-BZ-02.md",
+      "experiment_id": "EXP-BZ-02",
+      "lane": "STRUCTURAL",
+      "owner": "structural-researcher",
+      "status": "SCOPED"
+    },
+    {
+      "card_path": ".pi/experiments/EXP-ARCH-03.md",
+      "experiment_id": "EXP-ARCH-03",
+      "lane": "REFRAMING",
+      "owner": "cross-cell-reframer",
+      "status": "SCOPED"
+    },
+    {
+      "card_path": ".pi/experiments/EXP-STRIP-03.md",
+      "experiment_id": "EXP-STRIP-03",
+      "lane": "STRIP",
+      "owner": "strip-census-miner",
+      "status": "SCOPED"
+    },
+    {
+      "budget": {
+        "build": false,
+        "evaluation": false,
+        "grinding": false,
+        "kind": "temporary exact-integer and bit-vector proof only",
+        "lambda": false,
+        "source_edits": false,
+        "wall_seconds": 1800
+      },
+      "card_path": ".pi/experiments/EXP-ARCH-07.md",
+      "cheapest_discriminator": "deterministic integer miter followed by one bounded bit-vector query",
+      "experiment_id": "EXP-ARCH-07",
+      "falsifier": "any verified reachable mismatch in the complete i=0 control tuple, Step0 symbol, or post-step state",
+      "implementation_ready": false,
+      "lane": "REFRAMING",
+      "mechanism_id": "square-term-transport",
+      "owner": "cross-cell-reframer",
+      "reopening_trigger": "a different transported term, extraction map, or restoration boundary",
+      "search_radius": "one selected square b_hi term through forward divstep i=0",
+      "status": "SCOPED",
+      "unresolved_direction": "later source uses, paired restoration, phase, ancilla, Q, strip occupancy, lambda, and four-check evaluation remain open"
+    },
+    {
+      "card_path": ".pi/campaigns/campaign-20260817t082219z/runs/impl-bz03-20260817t083749z/result.json",
+      "experiment_id": "EXP-BZ-03",
+      "lane": "EXPLOITATION",
+      "note": "Tail cout-fit re-fit; card premise corrected (tail fill is narrow 24/22, not wide 138); dispatched 20260817t083749z in isolated worktree.",
+      "owner": "implementer",
+      "result_paths": [
+        ".pi/campaigns/performance-2026-08-16/results/EXP-BZ-03-refuted.json"
+      ],
+      "status": "REFUTED"
+    },
+    {
+      "card_path": ".pi/campaigns/campaign-20260817t082219z/runs/impl-sq02-20260817t083749z/result.json",
+      "experiment_id": "EXP-SQ-02",
+      "lane": "EXPLOITATION",
+      "note": "Predeclared falsifier fired at measurement gate (no source edit): only <=21/332 site Toffoli conditionable, discount ceiling 0.063 < 0.2 threshold. Local cell only; reopening if c_condition support expands.",
+      "owner": "implementer",
+      "result_paths": [
+        ".pi/campaigns/performance-2026-08-16/results/EXP-SQ-02-implemented.json"
+      ],
+      "status": "REFUTED",
+      "adjudication": "REFUTED"
+    },
+    {
+      "card_path": ".pi/campaigns/campaign-20260817t082219z/runs/impl-rev01-20260817t083749z/result.json",
+      "experiment_id": "EXP-REV-01",
+      "lane": "STRUCTURAL",
+      "note": "Attribution complete (stage 1, IMPLEMENTED/UNSUPPORTED): claimed +59,242 reverse premium = 2x34,899 shift-boundary artifact - 10,555.5 comparator condition-stack discount + 174 codec delta; matched-boundary reverse premium is NEGATIVE (-10,381.5). Stage-2 trigger not met (0 net mutable add/cswap CCX). Follow-up EXP-KFIT-01 spawned from ledger.",
+      "owner": "implementer",
+      "result_paths": [
+        ".pi/campaigns/performance-2026-08-16/results/EXP-REV-01-implemented.json"
+      ],
+      "status": "INCONCLUSIVE",
+      "adjudication": "UNSUPPORTED"
+    },
+    {
+      "card_path": ".pi/campaigns/campaign-20260817t082219z/selection-20260817t083749z.json",
+      "experiment_id": "EXP-KFIT-01",
+      "lane": "EXPLOITATION",
+      "note": "Type-(b) intrinsic: 480/520 cout calls hard-capped, 40 at exact TLM_TARGET_Q=1154 ceiling, 0 with true slack; family asymmetry only +593.5 executed. No override path. Evidence: impl-kfit-20260817t091036z/stage1-adjudication.md",
+      "owner": "implementer",
+      "result_paths": [
+        ".pi/campaigns/performance-2026-08-16/results/EXP-KFIT-01-implemented.json"
+      ],
+      "status": "INCONCLUSIVE",
+      "adjudication": "UNSUPPORTED"
+    }
+  ],
+  "schema_version": 1
+}

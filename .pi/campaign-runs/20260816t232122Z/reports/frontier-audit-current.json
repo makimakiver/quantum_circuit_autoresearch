@@ -1,0 +1,165 @@
+{
+  "candidate_ops_sha256": "6519bd01424d5513cd7f8232d4c15dfcbfe67561eb1b7f05b2cfec87c233a097",
+  "canonical_ops_sha256": "0a4a412c939b05f59fa4bc33c2410e5bc110b07c7faded5e6db5f6b5db3ed0b0",
+  "changed_paths": [],
+  "commands": [
+    "git rev-parse HEAD; git status --porcelain=v1 --untracked-files=all -- src Cargo.toml Cargo.lock build.rs rust-toolchain rust-toolchain.toml .cargo; git diff --cached --name-status; git diff --no-ext-diff --binary HEAD -- src/point_add; git diff --no-ext-diff --binary HEAD -- src/bin src/circuit src/sim src/weierstrass_elliptic_curve.rs Cargo.toml Cargo.lock build.rs rust-toolchain rust-toolchain.toml .cargo",
+    "git diff --quiet -- src/point_add/memory/repro/__pycache__/artifact_io.cpython-313.pyc && sha256sum src/point_add/memory/repro/__pycache__/artifact_io.cpython-313.pyc",
+    "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=.pi python3 -B - <<'PY' # fingerprint ops.bin, inspect decoded final 96 nonce-tail records, compute trees, check ownership([]) PY",
+    "git diff --quiet -- src/point_add/memory/repro/__pycache__/artifact_io.cpython-313.pyc && sha256sum src/point_add/memory/repro/__pycache__/artifact_io.cpython-313.pyc"
+  ],
+  "evidence": {
+    "artifact_paths": [
+      "ops.bin",
+      "score.json",
+      "results.tsv"
+    ],
+    "audit_artifact_path": ".pi/campaign-runs/20260816t232122Z/reports/frontier-audit-current.json",
+    "authority": {
+      "campaign_state": ".pi/state/campaign.json",
+      "dispatch": ".pi/campaign-runs/20260816t232122Z/lanes/frontier-auditor/dispatch.json",
+      "frontier": ".pi/frontier.json",
+      "snapshot_read": "CAMPAIGN_FINDINGS.md"
+    },
+    "residual_risks": [
+      "The 9024-shot check is retained evidence; it was not rerun.",
+      "Schema-v2 frontier has no immutable source_identity fields, so current scored/trusted identities were separately computed.",
+      "Any source/environment change invalidates CURRENT and requires a fresh artifact audit; prose is not a freshness proof."
+    ]
+  },
+  "experiment_id": "FRONTIER-AUDIT",
+  "frontier_id": "2026-08-16-a2067dcf",
+  "metrics": {
+    "average_executed_toffoli": 1283487.051,
+    "emitted_ops": 8958690,
+    "formula": "1283487 * 1154 = 1481143998",
+    "metric_identity_binding": "All metrics bind to both compressed and canonical operation identities.",
+    "qubits": 1154,
+    "rounded_toffoli": 1283487,
+    "score": 1481143998
+  },
+  "nonce": 1337610097,
+  "nonce_env": "SUB4_TAIL_NONCE",
+  "role": "frontier-auditor",
+  "schema_version": 1,
+  "scientific_verdict": "CURRENT: dispatch-bound frontier identities and live source route reconcile. PARKED denotes the completed read-only foreground gate, not a scientific failure or a new frontier claim.",
+  "status": "PARKED",
+  "verification": {
+    "artifact_identity": {
+      "canonical_semantic_sha256": "0a4a412c939b05f59fa4bc33c2410e5bc110b07c7faded5e6db5f6b5db3ed0b0",
+      "circuit_affecting_difference": false,
+      "compressed_ops_sha256": "6519bd01424d5513cd7f8232d4c15dfcbfe67561eb1b7f05b2cfec87c233a097",
+      "emitted_ops": 8958690,
+      "fingerprint_tool": "src/point_add/memory/repro/artifact_io.py::fingerprint",
+      "max_referenced_qubit_id": 1153,
+      "ops_bytes": 29461502,
+      "path": "ops.bin",
+      "qubits": 1154,
+      "score_json_path": "score.json",
+      "score_json_sha256": "b22776904513b4cc5b4c484854f7862c9c0300039313664240cfcc864a8e3e2c",
+      "status": "CURRENT"
+    },
+    "audited_frontier_status": "CURRENT",
+    "geometry_q": {
+      "baked_iterations": 258,
+      "derivation": "n3_for_iters(261)=87; tail4 default off gives codec_syms=260 and 86 triples; Step0=2 + 86*Triple(7) + Pair(5) = 609.",
+      "dialog_tape_qubits": 609,
+      "iterations": 261,
+      "jump": 2,
+      "q_derivation": "fingerprinted max qubit id 1153 => Q=1154.",
+      "status": "CURRENT"
+    },
+    "lifecycle_disposition": "PARKED",
+    "live_route": {
+      "engine_definition": "src/point_add/trailmix_ludicrous/mod.rs:453",
+      "forward_reverse": "gcd.rs:1182 forward_gcd_jump and :1435 reverse_gcd_jump",
+      "route": "mod.rs:2007 build -> mod.rs:2302 build_trailmix_ludicrous_ops -> fanout -> apply_m60_dead_t10 -> ccz_self_inverse_cancel -> ccx_final_cancel -> second fanout -> apply_deep_strip_identity -> post-strip fanout -> mod.rs:2414 apply_tail_nonce",
+      "status": "CURRENT"
+    },
+    "no_rebuild_or_evaluator_run": true,
+    "nonce_binding": {
+      "artifact_tail_check": "Decoded final 96 records are X; all 48 adjacent target pairs match bits 0..47 of 1337610097.",
+      "circuit_affecting_difference": false,
+      "default": 1337610097,
+      "env": "SUB4_TAIL_NONCE",
+      "environment_override_present": false,
+      "source_read": "mod.rs:2410-2414 defaults to 1337610097 and applies after post-passes.",
+      "status": "CURRENT"
+    },
+    "ownership": {
+      "check": "ownership_violations('frontier-auditor', [])",
+      "status": "CURRENT",
+      "violations": []
+    },
+    "pycache_guard": {
+      "git_clean_before_and_after": true,
+      "path": "src/point_add/memory/repro/__pycache__/artifact_io.cpython-313.pyc",
+      "sha256_before_and_after": "016debdfcfe5a6f7827bfb1610344ed98bfe0d1720a7458618ecb94faddffe89",
+      "status": "CURRENT"
+    },
+    "read_only": true,
+    "repository_identity": {
+      "circuit_affecting_difference": [],
+      "control_plane_only_difference": [
+        "results.tsv modified",
+        ".pi/ untracked",
+        "AGENTS.md untracked",
+        "CAMPAIGN_FINDINGS.md untracked"
+      ],
+      "finding": "No source/toolchain difference; control-plane differences are separated and no freshness is inferred from prose.",
+      "frontier_source_commit": "a2067dcf3c991bcecfd51a4bf07cd7d1cc56c3a5",
+      "git_commit_tree": "1cae1c50fa8e27b4b51afb170ab37eb5c68eb335",
+      "head": "a2067dcf3c991bcecfd51a4bf07cd7d1cc56c3a5",
+      "protected_status_porcelain": "",
+      "staged_paths": [],
+      "status": "CURRENT",
+      "working_tree_status": [
+        " M results.tsv",
+        "?? .pi/",
+        "?? AGENTS.md",
+        "?? CAMPAIGN_FINDINGS.md"
+      ]
+    },
+    "retained_9024_evidence": {
+      "frontier_declaration": ".pi/frontier.json says 9024 shots, all four checks green.",
+      "limitation": "No evaluator run in this mandated read-only audit.",
+      "score_json": {
+        "metrics": {
+          "qubits": 1154,
+          "toffoli": 1283487
+        },
+        "score": 1481143998
+      },
+      "status": "CURRENT_AS_RETAINED"
+    },
+    "scored_tree_identity": {
+      "changed_paths": [],
+      "circuit_affecting_difference": false,
+      "diff_from_HEAD_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "prefixes": [
+        "src/point_add"
+      ],
+      "sha256": "7ae7eabe20bc5459d902d2f4c921bb7ea53f48f9c82ae88d9a7f93c2bbefd7f9",
+      "status": "CURRENT"
+    },
+    "trusted_tree_identity": {
+      "changed_paths": [],
+      "circuit_affecting_difference": false,
+      "diff_from_HEAD_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "prefixes": [
+        "Cargo.toml",
+        "Cargo.lock",
+        "build.rs",
+        "rust-toolchain",
+        "rust-toolchain.toml",
+        ".cargo",
+        "src/bin",
+        "src/circuit",
+        "src/sim",
+        "src/weierstrass_elliptic_curve.rs"
+      ],
+      "sha256": "fdd8fe31d933f8861d24d9ffc474a21899de22874ec41ff5579a3c138f320562",
+      "status": "CURRENT"
+    }
+  }
+}

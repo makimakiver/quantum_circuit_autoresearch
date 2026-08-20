@@ -1,0 +1,27 @@
+{
+  "canonical_semantic_sha256": "0a4a412c939b05f59fa4bc33c2410e5bc110b07c7faded5e6db5f6b5db3ed0b0",
+  "compressed_ops_sha256": "6519bd01424d5513cd7f8232d4c15dfcbfe67561eb1b7f05b2cfec87c233a097",
+  "emitted_ops": 8958690,
+  "max_referenced_qubit_id": 1153,
+  "operation_kind_counts": [
+    1568,
+    4,
+    1024,
+    6302,
+    5965,
+    2877,
+    640940,
+    7906,
+    4210779,
+    513659,
+    276124,
+    486717,
+    512800,
+    1330933,
+    4728,
+    478182,
+    478182,
+    0
+  ],
+  "qubits": 1154
+}

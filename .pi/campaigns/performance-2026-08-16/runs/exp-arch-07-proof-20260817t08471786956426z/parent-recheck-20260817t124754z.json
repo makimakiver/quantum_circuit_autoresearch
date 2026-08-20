@@ -1,0 +1,62 @@
+{
+  "schema_version": 1,
+  "record_type": "parent-verification-recheck",
+  "run_id": "exp-arch-07-proof-20260817t08471786956426z",
+  "timestamp": "2026-08-17T12:47:54Z",
+  "trigger": "Explicit EXP-ARCH-07 approval; prior parallel execution found complete; parent re-verified end-to-end instead of re-dispatching.",
+  "registration_check": {
+    "card": ".pi/experiments/EXP-ARCH-07.md",
+    "card_matches_report_composite_card": true,
+    "campaign_record_fields_verbatim": {
+      "experiment_id": "EXP-ARCH-07",
+      "lane": "REFRAMING",
+      "owner": "cross-cell-reframer",
+      "status": "SCOPED",
+      "implementation_ready": false,
+      "mechanism_id": "square-term-transport",
+      "search_radius": "one selected square b_hi term through forward divstep i=0",
+      "cheapest_discriminator": "deterministic integer miter followed by one bounded bit-vector query",
+      "falsifier": "any verified reachable mismatch in the complete i=0 control tuple, Step0 symbol, or post-step state",
+      "reopening_trigger": "a different transported term, extraction map, or restoration boundary"
+    },
+    "validate_campaign": "OK"
+  },
+  "evidence_hash_check": {
+    "d0-extraction-map.json": "1f19fbf5e57062f9d95e560400c8a51121a09c5ad99ee29460c5aa1cda0c6f64",
+    "d1.json": "7a413dc9bcb23ab6ee2bf72dfc09805d48e552a16f6366b75ced03facb7c9162",
+    "replay.json": "72add013ab3de9baf4645dcdb50c18fe9cb0bb10e09e00fa188929436f593c42",
+    "exp_arch07_miter.py": "c302afb370b9785f23bb15955e8e5dc821434c066aca37da3b66070364c5344c",
+    "all_match": true
+  },
+  "independent_parent_rerun": {
+    "source_root": "/Users/makimakiver/ecdsafail-wt/bz03",
+    "source_pinned_commit": "a2067dcf3c991bcecfd51a4bf07cd7d1cc56c3a5",
+    "replay_outcome": "INDEPENDENT_INTEGER_REPLAY_PASSED",
+    "fresh_d1_outcome": "VERIFIED_WITNESS",
+    "fresh_d1_case_count": 28,
+    "fresh_d1_mismatch_count": 28,
+    "d0_extraction_passed": true,
+    "witness": {
+      "hi": "0x1",
+      "b_prod": "0x1",
+      "term_delta": "0x100000000",
+      "term_on_input_v": "0x0",
+      "term_off_input_v": "0x100000000",
+      "post_i0_v_on": "0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff",
+      "post_i0_v_off": "0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffbfffffff"
+    },
+    "reproduced_artifacts": {
+      "fresh_d1": "/tmp/arch07-parent-d1.json",
+      "replay": "/tmp/arch07-parent-replay.json"
+    }
+  },
+  "source_cone_integrity": {
+    "root_head": "9b2ce61c97fa1be1acb770c802244b1a13677ccd",
+    "frontier_commit": "a2067dcf3c991bcecfd51a4bf07cd7d1cc56c3a5",
+    "note": "External yukon-autoresearch[bot] commits moved main; only src/point_add/mod.rs changed vs frontier. Proof anchors square.rs/ec_add.rs/gcd.rs/codec.rs are byte-identical at HEAD and a2067dcf, so the refutation is valid under both identities. Full harness.cli validate fails only on the root-HEAD==frontier pin binding; environmental, pre-existing this approval, outside campaign authority to reconcile."
+  },
+  "final_classification": "REFUTED (predeclared falsifier observed: verified, independently replayed post-i=0 state mismatch for named term b_hi_f_32_sub)",
+  "conditional_implementation": "NOT DISPATCHED (required PROOF_PASSED; not met)",
+  "ledger_state": "result ledger untouched per approval; campaign record remains SCOPED with the REFUTED result persisted in this run envelope",
+  "reopening_trigger": "a different transported term, extraction map, or restoration boundary"
+}

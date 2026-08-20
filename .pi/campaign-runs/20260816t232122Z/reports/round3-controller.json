@@ -1,0 +1,267 @@
+{
+  "candidate_ops_sha256": "6519bd01424d5513cd7f8232d4c15dfcbfe67561eb1b7f05b2cfec87c233a097",
+  "canonical_ops_sha256": "0a4a412c939b05f59fa4bc33c2410e5bc110b07c7faded5e6db5f6b5db3ed0b0",
+  "changed_paths": [],
+  "checkpoint_ref": ".pi/campaigns/performance-2026-08-16/runs/20260816t232122Z/checkpoint.json",
+  "commands": [
+    "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=.pi python3 -B -m harness.cli validate",
+    "PYTHONDONTWRITEBYTECODE=1 python3 -B .pi/skills/circuit-evidence/scripts/validate_fleet.py",
+    "PYTHONDONTWRITEBYTECODE=1 python3 -B -m jsonschema -i .pi/campaign-runs/20260816t232122Z/reports/round3-controller.json .pi/schemas/result.schema.json",
+    "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=.pi python3 -B -c \"from harness.ownership import ownership_violations; assert ownership_violations('orchestrator-reviewer', []) == []\""
+  ],
+  "dispatch_ref": ".pi/campaigns/performance-2026-08-16/runs/20260816t232122Z/dispatch.json",
+  "evidence": {
+    "acceptance_report": {
+      "changed_files": [
+        ".pi/campaign-runs/20260816t232122Z/reports/round3-controller.json"
+      ],
+      "commands_run": [
+        {
+          "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=.pi python3 -B -c ownership audit",
+          "result": "passed",
+          "summary": "ownership_violations(orchestrator-reviewer, []) == []"
+        },
+        {
+          "command": "PYTHONDONTWRITEBYTECODE=1 python3 -B -m jsonschema -i .pi/campaign-runs/20260816t232122Z/reports/round3-controller.json .pi/schemas/result.schema.json",
+          "result": "passed",
+          "summary": "schema-v2 report validation passed"
+        },
+        {
+          "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=.pi python3 -B -m harness.cli validate",
+          "result": "passed",
+          "summary": "campaign validation status OK; frontier 2026-08-16-a2067dcf, 8 records, 2 continuations"
+        },
+        {
+          "command": "PYTHONDONTWRITEBYTECODE=1 python3 -B .pi/skills/circuit-evidence/scripts/validate_fleet.py",
+          "result": "passed",
+          "summary": "fleet validation OK"
+        },
+        {
+          "command": "pyc/pyo manifest digest before/after guarded Python checks",
+          "result": "passed",
+          "summary": "954b5858007d0c385f5b28ba05b713a166c53f0aba830993c9c7214972cabf5e unchanged"
+        },
+        {
+          "command": "git diff --cached --name-only",
+          "result": "passed",
+          "summary": "no staged files"
+        }
+      ],
+      "criterion_1": "satisfied: report-only bounded controller review; no source/state/evaluation/grind scope widening.",
+      "diff_summary": "Required report artifact plus mandatory recovery bundle only; no scored source, trusted harness, frontier, or campaign-state edit.",
+      "no_staged_files": true,
+      "recovery": "passed: FLEET_RECOVERY_BUNDLE_BEGIN/END emitted; bundle captures report and both continuation manifests.",
+      "recovery_bundle": ".pi/campaigns/performance-2026-08-16/runs/20260816t232122Z/recovery/round3-controller/ROUND3-CONTROLLER-recovery.json",
+      "recovery_report_sha256_at_emission": "f9a7841b89698298a4c04c8be5073a0a9d596e41a6983f350385c53da92d5b56",
+      "tests_added_or_updated": []
+    },
+    "approvals_required_before_action": [
+      "Repair/issue a parent dispatch that binds run ID, frontier ID, source commit, compressed and canonical baseline identities, exact scope, and writer authorization; current dispatch does not authorize writers.",
+      "For any model/proof command: explicit bounded user approval naming the card, isolated output/worktree, wall-time and CPU budget, stop/falsifier, and recovery destination.",
+      "For any scored-source implementation: explicit isolated-worktree implementer-only dispatch with allowed src/point_add paths, default-off rollback unit, proof obligation, and default compressed/canonical identity gate.",
+      "For any long compute: explicit project-state long_compute approval with card-specific input/round budget, resource cap, continuation/recovery plan, and stop rule. This is separately required for SM-01 pilot/full census and any solver/emulation beyond bounded proof budget.",
+      "For lambda: authorization only after candidate semantics and preliminary deterministic T/Q score are favorable; use paired evidence, SAFE only if upper CI(delta lambda)<+0.5.",
+      "For exact evaluation: explicit gate after lambda triage; run exactly 9024 shots with correctness, reversibility, zero phase, and ancilla-clean checks all green.",
+      "For grind: explicit stream-bound GRIND_APPROVED with positive bounded draw budget, candidate compressed/canonical hashes, and candidate-specific SUB4_TAIL_NONCE ground-seed plan; baseline nonce 1337610097 is not transferable.",
+      "For certification/promotion: independent CERTIFIED evidence after four green checks, both hashes, ground nonce, and strict S<1481143998; promotion remains a separate lifecycle transition."
+    ],
+    "authority": {
+      "campaign_state_path": ".pi/state/campaign.json",
+      "dispatch_observation": "parent-owned receipt has authority=parent-only and writerAuthorization=false but contains no run/frontier binding; frontier identity is therefore read directly from current .pi/frontier.json as required by task, and no writer dispatch is authorized.",
+      "dispatch_path": ".pi/campaign-runs/20260816t232122Z/dispatch.json",
+      "findings_path": "CAMPAIGN_FINDINGS.md",
+      "frontier_path": ".pi/frontier.json",
+      "live_route": "point_add::build() -> trailmix_ludicrous::build_trailmix_ludicrous_ops() -> post-pass strip stack -> apply_tail_nonce(SUB4_TAIL_NONCE)"
+    },
+    "bz03_exact_negative_run": {
+      "evidence": "All seven overrides retained frontier compressed/canonical identities, Q=1154, forward expected=147799.0, inverse expected=148392.5, total expected=1299076.0, emitted ops=8958690, and stale_keys=0; \u00b120-CCX flat-register falsifier met.",
+      "path": ".pi/campaigns/performance-2026-08-16/runs/round1-bz03-20260817t083500z/result.json",
+      "routing": "Route scalar fill-value family to cross-cell reframing; do not call it a global ceiling or infer a lambda/evaluator result.",
+      "scientific_disposition": "LOCAL_PLATEAU",
+      "scope": "Only TLM_COUT_K_CALL_OVERRIDES at calls 258,259,262,263 with k={22,25,31,45,60,90,138}.",
+      "status_in_result": "IMPLEMENTED"
+    },
+    "frontier_identity": {
+      "average_executed_toffoli": 1283487.051,
+      "canonical_ops_sha256": "0a4a412c939b05f59fa4bc33c2410e5bc110b07c7faded5e6db5f6b5db3ed0b0",
+      "compressed_ops_sha256": "6519bd01424d5513cd7f8232d4c15dfcbfe67561eb1b7f05b2cfec87c233a097",
+      "frontier_id": "2026-08-16-a2067dcf",
+      "lambda": {
+        "classical": 15.16,
+        "estimate": 17.62,
+        "lanes_per_round": 64,
+        "phase_only": 8.81,
+        "rounds": 400
+      },
+      "nonce": 1337610097,
+      "nonce_env": "SUB4_TAIL_NONCE",
+      "qubits": 1154,
+      "rounded_toffoli": 1283487,
+      "score": 1481143998,
+      "source_commit": "a2067dcf3c991bcecfd51a4bf07cd7d1cc56c3a5"
+    },
+    "lifecycle_and_compute_authority": {
+      "approvals_state": "campaign.approvals.long_compute=[] and campaign.approvals.grind=null.",
+      "campaign_records": [
+        "EXP-SLOPE-01: REVERTED / REFUTED.",
+        "EXP-SQ-01: PARKED / REFUTED_AS_SHIPPED; isolated re-mine route only.",
+        "EXP-P2-01: METROLOGY, continuation EXP-P2-BZ-METRO.",
+        "EXP-BZ-01: METROLOGY, continuation EXP-P2-BZ-METRO.",
+        "EXP-SM-01: PARKED, continuation EXP-SM-01.",
+        "EXP-BZ-02: SCOPED.",
+        "EXP-ARCH-03: SCOPED.",
+        "EXP-STRIP-03: SCOPED."
+      ],
+      "p2bz": "EXP-P2-BZ-METRO snapshot is PARKED_PROVIDER_LIMIT_SCAN_CONTINUES; launch_approved=false and resume_command=null. Existing markers/logs may be parsed only by its evaluator/reviewer after completion; this review grants no new compute, restart, lifecycle change, lambda, evaluator, or grind authority.",
+      "sm01": "EXP-SM-01 snapshot is PARKED_PROVIDER_LIMIT; launch_approved=false and long_compute_approved=false. Pilot (10,000,000 inputs; >=90% key overlap and exact Risk=1.239700) and full census (655,000,000 inputs) remain blocked."
+    },
+    "mandatory_gate_order": "candidate semantics + preliminary deterministic T/Q score -> paired lambda triage -> exact 9024-shot four checks -> explicit stream-bound GRIND_APPROVED -> ground SUB4_TAIL_NONCE -> independent CERTIFIED evidence with strict improvement -> PROMOTED.",
+    "portfolio_final_disposition": {
+      "allocation": "50% EXPLOITATION / 30% STRUCTURAL / 20% REFRAMING",
+      "exploitation_50": "EXP-STRIP-02 remains exact bundle-only, rank 4; no standalone regrind is justified.",
+      "negative_scope_guard": "No bounded local negative result is a global performance ceiling. SCOPED/PARKED/LOCAL_PLATEAU are not CERTIFIED/PROMOTED and do not mean campaign complete.",
+      "reframing_20": "EXP-ARCH-07 rank 1 and EXP-WCR-01 rank 3 test distinct proof cuts; neither is implementation-ready.",
+      "structural_30": "EXP-BZ-03 is LOCAL_PLATEAU for scalar APPLY_COUT_K overrides; next structural proof is EXP-ARCH-03.",
+      "validation": "PASS: all three discovery lanes remain admitted; no lane is substituted by BZ03 prose or a scratch artifact. Writer admission remains closed."
+    },
+    "ranked_next_proof_only_cards": [
+      {
+        "budget": "Proof-only authorization: one temporary miter plus one bounded solver query, max 30 minutes; no Rust build, lambda, evaluator, census, grind, or source edit.",
+        "cheapest_discriminator": "No-build deterministic integer/bit-vector miter: exact term on/off comparison of (t1,s2,subtracted,swp), Step0 symbol, and post-i=0 state.",
+        "experiment_id": "EXP-ARCH-07",
+        "lane": "REFRAMING",
+        "lifecycle_state": "SCOPED (report/card); no implementation or candidate stream",
+        "mechanism": "Prove or refute whether a selected modular f-term can be deferred without changing i=0 controls/Step0, before any paired transport design.",
+        "portfolio_share": "20%",
+        "predeclared_falsifier": "Independently replayed input changes any named tuple bit, Step0 encoding, or post-step u/v; refutes direct no-carrier transport for that term only.",
+        "predicted_direction": "Proof stage: T/Q/score/lambda = 0. Later transport is unmeasured; Q must remain 1154 and lambda must be re-gated.",
+        "rank": 1,
+        "recovery_continuation": "Emit recovery; no continuation restart. If solver stops/times out, PARKED/INCONCLUSIVE operationally, never a broader refutation.",
+        "reopening_trigger": "A new square representation, a proven existing restore carrier, changed paired schedule/control map, or approved exact stream certificate.",
+        "required_user_approval": "Explicit bounded proof/model authorization; any later source implementation separately requires isolated-worktree implementer dispatch.",
+        "search_radius": "One named square f-term modular-wrap cone through square exit, first forward divstep, Step0 codec, and paired reverse replay; excludes schedule, codec width, strip table, and census.",
+        "unresolved_directions": "Later source uses, paired restore carrier, phase/ancilla, Q, strip occupancy, lambda, and 9024-shot checks."
+      },
+      {
+        "budget": "One bounded proof/emulator review, max one day after approval; no source build, lambda, evaluator, census, or grind in this round.",
+        "cheapest_discriminator": "Proof-only symbolic/classical value-bound certificate (not a random sample); source implementation/count probe only after proof and dispatch.",
+        "experiment_id": "EXP-ARCH-03",
+        "lane": "STRUCTURAL",
+        "lifecycle_state": "SCOPED (campaign record/card composite); strong form remains locally falsified, weak paired form only",
+        "mechanism": "Establish a value bound that the widened residual remains below the next 256-bit cout-adder limit; no one-sided s2 or replay change.",
+        "portfolio_share": "30%",
+        "predeclared_falsifier": "Residual reaches 2^256/violates next-cout or LSBS=53 bound; this closes weak deferred reduction locally, not other folded-adder representations.",
+        "predicted_direction": "If later viable: estimated T -5000..-8000, Q 0..+1 guard, lambda risk +0.5..+2.5; all estimates, no candidate measurement.",
+        "rank": 2,
+        "recovery_continuation": "Emit recovery; P2/BZ continuation is observe/analyze-only and must not be restarted or bundled.",
+        "reopening_trigger": "New LSBS/fold-window proof, at least 8-bit residual headroom, or changed fold internals.",
+        "required_user_approval": "Explicit proof/model authorization; source path edits later require implementer-only dispatch and separate long/evaluation/grind gates.",
+        "search_radius": "Weak paired deferred-reduction boundary only: retain 256-bit cswap; defer post-add/post-sub MSBS clean into existing LSBS=53 cdouble folds in both directions.",
+        "unresolved_directions": "Exact residual margin, inverse asymmetry, Q peak, strip ordinal loss, paired lambda, and four checks."
+      },
+      {
+        "budget": "Static proof review only, <=30 minutes after approval; no build, lambda, evaluator, census, or grind.",
+        "cheapest_discriminator": "Read-only dependency-cut/source-use proof only; do not run the historical sampling command without separate approval.",
+        "experiment_id": "EXP-WCR-01",
+        "lane": "REFRAMING",
+        "lifecycle_state": "SCOPED/MODELED in round-1 structural report; not a campaign-state implementation candidate",
+        "mechanism": "Static proof asks whether an exact streaming rank/unrank representation can reconstruct s2 before its paired replay consumer without extra tape/state.",
+        "portfolio_share": "within 20% reframing allocation",
+        "predeclared_falsifier": "No legal commutation supplies s2 before apply without changed coefficient map or equivalent recovered-state work; refutes local elision, not all codec representations.",
+        "predicted_direction": "Proof stage: 0 T/Q/lambda. Local codec tuning has no Q credit at tape-free 1154-q peaks; any construction is unpriced.",
+        "rank": 3,
+        "recovery_continuation": "Emit recovery; do not restart P2/BZ or SM-01.",
+        "reopening_trigger": "Constructive pre-apply streaming cut or a cross-cell change that makes a binding peak tape-live.",
+        "required_user_approval": "Explicit bounded proof authorization; implementation later needs isolated implementer dispatch.",
+        "search_radius": "Exact JUMP=2 terminal dialog/replay dependency cut for s2 before reverse apply; excludes tape-width-only/Q claims and changes to walk predicates.",
+        "unresolved_directions": "Exact streaming construction/cost, binding live-set redesign, postpass ordinal effect, and all semantic evidence."
+      },
+      {
+        "budget": "No standalone build/evaluation/regrind. One marginal build only when bundled with an already approved regrind-forcing candidate.",
+        "cheapest_discriminator": "Only after an independently approved upstream changed stream: one build requiring pairs=1, removed_ccx=2, changed hashes, and zero stale keys.",
+        "experiment_id": "EXP-STRIP-02",
+        "lane": "EXPLOITATION",
+        "lifecycle_state": "Campaign record SCOPED; prior isolated result is a live cheap-probe/candidate artifact, not EVALUATED/GRIND_APPROVED/CERTIFIED/PROMOTED.",
+        "mechanism": "One strict same-control/target clean-support self-inverse CCX pair deletes exactly two emitted CCX.",
+        "portfolio_share": "50% exploitation allocation; bundle-only exact rider, not standalone work",
+        "predeclared_falsifier": "pairs!=1, removed!=2, or any stale key on that stream; scoped to the strict pair.",
+        "predicted_direction": "Executed T in [-2,0], Q 0, transform lambda 0; changed stream still needs a new candidate nonce.",
+        "rank": 4,
+        "recovery_continuation": "Emit recovery; unset flag/discard worktree. No continuation is authorized.",
+        "reopening_trigger": "Any upstream final operation-stream change.",
+        "required_user_approval": "No action until an independently positive candidate reaches its serialized gate; explicit evaluation/grind approval remains required.",
+        "search_radius": "Existing default-off TLM_CCX_FINAL_CANCEL strict matcher on the exact final post-fanout stream; straddle refinement excluded as inert.",
+        "unresolved_directions": "Candidate canonical identity, executed price, 9024 checks, and candidate nonce; generalized matcher is out of scope."
+      }
+    ],
+    "recovery_emission": {
+      "bundle": ".pi/campaigns/performance-2026-08-16/runs/20260816t232122Z/recovery/round3-controller/ROUND3-CONTROLLER-recovery.json",
+      "continuations_captured": [
+        ".pi/continuations/EXP-P2-BZ-METRO.json",
+        ".pi/continuations/EXP-SM-01.json"
+      ],
+      "report_sha256_at_emission": "f9a7841b89698298a4c04c8be5073a0a9d596e41a6983f350385c53da92d5b56",
+      "result": "FLEET_RECOVERY_BUNDLE_BEGIN/END emitted before handoff"
+    },
+    "residual_risks": [
+      "Dispatch receipt lacks a run/frontier binding and writer authorization; it must be repaired before source-bound work.",
+      "A proof pass is not candidate semantics, lambda SAFE, four-check evaluation, certification, promotion, or a ground nonce.",
+      "Occurrence/ordinal deep-strip coupling invalidates transferred strip credit on changed streams.",
+      "Baseline nonce and baseline lambda are control evidence, not candidate certification evidence."
+    ]
+  },
+  "experiment_id": "ROUND3-CONTROLLER",
+  "frontier_id": "2026-08-16-a2067dcf",
+  "metrics": {
+    "frontier": {
+      "average_executed_toffoli": 1283487.051,
+      "canonical_ops_sha256": "0a4a412c939b05f59fa4bc33c2410e5bc110b07c7faded5e6db5f6b5db3ed0b0",
+      "compressed_ops_sha256": "6519bd01424d5513cd7f8232d4c15dfcbfe67561eb1b7f05b2cfec87c233a097",
+      "frontier_id": "2026-08-16-a2067dcf",
+      "lambda": {
+        "classical": 15.16,
+        "estimate": 17.62,
+        "lanes_per_round": 64,
+        "phase_only": 8.81,
+        "rounds": 400
+      },
+      "nonce": 1337610097,
+      "nonce_env": "SUB4_TAIL_NONCE",
+      "qubits": 1154,
+      "rounded_toffoli": 1283487,
+      "score": 1481143998,
+      "source_commit": "a2067dcf3c991bcecfd51a4bf07cd7d1cc56c3a5"
+    },
+    "new_measurements": "None. This review ran no build, lambda scan, evaluator, census, grind, or source implementation."
+  },
+  "nonce": 1337610097,
+  "nonce_env": "SUB4_TAIL_NONCE",
+  "recovery": {
+    "bundle_directory": ".pi/campaigns/performance-2026-08-16/runs/20260816t232122Z/recovery/round3-controller",
+    "exact_reproduction_command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=.pi python3 -B -m harness.cli continuations",
+    "reason": "Read-only round-3 controller review completed; BZ03 is a local plateau and all implementation, long compute, evaluation, grind, certification, and promotion gates remain closed.",
+    "status": "SCOPED"
+  },
+  "recovery_ref": ".pi/campaigns/performance-2026-08-16/runs/20260816t232122Z/recovery/round3-controller",
+  "role": "orchestrator-reviewer",
+  "run_id": "20260816t232122Z",
+  "schema_version": 2,
+  "scientific_verdict": "SCOPED read-only controller disposition: BZ03 is LOCAL_PLATEAU only for seven scalar tail-fill overrides; no global ceiling, candidate certification, promotion, or campaign-complete conclusion follows.",
+  "status": "SCOPED",
+  "terminal_ref": ".pi/campaigns/performance-2026-08-16/runs/20260816t232122Z/terminal.log",
+  "verification": {
+    "lifecycle_guard": "No campaign lifecycle transition was applied. Canonical campaign statuses are reported without treating local card labels as lifecycle transitions.",
+    "not_performed": [
+      "source/state/frontier/card/continuation edits",
+      "build",
+      "lambda scan",
+      "9024-shot evaluator",
+      "grind",
+      "promotion",
+      "continuation restart"
+    ],
+    "ownership": "orchestrator-reviewer has no scored-source paths; dispatch writerAuthorization=false.",
+    "performed": "Read frontier, campaign state, findings, all round-1/round-2 reports, BZ03 exact negative result, continuations, lifecycle/ownership/schema policy; schema and bytecode checks recorded after report emission.",
+    "read_only": true
+  }
+}

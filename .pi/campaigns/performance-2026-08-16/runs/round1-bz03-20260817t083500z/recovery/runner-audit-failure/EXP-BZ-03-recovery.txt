@@ -1,0 +1,237 @@
+FLEET_RECOVERY_BUNDLE_BEGIN
+timestamp_utc=2026-08-17T08:28:11.603802+00:00
+repository=/Users/makimakiver/ecdsafail-challenge
+status=CHECKPOINTED
+reason=External runner completed the default cargo build and copied its artifact, then stopped before its Python fingerprint audit because bash expanded local stage before assignment. No source edit, evaluator, lambda, grind, certification, or promotion was performed; corrected external runner reruns the default arm and remaining authorized arms.
+experiment_id=EXP-BZ-03
+source_commit=a2067dcf3c991bcecfd51a4bf07cd7d1cc56c3a5
+--- REPRODUCTION COMMANDS ---
+command[1]=bash /tmp/run-exp-bz03-sweep.sh (second invocation stopped at pre-audit helper; corrected runner resumes)
+--- GIT STATUS ---
+ M results.tsv
+?? .pi/
+?? AGENTS.md
+?? CAMPAIGN_FINDINGS.md
+--- GIT DIFF ---
+diff --git a/results.tsv b/results.tsv
+index 22b9f18..0ccae93 100644
+--- a/results.tsv
++++ b/results.tsv
+@@ -6,3 +6,6 @@ timestamp	commit	toffoli	clifford	qubits	ops	correct	notes
+ 1780024119	935dc1f	3962753.000	22627113.285	2715	28697222	OK	
+ 1780047641	750fdf9	3962753.000	22627113.285	2715	28697222	OK	
+ 1780052385	196206e	3962753.000	22627113.285	2715	28697222	OK	
++1786907851	a2067dc	1283487.051	5299506.551	1154	8958690	OK	
++1786915207	bb23789	1283487.051	5299506.551	1154	8958690	OK	
++1786915310	bb23789	1283487.051	5299506.551	1154	8958690	OK	
+--- GIT DIFF CACHED ---
+
+--- FILE results.tsv ---
+timestamp	commit	toffoli	clifford	qubits	ops	correct	notes
+1780021974	fa473ea	3942753.000	22627118.169	2715	28677221	OK	
+1780022568	935dc1f	3942753.000	22627118.169	2715	28677221	OK	
+1780023874	935dc1f	3942753.000	22627118.169	2715	28677221	OK	
+1780023900	935dc1f	3962753.000	22627113.285	2715	28697222	OK	
+1780024119	935dc1f	3962753.000	22627113.285	2715	28697222	OK	
+1780047641	750fdf9	3962753.000	22627113.285	2715	28697222	OK	
+1780052385	196206e	3962753.000	22627113.285	2715	28697222	OK	
+1786907851	a2067dc	1283487.051	5299506.551	1154	8958690	OK	
+1786915207	bb23789	1283487.051	5299506.551	1154	8958690	OK	
+1786915310	bb23789	1283487.051	5299506.551	1154	8958690	OK	
+--- FILE score.json ---
+{
+  "score": 1481143998,
+  "metrics": {
+    "toffoli": 1283487,
+    "qubits": 1154
+  }
+}
+--- FILE .pi/experiments/EXP-BZ-03.json ---
+.pi/experiments/EXP-BZ-03.json: MISSING
+--- FILE .pi/experiments/EXP-BZ-03.md ---
+# EXP-BZ-03 — Widened-tail schedule re-fit: APPLY_COUT_K / FOLD_SCHED / FFG_G fill entries (TUNING)
+
+Pinned: commit a2067dcf, ops.bin 6519bd01…; schedule.rs:9 BAKED_ITERS=258 vs ITERS=261; widen_sched_blocks (tlm mod.rs:327-362).
+
+1. **experiment_id**: EXP-BZ-03
+2. **search_radius**: re-fit only the 3 fill entries per block created by `widen_sched_blocks` for the divsteps that did
+   not exist in the baked search: `APPLY_COUT_K` calls {258,259} (fwd pass tail; call 260 is consumed but unused — the
+   i=260 add is skipped) and {262,263} (rev pass, divsteps 259,258); `FOLD_SCHED` calls 257-259 and 260-262 (fill nv=53);
+   `FFG_G` calls at the same tail indices (fill 53, capped 47 by TLM_FFG_MAX_G). Sweep via existing env hooks
+   `TLM_COUT_K_CALL_OVERRIDES`, `TLM_FOLD_DELTA`/reserve tables, `TLM_FFG_DELTA` — no source edit needed to probe.
+3. **mechanism**: the fill value for forward blocks is the block's last fitted entry (APPLY_COUT_K k=138 — the widest
+   lookahead) and for reverse blocks the first. But divsteps 258-260 run at terminal walk width (SCHED_J2=12..9) where
+   the interior fitted analogue (the mid-region dip, k=22-31 at APPLY_COUT_K[206..260]) suggests much smaller k is
+   optimal. Smaller k selects a cheaper hybrid layout (`controlled_hybrid_add_cout_refs_impl` dispatch, gidney.rs:1982+).
+   Similarly nv=53 (fully-clean fold) at the widened calls may exceed what Q-pressure actually requires.
+4. **predicted direction**: T −300..−1,500 executed (4 adder calls x ~100-250 CCX layout delta + fold/ffg trims);
+   Q unchanged or −0..1 (fold nv caps interact with TLM_TARGET_Q headroom); lambda unchanged (layout choice is exact —
+   no probabilistic assumption touched).
+5. **cheapest_discriminator**: `CARGO_TARGET_DIR=/tmp/<t> TLM_COUT_K_CALL_OVERRIDES='258:30,259:30,262:30,263:30' TRACE_TLM_TOF=1 cargo run --release --bin build_circuit`
+   — read `tlm_apply_forward_mod_add_register` expected delta; require ops.bin sha != 6519bd01… (knob-liveness).
+6. **predeclared_falsifier**: sweeping k over {22,25,31,45,60,90,138} at those four calls shows the register-phase
+   expected-executed is flat within ±20 CCX (layout already optimal at fill) — kills the card before any source change.
+7. **evidence_debt**: none structural; promotion gate is just four-checks-green + S strictly lower on a full run; the
+   probe ladder (count-only → TRACE_TLM_TOF) already covers attribution.
+8. **trial_budget / time_budget**: 30 min of env-sweep probes; implementer time only if a winning override set is found
+   (then bake into schedule.rs via the existing fit tables).
+9. **unresolved_directions**: does not re-mine the interior 516 fitted entries (that was the original search's job and
+   is closed unless the objective function changes); does not touch CMP_K fills (walk-side, other cell).
+10. **reopening_trigger**: any ITERS bump (261→262+) re-widens blocks and re-creates un-fitted fill entries — rerun the
+    sweep; also reopening if the adder layout dispatch gains a new branch (shared-primitives change).
+11. **reproduction_commands**: baseline as EXP-BZ-01; probe:
+    `CARGO_TARGET_DIR=/tmp/bezout-scout-target TLM_COUT_K_CALL_OVERRIDES='258:30,259:30,262:30,263:30' TRACE_TLM_TOF=1 cargo run --release --bin build_circuit 2>&1 | grep -E 'TLM_TOF (phase=tlm_apply.*register|TOTAL)'`
+12. **classification**: TUNING.
+--- BINARY ops.bin ---
+ops.bin: size=29461502 sha256=6519bd01424d5513cd7f8232d4c15dfcbfe67561eb1b7f05b2cfec87c233a097
+--- BINARY .pi/campaigns/performance-2026-08-16/runs/round1-bz03-20260817t083500z/artifacts/default/ops.bin ---
+.pi/campaigns/performance-2026-08-16/runs/round1-bz03-20260817t083500z/artifacts/default/ops.bin: size=29461502 sha256=6519bd01424d5513cd7f8232d4c15dfcbfe67561eb1b7f05b2cfec87c233a097
+--- LOG TAIL .pi/campaigns/performance-2026-08-16/runs/round1-bz03-20260817t083500z/logs/default.log ---
+TLM_TOF phase=tlm_apply_inverse_mod_sub_register emitted=161682 expected=148392.5 discount=0.082
+TLM_TOF phase=tlm_multiply_gcd_reverse_body emitted=156994 expected=148357.5 discount=0.055
+TLM_TOF phase=tlm_apply_forward_mod_add_register emitted=160495 expected=147799.0 discount=0.079
+TLM_TOF phase=tlm_inverse_gcd_reverse_body emitted=149253 expected=144303.0 discount=0.033
+TLM_TOF phase=tlm_apply_inverse_fold emitted=84151 expected=83054.0 discount=0.013
+TLM_TOF phase=tlm_apply_forward_fold emitted=83807 expected=82687.5 discount=0.013
+TLM_TOF phase=tlm_inverse_gcd_forward_body emitted=77019 expected=73468.0 discount=0.046
+TLM_TOF phase=tlm_multiply_gcd_forward_body emitted=69549 expected=69549.0 discount=0.000
+TLM_TOF phase=tlm_apply_forward_swap emitted=66048 expected=66048.0 discount=0.000
+TLM_TOF phase=tlm_apply_inverse_swap emitted=66048 expected=66048.0 discount=0.000
+TLM_TOF phase=tlm_inverse_gcd_forward_compare emitted=45336 expected=45336.0 discount=0.000
+TLM_TOF phase=tlm_multiply_gcd_forward_compare emitted=45065 expected=45065.0 discount=0.000
+TLM_TOF phase=tlm_inverse_gcd_forward_shift emitted=34899 expected=34899.0 discount=0.000
+TLM_TOF phase=tlm_multiply_gcd_forward_shift emitted=34899 expected=34899.0 discount=0.000
+TLM_TOF phase=tlm_apply_forward_mod_add_fold emitted=16229 expected=14874.5 discount=0.083
+TLM_TOF phase=tlm_apply_inverse_mod_sub_fold emitted=16086 expected=14843.0 discount=0.077
+TLM_TOF phase=square_c_sum_build emitted=9283 expected=9283.0 discount=0.000
+TLM_TOF phase=square_c_sum_unbuild emitted=9283 expected=9283.0 discount=0.000
+TLM_TOF phase=square_a_lo_build emitted=9147 expected=9147.0 discount=0.000
+TLM_TOF phase=square_a_lo_unbuild emitted=9147 expected=9147.0 discount=0.000
+TLM_TOF phase=square_b_hi_build emitted=9147 expected=9147.0 discount=0.000
+TLM_TOF phase=square_b_hi_unbuild emitted=9147 expected=9147.0 discount=0.000
+TLM_TOF phase=square_b_hi_apply_f_times_sub emitted=4573 expected=4383.0 discount=0.042
+TLM_TOF phase=tlm_apply_forward_mod_add_clean emitted=4943 expected=2471.5 discount=0.500
+TLM_TOF phase=tlm_apply_inverse_mod_sub_clean emitted=4943 expected=2471.5 discount=0.500
+TLM_TOF phase=square_c_sum_apply_shifted_128_sub emitted=2356 expected=2284.0 discount=0.031
+TLM_TOF phase=square_a_lo_apply_shifted_128_add emitted=2354 expected=2282.0 discount=0.031
+TLM_TOF phase=square_b_hi_apply_shifted_128_add emitted=2354 expected=2282.0 discount=0.031
+TLM_TOF phase=tlm_inverse_gcd_reverse_decode emitted=1466 expected=1466.0 discount=0.000
+TLM_TOF phase=tlm_multiply_gcd_reverse_decode emitted=1466 expected=1466.0 discount=0.000
+TLM_TOF phase=tlm_inverse_gcd_forward_codec emitted=1379 expected=1379.0 discount=0.000
+TLM_TOF phase=tlm_multiply_gcd_forward_codec emitted=1379 expected=1379.0 discount=0.000
+TLM_TOF phase=square_a_lo_apply_unshifted_sub emitted=333 expected=321.0 discount=0.036
+TLM_TOF phase=tlm_coord_add3x emitted=332 expected=320.0 discount=0.036
+TLM_TOF phase=tlm_coord_rsub_final emitted=332 expected=320.0 discount=0.036
+TLM_TOF phase=tlm_coord_x_sub emitted=332 expected=320.0 discount=0.036
+TLM_TOF phase=tlm_coord_y_sub emitted=332 expected=320.0 discount=0.036
+TLM_TOF phase=tlm_coord_y_sub_final emitted=332 expected=320.0 discount=0.036
+TLM_TOF phase=square_sum_hi_lo_unbuild emitted=258 expected=258.0 discount=0.000
+TLM_TOF phase=square_sum_hi_lo emitted=256 expected=256.0 discount=0.000
+TLM_TOF_TOTAL emitted=1352434 expected=1299076.0 discount=0.0395
+CASCADE_ACCEPT pair=CCX(531,583->584) triple=(530,531,1149)
+CASCADE_ACCEPT pair=CCX(531,583->584) triple=(530,531,1150)
+CASCADE_ACCEPT pair=CCX(531,583->584) triple=(530,531,1132)
+CASCADE_ACCEPT pair=CCX(271,323->324) triple=(9,270,271)
+CASCADE_ACCEPT pair=CCX(272,324->325) triple=(143,271,272)
+CASCADE_ACCEPT pair=CCX(274,326->327) triple=(143,273,274)
+CASCADE_ACCEPT pair=CCX(275,327->328) triple=(274,275,1147)
+CASCADE_ACCEPT pair=CCX(272,324->325) triple=(271,272,886)
+CASCADE_ACCEPT pair=CCX(275,327->328) triple=(274,275,1088)
+CASCADE_ACCEPT pair=CCX(274,326->327) triple=(273,274,915)
+CASCADE_ACCEPT pair=CCX(275,327->328) triple=(274,275,889)
+CONSTPROP iter=1 ccx_total=1347642 dropped=141 folded_cx=23 folded_x=0 inverse_pairs=12 aff_drop=9 aff_fold=3 (this-iter toffoli removed = 200)
+CONSTPROP iter=2 ccx_total=1347442 dropped=3 folded_cx=0 folded_x=0 inverse_pairs=11 aff_drop=0 aff_fold=0 (this-iter toffoli removed = 25)
+CONSTPROP iter=3 ccx_total=1347417 dropped=0 folded_cx=0 folded_x=0 inverse_pairs=11 aff_drop=0 aff_fold=0 (this-iter toffoli removed = 22)
+CONSTPROP iter=4 ccx_total=1347395 dropped=0 folded_cx=0 folded_x=0 inverse_pairs=11 aff_drop=0 aff_fold=0 (this-iter toffoli removed = 22)
+CONSTPROP iter=5 ccx_total=1347373 dropped=0 folded_cx=0 folded_x=0 inverse_pairs=11 aff_drop=0 aff_fold=0 (this-iter toffoli removed = 22)
+CONSTPROP iter=6 ccx_total=1347351 dropped=0 folded_cx=0 folded_x=0 inverse_pairs=11 aff_drop=0 aff_fold=0 (this-iter toffoli removed = 22)
+CONSTPROP iter=7 ccx_total=1347329 dropped=0 folded_cx=0 folded_x=0 inverse_pairs=11 aff_drop=0 aff_fold=0 (this-iter toffoli removed = 22)
+CONSTPROP iter=8 ccx_total=1347307 dropped=0 folded_cx=0 folded_x=0 inverse_pairs=11 aff_drop=0 aff_fold=0 (this-iter toffoli removed = 22)
+CONSTPROP iter=9 ccx_total=1347285 dropped=0 folded_cx=0 folded_x=0 inverse_pairs=11 aff_drop=0 aff_fold=0 (this-iter toffoli removed = 22)
+CONSTPROP iter=10 ccx_total=1347263 dropped=0 folded_cx=0 folded_x=0 inverse_pairs=11 aff_drop=0 aff_fold=0 (this-iter toffoli removed = 22)
+CONSTPROP iter=11 ccx_total=1347241 dropped=0 folded_cx=0 folded_x=0 inverse_pairs=11 aff_drop=0 aff_fold=0 (this-iter toffoli removed = 22)
+CONSTPROP iter=12 ccx_total=1347219 dropped=0 folded_cx=0 folded_x=0 inverse_pairs=11 aff_drop=0 aff_fold=0 (this-iter toffoli removed = 22)
+CONSTPROP iter=13 ccx_total=1347197 dropped=0 folded_cx=0 folded_x=0 inverse_pairs=11 aff_drop=0 aff_fold=0 (this-iter toffoli removed = 22)
+CONSTPROP iter=14 ccx_total=1347175 dropped=0 folded_cx=0 folded_x=0 inverse_pairs=5 aff_drop=0 aff_fold=0 (this-iter toffoli removed = 10)
+CONSTPROP iter=15 ccx_total=1347165 dropped=0 folded_cx=0 folded_x=0 inverse_pairs=3 aff_drop=0 aff_fold=0 (this-iter toffoli removed = 6)
+CONSTPROP iter=16 ccx_total=1347159 dropped=0 folded_cx=0 folded_x=0 inverse_pairs=3 aff_drop=0 aff_fold=0 (this-iter toffoli removed = 6)
+CONSTPROP reached max_iters=16, stopping
+CONSTPROP TOTAL iters=16 dropped=144 folded_cx=23 folded_x=0 inverse_pairs=155 aff_drop=9 aff_fold=3 (toffoli removed = 489)
+SINGLE_CCX_FANOUT: STOP passes=27 input_ops=8970929 output_ops=8970902 reason=no target-fanout conjugation found
+SINGLE_CCX_FANOUT: SUMMARY input_ops=8970929 output_ops=8970902 passes=27
+  [M-60] disabled -> emitting C1 (unfiltered)
+  [W018 CCZ straddle] total_ccz=4792 same_triple_candidates=0 cancelled_pairs=0 removed_ccz=0 -> 8970902 ops
+[deep-strip-identity] removed 12202 / 12202 dead; downgraded 4045 / 4045 to CX/CZ; 0 stale keys skipped
+POST_STRIP_TARGET_FANOUT_DONE: passes=10
+  emitted ops : 8958690
+  wrote       : ops.bin (29461502 bytes on disk, 501686656 uncompressed, 17.0x)
+
+=== build_circuit OK ===
+FLEET_RECOVERY_BUNDLE_END
+--- PARENT RUN ENVELOPE ---
+--- FILE .pi/campaigns/performance-2026-08-16/runs/round1-bz03-20260817t083500z/dispatch.json ---
+{
+  "agent": "implementer",
+  "base_identity": {
+    "repository_commit": "a2067dcf3c991bcecfd51a4bf07cd7d1cc56c3a5",
+    "scored_source_tree_sha256": "7ae7eabe20bc5459d902d2f4c921bb7ea53f48f9c82ae88d9a7f93c2bbefd7f9",
+    "trusted_source_tree_sha256": "fdd8fe31d933f8861d24d9ffc474a21899de22874ec41ff5579a3c138f320562"
+  },
+  "budget": {
+    "arms": 7,
+    "evaluation": false,
+    "grinding": false,
+    "kind": "cheap env-only sweep",
+    "lambda": false,
+    "source_edits": false,
+    "wall_seconds": 1800
+  },
+  "campaign_id": "performance-2026-08-16",
+  "commands": [
+    "CARGO_TARGET_DIR=/tmp/round1-bz03-target TLM_COUT_K_CALL_OVERRIDES=<four calls> TRACE_TLM_TOF=1 cargo run --release --bin build_circuit",
+    "fingerprint compressed and canonical artifact identities",
+    "no source edit or lifecycle promotion"
+  ],
+  "control_plane_sha256": "0987fc5c2974c3f943170b150e926405869d6535ba444d2bcf10ba6c3a5f56fb",
+  "expected_result": ".pi/campaigns/performance-2026-08-16/runs/round1-bz03-20260817t083500z/result.json",
+  "experiment_id": "EXP-BZ-03",
+  "frontier_id": "2026-08-16-a2067dcf",
+  "lane": "STRUCTURAL",
+  "owner": "implementer",
+  "run_id": "round1-bz03-20260817t083500z",
+  "schema_version": 1,
+  "soft_deadlines": {
+    "checkpoint": 0.8,
+    "finalize": 0.9,
+    "grace": 0.95
+  },
+  "task": "Authorized bounded cheap-probe-only environment sweep: EXP-BZ-03. No source edits, no lambda/evaluator/grind/certification/promotion. Use isolated worktree /tmp/ecdsafail-round1-bz03 from exact frontier. Seven TLM_COUT_K_CALL_OVERRIDES arms only; preserve defaults and report hashes, Q, postpass stale logs, TRACE TLM TOF. Persist artifacts/logs/recovery in this envelope.",
+  "timeout_seconds": 2700,
+  "worktree": "/tmp/ecdsafail-round1-bz03"
+}
+--- FILE .pi/campaigns/performance-2026-08-16/runs/round1-bz03-20260817t083500z/checkpoint.json ---
+{
+  "artifact_hashes": {},
+  "changed_paths": [],
+  "commands": [
+    "CARGO_TARGET_DIR=/tmp/round1-bz03-target TLM_COUT_K_CALL_OVERRIDES=<four calls> TRACE_TLM_TOF=1 cargo run --release --bin build_circuit",
+    "fingerprint compressed and canonical artifact identities",
+    "no source edit or lifecycle promotion"
+  ],
+  "evidence_paths": [],
+  "gate": "DISPATCHED",
+  "remaining_obligations": [
+    "worker gate checkpoints",
+    "schema-v2 result",
+    "terminal recovery"
+  ],
+  "run_id": "round1-bz03-20260817t083500z",
+  "schema_version": 1,
+  "timestamp": "2026-08-17T08:25:57Z"
+}
+--- FILE .pi/campaigns/performance-2026-08-16/runs/round1-bz03-20260817t083500z/result.json ---
+.pi/campaigns/performance-2026-08-16/runs/round1-bz03-20260817t083500z/result.json: MISSING
+--- FILE .pi/campaigns/performance-2026-08-16/runs/round1-bz03-20260817t083500z/terminal.log ---
+
+--- BINARY .pi/campaigns/performance-2026-08-16/runs/round1-bz03-20260817t083500z/recovery/worktree.patch ---
+.pi/campaigns/performance-2026-08-16/runs/round1-bz03-20260817t083500z/recovery/worktree.patch: MISSING

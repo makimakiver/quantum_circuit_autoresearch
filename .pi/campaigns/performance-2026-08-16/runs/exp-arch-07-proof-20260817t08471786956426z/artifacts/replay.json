@@ -1,0 +1,80 @@
+{
+  "gate": "REPLAY",
+  "input": ".pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/artifacts/d1.json",
+  "outcome": "INDEPENDENT_INTEGER_REPLAY_PASSED",
+  "recomputed": {
+    "b_prod": "0x0000000000000000000000000000000000000000000000000000000000000001",
+    "hi": "0x0000000000000000000000000000000000000000000000000000000000000001",
+    "mismatch": true,
+    "term_delta": "0x0000000000000000000000000000000000000000000000000000000100000000",
+    "term_off": {
+      "decoded": {
+        "raw_symbol": [
+          0,
+          0,
+          1
+        ],
+        "t1": 1
+      },
+      "encoded_symbol": [
+        1,
+        1
+      ],
+      "input_v": "0x0000000000000000000000000000000000000000000000000000000100000000",
+      "post_i0": {
+        "u": "0xfffffffffffffffffffffffffffffffffffffffffffffffffffffffefffffc2f",
+        "v": "0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffbfffffff"
+      },
+      "raw_symbol": [
+        0,
+        0,
+        1
+      ],
+      "tuple": {
+        "s2": 1,
+        "subtracted": 0,
+        "swp": 0,
+        "t1": 1
+      }
+    },
+    "term_off_input": "0x0000000000000000000000000000000000000000000000000000000100000000",
+    "term_on": {
+      "decoded": {
+        "raw_symbol": [
+          0,
+          0,
+          1
+        ],
+        "t1": 1
+      },
+      "encoded_symbol": [
+        1,
+        1
+      ],
+      "input_v": "0x0000000000000000000000000000000000000000000000000000000000000000",
+      "post_i0": {
+        "u": "0xfffffffffffffffffffffffffffffffffffffffffffffffffffffffefffffc2f",
+        "v": "0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"
+      },
+      "raw_symbol": [
+        0,
+        0,
+        1
+      ],
+      "tuple": {
+        "s2": 1,
+        "subtracted": 0,
+        "swp": 0,
+        "t1": 1
+      }
+    },
+    "term_on_input": "0x0000000000000000000000000000000000000000000000000000000000000000"
+  },
+  "replay_match": true,
+  "source_hashes": {
+    "src/point_add/trailmix_ludicrous/codec.rs": "42bf73b74ef193baa3cc090ac496beea951bcf4bdd066ad69e1193aa39201834",
+    "src/point_add/trailmix_ludicrous/ec_add.rs": "de8dee33cac85d4afdac0f1c460649f19cfabebde53b70ad6d191a375fbd4d3c",
+    "src/point_add/trailmix_ludicrous/gcd.rs": "87722e3471242aaf4c6c0dcc01f1c38fd03f783f3a17139f72f9cc093012b401",
+    "src/point_add/trailmix_ludicrous/square.rs": "04c025e275d52c4717a560bc2f2ff2f385e6896cb009380444b276f9bb1c4834"
+  }
+}

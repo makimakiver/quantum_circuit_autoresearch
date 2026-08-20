@@ -1,0 +1,115 @@
+{
+  "schema_version": 2,
+  "experiment_id": "R1-STRUCTURAL-SQUARE-LIVENESS",
+  "role": "structural-researcher",
+  "status": "SCOPED",
+  "frontier_id": "2026-08-16-a2067dcf",
+  "candidate_ops_sha256": "6519bd01424d5513cd7f8232d4c15dfcbfe67561eb1b7f05b2cfec87c233a097",
+  "canonical_ops_sha256": "0a4a412c939b05f59fa4bc33c2410e5bc110b07c7faded5e6db5f6b5db3ed0b0",
+  "changed_paths": [],
+  "nonce_env": "SUB4_TAIL_NONCE",
+  "nonce": 1337610097,
+  "run_id": "20260816t232122Z",
+  "dispatch_ref": ".pi/campaigns/performance-2026-08-16/runs/20260816t232122Z/dispatch.json",
+  "checkpoint_ref": ".pi/campaigns/performance-2026-08-16/runs/20260816t232122Z/checkpoint.json",
+  "terminal_ref": ".pi/campaigns/performance-2026-08-16/runs/20260816t232122Z/terminal.log",
+  "recovery_ref": ".pi/campaigns/performance-2026-08-16/runs/20260816t232122Z/recovery/R1-STRUCTURAL-SQUARE-LIVENESS",
+  "scientific_verdict": "SCOPED discovery only. No candidate stream was emitted in this read-only task; the candidate hash repeats the frontier solely to satisfy the schema, not as an implementation claim.",
+  "timestamp": "2026-08-16T23:59:00Z",
+  "commands": [
+    "git rev-parse HEAD",
+    "git status --short",
+    "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=.pi python3 -B -c 'from harness.ownership import ownership_violations; assert ownership_violations(\"structural-researcher\", [\"src/point_add/trailmix_ludicrous/square.rs\", \"src/point_add/mod.rs\"])'",
+    "PYTHONDONTWRITEBYTECODE=1 python3 -B .pi/skills/circuit-evidence/scripts/emit_recovery_bundle.py --root . --status SCOPED --reason 'read-only structural square liveness discovery complete; no candidate built' --experiment-id R1-STRUCTURAL-SQUARE-LIVENESS --command 'git rev-parse HEAD' --artifact .pi/campaign-runs/20260816t232122Z/reports/round1-structural-square-liveness.json --continuation .pi/campaign-runs/20260816t232122Z/lanes/structural-researcher/checkpoint.json --output-dir .pi/campaigns/performance-2026-08-16/runs/20260816t232122Z/recovery/R1-STRUCTURAL-SQUARE-LIVENESS"
+  ],
+  "metrics": {
+    "measured_frontier": {
+      "average_executed_toffoli": 1283487.051,
+      "rounded_toffoli": 1283487,
+      "qubits": 1154,
+      "score": 1481143998,
+      "lambda": 17.62
+    },
+    "candidate_measurement": "none; no build, evaluator, metrology, grind, or source mutation was run"
+  },
+  "verification": {
+    "read_only_scope": "passed: no src/**, trusted harness, main, stage, merge, or commit mutation",
+    "python_bytecode_guard": "passed before and after the one ownership audit",
+    "continuations": "observed only: EXP-P2-BZ-METRO remains PARKED_PROVIDER_LIMIT_SCAN_CONTINUES; EXP-SM-01 remains PARKED_PROVIDER_LIMIT with launch_approved=false and long_compute_approved=false",
+    "frontier_identity": "read from .pi/frontier.json and matches source commit plus compressed/canonical identities recorded below"
+  },
+  "recovery": {
+    "status": "SCOPED",
+    "reason": "normal read-only discovery completion",
+    "bundle_output": ".pi/campaigns/performance-2026-08-16/runs/20260816t232122Z/recovery/R1-STRUCTURAL-SQUARE-LIVENESS"
+  },
+  "evidence": {
+    "frontier": {
+      "source_commit": "a2067dcf3c991bcecfd51a4bf07cd7d1cc56c3a5",
+      "compressed_ops_sha256": "6519bd01424d5513cd7f8232d4c15dfcbfe67561eb1b7f05b2cfec87c233a097",
+      "canonical_ops_sha256": "0a4a412c939b05f59fa4bc33c2410e5bc110b07c7faded5e6db5f6b5db3ed0b0",
+      "nonce": "SUB4_TAIL_NONCE=1337610097",
+      "identity_evidence": [".pi/frontier.json", "CAMPAIGN_FINDINGS.md:10-31"]
+    },
+    "measured_evidence": {
+      "sq01_rescue": {
+        "status": "REFUTED_AS_SHIPPED/PARKED; root edit absent",
+        "candidate_compressed_sha256": "486fa8945846a0fafbb9215d07a03f2eea1f9217f3705254c2ded42e61147dc6",
+        "rescue_patch": ".pi/campaign-runs/20260816t232122Z/rescue/structural-sq01-early-sum/artifacts/square.rs.patch",
+        "rescue_patch_sha256": "a32dba36a39ef7112049d94e5d5f7335bf2e58bcc3d884eff6ad043afa611ca1",
+        "prestrip_ccx_delta": -1086,
+        "poststrip_ccx_delta": 5806,
+        "poststrip_ccz_delta": 38,
+        "stale_keys": 6799,
+        "qubits": 1154,
+        "reopen_only_if": "an isolated worktree is explicitly dispatched after a stream-specific EXP-SM-01 re-mine",
+        "paths": ["CAMPAIGN_FINDINGS.md:89-105", ".pi/state/campaign.json:records[EXP-SQ-01]", ".pi/campaign-runs/20260816t232122Z/rescue/structural-sq01-early-sum/artifacts/recovery/EXP-SQ-01-recovery.json", ".pi/experiments/EXP-SM-01.md:1-52"]
+      },
+      "liveness_and_strip_facts": {
+        "sum_lifetime": "square.rs builds 129q sum, consumes it only in c-square, then normally unbuilds it after a/b phases",
+        "allocator_fact": "BExt::zero_and_free delegates to B::free; the free pool therefore reuses early-clean ids",
+        "key_fact": "deep_strip_keys.rs header keys CCX/CCZ by tuple plus ordinal plus tuple occupancy",
+        "consequence": "ID quarantine can restore baseline allocation identities but cannot restore global occurrence ordinals after a changed vent sequence",
+        "paths": ["src/point_add/trailmix_ludicrous/square.rs:451-524", "src/point_add/trailmix_ludicrous/mod.rs:40-98", "src/point_add/deep_strip_keys.rs:1-3", ".pi/experiments/EXP-SM-01.md:17-32"]
+      },
+      "target_q_fact": {
+        "measured": "the binding 1154q peak is tape-free and square/apply-owned; caps 1153/1152 previously raised T without lowering Q",
+        "paths": ["CAMPAIGN_FINDINGS.md:49-56", ".pi/frontier.json:verification.qubit_crosscheck"]
+      }
+    },
+    "excluded_local_lane": {
+      "name": "square-addsub local price lane",
+      "tag": "LOCAL_PLATEAU",
+      "reason": "excluded from this report rather than proposed: the live local add/sub stream reached Q=1159 (+5), skipped 1742 baseline deep-strip keys, and needs at least a 5538 rounded-executed-T reduction merely to break even. It has no measured executed-T gain.",
+      "handoff": "cross-cell-reframer only if a future representation change removes the Q penalty and supplies a stream-specific strip table; do not retry TLM_SQUARE_ADDSUB_LOCAL or TLM_SQUARE_ADDSUB_SKIP_C as a square-price refinement.",
+      "paths": [".pi/campaign-runs/20260816t232122Z/rescue/square-addsub-local/result.json", ".pi/campaign-runs/20260816t232122Z/rescue/square-addsub-local-tof-profile/result.json"]
+    },
+    "cards": [
+      {
+        "experiment_id": "EXP-SQ-05",
+        "title": "sum-ID quarantine for early-unbuild liveness",
+        "lifecycle": {"current": "SCOPED", "path": ["IDEA", "SCOPED", "MODELED", "CHEAP_PROBE", "CANDIDATE"], "advance_condition": "only after EXP-SM-01 pilot acceptance and an isolated-worktree dispatch"},
+        "frontier_commit": "a2067dcf3c991bcecfd51a4bf07cd7d1cc56c3a5",
+        "frontier_compressed_identity": "6519bd01424d5513cd7f8232d4c15dfcbfe67561eb1b7f05b2cfec87c233a097",
+        "frontier_canonical_identity": "0a4a412c939b05f59fa4bc33c2410e5bc110b07c7faded5e6db5f6b5db3ed0b0",
+        "search_radius": "A 129-qubit sum lifetime in square.rs plus the live B allocator free-pool interface in trailmix_ludicrous/mod.rs. No arithmetic identity, Pair-1/Pair-2 walk, replay scaling, codec tape, or square-addsub layout is changed. The representation crosses square->allocator->strip-key identity, so the structural researcher scopes it and hands mutation to the cross-cell reframer/implementer pair.",
+        "mechanism": "After c_prod reverse, perform the exact sum inverse early, but place the 129 now-zero sum IDs into a quarantined-zero pool rather than B::free_qubits. At the original late-unbuild location, release that pool in exactly the same LIFO order that free_zeroes(sum) would have used. During a/b applies active_qubits is lower by 129, so existing square vents may be selected; meanwhile ordinary allocation cannot consume sum IDs, preserving the baseline allocation mapping for unaffected a/b operations. This is a new default-off TLM_SQUARE_SUM_ID_QUARANTINE mechanism, not a pre-existing knob and not a reapplication of the SQ-01 patch.",
+        "predicted_direction": {"executed_T": "negative only after a stream-specific re-mine; modeled retained SQ-01 benefit is -500 to -800 executed T, not the old -1.6k estimate", "Q": "0; no Q claim", "score": "negative by roughly 0.58M to 0.92M at Q=1154 if the executed-T estimate survives", "lambda": "nonnegative exposure; added Hmr/CZ vents are the same class as SQ-01 and require paired measurement; no SAFE claim"},
+        "emitted_to_executed_discount_assumptions": "The -1086 pre-strip CCX SQ-01 observation is not priced as executed T. Square build/unbuild is near fully executed, while the affected apply phases have measured discount behavior; use the post-re-mine, paired executed delta. The -500..-800 estimate comes from EXP-SM-01's 65,536-input census comparison, not emitted-count arithmetic. Do not count recovery of stale keys and the vent gain twice.",
+        "reversible_invariant_and_proof_obligation": "Algebraic invariant: lambda and output_reg remain bit-identical to late-unbuild SQ-01-off behavior; build_sum_hi_lo and unbuild_sum_hi_lo still form an exact inverse around c_prod only. Liveness invariant: quarantined IDs are known |0>, unavailable to alloc_qubit, absent from active_qubits, and released once in baseline free-stack order. Proof obligations: (1) an instrumented allocator trace proves a/b allocation IDs equal default IDs through the late release point; (2) no double-free/alias/reacquire; (3) phase word stays zero—no measurement is introduced by quarantine itself, and every added vent Hmr bit has its matching cz_if; (4) all allocated ancillas, including the quarantined set, are zero at release; (5) full four-check evaluation only after re-mine and lambda gates.",
+        "target_Q_vent_check": "Mandatory but expected to fail as a Q benefit: TRACE_PHASE_ACTIVE plus artifact max-id must remain Q=1154. Under the candidate, repeat a bounded TLM_TARGET_Q=1153 profile solely to confirm the known tape-free/square peak remains binding; stop any Q claim if max id remains 1153 or Toffoli rises. Quarantine must never allocate IDs above the default high-water mark.",
+        "cheapest_discriminator": "Before a candidate build, an isolated unit-level allocator trace/miter with synthetic `free c_prod -> early sum quarantine -> representative a/b alloc -> late release` must show byte-for-byte equality of allocation IDs against late sum free behavior while active_qubits is exactly 129 lower in the middle. It is cheap, does not invoke the evaluator, and falsifies the key premise before touching a scored candidate. Next only after approval: on/off TRACE_PHASE_ACTIVE + TRACE_TLM_CCX in an isolated worktree, then compare stale-key categories; no full census launch.",
+        "predeclared_falsifier": "REFUTE this mechanism if the allocator miter cannot simultaneously preserve baseline a/b IDs and lower active_qubits by 129; OR if the flag-on build has Q>1154; OR if its pre-re-mine stale-key set is not materially lower than SQ-01's 6799 while raw vent saving is no better than -1086 CCX; OR if the stream-specific re-mine returns net executed-T >=0; OR any phase/ancilla/correctness/reversibility check fails. A budget stop or absent re-mine approval is PARKED, never a ceiling.",
+        "evidence_debt": ["No allocator quarantine API exists or has been mitered.", "No source mutation, candidate hash, lightweight profile, default-off identity proof, or strip-on/off comparison exists.", "The stream-specific re-mine, four checks, paired lambda evidence, and candidate-specific target-Q profile are all outstanding.", "The effect of changed vent operation ordinals on deep-strip keys remains deliberately unresolved; ID preservation is not claimed to repair ordinals."],
+        "trial_time_compute_budget": "Gate 0: 0.5 implementer day for an isolated allocator miter and default-off flag shell. Gate 1: at most two isolated builds plus TRACE_PHASE_ACTIVE/CCX (<45 minutes). Gate 2 is blocked: EXP-SM-01 must first pass its authorized 1e7-input pilot (25-43 min) with >=90% shipped-key overlap and exact 1.239700 risk; its full 6.55e8-input re-mine has no current approval. After a re-mine, one paired lambda triage (minimum 12 rounds) only; decision evidence must satisfy the campaign 400-round/upper-CI gate before evaluation. No grind budget is requested.",
+        "source_owner_and_allowed_paths": {"discovery_owner": "structural-researcher (read-only)", "implementation_owner": "implementer after cross-cell-reframer approval", "allowed_paths": ["src/point_add/trailmix_ludicrous/square.rs", "src/point_add/trailmix_ludicrous/mod.rs"], "ownership_audit": "ownership_violations(structural-researcher, paths) returned the expected two violations; this report did not edit them"},
+        "serialization_dependencies": ["Do not reapply EXP-SQ-01 patch in root; use only its exact rescue patch in a newly dispatched isolated worktree.", "EXP-SM-01 pilot and stream-specific variant re-mine are mandatory before score adjudication; both remain unapproved/parked.", "Cross-cell reframer must approve the allocator/strip representation boundary before the implementer edits.", "Pair-1/Pair-2 directionality and replay scaling are unchanged by this card; any observed change in gcd/replay operation identities is out of scope and stops the trial.", "The P2/BZ continuation is observed but never restarted or used as a control arm."],
+        "rollback_unit": "One default-off flag plus a quarantined-zero pool API in the two allowed paths, contained in one isolated-worktree commit; rollback is unset flag and discard that commit. The root SQ-01 patch remains absent.",
+        "unresolved_directions": ["Whether occurrence-ordinal drift alone still makes a fresh re-mine the dominant cost even when allocation IDs match.", "Whether quarantining sum IDs decreases the candidate stale-key count enough to simplify re-mine validation; no transfer of keys is claimed.", "Whether more selected square vents increases lambda beyond the +0.5 upper-CI SAFE allowance."],
+        "reopening_trigger": "Open only when project state explicitly approves EXP-SM-01's pilot and the pilot reproduces >=90% shipped keys plus exact Risk=1.239700, and a cross-cell-reframer dispatch authorizes the allocator representation change. SQ-01 itself reopens only through this stream-specific re-mine trigger.",
+        "exact_reproduction_commands": ["git worktree add --detach /tmp/exp-sq05 a2067dcf3c991bcecfd51a4bf07cd7d1cc56c3a5", "cd /tmp/exp-sq05 && PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=. python3 -B -c 'from pathlib import Path; assert Path(\".pi/campaign-runs/20260816t232122Z/rescue/structural-sq01-early-sum/artifacts/square.rs.patch\").is_file()'", "# After explicit dispatch only: implementer adds default-off TLM_SQUARE_SUM_ID_QUARANTINE in exactly square.rs and trailmix_ludicrous/mod.rs; do not apply the SQ-01 patch in the root checkout.", "cd /tmp/exp-sq05 && CARGO_TARGET_DIR=/tmp/exp-sq05-target env -u TLM_SQUARE_SUM_ID_QUARANTINE cargo run --release --bin build_circuit", "cd /tmp/exp-sq05 && CARGO_TARGET_DIR=/tmp/exp-sq05-target TLM_SQUARE_SUM_ID_QUARANTINE=1 TRACE_PHASE_ACTIVE=1 TRACE_TLM_CCX=1 cargo run --release --bin build_circuit 2>&1 | grep -E 'TLM_PHASE|square_|deep-strip-identity'", "cd /tmp/exp-sq05 && CARGO_TARGET_DIR=/tmp/exp-sq05-target TLM_SQUARE_SUM_ID_QUARANTINE=1 TLM_TARGET_Q=1153 TRACE_PHASE_ACTIVE=1 cargo run --release --bin build_circuit 2>&1 | grep -E 'TLM_PHASE|qubits|deep-strip-identity'", "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=.pi python3 -B -m harness.cli continuations"]
+      }
+    ],
+    "not_started": ["No implementation", "No lambda scan", "No full evaluator", "No nonce grind", "No certification or promotion", "No EXP-P2-BZ-METRO or EXP-SM-01 restart"]
+  }
+}

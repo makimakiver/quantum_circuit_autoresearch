@@ -1,0 +1,654 @@
+warning: unused variable: `b`
+   --> src/bin/../point_add/arith/multiply.rs:638:24
+    |
+638 |     let borrow_lane = |b: &mut B, _need: usize| -> Vec<QubitId> {
+    |                        ^ help: if this is intentional, prefix it with an underscore: `_b`
+    |
+    = note: `#[warn(unused_variables)]` (part of `#[warn(unused)]`) on by default
+
+warning: unused variable: `seg_w`
+   --> src/bin/../point_add/arith/multiply.rs:649:13
+    |
+649 |         let seg_w = hi - lo;
+    |             ^^^^^ help: if this is intentional, prefix it with an underscore: `_seg_w`
+
+warning: variable does not need to be mutable
+  --> src/bin/../point_add/dirtyscan.rs:57:9
+   |
+57 |     let mut note = |writers: &mut Vec<[usize; TRAIL]>, wpos: &mut Vec<u8>, q: u64, index: usize| {
+   |         ----^^^^
+   |         |
+   |         help: remove this `mut`
+   |
+   = note: `#[warn(unused_mut)]` (part of `#[warn(unused)]`) on by default
+
+warning: `quantum_ecc` (bin "build_circuit") generated 3 warnings (run `cargo fix --bin "build_circuit" -p quantum_ecc` to apply 3 suggestions)
+    Finished `release` profile [optimized] target(s) in 0.11s
+     Running `/Users/makimakiver/ecdsafail-wt/shared-target/release/build_circuit`
+TLM_COUT call=0 phase=tlm_apply_inverse_mod_sub_register mode=dispatch width=256 base=138 selected=136 effective=128 entry_active=1026 local_peak=1026 ops_added=5152 ops=29438
+TLM_COUT call=1 phase=tlm_apply_inverse_mod_sub_register mode=dispatch width=256 base=136 selected=134 effective=126 entry_active=1028 local_peak=1028 ops_added=5180 ops=45100
+TLM_COUT call=2 phase=tlm_apply_inverse_mod_sub_register mode=dispatch width=256 base=133 selected=131 effective=123 entry_active=1031 local_peak=1031 ops_added=5222 ops=60798
+TLM_COUT call=3 phase=tlm_apply_inverse_mod_sub_register mode=dispatch width=256 base=130 selected=128 effective=120 entry_active=1034 local_peak=1034 ops_added=5264 ops=76552
+TLM_COUT call=4 phase=tlm_apply_inverse_mod_sub_register mode=dispatch width=256 base=129 selected=127 effective=119 entry_active=1035 local_peak=1035 ops_added=5278 ops=92498
+TLM_COUT call=5 phase=tlm_apply_inverse_mod_sub_register mode=dispatch width=256 base=126 selected=124 effective=116 entry_active=1038 local_peak=1038 ops_added=5320 ops=108350
+TLM_COUT call=6 phase=tlm_apply_inverse_mod_sub_register mode=dispatch width=256 base=123 selected=121 effective=113 entry_active=1041 local_peak=1041 ops_added=5362 ops=124244
+TLM_COUT call=7 phase=tlm_apply_inverse_mod_sub_register mode=dispatch width=256 base=122 selected=120 effective=112 entry_active=1042 local_peak=1042 ops_added=5376 ops=140330
+TLM_COUT call=8 phase=tlm_apply_inverse_mod_sub_register mode=dispatch width=256 base=119 selected=117 effective=109 entry_active=1045 local_peak=1045 ops_added=5418 ops=156322
+TLM_COUT call=9 phase=tlm_apply_inverse_mod_sub_register mode=dispatch width=256 base=116 selected=114 effective=106 entry_active=1048 local_peak=1048 ops_added=5460 ops=172356
+TLM_COUT call=10 phase=tlm_apply_inverse_mod_sub_register mode=dispatch width=256 base=115 selected=113 effective=105 entry_active=1049 local_peak=1049 ops_added=5474 ops=188596
+TLM_COUT call=11 phase=tlm_apply_inverse_mod_sub_register mode=dispatch width=256 base=114 selected=112 effective=104 entry_active=1050 local_peak=1050 ops_added=5488 ops=204666
+TLM_COUT call=12 phase=tlm_apply_inverse_mod_sub_register mode=dispatch width=256 base=113 selected=111 effective=103 entry_active=1051 local_peak=1051 ops_added=3949 ops=219175
+TLM_COUT call=13 phase=tlm_apply_inverse_mod_sub_register mode=dispatch width=256 base=114 selected=112 effective=104 entry_active=1050 local_peak=1050 ops_added=3949 ops=233826
+TLM_COUT call=14 phase=tlm_apply_inverse_mod_sub_register mode=dispatch width=256 base=113 selected=111 effective=103 entry_active=1051 local_peak=1051 ops_added=3949 ops=248291
+TLM_COUT call=15 phase=tlm_apply_inverse_mod_sub_register mode=dispatch width=256 base=112 selected=110 effective=102 entry_active=1052 local_peak=1052 ops_added=3949 ops=262734
+TLM_COUT call=16 phase=tlm_apply_inverse_mod_sub_register mode=dispatch width=256 base=113 selected=111 effective=103 entry_active=1051 local_peak=1051 ops_added=3949 ops=277333
+TLM_COUT call=17 phase=tlm_apply_inverse_mod_sub_register mode=dispatch width=256 base=112 selected=110 effective=102 entry_active=1052 local_peak=1052 ops_added=3949 ops=291746
+TLM_COUT call=18 phase=tlm_apply_inverse_mod_sub_register mode=dispatch width=256 base=111 selected=109 effective=101 entry_active=1053 local_peak=1053 ops_added=3949 ops=306123
+TLM_COUT call=19 phase=tlm_apply_inverse_mod_sub_register mode=dispatch width=256 base=112 selected=110 effective=102 entry_active=1052 local_peak=1052 ops_added=3949 ops=320656
+TLM_COUT call=20 phase=tlm_apply_inverse_mod_sub_register mode=dispatch width=256 base=111 selected=109 effective=101 entry_active=1053 local_peak=1053 ops_added=3949 ops=335003
+TLM_COUT call=21 phase=tlm_apply_inverse_mod_sub_register mode=dispatch width=256 base=110 selected=108 effective=100 entry_active=1054 local_peak=1054 ops_added=3949 ops=349328
+TLM_COUT call=22 phase=tlm_apply_inverse_mod_sub_register mode=dispatch width=256 base=111 selected=109 effective=101 entry_active=1053 local_peak=1053 ops_added=3949 ops=363781
+TLM_COUT call=23 phase=tlm_apply_inverse_mod_sub_register mode=dispatch width=256 base=110 selected=108 effective=100 entry_active=1054 local_peak=1054 ops_added=3949 ops=378076
+TLM_COUT call=24 phase=tlm_apply_inverse_mod_sub_register mode=dispatch width=256 base=109 selected=107 effective=99 entry_active=1055 local_peak=1055 ops_added=3949 ops=392349
+TLM_COUT call=25 phase=tlm_apply_inverse_mod_sub_register mode=dispatch width=256 base=110 selected=108 effective=100 entry_active=1054 local_peak=1054 ops_added=3949 ops=406750
+TLM_COUT call=26 phase=tlm_apply_inverse_mod_sub_register mode=dispatch width=256 base=109 selected=107 effective=99 entry_active=1055 local_peak=1055 ops_added=3949 ops=420965
+TLM_COUT call=27 phase=tlm_apply_inverse_mod_sub_register mode=dispatch width=256 base=108 selected=106 effective=98 entry_active=1056 local_peak=1056 ops_added=3949 ops=435172
+TLM_COUT call=28 phase=tlm_apply_inverse_mod_sub_register mode=dispatch width=256 base=109 selected=107 effective=99 entry_active=1055 local_peak=1055 ops_added=3949 ops=449507
+TLM_COUT call=29 phase=tlm_apply_inverse_mod_sub_register mode=dispatch width=256 base=108 selected=106 effective=98 entry_active=1056 local_peak=1056 ops_added=3949 ops=463656
+TLM_COUT call=30 phase=tlm_apply_inverse_mod_sub_register mode=dispatch width=256 base=107 selected=105 effective=97 entry_active=1057 local_peak=1057 ops_added=3949 ops=477811
+TLM_COUT call=31 phase=tlm_apply_inverse_mod_sub_register mode=dispatch width=256 base=108 selected=106 effective=98 entry_active=1056 local_peak=1056 ops_added=3949 ops=492080
+TLM_COUT call=32 phase=tlm_apply_inverse_mod_sub_register mode=dispatch width=256 base=107 selected=105 effective=97 entry_active=1057 local_peak=1057 ops_added=3949 ops=506177
+TLM_COUT call=33 phase=tlm_apply_inverse_mod_sub_register mode=dispatch width=256 base=106 selected=104 effective=96 entry_active=1058 local_peak=1058 ops_added=3949 ops=520252
+TLM_COUT call=34 phase=tlm_apply_inverse_mod_sub_register mode=dispatch width=256 base=107 selected=105 effective=97 entry_active=1057 local_peak=1057 ops_added=3949 ops=534469
+TLM_COUT call=35 phase=tlm_apply_inverse_mod_sub_register mode=dispatch width=256 base=106 selected=104 effective=96 entry_active=1058 local_peak=1058 ops_added=3949 ops=548500
+TLM_COUT call=36 phase=tlm_apply_inverse_mod_sub_register mode=dispatch width=256 base=105 selected=103 effective=95 entry_active=1059 local_peak=1059 ops_added=3949 ops=562523
+TLM_COUT call=37 phase=tlm_apply_inverse_mod_sub_register mode=dispatch width=256 base=106 selected=104 effective=96 entry_active=1058 local_peak=1058 ops_added=3949 ops=576674
+TLM_COUT call=38 phase=tlm_apply_inverse_mod_sub_register mode=dispatch width=256 base=105 selected=103 effective=95 entry_active=1059 local_peak=1059 ops_added=3949 ops=590653
+TLM_COUT call=39 phase=tlm_apply_inverse_mod_sub_register mode=dispatch width=256 base=104 selected=102 effective=94 entry_active=1060 local_peak=1060 ops_added=3949 ops=604610
+TLM_COUT call=40 phase=tlm_apply_inverse_mod_sub_register mode=dispatch width=256 base=105 selected=103 effective=95 entry_active=1059 local_peak=1059 ops_added=3949 ops=618709
+TLM_COUT call=41 phase=tlm_apply_inverse_mod_sub_register mode=dispatch width=256 base=104 selected=102 effective=94 entry_active=1060 local_peak=1060 ops_added=3949 ops=632608
+TLM_COUT call=42 phase=tlm_apply_inverse_mod_sub_register mode=dispatch width=256 base=103 selected=101 effective=93 entry_active=1061 local_peak=1061 ops_added=3949 ops=646499
+TLM_COUT call=43 phase=tlm_apply_inverse_mod_sub_register mode=dispatch width=256 base=104 selected=102 effective=94 entry_active=1060 local_peak=1060 ops_added=3949 ops=660532
+TLM_COUT call=44 phase=tlm_apply_inverse_mod_sub_register mode=dispatch width=256 base=103 selected=101 effective=93 entry_active=1061 local_peak=1061 ops_added=3949 ops=674379
+TLM_COUT call=45 phase=tlm_apply_inverse_mod_sub_register mode=dispatch width=256 base=102 selected=100 effective=92 entry_active=1062 local_peak=1062 ops_added=3949 ops=688204
+TLM_COUT call=46 phase=tlm_apply_inverse_mod_sub_register mode=dispatch width=256 base=103 selected=101 effective=93 entry_active=1061 local_peak=1061 ops_added=3949 ops=702185
+TLM_COUT call=47 phase=tlm_apply_inverse_mod_sub_register mode=dispatch width=256 base=102 selected=100 effective=92 entry_active=1062 local_peak=1062 ops_added=3949 ops=715966
+TLM_COUT call=48 phase=tlm_apply_inverse_mod_sub_register mode=dispatch width=256 base=101 selected=99 effective=91 entry_active=1063 local_peak=1063 ops_added=3949 ops=729739
+TLM_COUT call=49 phase=tlm_apply_inverse_mod_sub_register mode=dispatch width=256 base=102 selected=100 effective=92 entry_active=1062 local_peak=1062 ops_added=3949 ops=743640
+TLM_COUT call=50 phase=tlm_apply_inverse_mod_sub_register mode=dispatch width=256 base=101 selected=99 effective=91 entry_active=1063 local_peak=1063 ops_added=3949 ops=757369
+TLM_COUT call=51 phase=tlm_apply_inverse_mod_sub_register mode=dispatch width=256 base=100 selected=98 effective=90 entry_active=1064 local_peak=1064 ops_added=3949 ops=771076
+TLM_COUT call=52 phase=tlm_apply_inverse_mod_sub_register mode=dispatch width=256 base=101 selected=99 effective=91 entry_active=1063 local_peak=1063 ops_added=3949 ops=784925
+TLM_COUT call=53 phase=tlm_apply_inverse_mod_sub_register mode=dispatch width=256 base=100 selected=98 effective=90 entry_active=1064 local_peak=1064 ops_added=3949 ops=798588
+TLM_COUT call=54 phase=tlm_apply_inverse_mod_sub_register mode=dispatch width=256 base=99 selected=97 effective=89 entry_active=1065 local_peak=1065 ops_added=3949 ops=812229
+TLM_COUT call=55 phase=tlm_apply_inverse_mod_sub_register mode=dispatch width=256 base=100 selected=98 effective=90 entry_active=1064 local_peak=1064 ops_added=3949 ops=826012
+TLM_COUT call=56 phase=tlm_apply_inverse_mod_sub_register mode=dispatch width=256 base=99 selected=97 effective=89 entry_active=1065 local_peak=1065 ops_added=3949 ops=839623
+TLM_COUT call=57 phase=tlm_apply_inverse_mod_sub_register mode=dispatch width=256 base=98 selected=96 effective=88 entry_active=1066 local_peak=1066 ops_added=3949 ops=853212
+TLM_COUT call=58 phase=tlm_apply_inverse_mod_sub_register mode=dispatch width=256 base=99 selected=97 effective=89 entry_active=1065 local_peak=1065 ops_added=3949 ops=866943
+TLM_COUT call=59 phase=tlm_apply_inverse_mod_sub_register mode=dispatch width=256 base=98 selected=96 effective=88 entry_active=1066 local_peak=1066 ops_added=3949 ops=880488
+TLM_COUT call=60 phase=tlm_apply_inverse_mod_sub_register mode=dispatch width=256 base=97 selected=95 effective=87 entry_active=1067 local_peak=1067 ops_added=4262 ops=894324
+TLM_COUT call=61 phase=tlm_apply_inverse_mod_sub_register mode=dispatch width=256 base=98 selected=96 effective=88 entry_active=1066 local_peak=1066 ops_added=3949 ops=907989
+TLM_COUT call=62 phase=tlm_apply_inverse_mod_sub_register mode=dispatch width=256 base=97 selected=95 effective=87 entry_active=1067 local_peak=1067 ops_added=4262 ops=921781
+TLM_COUT call=63 phase=tlm_apply_inverse_mod_sub_register mode=dispatch width=256 base=96 selected=94 effective=86 entry_active=1068 local_peak=1068 ops_added=4262 ops=935551
+TLM_COUT call=64 phase=tlm_apply_inverse_mod_sub_register mode=dispatch width=256 base=97 selected=95 effective=87 entry_active=1067 local_peak=1067 ops_added=4262 ops=949463
+TLM_COUT call=65 phase=tlm_apply_inverse_mod_sub_register mode=dispatch width=256 base=96 selected=94 effective=86 entry_active=1068 local_peak=1068 ops_added=4262 ops=963189
+TLM_COUT call=66 phase=tlm_apply_inverse_mod_sub_register mode=dispatch width=256 base=95 selected=93 effective=85 entry_active=1069 local_peak=1069 ops_added=4262 ops=976893
+TLM_COUT call=67 phase=tlm_apply_inverse_mod_sub_register mode=dispatch width=256 base=96 selected=94 effective=86 entry_active=1068 local_peak=1068 ops_added=4262 ops=990739
+TLM_COUT call=68 phase=tlm_apply_inverse_mod_sub_register mode=dispatch width=256 base=95 selected=93 effective=85 entry_active=1069 local_peak=1069 ops_added=4262 ops=1004413
+TLM_COUT call=69 phase=tlm_apply_inverse_mod_sub_register mode=dispatch width=256 base=94 selected=92 effective=84 entry_active=1070 local_peak=1070 ops_added=4262 ops=1018065
+TLM_COUT call=70 phase=tlm_apply_inverse_mod_sub_register mode=dispatch width=256 base=95 selected=93 effective=85 entry_active=1069 local_peak=1069 ops_added=4262 ops=1031859
+TLM_COUT call=71 phase=tlm_apply_inverse_mod_sub_register mode=dispatch width=256 base=94 selected=92 effective=84 entry_active=1070 local_peak=1070 ops_added=4262 ops=1045467
+TLM_COUT call=72 phase=tlm_apply_inverse_mod_sub_register mode=dispatch width=256 base=93 selected=91 effective=83 entry_active=1071 local_peak=1071 ops_added=4262 ops=1059053
+TLM_COUT call=73 phase=tlm_apply_inverse_mod_sub_register mode=dispatch width=256 base=94 selected=92 effective=84 entry_active=1070 local_peak=1070 ops_added=4262 ops=1072781
+TLM_COUT call=74 phase=tlm_apply_inverse_mod_sub_register mode=dispatch width=256 base=93 selected=91 effective=83 entry_active=1071 local_peak=1071 ops_added=4262 ops=1086337
+TLM_COUT call=75 phase=tlm_apply_inverse_mod_sub_register mode=dispatch width=256 base=92 selected=90 effective=82 entry_active=1072 local_peak=1072 ops_added=4262 ops=1099871
+TLM_COUT call=76 phase=tlm_apply_inverse_mod_sub_register mode=dispatch width=256 base=93 selected=91 effective=83 entry_active=1071 local_peak=1071 ops_added=4262 ops=1113561
+TLM_COUT call=77 phase=tlm_apply_inverse_mod_sub_register mode=dispatch width=256 base=92 selected=90 effective=82 entry_active=1072 local_peak=1072 ops_added=4262 ops=1127051
+TLM_COUT call=78 phase=tlm_apply_inverse_mod_sub_register mode=dispatch width=256 base=91 selected=89 effective=81 entry_active=1073 local_peak=1073 ops_added=4262 ops=1140505
+TLM_COUT call=79 phase=tlm_apply_inverse_mod_sub_register mode=dispatch width=256 base=92 selected=90 effective=82 entry_active=1072 local_peak=1072 ops_added=4262 ops=1154115
+TLM_COUT call=80 phase=tlm_apply_inverse_mod_sub_register mode=dispatch width=256 base=91 selected=89 effective=81 entry_active=1073 local_peak=1073 ops_added=4262 ops=1167539
+TLM_COUT call=81 phase=tlm_apply_inverse_mod_sub_register mode=dispatch width=256 base=90 selected=88 effective=80 entry_active=1074 local_peak=1074 ops_added=4262 ops=1180955
+TLM_COUT call=82 phase=tlm_apply_inverse_mod_sub_register mode=dispatch width=256 base=91 selected=89 effective=81 entry_active=1073 local_peak=1073 ops_added=4262 ops=1194513
+TLM_COUT call=83 phase=tlm_apply_inverse_mod_sub_register mode=dispatch width=256 base=90 selected=88 effective=80 entry_active=1074 local_peak=1074 ops_added=4262 ops=1207899
+TLM_COUT call=84 phase=tlm_apply_inverse_mod_sub_register mode=dispatch width=256 base=89 selected=87 effective=79 entry_active=1075 local_peak=1075 ops_added=4262 ops=1221235
+TLM_COUT call=85 phase=tlm_apply_inverse_mod_sub_register mode=dispatch width=256 base=90 selected=88 effective=80 entry_active=1074 local_peak=1074 ops_added=4262 ops=1234713
+TLM_COUT call=86 phase=tlm_apply_inverse_mod_sub_register mode=dispatch width=256 base=89 selected=87 effective=79 entry_active=1075 local_peak=1075 ops_added=4262 ops=1248019
+TLM_COUT call=87 phase=tlm_apply_inverse_mod_sub_register mode=dispatch width=256 base=88 selected=86 effective=78 entry_active=1076 local_peak=1076 ops_added=4262 ops=1261303
+TLM_COUT call=88 phase=tlm_apply_inverse_mod_sub_register mode=dispatch width=256 base=89 selected=87 effective=79 entry_active=1075 local_peak=1075 ops_added=4262 ops=1274729
+TLM_COUT call=89 phase=tlm_apply_inverse_mod_sub_register mode=dispatch width=256 base=88 selected=86 effective=78 entry_active=1076 local_peak=1076 ops_added=4262 ops=1287969
+TLM_COUT call=90 phase=tlm_apply_inverse_mod_sub_register mode=dispatch width=256 base=87 selected=85 effective=77 entry_active=1077 local_peak=1077 ops_added=4262 ops=1301187
+TLM_COUT call=91 phase=tlm_apply_inverse_mod_sub_register mode=dispatch width=256 base=88 selected=86 effective=78 entry_active=1076 local_peak=1076 ops_added=4262 ops=1314547
+TLM_COUT call=92 phase=tlm_apply_inverse_mod_sub_register mode=dispatch width=256 base=87 selected=85 effective=77 entry_active=1077 local_peak=1077 ops_added=4262 ops=1327735
+TLM_COUT call=93 phase=tlm_apply_inverse_mod_sub_register mode=dispatch width=256 base=86 selected=84 effective=76 entry_active=1078 local_peak=1078 ops_added=4262 ops=1340887
+TLM_COUT call=94 phase=tlm_apply_inverse_mod_sub_register mode=dispatch width=256 base=85 selected=83 effective=75 entry_active=1079 local_peak=1079 ops_added=4262 ops=1354229
+TLM_COUT call=95 phase=tlm_apply_inverse_mod_sub_register mode=dispatch width=256 base=84 selected=82 effective=74 entry_active=1080 local_peak=1080 ops_added=4262 ops=1367373
+TLM_COUT call=96 phase=tlm_apply_inverse_mod_sub_register mode=dispatch width=256 base=85 selected=83 effective=75 entry_active=1079 local_peak=1079 ops_added=4262 ops=1380461
+TLM_COUT call=97 phase=tlm_apply_inverse_mod_sub_register mode=dispatch width=256 base=86 selected=84 effective=76 entry_active=1078 local_peak=1078 ops_added=4262 ops=1393689
+TLM_COUT call=98 phase=tlm_apply_inverse_mod_sub_register mode=dispatch width=256 base=85 selected=83 effective=75 entry_active=1079 local_peak=1079 ops_added=4262 ops=1406759
+TLM_COUT call=99 phase=tlm_apply_inverse_mod_sub_register mode=dispatch width=256 base=84 selected=82 effective=74 entry_active=1080 local_peak=1080 ops_added=4262 ops=1419793
+TLM_COUT call=100 phase=tlm_apply_inverse_mod_sub_register mode=dispatch width=256 base=85 selected=83 effective=75 entry_active=1079 local_peak=1079 ops_added=4262 ops=1432969
+TLM_COUT call=101 phase=tlm_apply_inverse_mod_sub_register mode=dispatch width=256 base=82 selected=80 effective=76 entry_active=1078 local_peak=1078 ops_added=4262 ops=1445925
+TLM_COUT call=102 phase=tlm_apply_inverse_mod_sub_register mode=dispatch width=256 base=83 selected=81 effective=77 entry_active=1077 local_peak=1077 ops_added=4262 ops=1458837
+TLM_COUT call=103 phase=tlm_apply_inverse_mod_sub_register mode=dispatch width=256 base=82 selected=80 effective=76 entry_active=1078 local_peak=1078 ops_added=4262 ops=1471923
+TLM_COUT call=104 phase=tlm_apply_inverse_mod_sub_register mode=dispatch width=256 base=81 selected=79 effective=75 entry_active=1079 local_peak=1079 ops_added=4262 ops=1484811
+TLM_COUT call=105 phase=tlm_apply_inverse_mod_sub_register mode=dispatch width=256 base=80 selected=78 effective=74 entry_active=1080 local_peak=1080 ops_added=4262 ops=1497691
+TLM_COUT call=106 phase=tlm_apply_inverse_mod_sub_register mode=dispatch width=256 base=83 selected=81 effective=77 entry_active=1077 local_peak=1077 ops_added=4262 ops=1510679
+TLM_COUT call=107 phase=tlm_apply_inverse_mod_sub_register mode=dispatch width=256 base=80 selected=78 effective=74 entry_active=1080 local_peak=1080 ops_added=4262 ops=1523513
+TLM_COUT call=108 phase=tlm_apply_inverse_mod_sub_register mode=dispatch width=256 base=79 selected=77 effective=73 entry_active=1081 local_peak=1081 ops_added=4262 ops=1536327
+TLM_COUT call=109 phase=tlm_apply_inverse_mod_sub_register mode=dispatch width=256 base=82 selected=80 effective=76 entry_active=1078 local_peak=1078 ops_added=4262 ops=1549249
+TLM_COUT call=110 phase=tlm_apply_inverse_mod_sub_register mode=dispatch width=256 base=79 selected=77 effective=73 entry_active=1081 local_peak=1081 ops_added=4262 ops=1562031
+TLM_COUT call=111 phase=tlm_apply_inverse_mod_sub_register mode=dispatch width=256 base=78 selected=76 effective=72 entry_active=1082 local_peak=1082 ops_added=4262 ops=1574779
+TLM_COUT call=112 phase=tlm_apply_inverse_mod_sub_register mode=dispatch width=256 base=79 selected=77 effective=73 entry_active=1081 local_peak=1081 ops_added=4262 ops=1587683
+TLM_COUT call=113 phase=tlm_apply_inverse_mod_sub_register mode=dispatch width=256 base=78 selected=76 effective=72 entry_active=1082 local_peak=1082 ops_added=4262 ops=1600401
+TLM_COUT call=114 phase=tlm_apply_inverse_mod_sub_register mode=dispatch width=256 base=77 selected=75 effective=71 entry_active=1083 local_peak=1083 ops_added=4262 ops=1613097
+TLM_COUT call=115 phase=tlm_apply_inverse_mod_sub_register mode=dispatch width=256 base=78 selected=76 effective=72 entry_active=1082 local_peak=1082 ops_added=4262 ops=1625935
+TLM_COUT call=116 phase=tlm_apply_inverse_mod_sub_register mode=dispatch width=256 base=77 selected=75 effective=71 entry_active=1083 local_peak=1083 ops_added=4262 ops=1638587
+TLM_COUT call=117 phase=tlm_apply_inverse_mod_sub_register mode=dispatch width=256 base=78 selected=76 effective=72 entry_active=1082 local_peak=1082 ops_added=4262 ops=1651183
+TLM_COUT call=118 phase=tlm_apply_inverse_mod_sub_register mode=dispatch width=256 base=79 selected=77 effective=73 entry_active=1081 local_peak=1081 ops_added=4262 ops=1663919
+TLM_COUT call=119 phase=tlm_apply_inverse_mod_sub_register mode=dispatch width=256 base=78 selected=76 effective=72 entry_active=1082 local_peak=1082 ops_added=4262 ops=1676483
+TLM_COUT call=120 phase=tlm_apply_inverse_mod_sub_register mode=dispatch width=256 base=77 selected=75 effective=71 entry_active=1083 local_peak=1083 ops_added=4262 ops=1689011
+TLM_COUT call=121 phase=tlm_apply_inverse_mod_sub_register mode=dispatch width=256 base=78 selected=76 effective=72 entry_active=1082 local_peak=1082 ops_added=4262 ops=1701695
+TLM_COUT call=122 phase=tlm_apply_inverse_mod_sub_register mode=dispatch width=256 base=75 selected=73 effective=69 entry_active=1085 local_peak=1085 ops_added=4262 ops=1714227
+TLM_COUT call=123 phase=tlm_apply_inverse_mod_sub_register mode=dispatch width=256 base=74 selected=72 effective=68 entry_active=1086 local_peak=1086 ops_added=4262 ops=1726725
+TLM_COUT call=124 phase=tlm_apply_inverse_mod_sub_register mode=dispatch width=256 base=75 selected=73 effective=69 entry_active=1085 local_peak=1085 ops_added=4262 ops=1739365
+TLM_COUT call=125 phase=tlm_apply_inverse_mod_sub_register mode=dispatch width=256 base=76 selected=74 effective=70 entry_active=1084 local_peak=1084 ops_added=4262 ops=1751799
+TLM_COUT call=126 phase=tlm_apply_inverse_mod_sub_register mode=dispatch width=256 base=73 selected=71 effective=67 entry_active=1087 local_peak=1087 ops_added=4262 ops=1764229
+TLM_COUT call=127 phase=tlm_apply_inverse_mod_sub_register mode=dispatch width=256 base=74 selected=72 effective=68 entry_active=1086 local_peak=1086 ops_added=4262 ops=1776803
+TLM_COUT call=128 phase=tlm_apply_inverse_mod_sub_register mode=dispatch width=256 base=73 selected=71 effective=67 entry_active=1087 local_peak=1087 ops_added=4262 ops=1789191
+TLM_COUT call=129 phase=tlm_apply_inverse_mod_sub_register mode=dispatch width=256 base=72 selected=70 effective=66 entry_active=1088 local_peak=1088 ops_added=4575 ops=1801870
+TLM_COUT call=130 phase=tlm_apply_inverse_mod_sub_register mode=dispatch width=256 base=73 selected=71 effective=67 entry_active=1087 local_peak=1087 ops_added=4262 ops=1814392
+TLM_COUT call=131 phase=tlm_apply_inverse_mod_sub_register mode=dispatch width=256 base=72 selected=70 effective=66 entry_active=1088 local_peak=1088 ops_added=4575 ops=1827041
+TLM_COUT call=132 phase=tlm_apply_inverse_mod_sub_register mode=dispatch width=256 base=71 selected=69 effective=65 entry_active=1089 local_peak=1089 ops_added=4575 ops=1839668
+TLM_COUT call=133 phase=tlm_apply_inverse_mod_sub_register mode=dispatch width=256 base=72 selected=70 effective=66 entry_active=1088 local_peak=1088 ops_added=4575 ops=1852437
+TLM_COUT call=134 phase=tlm_apply_inverse_mod_sub_register mode=dispatch width=256 base=71 selected=69 effective=65 entry_active=1089 local_peak=1089 ops_added=4575 ops=1865006
+TLM_COUT call=135 phase=tlm_apply_inverse_mod_sub_register mode=dispatch width=256 base=72 selected=70 effective=66 entry_active=1088 local_peak=1088 ops_added=4575 ops=1877547
+TLM_COUT call=136 phase=tlm_apply_inverse_mod_sub_register mode=dispatch width=256 base=73 selected=71 effective=67 entry_active=1087 local_peak=1087 ops_added=4262 ops=1889630
+TLM_COUT call=137 phase=tlm_apply_inverse_mod_sub_register mode=dispatch width=256 base=72 selected=70 effective=66 entry_active=1088 local_peak=1088 ops_added=4575 ops=1902111
+TLM_COUT call=138 phase=tlm_apply_inverse_mod_sub_register mode=dispatch width=256 base=71 selected=69 effective=65 entry_active=1089 local_peak=1089 ops_added=4575 ops=1914570
+TLM_COUT call=139 phase=tlm_apply_inverse_mod_sub_register mode=dispatch width=256 base=72 selected=70 effective=66 entry_active=1088 local_peak=1088 ops_added=4575 ops=1926900
+TLM_COUT call=140 phase=tlm_apply_inverse_mod_sub_register mode=dispatch width=256 base=71 selected=69 effective=65 entry_active=1089 local_peak=1089 ops_added=4575 ops=1939030
+TLM_COUT call=141 phase=tlm_apply_inverse_mod_sub_register mode=dispatch width=256 base=68 selected=66 effective=62 entry_active=1092 local_peak=1092 ops_added=4575 ops=1951471
+TLM_COUT call=142 phase=tlm_apply_inverse_mod_sub_register mode=dispatch width=256 base=69 selected=67 effective=63 entry_active=1091 local_peak=1091 ops_added=4575 ops=1964042
+TLM_COUT call=143 phase=tlm_apply_inverse_mod_sub_register mode=dispatch width=256 base=68 selected=66 effective=62 entry_active=1092 local_peak=1092 ops_added=4575 ops=1976441
+TLM_COUT call=144 phase=tlm_apply_inverse_mod_sub_register mode=dispatch width=256 base=69 selected=67 effective=63 entry_active=1091 local_peak=1091 ops_added=4575 ops=1988499
+TLM_COUT call=145 phase=tlm_apply_inverse_mod_sub_register mode=dispatch width=256 base=68 selected=66 effective=62 entry_active=1092 local_peak=1092 ops_added=4575 ops=2001016
+TLM_COUT call=146 phase=tlm_apply_inverse_mod_sub_register mode=dispatch width=256 base=69 selected=67 effective=63 entry_active=1091 local_peak=1091 ops_added=4575 ops=2013030
+TLM_COUT call=147 phase=tlm_apply_inverse_mod_sub_register mode=dispatch width=256 base=68 selected=66 effective=62 entry_active=1092 local_peak=1092 ops_added=4575 ops=2025020
+TLM_COUT call=148 phase=tlm_apply_inverse_mod_sub_register mode=dispatch width=256 base=69 selected=67 effective=63 entry_active=1091 local_peak=1091 ops_added=4575 ops=2037166
+TLM_COUT call=149 phase=tlm_apply_inverse_mod_sub_register mode=dispatch width=256 base=68 selected=66 effective=62 entry_active=1092 local_peak=1092 ops_added=4575 ops=2049112
+TLM_COUT call=150 phase=tlm_apply_inverse_mod_sub_register mode=dispatch width=256 base=67 selected=65 effective=61 entry_active=1093 local_peak=1093 ops_added=4575 ops=2061050
+TLM_COUT call=151 phase=tlm_apply_inverse_mod_sub_register mode=dispatch width=256 base=68 selected=66 effective=62 entry_active=1092 local_peak=1092 ops_added=4575 ops=2073130
+TLM_COUT call=152 phase=tlm_apply_inverse_mod_sub_register mode=dispatch width=256 base=67 selected=65 effective=61 entry_active=1093 local_peak=1093 ops_added=4575 ops=2085010
+TLM_COUT call=153 phase=tlm_apply_inverse_mod_sub_register mode=dispatch width=256 base=66 selected=64 effective=60 entry_active=1094 local_peak=1094 ops_added=4575 ops=2096882
+TLM_COUT call=154 phase=tlm_apply_inverse_mod_sub_register mode=dispatch width=256 base=67 selected=65 effective=61 entry_active=1093 local_peak=1093 ops_added=4575 ops=2108896
+TLM_COUT call=155 phase=tlm_apply_inverse_mod_sub_register mode=dispatch width=256 base=66 selected=64 effective=60 entry_active=1094 local_peak=1094 ops_added=4575 ops=2120724
+TLM_COUT call=156 phase=tlm_apply_inverse_mod_sub_register mode=dispatch width=256 base=65 selected=63 effective=59 entry_active=1095 local_peak=1095 ops_added=4575 ops=2132530
+TLM_COUT call=157 phase=tlm_apply_inverse_mod_sub_register mode=dispatch width=256 base=66 selected=64 effective=60 entry_active=1094 local_peak=1094 ops_added=4575 ops=2144478
+TLM_COUT call=158 phase=tlm_apply_inverse_mod_sub_register mode=dispatch width=256 base=65 selected=63 effective=59 entry_active=1095 local_peak=1095 ops_added=4575 ops=2156254
+TLM_COUT call=159 phase=tlm_apply_inverse_mod_sub_register mode=dispatch width=256 base=64 selected=62 effective=58 entry_active=1096 local_peak=1096 ops_added=4575 ops=2168008
+TLM_COUT call=160 phase=tlm_apply_inverse_mod_sub_register mode=dispatch width=256 base=65 selected=63 effective=59 entry_active=1095 local_peak=1095 ops_added=4575 ops=2179890
+TLM_COUT call=161 phase=tlm_apply_inverse_mod_sub_register mode=dispatch width=256 base=64 selected=62 effective=58 entry_active=1096 local_peak=1096 ops_added=4575 ops=2191614
+TLM_COUT call=162 phase=tlm_apply_inverse_mod_sub_register mode=dispatch width=256 base=63 selected=61 effective=57 entry_active=1097 local_peak=1097 ops_added=4575 ops=2203302
+TLM_COUT call=163 phase=tlm_apply_inverse_mod_sub_register mode=dispatch width=256 base=64 selected=62 effective=58 entry_active=1096 local_peak=1096 ops_added=4575 ops=2215132
+TLM_COUT call=164 phase=tlm_apply_inverse_mod_sub_register mode=dispatch width=256 base=63 selected=61 effective=57 entry_active=1097 local_peak=1097 ops_added=4575 ops=2226776
+TLM_COUT call=165 phase=tlm_apply_inverse_mod_sub_register mode=dispatch width=256 base=62 selected=60 effective=56 entry_active=1098 local_peak=1098 ops_added=4575 ops=2238398
+TLM_COUT call=166 phase=tlm_apply_inverse_mod_sub_register mode=dispatch width=256 base=63 selected=61 effective=57 entry_active=1097 local_peak=1097 ops_added=4575 ops=2250162
+TLM_COUT call=167 phase=tlm_apply_inverse_mod_sub_register mode=dispatch width=256 base=62 selected=60 effective=56 entry_active=1098 local_peak=1098 ops_added=4575 ops=2261754
+TLM_COUT call=168 phase=tlm_apply_inverse_mod_sub_register mode=dispatch width=256 base=61 selected=59 effective=55 entry_active=1099 local_peak=1099 ops_added=4888 ops=2273615
+TLM_COUT call=169 phase=tlm_apply_inverse_mod_sub_register mode=dispatch width=256 base=62 selected=60 effective=56 entry_active=1098 local_peak=1098 ops_added=4575 ops=2285313
+TLM_COUT call=170 phase=tlm_apply_inverse_mod_sub_register mode=dispatch width=256 base=61 selected=59 effective=55 entry_active=1099 local_peak=1099 ops_added=4888 ops=2297144
+TLM_COUT call=171 phase=tlm_apply_inverse_mod_sub_register mode=dispatch width=256 base=60 selected=58 effective=54 entry_active=1100 local_peak=1100 ops_added=4888 ops=2308953
+TLM_COUT call=172 phase=tlm_apply_inverse_mod_sub_register mode=dispatch width=256 base=61 selected=59 effective=55 entry_active=1099 local_peak=1099 ops_added=4888 ops=2320904
+TLM_COUT call=173 phase=tlm_apply_inverse_mod_sub_register mode=dispatch width=256 base=60 selected=58 effective=54 entry_active=1100 local_peak=1100 ops_added=4888 ops=2332683
+TLM_COUT call=174 phase=tlm_apply_inverse_mod_sub_register mode=dispatch width=256 base=59 selected=57 effective=53 entry_active=1101 local_peak=1101 ops_added=4888 ops=2344422
+TLM_COUT call=175 phase=tlm_apply_inverse_mod_sub_register mode=dispatch width=256 base=60 selected=58 effective=54 entry_active=1100 local_peak=1100 ops_added=4888 ops=2356313
+TLM_COUT call=176 phase=tlm_apply_inverse_mod_sub_register mode=dispatch width=256 base=59 selected=57 effective=53 entry_active=1101 local_peak=1101 ops_added=4888 ops=2368022
+TLM_COUT call=177 phase=tlm_apply_inverse_mod_sub_register mode=dispatch width=256 base=58 selected=56 effective=52 entry_active=1102 local_peak=1102 ops_added=4888 ops=2379697
+TLM_COUT call=178 phase=tlm_apply_inverse_mod_sub_register mode=dispatch width=256 base=59 selected=57 effective=53 entry_active=1101 local_peak=1101 ops_added=4888 ops=2391518
+TLM_COUT call=179 phase=tlm_apply_inverse_mod_sub_register mode=dispatch width=256 base=58 selected=56 effective=52 entry_active=1102 local_peak=1102 ops_added=4888 ops=2403163
+TLM_COUT call=180 phase=tlm_apply_inverse_mod_sub_register mode=dispatch width=256 base=57 selected=55 effective=51 entry_active=1103 local_peak=1103 ops_added=4888 ops=2414785
+TLM_COUT call=181 phase=tlm_apply_inverse_mod_sub_register mode=dispatch width=256 base=58 selected=56 effective=52 entry_active=1102 local_peak=1102 ops_added=4888 ops=2426550
+TLM_COUT call=182 phase=tlm_apply_inverse_mod_sub_register mode=dispatch width=256 base=57 selected=55 effective=51 entry_active=1103 local_peak=1103 ops_added=4888 ops=2438128
+TLM_COUT call=183 phase=tlm_apply_inverse_mod_sub_register mode=dispatch width=256 base=56 selected=54 effective=50 entry_active=1104 local_peak=1104 ops_added=4888 ops=2449680
+TLM_COUT call=184 phase=tlm_apply_inverse_mod_sub_register mode=dispatch width=256 base=57 selected=55 effective=51 entry_active=1103 local_peak=1103 ops_added=4888 ops=2461372
+TLM_COUT call=185 phase=tlm_apply_inverse_mod_sub_register mode=dispatch width=256 base=56 selected=54 effective=50 entry_active=1104 local_peak=1104 ops_added=4888 ops=2472880
+TLM_COUT call=186 phase=tlm_apply_inverse_mod_sub_register mode=dispatch width=256 base=55 selected=53 effective=49 entry_active=1105 local_peak=1105 ops_added=4888 ops=2484364
+TLM_COUT call=187 phase=tlm_apply_inverse_mod_sub_register mode=dispatch width=256 base=56 selected=54 effective=50 entry_active=1104 local_peak=1104 ops_added=4888 ops=2496034
+TLM_COUT call=188 phase=tlm_apply_inverse_mod_sub_register mode=dispatch width=256 base=55 selected=53 effective=49 entry_active=1105 local_peak=1105 ops_added=4888 ops=2507474
+TLM_COUT call=189 phase=tlm_apply_inverse_mod_sub_register mode=dispatch width=256 base=54 selected=52 effective=48 entry_active=1106 local_peak=1106 ops_added=4888 ops=2518908
+TLM_COUT call=190 phase=tlm_apply_inverse_mod_sub_register mode=dispatch width=256 base=55 selected=53 effective=49 entry_active=1105 local_peak=1105 ops_added=4888 ops=2530545
+TLM_COUT call=191 phase=tlm_apply_inverse_mod_sub_register mode=dispatch width=256 base=54 selected=52 effective=48 entry_active=1106 local_peak=1106 ops_added=4888 ops=2541970
+TLM_COUT call=192 phase=tlm_apply_inverse_mod_sub_register mode=dispatch width=256 base=53 selected=51 effective=47 entry_active=1107 local_peak=1107 ops_added=5201 ops=2553692
+TLM_COUT call=193 phase=tlm_apply_inverse_mod_sub_register mode=dispatch width=256 base=54 selected=52 effective=48 entry_active=1106 local_peak=1106 ops_added=4888 ops=2565257
+TLM_COUT call=194 phase=tlm_apply_inverse_mod_sub_register mode=dispatch width=256 base=53 selected=51 effective=47 entry_active=1107 local_peak=1107 ops_added=5201 ops=2576943
+TLM_COUT call=195 phase=tlm_apply_inverse_mod_sub_register mode=dispatch width=256 base=52 selected=50 effective=46 entry_active=1108 local_peak=1108 ops_added=5201 ops=2589363
+TLM_COUT call=196 phase=tlm_apply_inverse_mod_sub_register mode=dispatch width=256 base=53 selected=51 effective=47 entry_active=1107 local_peak=1107 ops_added=5201 ops=2601137
+TLM_COUT call=197 phase=tlm_apply_inverse_mod_sub_register mode=dispatch width=256 base=52 selected=50 effective=46 entry_active=1108 local_peak=1108 ops_added=5201 ops=2613485
+TLM_COUT call=198 phase=tlm_apply_inverse_mod_sub_register mode=dispatch width=256 base=51 selected=49 effective=45 entry_active=1109 local_peak=1109 ops_added=5201 ops=2625821
+TLM_COUT call=199 phase=tlm_apply_inverse_mod_sub_register mode=dispatch width=256 base=52 selected=50 effective=46 entry_active=1108 local_peak=1108 ops_added=5201 ops=2638289
+TLM_COUT call=200 phase=tlm_apply_inverse_mod_sub_register mode=dispatch width=256 base=51 selected=49 effective=45 entry_active=1109 local_peak=1109 ops_added=5201 ops=2650561
+TLM_COUT call=201 phase=tlm_apply_inverse_mod_sub_register mode=dispatch width=256 base=50 selected=48 effective=44 entry_active=1110 local_peak=1110 ops_added=5201 ops=2662825
+TLM_COUT call=202 phase=tlm_apply_inverse_mod_sub_register mode=dispatch width=256 base=51 selected=49 effective=45 entry_active=1109 local_peak=1109 ops_added=5201 ops=2675217
+TLM_COUT call=203 phase=tlm_apply_inverse_mod_sub_register mode=dispatch width=256 base=50 selected=48 effective=44 entry_active=1110 local_peak=1110 ops_added=5201 ops=2687417
+TLM_COUT call=204 phase=tlm_apply_inverse_mod_sub_register mode=dispatch width=256 base=49 selected=47 effective=43 entry_active=1111 local_peak=1111 ops_added=5201 ops=2699597
+TLM_COUT call=205 phase=tlm_apply_inverse_mod_sub_register mode=dispatch width=256 base=50 selected=48 effective=44 entry_active=1110 local_peak=1110 ops_added=5201 ops=2711925
+TLM_COUT call=206 phase=tlm_apply_inverse_mod_sub_register mode=dispatch width=256 base=49 selected=47 effective=43 entry_active=1111 local_peak=1111 ops_added=5201 ops=2724041
+TLM_COUT call=207 phase=tlm_apply_inverse_mod_sub_register mode=dispatch width=256 base=48 selected=46 effective=42 entry_active=1112 local_peak=1112 ops_added=5514 ops=2736462
+TLM_COUT call=208 phase=tlm_apply_inverse_mod_sub_register mode=dispatch width=256 base=49 selected=47 effective=43 entry_active=1111 local_peak=1111 ops_added=5201 ops=2748690
+TLM_COUT call=209 phase=tlm_apply_inverse_mod_sub_register mode=dispatch width=256 base=48 selected=46 effective=42 entry_active=1112 local_peak=1112 ops_added=5514 ops=2761039
+TLM_COUT call=210 phase=tlm_apply_inverse_mod_sub_register mode=dispatch width=256 base=47 selected=45 effective=41 entry_active=1113 local_peak=1113 ops_added=5514 ops=2773360
+TLM_COUT call=211 phase=tlm_apply_inverse_mod_sub_register mode=dispatch width=256 base=48 selected=46 effective=42 entry_active=1112 local_peak=1112 ops_added=5514 ops=2785813
+TLM_COUT call=212 phase=tlm_apply_inverse_mod_sub_register mode=dispatch width=256 base=47 selected=45 effective=41 entry_active=1113 local_peak=1113 ops_added=5514 ops=2798046
+TLM_COUT call=213 phase=tlm_apply_inverse_mod_sub_register mode=dispatch width=256 base=46 selected=44 effective=40 entry_active=1114 local_peak=1114 ops_added=5514 ops=2810263
+TLM_COUT call=214 phase=tlm_apply_inverse_mod_sub_register mode=dispatch width=256 base=47 selected=45 effective=41 entry_active=1113 local_peak=1113 ops_added=5514 ops=2822598
+TLM_COUT call=215 phase=tlm_apply_inverse_mod_sub_register mode=dispatch width=256 base=46 selected=44 effective=40 entry_active=1114 local_peak=1114 ops_added=5514 ops=2834727
+TLM_COUT call=216 phase=tlm_apply_inverse_mod_sub_register mode=dispatch width=256 base=45 selected=43 effective=39 entry_active=1115 local_peak=1115 ops_added=5514 ops=2846826
+TLM_COUT call=217 phase=tlm_apply_inverse_mod_sub_register mode=dispatch width=256 base=46 selected=44 effective=40 entry_active=1114 local_peak=1114 ops_added=5514 ops=2859043
+TLM_COUT call=218 phase=tlm_apply_inverse_mod_sub_register mode=dispatch width=256 base=45 selected=43 effective=39 entry_active=1115 local_peak=1115 ops_added=5514 ops=2871054
+TLM_COUT call=219 phase=tlm_apply_inverse_mod_sub_register mode=dispatch width=256 base=44 selected=42 effective=38 entry_active=1116 local_peak=1116 ops_added=5827 ops=2883356
+TLM_COUT call=220 phase=tlm_apply_inverse_mod_sub_register mode=dispatch width=256 base=45 selected=43 effective=39 entry_active=1115 local_peak=1115 ops_added=5514 ops=2895445
+TLM_COUT call=221 phase=tlm_apply_inverse_mod_sub_register mode=dispatch width=256 base=44 selected=42 effective=38 entry_active=1116 local_peak=1116 ops_added=5827 ops=2907659
+TLM_COUT call=222 phase=tlm_apply_inverse_mod_sub_register mode=dispatch width=256 base=43 selected=41 effective=37 entry_active=1117 local_peak=1117 ops_added=5827 ops=2919825
+TLM_COUT call=223 phase=tlm_apply_inverse_mod_sub_register mode=dispatch width=256 base=44 selected=42 effective=38 entry_active=1116 local_peak=1116 ops_added=5827 ops=2932145
+TLM_COUT call=224 phase=tlm_apply_inverse_mod_sub_register mode=dispatch width=256 base=43 selected=41 effective=37 entry_active=1117 local_peak=1117 ops_added=5827 ops=2944223
+TLM_COUT call=225 phase=tlm_apply_inverse_mod_sub_register mode=dispatch width=256 base=42 selected=40 effective=36 entry_active=1118 local_peak=1118 ops_added=6125 ops=2956599
+TLM_COUT call=226 phase=tlm_apply_inverse_mod_sub_register mode=dispatch width=256 base=43 selected=41 effective=37 entry_active=1117 local_peak=1117 ops_added=5827 ops=2968784
+TLM_COUT call=227 phase=tlm_apply_inverse_mod_sub_register mode=dispatch width=256 base=42 selected=40 effective=36 entry_active=1118 local_peak=1118 ops_added=6125 ops=2981067
+TLM_COUT call=228 phase=tlm_apply_inverse_mod_sub_register mode=dispatch width=256 base=41 selected=39 effective=35 entry_active=1119 local_peak=1119 ops_added=6139 ops=2993328
+TLM_COUT call=229 phase=tlm_apply_inverse_mod_sub_register mode=dispatch width=256 base=42 selected=40 effective=36 entry_active=1118 local_peak=1118 ops_added=6125 ops=3005721
+TLM_COUT call=230 phase=tlm_apply_inverse_mod_sub_register mode=dispatch width=256 base=41 selected=39 effective=35 entry_active=1119 local_peak=1119 ops_added=6139 ops=3017922
+TLM_COUT call=231 phase=tlm_apply_inverse_mod_sub_register mode=dispatch width=256 base=40 selected=38 effective=34 entry_active=1120 local_peak=1120 ops_added=6368 ops=3030322
+TLM_COUT call=232 phase=tlm_apply_inverse_mod_sub_register mode=dispatch width=256 base=41 selected=39 effective=35 entry_active=1119 local_peak=1119 ops_added=6139 ops=3042647
+TLM_COUT call=233 phase=tlm_apply_inverse_mod_sub_register mode=dispatch width=256 base=40 selected=38 effective=34 entry_active=1120 local_peak=1120 ops_added=6368 ops=3054975
+TLM_COUT call=234 phase=tlm_apply_inverse_mod_sub_register mode=dispatch width=256 base=39 selected=37 effective=33 entry_active=1121 local_peak=1121 ops_added=6644 ops=3067569
+TLM_COUT call=235 phase=tlm_apply_inverse_mod_sub_register mode=dispatch width=256 base=40 selected=38 effective=34 entry_active=1120 local_peak=1120 ops_added=6368 ops=3080025
+TLM_COUT call=236 phase=tlm_apply_inverse_mod_sub_register mode=dispatch width=256 base=39 selected=37 effective=33 entry_active=1121 local_peak=1121 ops_added=6644 ops=3092547
+TLM_COUT call=237 phase=tlm_apply_inverse_mod_sub_register mode=dispatch width=256 base=38 selected=36 effective=32 entry_active=1122 local_peak=1122 ops_added=6676 ops=3105075
+TLM_COUT call=238 phase=tlm_apply_inverse_mod_sub_register mode=dispatch width=256 base=39 selected=37 effective=37 entry_active=1117 local_peak=1117 ops_added=5827 ops=3116826
+TLM_COUT call=239 phase=tlm_apply_inverse_mod_sub_register mode=dispatch width=256 base=38 selected=36 effective=36 entry_active=1118 local_peak=1118 ops_added=6125 ops=3128631
+TLM_COUT call=240 phase=tlm_apply_inverse_mod_sub_register mode=dispatch width=256 base=37 selected=35 effective=35 entry_active=1119 local_peak=1119 ops_added=6139 ops=3140414
+TLM_COUT call=241 phase=tlm_apply_inverse_mod_sub_register mode=dispatch width=256 base=38 selected=36 effective=36 entry_active=1118 local_peak=1118 ops_added=6125 ops=3152337
+TLM_COUT call=242 phase=tlm_apply_inverse_mod_sub_register mode=dispatch width=256 base=37 selected=35 effective=35 entry_active=1119 local_peak=1119 ops_added=6139 ops=3164048
+TLM_COUT call=243 phase=tlm_apply_inverse_mod_sub_register mode=dispatch width=256 base=36 selected=34 effective=34 entry_active=1120 local_peak=1120 ops_added=6368 ops=3175978
+TLM_COUT call=244 phase=tlm_apply_inverse_mod_sub_register mode=dispatch width=256 base=35 selected=33 effective=33 entry_active=1121 local_peak=1121 ops_added=6644 ops=3188362
+TLM_COUT call=245 phase=tlm_apply_inverse_mod_sub_register mode=dispatch width=256 base=34 selected=32 effective=32 entry_active=1122 local_peak=1122 ops_added=6676 ops=3200578
+TLM_COUT call=246 phase=tlm_apply_inverse_mod_sub_register mode=dispatch width=256 base=31 selected=29 effective=29 entry_active=1125 local_peak=1125 ops_added=6757 ops=3212873
+TLM_COUT call=247 phase=tlm_apply_inverse_mod_sub_register mode=dispatch width=256 base=32 selected=30 effective=30 entry_active=1124 local_peak=1124 ops_added=6674 ops=3225251
+TLM_COUT call=248 phase=tlm_apply_inverse_mod_sub_register mode=dispatch width=256 base=31 selected=29 effective=29 entry_active=1125 local_peak=1125 ops_added=6757 ops=3237512
+TLM_COUT call=249 phase=tlm_apply_inverse_mod_sub_register mode=dispatch width=256 base=30 selected=28 effective=28 entry_active=1126 local_peak=1126 ops_added=6830 ops=3249810
+TLM_COUT call=250 phase=tlm_apply_inverse_mod_sub_register mode=dispatch width=256 base=29 selected=27 effective=27 entry_active=1127 local_peak=1127 ops_added=6889 ops=3262355
+TLM_COUT call=251 phase=tlm_apply_inverse_mod_sub_register mode=dispatch width=256 base=28 selected=26 effective=26 entry_active=1128 local_peak=1128 ops_added=6938 ops=3274767
+TLM_COUT call=252 phase=tlm_apply_inverse_mod_sub_register mode=dispatch width=256 base=25 selected=23 effective=23 entry_active=1131 local_peak=1131 ops_added=6499 ops=3286487
+TLM_COUT call=253 phase=tlm_apply_inverse_mod_sub_register mode=dispatch width=256 base=24 selected=22 effective=22 entry_active=1132 local_peak=1132 ops_added=6075 ops=3297995
+TLM_COUT call=254 phase=tlm_apply_inverse_mod_sub_register mode=dispatch width=256 base=25 selected=23 effective=23 entry_active=1131 local_peak=1131 ops_added=6499 ops=3309685
+TLM_COUT call=255 phase=tlm_apply_inverse_mod_sub_register mode=dispatch width=256 base=22 selected=20 effective=20 entry_active=1134 local_peak=1134 ops_added=5287 ops=3320199
+TLM_COUT call=256 phase=tlm_apply_inverse_mod_sub_register mode=dispatch width=256 base=25 selected=23 effective=23 entry_active=1131 local_peak=1131 ops_added=6499 ops=3332001
+TLM_COUT call=257 phase=tlm_apply_inverse_mod_sub_register mode=dispatch width=256 base=24 selected=22 effective=22 entry_active=1132 local_peak=1132 ops_added=6075 ops=3343247
+TLM_COUT call=258 phase=tlm_apply_inverse_mod_sub_register mode=dispatch width=256 base=24 selected=22 effective=19 entry_active=1135 local_peak=1135 ops_added=4923 ops=3352655
+TLM_COUT call=259 phase=tlm_apply_inverse_mod_sub_register mode=dispatch width=256 base=24 selected=22 effective=18 entry_active=1136 local_peak=1136 ops_added=4579 ops=3361763
+TLM_COUT call=262 phase=tlm_apply_forward_mod_add_register mode=dispatch width=256 base=24 selected=22 effective=18 entry_active=1136 local_peak=1136 ops_added=4579 ops=5888600
+TLM_COUT call=263 phase=tlm_apply_forward_mod_add_register mode=dispatch width=256 base=24 selected=22 effective=19 entry_active=1135 local_peak=1135 ops_added=4923 ops=5897298
+TLM_COUT call=264 phase=tlm_apply_forward_mod_add_register mode=dispatch width=256 base=24 selected=22 effective=22 entry_active=1132 local_peak=1132 ops_added=6075 ops=5906971
+TLM_COUT call=265 phase=tlm_apply_forward_mod_add_register mode=dispatch width=256 base=25 selected=23 effective=23 entry_active=1131 local_peak=1131 ops_added=6499 ops=5917788
+TLM_COUT call=266 phase=tlm_apply_forward_mod_add_register mode=dispatch width=256 base=22 selected=20 effective=20 entry_active=1134 local_peak=1134 ops_added=5287 ops=5927576
+TLM_COUT call=267 phase=tlm_apply_forward_mod_add_register mode=dispatch width=256 base=25 selected=23 effective=23 entry_active=1131 local_peak=1131 ops_added=6499 ops=5938535
+TLM_COUT call=268 phase=tlm_apply_forward_mod_add_register mode=dispatch width=256 base=24 selected=22 effective=22 entry_active=1132 local_peak=1132 ops_added=6075 ops=5949040
+TLM_COUT call=269 phase=tlm_apply_forward_mod_add_register mode=dispatch width=256 base=25 selected=23 effective=23 entry_active=1131 local_peak=1131 ops_added=6499 ops=5960186
+TLM_COUT call=270 phase=tlm_apply_forward_mod_add_register mode=dispatch width=256 base=28 selected=26 effective=26 entry_active=1128 local_peak=1128 ops_added=6938 ops=5971602
+TLM_COUT call=271 phase=tlm_apply_forward_mod_add_register mode=dispatch width=256 base=29 selected=27 effective=27 entry_active=1127 local_peak=1127 ops_added=6889 ops=5983226
+TLM_COUT call=272 phase=tlm_apply_forward_mod_add_register mode=dispatch width=256 base=30 selected=28 effective=28 entry_active=1126 local_peak=1126 ops_added=6830 ops=5994948
+TLM_COUT call=273 phase=tlm_apply_forward_mod_add_register mode=dispatch width=256 base=31 selected=29 effective=29 entry_active=1125 local_peak=1125 ops_added=6757 ops=6006436
+TLM_COUT call=274 phase=tlm_apply_forward_mod_add_register mode=dispatch width=256 base=32 selected=30 effective=30 entry_active=1124 local_peak=1124 ops_added=6674 ops=6017851
+TLM_COUT call=275 phase=tlm_apply_forward_mod_add_register mode=dispatch width=256 base=31 selected=29 effective=29 entry_active=1125 local_peak=1125 ops_added=6757 ops=6029544
+TLM_COUT call=276 phase=tlm_apply_forward_mod_add_register mode=dispatch width=256 base=34 selected=32 effective=32 entry_active=1122 local_peak=1122 ops_added=6676 ops=6041005
+TLM_COUT call=277 phase=tlm_apply_forward_mod_add_register mode=dispatch width=256 base=35 selected=33 effective=33 entry_active=1121 local_peak=1121 ops_added=6644 ops=6052460
+TLM_COUT call=278 phase=tlm_apply_forward_mod_add_register mode=dispatch width=256 base=36 selected=34 effective=34 entry_active=1120 local_peak=1120 ops_added=6368 ops=6063806
+TLM_COUT call=279 phase=tlm_apply_forward_mod_add_register mode=dispatch width=256 base=37 selected=35 effective=35 entry_active=1119 local_peak=1119 ops_added=6139 ops=6074728
+TLM_COUT call=280 phase=tlm_apply_forward_mod_add_register mode=dispatch width=256 base=38 selected=36 effective=36 entry_active=1118 local_peak=1118 ops_added=6125 ops=6085670
+TLM_COUT call=281 phase=tlm_apply_forward_mod_add_register mode=dispatch width=256 base=37 selected=35 effective=35 entry_active=1119 local_peak=1119 ops_added=6139 ops=6096803
+TLM_COUT call=282 phase=tlm_apply_forward_mod_add_register mode=dispatch width=256 base=38 selected=36 effective=36 entry_active=1118 local_peak=1118 ops_added=6125 ops=6107815
+TLM_COUT call=283 phase=tlm_apply_forward_mod_add_register mode=dispatch width=256 base=39 selected=37 effective=37 entry_active=1117 local_peak=1117 ops_added=5827 ops=6118545
+TLM_COUT call=284 phase=tlm_apply_forward_mod_add_register mode=dispatch width=256 base=38 selected=36 effective=32 entry_active=1122 local_peak=1122 ops_added=6676 ops=6130319
+TLM_COUT call=285 phase=tlm_apply_forward_mod_add_register mode=dispatch width=256 base=39 selected=37 effective=33 entry_active=1121 local_peak=1121 ops_added=6644 ops=6142004
+TLM_COUT call=286 phase=tlm_apply_forward_mod_add_register mode=dispatch width=256 base=40 selected=38 effective=34 entry_active=1120 local_peak=1120 ops_added=6368 ops=6153447
+TLM_COUT call=287 phase=tlm_apply_forward_mod_add_register mode=dispatch width=256 base=39 selected=37 effective=33 entry_active=1121 local_peak=1121 ops_added=6644 ops=6165361
+TLM_COUT call=288 phase=tlm_apply_forward_mod_add_register mode=dispatch width=256 base=40 selected=38 effective=34 entry_active=1120 local_peak=1120 ops_added=6368 ops=6176872
+TLM_COUT call=289 phase=tlm_apply_forward_mod_add_register mode=dispatch width=256 base=41 selected=39 effective=35 entry_active=1119 local_peak=1119 ops_added=6139 ops=6188190
+TLM_COUT call=290 phase=tlm_apply_forward_mod_add_register mode=dispatch width=256 base=40 selected=38 effective=34 entry_active=1120 local_peak=1120 ops_added=6368 ops=6199912
+TLM_COUT call=291 phase=tlm_apply_forward_mod_add_register mode=dispatch width=256 base=41 selected=39 effective=35 entry_active=1119 local_peak=1119 ops_added=6139 ops=6211298
+TLM_COUT call=292 phase=tlm_apply_forward_mod_add_register mode=dispatch width=256 base=42 selected=40 effective=36 entry_active=1118 local_peak=1118 ops_added=6125 ops=6222686
+TLM_COUT call=293 phase=tlm_apply_forward_mod_add_register mode=dispatch width=256 base=41 selected=39 effective=35 entry_active=1119 local_peak=1119 ops_added=6139 ops=6234283
+TLM_COUT call=294 phase=tlm_apply_forward_mod_add_register mode=dispatch width=256 base=42 selected=40 effective=36 entry_active=1118 local_peak=1118 ops_added=6125 ops=6245727
+TLM_COUT call=295 phase=tlm_apply_forward_mod_add_register mode=dispatch width=256 base=43 selected=41 effective=37 entry_active=1117 local_peak=1117 ops_added=5827 ops=6256909
+TLM_COUT call=296 phase=tlm_apply_forward_mod_add_register mode=dispatch width=256 base=42 selected=40 effective=36 entry_active=1118 local_peak=1118 ops_added=6125 ops=6268556
+TLM_COUT call=297 phase=tlm_apply_forward_mod_add_register mode=dispatch width=256 base=43 selected=41 effective=37 entry_active=1117 local_peak=1117 ops_added=5827 ops=6279827
+TLM_COUT call=298 phase=tlm_apply_forward_mod_add_register mode=dispatch width=256 base=44 selected=42 effective=38 entry_active=1116 local_peak=1116 ops_added=5827 ops=6291106
+TLM_COUT call=299 phase=tlm_apply_forward_mod_add_register mode=dispatch width=256 base=43 selected=41 effective=37 entry_active=1117 local_peak=1117 ops_added=5827 ops=6302578
+TLM_COUT call=300 phase=tlm_apply_forward_mod_add_register mode=dispatch width=256 base=44 selected=42 effective=38 entry_active=1116 local_peak=1116 ops_added=5827 ops=6313941
+TLM_COUT call=301 phase=tlm_apply_forward_mod_add_register mode=dispatch width=256 base=45 selected=43 effective=39 entry_active=1115 local_peak=1115 ops_added=5514 ops=6325025
+TLM_COUT call=302 phase=tlm_apply_forward_mod_add_register mode=dispatch width=256 base=44 selected=42 effective=38 entry_active=1116 local_peak=1116 ops_added=5827 ops=6336615
+TLM_COUT call=303 phase=tlm_apply_forward_mod_add_register mode=dispatch width=256 base=45 selected=43 effective=39 entry_active=1115 local_peak=1115 ops_added=5514 ops=6347783
+TLM_COUT call=304 phase=tlm_apply_forward_mod_add_register mode=dispatch width=256 base=46 selected=44 effective=40 entry_active=1114 local_peak=1114 ops_added=5514 ops=6358977
+TLM_COUT call=305 phase=tlm_apply_forward_mod_add_register mode=dispatch width=256 base=45 selected=43 effective=39 entry_active=1115 local_peak=1115 ops_added=5514 ops=6370328
+TLM_COUT call=306 phase=tlm_apply_forward_mod_add_register mode=dispatch width=256 base=46 selected=44 effective=40 entry_active=1114 local_peak=1114 ops_added=5514 ops=6381606
+TLM_COUT call=307 phase=tlm_apply_forward_mod_add_register mode=dispatch width=256 base=47 selected=45 effective=41 entry_active=1113 local_peak=1113 ops_added=5514 ops=6392882
+TLM_COUT call=308 phase=tlm_apply_forward_mod_add_register mode=dispatch width=256 base=46 selected=44 effective=40 entry_active=1114 local_peak=1114 ops_added=5514 ops=6404363
+TLM_COUT call=309 phase=tlm_apply_forward_mod_add_register mode=dispatch width=256 base=47 selected=45 effective=41 entry_active=1113 local_peak=1113 ops_added=5514 ops=6415723
+TLM_COUT call=310 phase=tlm_apply_forward_mod_add_register mode=dispatch width=256 base=48 selected=46 effective=42 entry_active=1112 local_peak=1112 ops_added=5514 ops=6427129
+TLM_COUT call=311 phase=tlm_apply_forward_mod_add_register mode=dispatch width=256 base=47 selected=45 effective=41 entry_active=1113 local_peak=1113 ops_added=5514 ops=6438716
+TLM_COUT call=312 phase=tlm_apply_forward_mod_add_register mode=dispatch width=256 base=48 selected=46 effective=42 entry_active=1112 local_peak=1112 ops_added=5514 ops=6450206
+TLM_COUT call=313 phase=tlm_apply_forward_mod_add_register mode=dispatch width=256 base=49 selected=47 effective=43 entry_active=1111 local_peak=1111 ops_added=5201 ops=6461397
+TLM_COUT call=314 phase=tlm_apply_forward_mod_add_register mode=dispatch width=256 base=48 selected=46 effective=42 entry_active=1112 local_peak=1112 ops_added=5514 ops=6473086
+TLM_COUT call=315 phase=tlm_apply_forward_mod_add_register mode=dispatch width=256 base=49 selected=47 effective=43 entry_active=1111 local_peak=1111 ops_added=5201 ops=6484345
+TLM_COUT call=316 phase=tlm_apply_forward_mod_add_register mode=dispatch width=256 base=50 selected=48 effective=44 entry_active=1110 local_peak=1110 ops_added=5201 ops=6495630
+TLM_COUT call=317 phase=tlm_apply_forward_mod_add_register mode=dispatch width=256 base=49 selected=47 effective=43 entry_active=1111 local_peak=1111 ops_added=5201 ops=6507074
+TLM_COUT call=318 phase=tlm_apply_forward_mod_add_register mode=dispatch width=256 base=50 selected=48 effective=44 entry_active=1110 local_peak=1110 ops_added=5201 ops=6518419
+TLM_COUT call=319 phase=tlm_apply_forward_mod_add_register mode=dispatch width=256 base=51 selected=49 effective=45 entry_active=1109 local_peak=1109 ops_added=5201 ops=6529772
+TLM_COUT call=320 phase=tlm_apply_forward_mod_add_register mode=dispatch width=256 base=50 selected=48 effective=44 entry_active=1110 local_peak=1110 ops_added=5201 ops=6541294
+TLM_COUT call=321 phase=tlm_apply_forward_mod_add_register mode=dispatch width=256 base=51 selected=49 effective=45 entry_active=1109 local_peak=1109 ops_added=5201 ops=6552707
+TLM_COUT call=322 phase=tlm_apply_forward_mod_add_register mode=dispatch width=256 base=52 selected=50 effective=46 entry_active=1108 local_peak=1108 ops_added=5201 ops=6564146
+TLM_COUT call=323 phase=tlm_apply_forward_mod_add_register mode=dispatch width=256 base=51 selected=49 effective=45 entry_active=1109 local_peak=1109 ops_added=5201 ops=6575754
+TLM_COUT call=324 phase=tlm_apply_forward_mod_add_register mode=dispatch width=256 base=52 selected=50 effective=46 entry_active=1108 local_peak=1108 ops_added=5201 ops=6587253
+TLM_COUT call=325 phase=tlm_apply_forward_mod_add_register mode=dispatch width=256 base=53 selected=51 effective=47 entry_active=1107 local_peak=1107 ops_added=5201 ops=6598762
+TLM_COUT call=326 phase=tlm_apply_forward_mod_add_register mode=dispatch width=256 base=52 selected=50 effective=46 entry_active=1108 local_peak=1108 ops_added=5201 ops=6609676
+TLM_COUT call=327 phase=tlm_apply_forward_mod_add_register mode=dispatch width=256 base=53 selected=51 effective=47 entry_active=1107 local_peak=1107 ops_added=5201 ops=6621253
+TLM_COUT call=328 phase=tlm_apply_forward_mod_add_register mode=dispatch width=256 base=54 selected=52 effective=48 entry_active=1106 local_peak=1106 ops_added=4888 ops=6631771
+TLM_COUT call=329 phase=tlm_apply_forward_mod_add_register mode=dispatch width=256 base=53 selected=51 effective=47 entry_active=1107 local_peak=1107 ops_added=5201 ops=6642767
+TLM_COUT call=330 phase=tlm_apply_forward_mod_add_register mode=dispatch width=256 base=54 selected=52 effective=48 entry_active=1106 local_peak=1106 ops_added=4888 ops=6653317
+TLM_COUT call=331 phase=tlm_apply_forward_mod_add_register mode=dispatch width=256 base=55 selected=53 effective=49 entry_active=1105 local_peak=1105 ops_added=4888 ops=6663881
+TLM_COUT call=332 phase=tlm_apply_forward_mod_add_register mode=dispatch width=256 base=54 selected=52 effective=48 entry_active=1106 local_peak=1106 ops_added=4888 ops=6674634
+TLM_COUT call=333 phase=tlm_apply_forward_mod_add_register mode=dispatch width=256 base=55 selected=53 effective=49 entry_active=1105 local_peak=1105 ops_added=4888 ops=6685203
+TLM_COUT call=334 phase=tlm_apply_forward_mod_add_register mode=dispatch width=256 base=56 selected=54 effective=50 entry_active=1104 local_peak=1104 ops_added=4888 ops=6695802
+TLM_COUT call=335 phase=tlm_apply_forward_mod_add_register mode=dispatch width=256 base=55 selected=53 effective=49 entry_active=1105 local_peak=1105 ops_added=4888 ops=6706572
+TLM_COUT call=336 phase=tlm_apply_forward_mod_add_register mode=dispatch width=256 base=56 selected=54 effective=50 entry_active=1104 local_peak=1104 ops_added=4888 ops=6717211
+TLM_COUT call=337 phase=tlm_apply_forward_mod_add_register mode=dispatch width=256 base=57 selected=55 effective=51 entry_active=1103 local_peak=1103 ops_added=4888 ops=6727840
+TLM_COUT call=338 phase=tlm_apply_forward_mod_add_register mode=dispatch width=256 base=56 selected=54 effective=50 entry_active=1104 local_peak=1104 ops_added=4888 ops=6738652
+TLM_COUT call=339 phase=tlm_apply_forward_mod_add_register mode=dispatch width=256 base=57 selected=55 effective=51 entry_active=1103 local_peak=1103 ops_added=4888 ops=6749321
+TLM_COUT call=340 phase=tlm_apply_forward_mod_add_register mode=dispatch width=256 base=58 selected=56 effective=52 entry_active=1102 local_peak=1102 ops_added=4888 ops=6760014
+TLM_COUT call=341 phase=tlm_apply_forward_mod_add_register mode=dispatch width=256 base=57 selected=55 effective=51 entry_active=1103 local_peak=1103 ops_added=4888 ops=6770883
+TLM_COUT call=342 phase=tlm_apply_forward_mod_add_register mode=dispatch width=256 base=58 selected=56 effective=52 entry_active=1102 local_peak=1102 ops_added=4888 ops=6781616
+TLM_COUT call=343 phase=tlm_apply_forward_mod_add_register mode=dispatch width=256 base=59 selected=57 effective=53 entry_active=1101 local_peak=1101 ops_added=4888 ops=6792366
+TLM_COUT call=344 phase=tlm_apply_forward_mod_add_register mode=dispatch width=256 base=58 selected=56 effective=52 entry_active=1102 local_peak=1102 ops_added=4888 ops=6803265
+TLM_COUT call=345 phase=tlm_apply_forward_mod_add_register mode=dispatch width=256 base=59 selected=57 effective=53 entry_active=1101 local_peak=1101 ops_added=4888 ops=6814041
+TLM_COUT call=346 phase=tlm_apply_forward_mod_add_register mode=dispatch width=256 base=60 selected=58 effective=54 entry_active=1100 local_peak=1100 ops_added=4888 ops=6824835
+TLM_COUT call=347 phase=tlm_apply_forward_mod_add_register mode=dispatch width=256 base=59 selected=57 effective=53 entry_active=1101 local_peak=1101 ops_added=4888 ops=6835798
+TLM_COUT call=348 phase=tlm_apply_forward_mod_add_register mode=dispatch width=256 base=60 selected=58 effective=54 entry_active=1100 local_peak=1100 ops_added=4888 ops=6846618
+TLM_COUT call=349 phase=tlm_apply_forward_mod_add_register mode=dispatch width=256 base=61 selected=59 effective=55 entry_active=1099 local_peak=1099 ops_added=4888 ops=6857476
+TLM_COUT call=350 phase=tlm_apply_forward_mod_add_register mode=dispatch width=256 base=60 selected=58 effective=54 entry_active=1100 local_peak=1100 ops_added=4888 ops=6868477
+TLM_COUT call=351 phase=tlm_apply_forward_mod_add_register mode=dispatch width=256 base=61 selected=59 effective=55 entry_active=1099 local_peak=1099 ops_added=4888 ops=6879361
+TLM_COUT call=352 phase=tlm_apply_forward_mod_add_register mode=dispatch width=256 base=62 selected=60 effective=56 entry_active=1098 local_peak=1098 ops_added=4575 ops=6889930
+TLM_COUT call=353 phase=tlm_apply_forward_mod_add_register mode=dispatch width=256 base=61 selected=59 effective=55 entry_active=1099 local_peak=1099 ops_added=4888 ops=6900991
+TLM_COUT call=354 phase=tlm_apply_forward_mod_add_register mode=dispatch width=256 base=62 selected=60 effective=56 entry_active=1098 local_peak=1098 ops_added=4575 ops=6911586
+TLM_COUT call=355 phase=tlm_apply_forward_mod_add_register mode=dispatch width=256 base=63 selected=61 effective=57 entry_active=1097 local_peak=1097 ops_added=4575 ops=6922229
+TLM_COUT call=356 phase=tlm_apply_forward_mod_add_register mode=dispatch width=256 base=62 selected=60 effective=56 entry_active=1098 local_peak=1098 ops_added=4575 ops=6933037
+TLM_COUT call=357 phase=tlm_apply_forward_mod_add_register mode=dispatch width=256 base=63 selected=61 effective=57 entry_active=1097 local_peak=1097 ops_added=4575 ops=6943706
+TLM_COUT call=358 phase=tlm_apply_forward_mod_add_register mode=dispatch width=256 base=64 selected=62 effective=58 entry_active=1096 local_peak=1096 ops_added=4575 ops=6954395
+TLM_COUT call=359 phase=tlm_apply_forward_mod_add_register mode=dispatch width=256 base=63 selected=61 effective=57 entry_active=1097 local_peak=1097 ops_added=4575 ops=6965263
+TLM_COUT call=360 phase=tlm_apply_forward_mod_add_register mode=dispatch width=256 base=64 selected=62 effective=58 entry_active=1096 local_peak=1096 ops_added=4575 ops=6975992
+TLM_COUT call=361 phase=tlm_apply_forward_mod_add_register mode=dispatch width=256 base=65 selected=63 effective=59 entry_active=1095 local_peak=1095 ops_added=4575 ops=6986755
+TLM_COUT call=362 phase=tlm_apply_forward_mod_add_register mode=dispatch width=256 base=64 selected=62 effective=58 entry_active=1096 local_peak=1096 ops_added=4575 ops=6997669
+TLM_COUT call=363 phase=tlm_apply_forward_mod_add_register mode=dispatch width=256 base=65 selected=63 effective=59 entry_active=1095 local_peak=1095 ops_added=4575 ops=7008458
+TLM_COUT call=364 phase=tlm_apply_forward_mod_add_register mode=dispatch width=256 base=66 selected=64 effective=60 entry_active=1094 local_peak=1094 ops_added=4575 ops=7019267
+TLM_COUT call=365 phase=tlm_apply_forward_mod_add_register mode=dispatch width=256 base=65 selected=63 effective=59 entry_active=1095 local_peak=1095 ops_added=4575 ops=7030241
+TLM_COUT call=366 phase=tlm_apply_forward_mod_add_register mode=dispatch width=256 base=66 selected=64 effective=60 entry_active=1094 local_peak=1094 ops_added=4575 ops=7041076
+TLM_COUT call=367 phase=tlm_apply_forward_mod_add_register mode=dispatch width=256 base=67 selected=65 effective=61 entry_active=1093 local_peak=1093 ops_added=4575 ops=7051931
+TLM_COUT call=368 phase=tlm_apply_forward_mod_add_register mode=dispatch width=256 base=66 selected=64 effective=60 entry_active=1094 local_peak=1094 ops_added=4575 ops=7062965
+TLM_COUT call=369 phase=tlm_apply_forward_mod_add_register mode=dispatch width=256 base=67 selected=65 effective=61 entry_active=1093 local_peak=1093 ops_added=4575 ops=7073860
+TLM_COUT call=370 phase=tlm_apply_forward_mod_add_register mode=dispatch width=256 base=68 selected=66 effective=62 entry_active=1092 local_peak=1092 ops_added=4575 ops=7084761
+TLM_COUT call=371 phase=tlm_apply_forward_mod_add_register mode=dispatch width=256 base=67 selected=65 effective=61 entry_active=1093 local_peak=1093 ops_added=4575 ops=7095855
+TLM_COUT call=372 phase=tlm_apply_forward_mod_add_register mode=dispatch width=256 base=68 selected=66 effective=62 entry_active=1092 local_peak=1092 ops_added=4575 ops=7106810
+TLM_COUT call=373 phase=tlm_apply_forward_mod_add_register mode=dispatch width=256 base=69 selected=67 effective=63 entry_active=1091 local_peak=1091 ops_added=4575 ops=7117771
+TLM_COUT call=374 phase=tlm_apply_forward_mod_add_register mode=dispatch width=256 base=68 selected=66 effective=62 entry_active=1092 local_peak=1092 ops_added=4575 ops=7128925
+TLM_COUT call=375 phase=tlm_apply_forward_mod_add_register mode=dispatch width=256 base=69 selected=67 effective=63 entry_active=1091 local_peak=1091 ops_added=4575 ops=7139926
+TLM_COUT call=376 phase=tlm_apply_forward_mod_add_register mode=dispatch width=256 base=68 selected=66 effective=62 entry_active=1092 local_peak=1092 ops_added=4575 ops=7150947
+TLM_COUT call=377 phase=tlm_apply_forward_mod_add_register mode=dispatch width=256 base=69 selected=67 effective=63 entry_active=1091 local_peak=1091 ops_added=4575 ops=7162466
+TLM_COUT call=378 phase=tlm_apply_forward_mod_add_register mode=dispatch width=256 base=68 selected=66 effective=62 entry_active=1092 local_peak=1092 ops_added=4575 ops=7173527
+TLM_COUT call=379 phase=tlm_apply_forward_mod_add_register mode=dispatch width=256 base=69 selected=67 effective=63 entry_active=1091 local_peak=1091 ops_added=4575 ops=7184927
+TLM_COUT call=380 phase=tlm_apply_forward_mod_add_register mode=dispatch width=256 base=68 selected=66 effective=62 entry_active=1092 local_peak=1092 ops_added=4575 ops=7196492
+TLM_COUT call=381 phase=tlm_apply_forward_mod_add_register mode=dispatch width=256 base=71 selected=69 effective=65 entry_active=1089 local_peak=1089 ops_added=4575 ops=7207932
+TLM_COUT call=382 phase=tlm_apply_forward_mod_add_register mode=dispatch width=256 base=72 selected=70 effective=66 entry_active=1088 local_peak=1088 ops_added=4575 ops=7219059
+TLM_COUT call=383 phase=tlm_apply_forward_mod_add_register mode=dispatch width=256 base=71 selected=69 effective=65 entry_active=1089 local_peak=1089 ops_added=4575 ops=7230379
+TLM_COUT call=384 phase=tlm_apply_forward_mod_add_register mode=dispatch width=256 base=72 selected=70 effective=66 entry_active=1088 local_peak=1088 ops_added=4575 ops=7241831
+TLM_COUT call=385 phase=tlm_apply_forward_mod_add_register mode=dispatch width=256 base=73 selected=71 effective=67 entry_active=1087 local_peak=1087 ops_added=4262 ops=7252990
+TLM_COUT call=386 phase=tlm_apply_forward_mod_add_register mode=dispatch width=256 base=72 selected=70 effective=66 entry_active=1088 local_peak=1088 ops_added=4575 ops=7264370
+TLM_COUT call=387 phase=tlm_apply_forward_mod_add_register mode=dispatch width=256 base=71 selected=69 effective=65 entry_active=1089 local_peak=1089 ops_added=4575 ops=7275896
+TLM_COUT call=388 phase=tlm_apply_forward_mod_add_register mode=dispatch width=256 base=72 selected=70 effective=66 entry_active=1088 local_peak=1088 ops_added=4575 ops=7287448
+TLM_COUT call=389 phase=tlm_apply_forward_mod_add_register mode=dispatch width=256 base=71 selected=69 effective=65 entry_active=1089 local_peak=1089 ops_added=4575 ops=7299193
+TLM_COUT call=390 phase=tlm_apply_forward_mod_add_register mode=dispatch width=256 base=72 selected=70 effective=66 entry_active=1088 local_peak=1088 ops_added=4575 ops=7310799
+TLM_COUT call=391 phase=tlm_apply_forward_mod_add_register mode=dispatch width=256 base=73 selected=71 effective=67 entry_active=1087 local_peak=1087 ops_added=4262 ops=7322112
+TLM_COUT call=392 phase=tlm_apply_forward_mod_add_register mode=dispatch width=256 base=72 selected=70 effective=66 entry_active=1088 local_peak=1088 ops_added=4575 ops=7333917
+TLM_COUT call=393 phase=tlm_apply_forward_mod_add_register mode=dispatch width=256 base=73 selected=71 effective=67 entry_active=1087 local_peak=1087 ops_added=4262 ops=7345256
+TLM_COUT call=394 phase=tlm_apply_forward_mod_add_register mode=dispatch width=256 base=74 selected=72 effective=68 entry_active=1086 local_peak=1086 ops_added=4262 ops=7356615
+TLM_COUT call=395 phase=tlm_apply_forward_mod_add_register mode=dispatch width=256 base=73 selected=71 effective=67 entry_active=1087 local_peak=1087 ops_added=4262 ops=7368153
+TLM_COUT call=396 phase=tlm_apply_forward_mod_add_register mode=dispatch width=256 base=76 selected=74 effective=70 entry_active=1084 local_peak=1084 ops_added=4262 ops=7379552
+TLM_COUT call=397 phase=tlm_apply_forward_mod_add_register mode=dispatch width=256 base=75 selected=73 effective=69 entry_active=1085 local_peak=1085 ops_added=4262 ops=7390951
+TLM_COUT call=398 phase=tlm_apply_forward_mod_add_register mode=dispatch width=256 base=74 selected=72 effective=68 entry_active=1086 local_peak=1086 ops_added=4262 ops=7402549
+TLM_COUT call=399 phase=tlm_apply_forward_mod_add_register mode=dispatch width=256 base=75 selected=73 effective=69 entry_active=1085 local_peak=1085 ops_added=4262 ops=7414008
+TLM_COUT call=400 phase=tlm_apply_forward_mod_add_register mode=dispatch width=256 base=78 selected=76 effective=72 entry_active=1082 local_peak=1082 ops_added=4262 ops=7425501
+TLM_COUT call=401 phase=tlm_apply_forward_mod_add_register mode=dispatch width=256 base=77 selected=75 effective=71 entry_active=1083 local_peak=1083 ops_added=4262 ops=7437139
+TLM_COUT call=402 phase=tlm_apply_forward_mod_add_register mode=dispatch width=256 base=78 selected=76 effective=72 entry_active=1082 local_peak=1082 ops_added=4262 ops=7448624
+TLM_COUT call=403 phase=tlm_apply_forward_mod_add_register mode=dispatch width=256 base=79 selected=77 effective=73 entry_active=1081 local_peak=1081 ops_added=4262 ops=7460143
+TLM_COUT call=404 phase=tlm_apply_forward_mod_add_register mode=dispatch width=256 base=78 selected=76 effective=72 entry_active=1082 local_peak=1082 ops_added=4262 ops=7471827
+TLM_COUT call=405 phase=tlm_apply_forward_mod_add_register mode=dispatch width=256 base=77 selected=75 effective=71 entry_active=1083 local_peak=1083 ops_added=4262 ops=7483372
+TLM_COUT call=406 phase=tlm_apply_forward_mod_add_register mode=dispatch width=256 base=78 selected=76 effective=72 entry_active=1082 local_peak=1082 ops_added=4262 ops=7494971
+TLM_COUT call=407 phase=tlm_apply_forward_mod_add_register mode=dispatch width=256 base=77 selected=75 effective=71 entry_active=1083 local_peak=1083 ops_added=4262 ops=7506749
+TLM_COUT call=408 phase=tlm_apply_forward_mod_add_register mode=dispatch width=256 base=78 selected=76 effective=72 entry_active=1082 local_peak=1082 ops_added=4262 ops=7518388
+TLM_COUT call=409 phase=tlm_apply_forward_mod_add_register mode=dispatch width=256 base=79 selected=77 effective=73 entry_active=1081 local_peak=1081 ops_added=4262 ops=7530047
+TLM_COUT call=410 phase=tlm_apply_forward_mod_add_register mode=dispatch width=256 base=78 selected=76 effective=72 entry_active=1082 local_peak=1082 ops_added=4262 ops=7541885
+TLM_COUT call=411 phase=tlm_apply_forward_mod_add_register mode=dispatch width=256 base=79 selected=77 effective=73 entry_active=1081 local_peak=1081 ops_added=4262 ops=7553570
+TLM_COUT call=412 phase=tlm_apply_forward_mod_add_register mode=dispatch width=256 base=82 selected=80 effective=76 entry_active=1078 local_peak=1078 ops_added=4262 ops=7565289
+TLM_COUT call=413 phase=tlm_apply_forward_mod_add_register mode=dispatch width=256 base=79 selected=77 effective=73 entry_active=1081 local_peak=1081 ops_added=4262 ops=7577139
+TLM_COUT call=414 phase=tlm_apply_forward_mod_add_register mode=dispatch width=256 base=80 selected=78 effective=74 entry_active=1080 local_peak=1080 ops_added=4262 ops=7588884
+TLM_COUT call=415 phase=tlm_apply_forward_mod_add_register mode=dispatch width=256 base=83 selected=81 effective=77 entry_active=1077 local_peak=1077 ops_added=4262 ops=7600649
+TLM_COUT call=416 phase=tlm_apply_forward_mod_add_register mode=dispatch width=256 base=80 selected=78 effective=74 entry_active=1080 local_peak=1080 ops_added=4262 ops=7612559
+TLM_COUT call=417 phase=tlm_apply_forward_mod_add_register mode=dispatch width=256 base=81 selected=79 effective=75 entry_active=1079 local_peak=1079 ops_added=4262 ops=7624364
+TLM_COUT call=418 phase=tlm_apply_forward_mod_add_register mode=dispatch width=256 base=82 selected=80 effective=76 entry_active=1078 local_peak=1078 ops_added=4262 ops=7636175
+TLM_COUT call=419 phase=tlm_apply_forward_mod_add_register mode=dispatch width=256 base=83 selected=81 effective=77 entry_active=1077 local_peak=1077 ops_added=4262 ops=7648179
+TLM_COUT call=420 phase=tlm_apply_forward_mod_add_register mode=dispatch width=256 base=82 selected=80 effective=76 entry_active=1078 local_peak=1078 ops_added=4262 ops=7660010
+TLM_COUT call=421 phase=tlm_apply_forward_mod_add_register mode=dispatch width=256 base=85 selected=83 effective=75 entry_active=1079 local_peak=1079 ops_added=4262 ops=7671881
+TLM_COUT call=422 phase=tlm_apply_forward_mod_add_register mode=dispatch width=256 base=84 selected=82 effective=74 entry_active=1080 local_peak=1080 ops_added=4262 ops=7683965
+TLM_COUT call=423 phase=tlm_apply_forward_mod_add_register mode=dispatch width=256 base=85 selected=83 effective=75 entry_active=1079 local_peak=1079 ops_added=4262 ops=7695910
+TLM_COUT call=424 phase=tlm_apply_forward_mod_add_register mode=dispatch width=256 base=86 selected=84 effective=76 entry_active=1078 local_peak=1078 ops_added=4262 ops=7707889
+TLM_COUT call=425 phase=tlm_apply_forward_mod_add_register mode=dispatch width=256 base=85 selected=83 effective=75 entry_active=1079 local_peak=1079 ops_added=4262 ops=7720019
+TLM_COUT call=426 phase=tlm_apply_forward_mod_add_register mode=dispatch width=256 base=84 selected=82 effective=74 entry_active=1080 local_peak=1080 ops_added=4262 ops=7732010
+TLM_COUT call=427 phase=tlm_apply_forward_mod_add_register mode=dispatch width=256 base=85 selected=83 effective=75 entry_active=1079 local_peak=1079 ops_added=4262 ops=7744055
+TLM_COUT call=428 phase=tlm_apply_forward_mod_add_register mode=dispatch width=256 base=86 selected=84 effective=76 entry_active=1078 local_peak=1078 ops_added=4262 ops=7756293
+TLM_COUT call=429 phase=tlm_apply_forward_mod_add_register mode=dispatch width=256 base=87 selected=85 effective=77 entry_active=1077 local_peak=1077 ops_added=4262 ops=7768344
+TLM_COUT call=430 phase=tlm_apply_forward_mod_add_register mode=dispatch width=256 base=88 selected=86 effective=78 entry_active=1076 local_peak=1076 ops_added=4262 ops=7780429
+TLM_COUT call=431 phase=tlm_apply_forward_mod_add_register mode=dispatch width=256 base=87 selected=85 effective=77 entry_active=1077 local_peak=1077 ops_added=4262 ops=7792679
+TLM_COUT call=432 phase=tlm_apply_forward_mod_add_register mode=dispatch width=256 base=88 selected=86 effective=78 entry_active=1076 local_peak=1076 ops_added=4262 ops=7804790
+TLM_COUT call=433 phase=tlm_apply_forward_mod_add_register mode=dispatch width=256 base=89 selected=87 effective=79 entry_active=1075 local_peak=1075 ops_added=4262 ops=7816921
+TLM_COUT call=434 phase=tlm_apply_forward_mod_add_register mode=dispatch width=256 base=88 selected=86 effective=78 entry_active=1076 local_peak=1076 ops_added=4262 ops=7829231
+TLM_COUT call=435 phase=tlm_apply_forward_mod_add_register mode=dispatch width=256 base=89 selected=87 effective=79 entry_active=1075 local_peak=1075 ops_added=4262 ops=7841402
+TLM_COUT call=436 phase=tlm_apply_forward_mod_add_register mode=dispatch width=256 base=90 selected=88 effective=80 entry_active=1074 local_peak=1074 ops_added=4262 ops=7853593
+TLM_COUT call=437 phase=tlm_apply_forward_mod_add_register mode=dispatch width=256 base=89 selected=87 effective=79 entry_active=1075 local_peak=1075 ops_added=4262 ops=7865949
+TLM_COUT call=438 phase=tlm_apply_forward_mod_add_register mode=dispatch width=256 base=90 selected=88 effective=80 entry_active=1074 local_peak=1074 ops_added=4262 ops=7878166
+TLM_COUT call=439 phase=tlm_apply_forward_mod_add_register mode=dispatch width=256 base=91 selected=89 effective=81 entry_active=1073 local_peak=1073 ops_added=4262 ops=7890431
+TLM_COUT call=440 phase=tlm_apply_forward_mod_add_register mode=dispatch width=256 base=90 selected=88 effective=80 entry_active=1074 local_peak=1074 ops_added=4262 ops=7902861
+TLM_COUT call=441 phase=tlm_apply_forward_mod_add_register mode=dispatch width=256 base=91 selected=89 effective=81 entry_active=1073 local_peak=1073 ops_added=4262 ops=7915152
+TLM_COUT call=442 phase=tlm_apply_forward_mod_add_register mode=dispatch width=256 base=92 selected=90 effective=82 entry_active=1072 local_peak=1072 ops_added=4262 ops=7927449
+TLM_COUT call=443 phase=tlm_apply_forward_mod_add_register mode=dispatch width=256 base=91 selected=89 effective=81 entry_active=1073 local_peak=1073 ops_added=4262 ops=7939925
+TLM_COUT call=444 phase=tlm_apply_forward_mod_add_register mode=dispatch width=256 base=92 selected=90 effective=82 entry_active=1072 local_peak=1072 ops_added=4262 ops=7952248
+TLM_COUT call=445 phase=tlm_apply_forward_mod_add_register mode=dispatch width=256 base=93 selected=91 effective=83 entry_active=1071 local_peak=1071 ops_added=4262 ops=7964605
+TLM_COUT call=446 phase=tlm_apply_forward_mod_add_register mode=dispatch width=256 base=92 selected=90 effective=82 entry_active=1072 local_peak=1072 ops_added=4262 ops=7977155
+TLM_COUT call=447 phase=tlm_apply_forward_mod_add_register mode=dispatch width=256 base=93 selected=91 effective=83 entry_active=1071 local_peak=1071 ops_added=4262 ops=7989552
+TLM_COUT call=448 phase=tlm_apply_forward_mod_add_register mode=dispatch width=256 base=94 selected=92 effective=84 entry_active=1070 local_peak=1070 ops_added=4262 ops=8001969
+TLM_COUT call=449 phase=tlm_apply_forward_mod_add_register mode=dispatch width=256 base=93 selected=91 effective=83 entry_active=1071 local_peak=1071 ops_added=4262 ops=8014551
+TLM_COUT call=450 phase=tlm_apply_forward_mod_add_register mode=dispatch width=256 base=94 selected=92 effective=84 entry_active=1070 local_peak=1070 ops_added=4262 ops=8026994
+TLM_COUT call=451 phase=tlm_apply_forward_mod_add_register mode=dispatch width=256 base=95 selected=93 effective=85 entry_active=1069 local_peak=1069 ops_added=4262 ops=8039457
+TLM_COUT call=452 phase=tlm_apply_forward_mod_add_register mode=dispatch width=256 base=94 selected=92 effective=84 entry_active=1070 local_peak=1070 ops_added=4262 ops=8052099
+TLM_COUT call=453 phase=tlm_apply_forward_mod_add_register mode=dispatch width=256 base=95 selected=93 effective=85 entry_active=1069 local_peak=1069 ops_added=4262 ops=8064602
+TLM_COUT call=454 phase=tlm_apply_forward_mod_add_register mode=dispatch width=256 base=96 selected=94 effective=86 entry_active=1068 local_peak=1068 ops_added=4262 ops=8077125
+TLM_COUT call=455 phase=tlm_apply_forward_mod_add_register mode=dispatch width=256 base=95 selected=93 effective=85 entry_active=1069 local_peak=1069 ops_added=4262 ops=8089813
+TLM_COUT call=456 phase=tlm_apply_forward_mod_add_register mode=dispatch width=256 base=96 selected=94 effective=86 entry_active=1068 local_peak=1068 ops_added=4262 ops=8102362
+TLM_COUT call=457 phase=tlm_apply_forward_mod_add_register mode=dispatch width=256 base=97 selected=95 effective=87 entry_active=1067 local_peak=1067 ops_added=4262 ops=8114931
+TLM_COUT call=458 phase=tlm_apply_forward_mod_add_register mode=dispatch width=256 base=96 selected=94 effective=86 entry_active=1068 local_peak=1068 ops_added=4262 ops=8127679
+TLM_COUT call=459 phase=tlm_apply_forward_mod_add_register mode=dispatch width=256 base=97 selected=95 effective=87 entry_active=1067 local_peak=1067 ops_added=4262 ops=8140288
+TLM_COUT call=460 phase=tlm_apply_forward_mod_add_register mode=dispatch width=256 base=98 selected=96 effective=88 entry_active=1066 local_peak=1066 ops_added=3949 ops=8152604
+TLM_COUT call=461 phase=tlm_apply_forward_mod_add_register mode=dispatch width=256 base=97 selected=95 effective=87 entry_active=1067 local_peak=1067 ops_added=4262 ops=8165412
+TLM_COUT call=462 phase=tlm_apply_forward_mod_add_register mode=dispatch width=256 base=98 selected=96 effective=88 entry_active=1066 local_peak=1066 ops_added=3949 ops=8177768
+TLM_COUT call=463 phase=tlm_apply_forward_mod_add_register mode=dispatch width=256 base=99 selected=97 effective=89 entry_active=1065 local_peak=1065 ops_added=3949 ops=8190144
+TLM_COUT call=464 phase=tlm_apply_forward_mod_add_register mode=dispatch width=256 base=98 selected=96 effective=88 entry_active=1066 local_peak=1066 ops_added=3949 ops=8202699
+TLM_COUT call=465 phase=tlm_apply_forward_mod_add_register mode=dispatch width=256 base=99 selected=97 effective=89 entry_active=1065 local_peak=1065 ops_added=3949 ops=8215115
+TLM_COUT call=466 phase=tlm_apply_forward_mod_add_register mode=dispatch width=256 base=100 selected=98 effective=90 entry_active=1064 local_peak=1064 ops_added=3949 ops=8227551
+TLM_COUT call=467 phase=tlm_apply_forward_mod_add_register mode=dispatch width=256 base=99 selected=97 effective=89 entry_active=1065 local_peak=1065 ops_added=3949 ops=8240152
+TLM_COUT call=468 phase=tlm_apply_forward_mod_add_register mode=dispatch width=256 base=100 selected=98 effective=90 entry_active=1064 local_peak=1064 ops_added=3949 ops=8252614
+TLM_COUT call=469 phase=tlm_apply_forward_mod_add_register mode=dispatch width=256 base=101 selected=99 effective=91 entry_active=1063 local_peak=1063 ops_added=3949 ops=8265096
+TLM_COUT call=470 phase=tlm_apply_forward_mod_add_register mode=dispatch width=256 base=100 selected=98 effective=90 entry_active=1064 local_peak=1064 ops_added=3949 ops=8277757
+TLM_COUT call=471 phase=tlm_apply_forward_mod_add_register mode=dispatch width=256 base=101 selected=99 effective=91 entry_active=1063 local_peak=1063 ops_added=3949 ops=8290279
+TLM_COUT call=472 phase=tlm_apply_forward_mod_add_register mode=dispatch width=256 base=102 selected=100 effective=92 entry_active=1062 local_peak=1062 ops_added=3949 ops=8302821
+TLM_COUT call=473 phase=tlm_apply_forward_mod_add_register mode=dispatch width=256 base=101 selected=99 effective=91 entry_active=1063 local_peak=1063 ops_added=3949 ops=8315528
+TLM_COUT call=474 phase=tlm_apply_forward_mod_add_register mode=dispatch width=256 base=102 selected=100 effective=92 entry_active=1062 local_peak=1062 ops_added=3949 ops=8328110
+TLM_COUT call=475 phase=tlm_apply_forward_mod_add_register mode=dispatch width=256 base=103 selected=101 effective=93 entry_active=1061 local_peak=1061 ops_added=3949 ops=8340698
+TLM_COUT call=476 phase=tlm_apply_forward_mod_add_register mode=dispatch width=256 base=102 selected=100 effective=92 entry_active=1062 local_peak=1062 ops_added=3949 ops=8353479
+TLM_COUT call=477 phase=tlm_apply_forward_mod_add_register mode=dispatch width=256 base=103 selected=101 effective=93 entry_active=1061 local_peak=1061 ops_added=3949 ops=8366107
+TLM_COUT call=478 phase=tlm_apply_forward_mod_add_register mode=dispatch width=256 base=104 selected=102 effective=94 entry_active=1060 local_peak=1060 ops_added=3949 ops=8378755
+TLM_COUT call=479 phase=tlm_apply_forward_mod_add_register mode=dispatch width=256 base=103 selected=101 effective=93 entry_active=1061 local_peak=1061 ops_added=3949 ops=8391582
+TLM_COUT call=480 phase=tlm_apply_forward_mod_add_register mode=dispatch width=256 base=104 selected=102 effective=94 entry_active=1060 local_peak=1060 ops_added=3949 ops=8404270
+TLM_COUT call=481 phase=tlm_apply_forward_mod_add_register mode=dispatch width=256 base=105 selected=103 effective=95 entry_active=1059 local_peak=1059 ops_added=3949 ops=8416964
+TLM_COUT call=482 phase=tlm_apply_forward_mod_add_register mode=dispatch width=256 base=104 selected=102 effective=94 entry_active=1060 local_peak=1060 ops_added=3949 ops=8429851
+TLM_COUT call=483 phase=tlm_apply_forward_mod_add_register mode=dispatch width=256 base=105 selected=103 effective=95 entry_active=1059 local_peak=1059 ops_added=3949 ops=8442599
+TLM_COUT call=484 phase=tlm_apply_forward_mod_add_register mode=dispatch width=256 base=106 selected=104 effective=96 entry_active=1058 local_peak=1058 ops_added=3949 ops=8455367
+TLM_COUT call=485 phase=tlm_apply_forward_mod_add_register mode=dispatch width=256 base=105 selected=103 effective=95 entry_active=1059 local_peak=1059 ops_added=3949 ops=8468300
+TLM_COUT call=486 phase=tlm_apply_forward_mod_add_register mode=dispatch width=256 base=106 selected=104 effective=96 entry_active=1058 local_peak=1058 ops_added=3949 ops=8481108
+TLM_COUT call=487 phase=tlm_apply_forward_mod_add_register mode=dispatch width=256 base=107 selected=105 effective=97 entry_active=1057 local_peak=1057 ops_added=3949 ops=8493922
+TLM_COUT call=488 phase=tlm_apply_forward_mod_add_register mode=dispatch width=256 base=106 selected=104 effective=96 entry_active=1058 local_peak=1058 ops_added=3949 ops=8506915
+TLM_COUT call=489 phase=tlm_apply_forward_mod_add_register mode=dispatch width=256 base=107 selected=105 effective=97 entry_active=1057 local_peak=1057 ops_added=3949 ops=8519769
+TLM_COUT call=490 phase=tlm_apply_forward_mod_add_register mode=dispatch width=256 base=108 selected=106 effective=98 entry_active=1056 local_peak=1056 ops_added=3949 ops=8532643
+TLM_COUT call=491 phase=tlm_apply_forward_mod_add_register mode=dispatch width=256 base=107 selected=105 effective=97 entry_active=1057 local_peak=1057 ops_added=3949 ops=8545682
+TLM_COUT call=492 phase=tlm_apply_forward_mod_add_register mode=dispatch width=256 base=108 selected=106 effective=98 entry_active=1056 local_peak=1056 ops_added=3949 ops=8558610
+TLM_COUT call=493 phase=tlm_apply_forward_mod_add_register mode=dispatch width=256 base=109 selected=107 effective=99 entry_active=1055 local_peak=1055 ops_added=3949 ops=8571530
+TLM_COUT call=494 phase=tlm_apply_forward_mod_add_register mode=dispatch width=256 base=108 selected=106 effective=98 entry_active=1056 local_peak=1056 ops_added=3949 ops=8584629
+TLM_COUT call=495 phase=tlm_apply_forward_mod_add_register mode=dispatch width=256 base=109 selected=107 effective=99 entry_active=1055 local_peak=1055 ops_added=3949 ops=8597603
+TLM_COUT call=496 phase=tlm_apply_forward_mod_add_register mode=dispatch width=256 base=110 selected=108 effective=100 entry_active=1054 local_peak=1054 ops_added=3949 ops=8610583
+TLM_COUT call=497 phase=tlm_apply_forward_mod_add_register mode=dispatch width=256 base=109 selected=107 effective=99 entry_active=1055 local_peak=1055 ops_added=3949 ops=8623742
+TLM_COUT call=498 phase=tlm_apply_forward_mod_add_register mode=dispatch width=256 base=110 selected=108 effective=100 entry_active=1054 local_peak=1054 ops_added=3949 ops=8636776
+TLM_COUT call=499 phase=tlm_apply_forward_mod_add_register mode=dispatch width=256 base=111 selected=109 effective=101 entry_active=1053 local_peak=1053 ops_added=3949 ops=8649830
+TLM_COUT call=500 phase=tlm_apply_forward_mod_add_register mode=dispatch width=256 base=110 selected=108 effective=100 entry_active=1054 local_peak=1054 ops_added=3949 ops=8663035
+TLM_COUT call=501 phase=tlm_apply_forward_mod_add_register mode=dispatch width=256 base=111 selected=109 effective=101 entry_active=1053 local_peak=1053 ops_added=3949 ops=8676115
+TLM_COUT call=502 phase=tlm_apply_forward_mod_add_register mode=dispatch width=256 base=112 selected=110 effective=102 entry_active=1052 local_peak=1052 ops_added=3949 ops=8689215
+TLM_COUT call=503 phase=tlm_apply_forward_mod_add_register mode=dispatch width=256 base=111 selected=109 effective=101 entry_active=1053 local_peak=1053 ops_added=3949 ops=8702494
+TLM_COUT call=504 phase=tlm_apply_forward_mod_add_register mode=dispatch width=256 base=112 selected=110 effective=102 entry_active=1052 local_peak=1052 ops_added=3949 ops=8715620
+TLM_COUT call=505 phase=tlm_apply_forward_mod_add_register mode=dispatch width=256 base=113 selected=111 effective=103 entry_active=1051 local_peak=1051 ops_added=3949 ops=8728780
+TLM_COUT call=506 phase=tlm_apply_forward_mod_add_register mode=dispatch width=256 base=112 selected=110 effective=102 entry_active=1052 local_peak=1052 ops_added=3949 ops=8742119
+TLM_COUT call=507 phase=tlm_apply_forward_mod_add_register mode=dispatch width=256 base=113 selected=111 effective=103 entry_active=1051 local_peak=1051 ops_added=3949 ops=8755305
+TLM_COUT call=508 phase=tlm_apply_forward_mod_add_register mode=dispatch width=256 base=114 selected=112 effective=104 entry_active=1050 local_peak=1050 ops_added=3949 ops=8768511
+TLM_COUT call=509 phase=tlm_apply_forward_mod_add_register mode=dispatch width=256 base=113 selected=111 effective=103 entry_active=1051 local_peak=1051 ops_added=3949 ops=8781896
+TLM_COUT call=510 phase=tlm_apply_forward_mod_add_register mode=dispatch width=256 base=114 selected=112 effective=104 entry_active=1050 local_peak=1050 ops_added=3949 ops=8795142
+TLM_COUT call=511 phase=tlm_apply_forward_mod_add_register mode=dispatch width=256 base=115 selected=113 effective=105 entry_active=1049 local_peak=1049 ops_added=3949 ops=8808408
+TLM_COUT call=512 phase=tlm_apply_forward_mod_add_register mode=dispatch width=256 base=116 selected=114 effective=106 entry_active=1048 local_peak=1048 ops_added=3949 ops=8821853
+TLM_COUT call=513 phase=tlm_apply_forward_mod_add_register mode=dispatch width=256 base=119 selected=117 effective=109 entry_active=1045 local_peak=1045 ops_added=3949 ops=8835111
+TLM_COUT call=514 phase=tlm_apply_forward_mod_add_register mode=dispatch width=256 base=122 selected=120 effective=112 entry_active=1042 local_peak=1042 ops_added=3949 ops=8848369
+TLM_COUT call=515 phase=tlm_apply_forward_mod_add_register mode=dispatch width=256 base=123 selected=121 effective=113 entry_active=1041 local_peak=1041 ops_added=3949 ops=8861758
+TLM_COUT call=516 phase=tlm_apply_forward_mod_add_register mode=dispatch width=256 base=126 selected=124 effective=116 entry_active=1038 local_peak=1038 ops_added=3949 ops=8874974
+TLM_COUT call=517 phase=tlm_apply_forward_mod_add_register mode=dispatch width=256 base=129 selected=127 effective=119 entry_active=1035 local_peak=1035 ops_added=3949 ops=8888190
+TLM_COUT call=518 phase=tlm_apply_forward_mod_add_register mode=dispatch width=256 base=130 selected=128 effective=120 entry_active=1034 local_peak=1034 ops_added=3949 ops=8901537
+TLM_COUT call=519 phase=tlm_apply_forward_mod_add_register mode=dispatch width=256 base=133 selected=131 effective=123 entry_active=1031 local_peak=1031 ops_added=3949 ops=8914711
+TLM_COUT call=520 phase=tlm_apply_forward_mod_add_register mode=dispatch width=256 base=136 selected=134 effective=126 entry_active=1028 local_peak=1028 ops_added=3949 ops=8927871
+TLM_COUT call=521 phase=tlm_apply_forward_mod_add_register mode=dispatch width=256 base=138 selected=136 effective=128 entry_active=1026 local_peak=1026 ops_added=3949 ops=8941036
+TLM_CCX phase=tlm_apply_inverse_mod_sub_register ccx=160428 pct=11.90 cum=11.90
+TLM_CCX phase=tlm_apply_forward_mod_add_register ccx=159241 pct=11.82 cum=23.72
+TLM_CCX phase=tlm_multiply_gcd_reverse_body ccx=156626 pct=11.62 cum=35.34
+TLM_CCX phase=tlm_inverse_gcd_reverse_body ccx=149253 pct=11.08 cum=46.42
+TLM_CCX phase=tlm_apply_inverse_fold ccx=84147 pct=6.24 cum=52.66
+TLM_CCX phase=tlm_apply_forward_fold ccx=83797 pct=6.22 cum=58.88
+TLM_CCX phase=tlm_inverse_gcd_forward_body ccx=76651 pct=5.69 cum=64.57
+TLM_CCX phase=tlm_multiply_gcd_forward_body ccx=69549 pct=5.16 cum=69.73
+TLM_CCX phase=tlm_apply_forward_swap ccx=66048 pct=4.90 cum=74.63
+TLM_CCX phase=tlm_apply_inverse_swap ccx=66048 pct=4.90 cum=79.53
+TLM_CCX phase=tlm_inverse_gcd_forward_compare ccx=45336 pct=3.36 cum=82.89
+TLM_CCX phase=tlm_multiply_gcd_forward_compare ccx=45065 pct=3.34 cum=86.24
+TLM_CCX phase=tlm_inverse_gcd_forward_shift ccx=34899 pct=2.59 cum=88.83
+TLM_CCX phase=tlm_multiply_gcd_forward_shift ccx=34899 pct=2.59 cum=91.42
+TLM_CCX phase=tlm_apply_forward_mod_add_fold ccx=15529 pct=1.15 cum=92.57
+TLM_CCX phase=tlm_apply_inverse_mod_sub_fold ccx=15414 pct=1.14 cum=93.71
+TLM_CCX phase=square_c_sum_build ccx=9283 pct=0.69 cum=94.40
+TLM_CCX phase=square_c_sum_unbuild ccx=9283 pct=0.69 cum=95.09
+TLM_CCX phase=square_a_lo_build ccx=9147 pct=0.68 cum=95.77
+TLM_CCX phase=square_a_lo_unbuild ccx=9147 pct=0.68 cum=96.45
+TLM_CCX phase=square_b_hi_build ccx=9147 pct=0.68 cum=97.13
+TLM_CCX phase=square_b_hi_unbuild ccx=9147 pct=0.68 cum=97.81
+TLM_CCX phase=tlm_apply_forward_mod_add_clean ccx=4943 pct=0.37 cum=98.17
+TLM_CCX phase=tlm_apply_inverse_mod_sub_clean ccx=4943 pct=0.37 cum=98.54
+TLM_CCX phase=square_b_hi_apply_f_times_sub ccx=4459 pct=0.33 cum=98.87
+TLM_CCX phase=square_c_sum_apply_shifted_128_sub ccx=2344 pct=0.17 cum=99.05
+TLM_CCX phase=square_a_lo_apply_shifted_128_add ccx=2342 pct=0.17 cum=99.22
+TLM_CCX phase=square_b_hi_apply_shifted_128_add ccx=2342 pct=0.17 cum=99.39
+TLM_CCX phase=tlm_inverse_gcd_reverse_decode ccx=1466 pct=0.11 cum=99.50
+TLM_CCX phase=tlm_multiply_gcd_reverse_decode ccx=1466 pct=0.11 cum=99.61
+TLM_CCX_TOTAL 1347642 phases=50
+TLM_TOF phase=tlm_apply_inverse_mod_sub_register emitted=161682 expected=148392.5 discount=0.082
+TLM_TOF phase=tlm_multiply_gcd_reverse_body emitted=156994 expected=148357.5 discount=0.055
+TLM_TOF phase=tlm_apply_forward_mod_add_register emitted=160495 expected=147799.0 discount=0.079
+TLM_TOF phase=tlm_inverse_gcd_reverse_body emitted=149253 expected=144303.0 discount=0.033
+TLM_TOF phase=tlm_apply_inverse_fold emitted=84151 expected=83054.0 discount=0.013
+TLM_TOF phase=tlm_apply_forward_fold emitted=83807 expected=82687.5 discount=0.013
+TLM_TOF phase=tlm_inverse_gcd_forward_body emitted=77019 expected=73468.0 discount=0.046
+TLM_TOF phase=tlm_multiply_gcd_forward_body emitted=69549 expected=69549.0 discount=0.000
+TLM_TOF phase=tlm_apply_forward_swap emitted=66048 expected=66048.0 discount=0.000
+TLM_TOF phase=tlm_apply_inverse_swap emitted=66048 expected=66048.0 discount=0.000
+TLM_TOF phase=tlm_inverse_gcd_forward_compare emitted=45336 expected=45336.0 discount=0.000
+TLM_TOF phase=tlm_multiply_gcd_forward_compare emitted=45065 expected=45065.0 discount=0.000
+TLM_TOF phase=tlm_inverse_gcd_forward_shift emitted=34899 expected=34899.0 discount=0.000
+TLM_TOF phase=tlm_multiply_gcd_forward_shift emitted=34899 expected=34899.0 discount=0.000
+TLM_TOF phase=tlm_apply_forward_mod_add_fold emitted=16229 expected=14874.5 discount=0.083
+TLM_TOF phase=tlm_apply_inverse_mod_sub_fold emitted=16086 expected=14843.0 discount=0.077
+TLM_TOF phase=square_c_sum_build emitted=9283 expected=9283.0 discount=0.000
+TLM_TOF phase=square_c_sum_unbuild emitted=9283 expected=9283.0 discount=0.000
+TLM_TOF phase=square_a_lo_build emitted=9147 expected=9147.0 discount=0.000
+TLM_TOF phase=square_a_lo_unbuild emitted=9147 expected=9147.0 discount=0.000
+TLM_TOF phase=square_b_hi_build emitted=9147 expected=9147.0 discount=0.000
+TLM_TOF phase=square_b_hi_unbuild emitted=9147 expected=9147.0 discount=0.000
+TLM_TOF phase=square_b_hi_apply_f_times_sub emitted=4573 expected=4383.0 discount=0.042
+TLM_TOF phase=tlm_apply_forward_mod_add_clean emitted=4943 expected=2471.5 discount=0.500
+TLM_TOF phase=tlm_apply_inverse_mod_sub_clean emitted=4943 expected=2471.5 discount=0.500
+TLM_TOF phase=square_c_sum_apply_shifted_128_sub emitted=2356 expected=2284.0 discount=0.031
+TLM_TOF phase=square_a_lo_apply_shifted_128_add emitted=2354 expected=2282.0 discount=0.031
+TLM_TOF phase=square_b_hi_apply_shifted_128_add emitted=2354 expected=2282.0 discount=0.031
+TLM_TOF phase=tlm_inverse_gcd_reverse_decode emitted=1466 expected=1466.0 discount=0.000
+TLM_TOF phase=tlm_multiply_gcd_reverse_decode emitted=1466 expected=1466.0 discount=0.000
+TLM_TOF phase=tlm_inverse_gcd_forward_codec emitted=1379 expected=1379.0 discount=0.000
+TLM_TOF phase=tlm_multiply_gcd_forward_codec emitted=1379 expected=1379.0 discount=0.000
+TLM_TOF phase=square_a_lo_apply_unshifted_sub emitted=333 expected=321.0 discount=0.036
+TLM_TOF phase=tlm_coord_add3x emitted=332 expected=320.0 discount=0.036
+TLM_TOF phase=tlm_coord_rsub_final emitted=332 expected=320.0 discount=0.036
+TLM_TOF phase=tlm_coord_x_sub emitted=332 expected=320.0 discount=0.036
+TLM_TOF phase=tlm_coord_y_sub emitted=332 expected=320.0 discount=0.036
+TLM_TOF phase=tlm_coord_y_sub_final emitted=332 expected=320.0 discount=0.036
+TLM_TOF phase=square_sum_hi_lo_unbuild emitted=258 expected=258.0 discount=0.000
+TLM_TOF phase=square_sum_hi_lo emitted=256 expected=256.0 discount=0.000
+TLM_TOF_TOTAL emitted=1352434 expected=1299076.0 discount=0.0395
+CASCADE_ACCEPT pair=CCX(531,583->584) triple=(530,531,1149)
+CASCADE_ACCEPT pair=CCX(531,583->584) triple=(530,531,1150)
+CASCADE_ACCEPT pair=CCX(531,583->584) triple=(530,531,1132)
+CASCADE_ACCEPT pair=CCX(271,323->324) triple=(9,270,271)
+CASCADE_ACCEPT pair=CCX(272,324->325) triple=(143,271,272)
+CASCADE_ACCEPT pair=CCX(274,326->327) triple=(143,273,274)
+CASCADE_ACCEPT pair=CCX(275,327->328) triple=(274,275,1147)
+CASCADE_ACCEPT pair=CCX(272,324->325) triple=(271,272,886)
+CASCADE_ACCEPT pair=CCX(275,327->328) triple=(274,275,1088)
+CASCADE_ACCEPT pair=CCX(274,326->327) triple=(273,274,915)
+CASCADE_ACCEPT pair=CCX(275,327->328) triple=(274,275,889)
+CONSTPROP iter=1 ccx_total=1347642 dropped=141 folded_cx=23 folded_x=0 inverse_pairs=12 aff_drop=9 aff_fold=3 (this-iter toffoli removed = 200)
+CONSTPROP iter=2 ccx_total=1347442 dropped=3 folded_cx=0 folded_x=0 inverse_pairs=11 aff_drop=0 aff_fold=0 (this-iter toffoli removed = 25)
+CONSTPROP iter=3 ccx_total=1347417 dropped=0 folded_cx=0 folded_x=0 inverse_pairs=11 aff_drop=0 aff_fold=0 (this-iter toffoli removed = 22)
+CONSTPROP iter=4 ccx_total=1347395 dropped=0 folded_cx=0 folded_x=0 inverse_pairs=11 aff_drop=0 aff_fold=0 (this-iter toffoli removed = 22)
+CONSTPROP iter=5 ccx_total=1347373 dropped=0 folded_cx=0 folded_x=0 inverse_pairs=11 aff_drop=0 aff_fold=0 (this-iter toffoli removed = 22)
+CONSTPROP iter=6 ccx_total=1347351 dropped=0 folded_cx=0 folded_x=0 inverse_pairs=11 aff_drop=0 aff_fold=0 (this-iter toffoli removed = 22)
+CONSTPROP iter=7 ccx_total=1347329 dropped=0 folded_cx=0 folded_x=0 inverse_pairs=11 aff_drop=0 aff_fold=0 (this-iter toffoli removed = 22)
+CONSTPROP iter=8 ccx_total=1347307 dropped=0 folded_cx=0 folded_x=0 inverse_pairs=11 aff_drop=0 aff_fold=0 (this-iter toffoli removed = 22)
+CONSTPROP iter=9 ccx_total=1347285 dropped=0 folded_cx=0 folded_x=0 inverse_pairs=11 aff_drop=0 aff_fold=0 (this-iter toffoli removed = 22)
+CONSTPROP iter=10 ccx_total=1347263 dropped=0 folded_cx=0 folded_x=0 inverse_pairs=11 aff_drop=0 aff_fold=0 (this-iter toffoli removed = 22)
+CONSTPROP iter=11 ccx_total=1347241 dropped=0 folded_cx=0 folded_x=0 inverse_pairs=11 aff_drop=0 aff_fold=0 (this-iter toffoli removed = 22)
+CONSTPROP iter=12 ccx_total=1347219 dropped=0 folded_cx=0 folded_x=0 inverse_pairs=11 aff_drop=0 aff_fold=0 (this-iter toffoli removed = 22)
+CONSTPROP iter=13 ccx_total=1347197 dropped=0 folded_cx=0 folded_x=0 inverse_pairs=11 aff_drop=0 aff_fold=0 (this-iter toffoli removed = 22)
+CONSTPROP iter=14 ccx_total=1347175 dropped=0 folded_cx=0 folded_x=0 inverse_pairs=5 aff_drop=0 aff_fold=0 (this-iter toffoli removed = 10)
+CONSTPROP iter=15 ccx_total=1347165 dropped=0 folded_cx=0 folded_x=0 inverse_pairs=3 aff_drop=0 aff_fold=0 (this-iter toffoli removed = 6)
+CONSTPROP iter=16 ccx_total=1347159 dropped=0 folded_cx=0 folded_x=0 inverse_pairs=3 aff_drop=0 aff_fold=0 (this-iter toffoli removed = 6)
+CONSTPROP reached max_iters=16, stopping
+CONSTPROP TOTAL iters=16 dropped=144 folded_cx=23 folded_x=0 inverse_pairs=155 aff_drop=9 aff_fold=3 (toffoli removed = 489)
+SINGLE_CCX_FANOUT: STOP passes=27 input_ops=8970929 output_ops=8970902 reason=no target-fanout conjugation found
+SINGLE_CCX_FANOUT: SUMMARY input_ops=8970929 output_ops=8970902 passes=27
+  [M-60] disabled -> emitting C1 (unfiltered)
+  [W018 CCZ straddle] total_ccz=4792 same_triple_candidates=0 cancelled_pairs=0 removed_ccz=0 -> 8970902 ops
+[deep-strip-identity] removed 12202 / 12202 dead; downgraded 4045 / 4045 to CX/CZ; 0 stale keys skipped
+POST_STRIP_TARGET_FANOUT_DONE: passes=10

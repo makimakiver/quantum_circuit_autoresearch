@@ -1,0 +1,1948 @@
+{
+  "case_count": 28,
+  "corpus": {
+    "edge_residues": [
+      "0x0000000000000000000000000000000000000000000000000000000000000000",
+      "0x0000000000000000000000000000000000000000000000000000000000000001",
+      "0xfffffffffffffffffffffffffffffffffffffffffffffffffffffffefffffc2d",
+      "0xfffffffffffffffffffffffffffffffffffffffffffffffffffffffefffffc2e"
+    ],
+    "hi_values": [
+      "0x0000000000000000000000000000000000000000000000000000000000000001",
+      "0x0000000000000000000000000000000000000000000000000000000000000002",
+      "0x0000000000000000000000000000000000000000000000000000000000000003",
+      "0x0000000000000000000000000000000000000000000000010000000000000001",
+      "0x000000000000000000000000000000007fffffffffffffffffffffffffffffff",
+      "0x0000000000000000000000000000000080000000000000000000000000000000",
+      "0x00000000000000000000000000000000fffffffffffffffffffffffffffffffe"
+    ],
+    "kind": "declared finite cross-product",
+    "seed": "EXP-ARCH-07-fixed-v1",
+    "sha256": "b60e9a5848ce6e15f2ba987a5dfe9e31eb3b9236b4f3485092f5f7d7fe6e846f",
+    "size": 28
+  },
+  "d0_extraction_passed": true,
+  "gate": "D1",
+  "invariants": [
+    "same complete tuple (t1,s2,subtracted,swp)",
+    "same Step0 raw symbol",
+    "same Step0 encoded symbol and Boolean decoder",
+    "same post-i=0 (u,v) register state",
+    "paired s2 conditionality in encoder/decoder"
+  ],
+  "mismatch_count": 28,
+  "model_scope": "256-bit exact register arithmetic at forward_gcd_jump i=0; selected b_hi f/shift32/Sub term only; finite local-cone corpus, no claim of full EC-shot reachability",
+  "outcome": "VERIFIED_WITNESS",
+  "source_hashes": {
+    "src/point_add/trailmix_ludicrous/codec.rs": "42bf73b74ef193baa3cc090ac496beea951bcf4bdd066ad69e1193aa39201834",
+    "src/point_add/trailmix_ludicrous/ec_add.rs": "de8dee33cac85d4afdac0f1c460649f19cfabebde53b70ad6d191a375fbd4d3c",
+    "src/point_add/trailmix_ludicrous/gcd.rs": "87722e3471242aaf4c6c0dcc01f1c38fd03f783f3a17139f72f9cc093012b401",
+    "src/point_add/trailmix_ludicrous/square.rs": "04c025e275d52c4717a560bc2f2ff2f385e6896cb009380444b276f9bb1c4834"
+  },
+  "witnesses": [
+    {
+      "b_prod": "0x0000000000000000000000000000000000000000000000000000000000000001",
+      "hi": "0x0000000000000000000000000000000000000000000000000000000000000001",
+      "mismatch": true,
+      "term_delta": "0x0000000000000000000000000000000000000000000000000000000100000000",
+      "term_off": {
+        "decoded": {
+          "raw_symbol": [
+            0,
+            0,
+            1
+          ],
+          "t1": 1
+        },
+        "encoded_symbol": [
+          1,
+          1
+        ],
+        "input_v": "0x0000000000000000000000000000000000000000000000000000000100000000",
+        "post_i0": {
+          "u": "0xfffffffffffffffffffffffffffffffffffffffffffffffffffffffefffffc2f",
+          "v": "0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffbfffffff"
+        },
+        "raw_symbol": [
+          0,
+          0,
+          1
+        ],
+        "tuple": {
+          "s2": 1,
+          "subtracted": 0,
+          "swp": 0,
+          "t1": 1
+        }
+      },
+      "term_off_input": "0x0000000000000000000000000000000000000000000000000000000100000000",
+      "term_on": {
+        "decoded": {
+          "raw_symbol": [
+            0,
+            0,
+            1
+          ],
+          "t1": 1
+        },
+        "encoded_symbol": [
+          1,
+          1
+        ],
+        "input_v": "0x0000000000000000000000000000000000000000000000000000000000000000",
+        "post_i0": {
+          "u": "0xfffffffffffffffffffffffffffffffffffffffffffffffffffffffefffffc2f",
+          "v": "0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"
+        },
+        "raw_symbol": [
+          0,
+          0,
+          1
+        ],
+        "tuple": {
+          "s2": 1,
+          "subtracted": 0,
+          "swp": 0,
+          "t1": 1
+        }
+      },
+      "term_on_input": "0x0000000000000000000000000000000000000000000000000000000000000000"
+    },
+    {
+      "b_prod": "0x0000000000000000000000000000000000000000000000000000000000000001",
+      "hi": "0x0000000000000000000000000000000000000000000000000000000000000001",
+      "mismatch": true,
+      "term_delta": "0x0000000000000000000000000000000000000000000000000000000100000000",
+      "term_off": {
+        "decoded": {
+          "raw_symbol": [
+            1,
+            1,
+            0
+          ],
+          "t1": 0
+        },
+        "encoded_symbol": [
+          1,
+          0
+        ],
+        "input_v": "0x0000000000000000000000000000000000000000000000000000000100000001",
+        "post_i0": {
+          "u": "0x0000000000000000000000000000000000000000000000000000000100000001",
+          "v": "0x00000000000000000000000000000000000000000000000000000002000003d1"
+        },
+        "raw_symbol": [
+          1,
+          1,
+          0
+        ],
+        "tuple": {
+          "s2": 0,
+          "subtracted": 1,
+          "swp": 1,
+          "t1": 0
+        }
+      },
+      "term_off_input": "0x0000000000000000000000000000000000000000000000000000000100000001",
+      "term_on": {
+        "decoded": {
+          "raw_symbol": [
+            1,
+            1,
+            0
+          ],
+          "t1": 0
+        },
+        "encoded_symbol": [
+          1,
+          0
+        ],
+        "input_v": "0x0000000000000000000000000000000000000000000000000000000000000001",
+        "post_i0": {
+          "u": "0x0000000000000000000000000000000000000000000000000000000000000001",
+          "v": "0x00000000000000000000000000000000000000000000000000000001000003d1"
+        },
+        "raw_symbol": [
+          1,
+          1,
+          0
+        ],
+        "tuple": {
+          "s2": 0,
+          "subtracted": 1,
+          "swp": 1,
+          "t1": 0
+        }
+      },
+      "term_on_input": "0x0000000000000000000000000000000000000000000000000000000000000001"
+    },
+    {
+      "b_prod": "0x0000000000000000000000000000000000000000000000000000000000000001",
+      "hi": "0x0000000000000000000000000000000000000000000000000000000000000001",
+      "mismatch": true,
+      "term_delta": "0x0000000000000000000000000000000000000000000000000000000100000000",
+      "term_off": {
+        "decoded": {
+          "raw_symbol": [
+            1,
+            1,
+            0
+          ],
+          "t1": 1
+        },
+        "encoded_symbol": [
+          0,
+          0
+        ],
+        "input_v": "0x00000000000000000000000000000000000000000000000000000000fffffffe",
+        "post_i0": {
+          "u": "0x000000000000000000000000000000000000000000000000000000007fffffff",
+          "v": "0x00000000000000000000000000000000000000000000000000000001800003cf"
+        },
+        "raw_symbol": [
+          1,
+          1,
+          0
+        ],
+        "tuple": {
+          "s2": 0,
+          "subtracted": 1,
+          "swp": 1,
+          "t1": 1
+        }
+      },
+      "term_off_input": "0x00000000000000000000000000000000000000000000000000000000fffffffe",
+      "term_on": {
+        "decoded": {
+          "raw_symbol": [
+            1,
+            1,
+            0
+          ],
+          "t1": 0
+        },
+        "encoded_symbol": [
+          1,
+          0
+        ],
+        "input_v": "0xfffffffffffffffffffffffffffffffffffffffffffffffffffffffefffffc2d",
+        "post_i0": {
+          "u": "0xfffffffffffffffffffffffffffffffffffffffffffffffffffffffefffffc2d",
+          "v": "0xfffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffd"
+        },
+        "raw_symbol": [
+          1,
+          1,
+          0
+        ],
+        "tuple": {
+          "s2": 0,
+          "subtracted": 1,
+          "swp": 1,
+          "t1": 0
+        }
+      },
+      "term_on_input": "0xfffffffffffffffffffffffffffffffffffffffffffffffffffffffefffffc2d"
+    },
+    {
+      "b_prod": "0x0000000000000000000000000000000000000000000000000000000000000001",
+      "hi": "0x0000000000000000000000000000000000000000000000000000000000000001",
+      "mismatch": true,
+      "term_delta": "0x0000000000000000000000000000000000000000000000000000000100000000",
+      "term_off": {
+        "decoded": {
+          "raw_symbol": [
+            1,
+            1,
+            0
+          ],
+          "t1": 0
+        },
+        "encoded_symbol": [
+          1,
+          0
+        ],
+        "input_v": "0x00000000000000000000000000000000000000000000000000000000ffffffff",
+        "post_i0": {
+          "u": "0x00000000000000000000000000000000000000000000000000000000ffffffff",
+          "v": "0x00000000000000000000000000000000000000000000000000000002000003cf"
+        },
+        "raw_symbol": [
+          1,
+          1,
+          0
+        ],
+        "tuple": {
+          "s2": 0,
+          "subtracted": 1,
+          "swp": 1,
+          "t1": 0
+        }
+      },
+      "term_off_input": "0x00000000000000000000000000000000000000000000000000000000ffffffff",
+      "term_on": {
+        "decoded": {
+          "raw_symbol": [
+            1,
+            1,
+            0
+          ],
+          "t1": 1
+        },
+        "encoded_symbol": [
+          0,
+          0
+        ],
+        "input_v": "0xfffffffffffffffffffffffffffffffffffffffffffffffffffffffefffffc2e",
+        "post_i0": {
+          "u": "0x7fffffffffffffffffffffffffffffffffffffffffffffffffffffff7ffffe17",
+          "v": "0x80000000000000000000000000000000000000000000000000000000800001e7"
+        },
+        "raw_symbol": [
+          1,
+          1,
+          0
+        ],
+        "tuple": {
+          "s2": 0,
+          "subtracted": 1,
+          "swp": 1,
+          "t1": 1
+        }
+      },
+      "term_on_input": "0xfffffffffffffffffffffffffffffffffffffffffffffffffffffffefffffc2e"
+    },
+    {
+      "b_prod": "0x0000000000000000000000000000000000000000000000000000000000000004",
+      "hi": "0x0000000000000000000000000000000000000000000000000000000000000002",
+      "mismatch": true,
+      "term_delta": "0x0000000000000000000000000000000000000000000000000000000400000000",
+      "term_off": {
+        "decoded": {
+          "raw_symbol": [
+            0,
+            0,
+            1
+          ],
+          "t1": 1
+        },
+        "encoded_symbol": [
+          1,
+          1
+        ],
+        "input_v": "0x0000000000000000000000000000000000000000000000000000000400000000",
+        "post_i0": {
+          "u": "0xfffffffffffffffffffffffffffffffffffffffffffffffffffffffefffffc2f",
+          "v": "0xfffffffffffffffffffffffffffffffffffffffffffffffffffffffeffffffff"
+        },
+        "raw_symbol": [
+          0,
+          0,
+          1
+        ],
+        "tuple": {
+          "s2": 1,
+          "subtracted": 0,
+          "swp": 0,
+          "t1": 1
+        }
+      },
+      "term_off_input": "0x0000000000000000000000000000000000000000000000000000000400000000",
+      "term_on": {
+        "decoded": {
+          "raw_symbol": [
+            0,
+            0,
+            1
+          ],
+          "t1": 1
+        },
+        "encoded_symbol": [
+          1,
+          1
+        ],
+        "input_v": "0x0000000000000000000000000000000000000000000000000000000000000000",
+        "post_i0": {
+          "u": "0xfffffffffffffffffffffffffffffffffffffffffffffffffffffffefffffc2f",
+          "v": "0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"
+        },
+        "raw_symbol": [
+          0,
+          0,
+          1
+        ],
+        "tuple": {
+          "s2": 1,
+          "subtracted": 0,
+          "swp": 0,
+          "t1": 1
+        }
+      },
+      "term_on_input": "0x0000000000000000000000000000000000000000000000000000000000000000"
+    },
+    {
+      "b_prod": "0x0000000000000000000000000000000000000000000000000000000000000004",
+      "hi": "0x0000000000000000000000000000000000000000000000000000000000000002",
+      "mismatch": true,
+      "term_delta": "0x0000000000000000000000000000000000000000000000000000000400000000",
+      "term_off": {
+        "decoded": {
+          "raw_symbol": [
+            1,
+            1,
+            0
+          ],
+          "t1": 0
+        },
+        "encoded_symbol": [
+          1,
+          0
+        ],
+        "input_v": "0x0000000000000000000000000000000000000000000000000000000400000001",
+        "post_i0": {
+          "u": "0x0000000000000000000000000000000000000000000000000000000400000001",
+          "v": "0x00000000000000000000000000000000000000000000000000000005000003d1"
+        },
+        "raw_symbol": [
+          1,
+          1,
+          0
+        ],
+        "tuple": {
+          "s2": 0,
+          "subtracted": 1,
+          "swp": 1,
+          "t1": 0
+        }
+      },
+      "term_off_input": "0x0000000000000000000000000000000000000000000000000000000400000001",
+      "term_on": {
+        "decoded": {
+          "raw_symbol": [
+            1,
+            1,
+            0
+          ],
+          "t1": 0
+        },
+        "encoded_symbol": [
+          1,
+          0
+        ],
+        "input_v": "0x0000000000000000000000000000000000000000000000000000000000000001",
+        "post_i0": {
+          "u": "0x0000000000000000000000000000000000000000000000000000000000000001",
+          "v": "0x00000000000000000000000000000000000000000000000000000001000003d1"
+        },
+        "raw_symbol": [
+          1,
+          1,
+          0
+        ],
+        "tuple": {
+          "s2": 0,
+          "subtracted": 1,
+          "swp": 1,
+          "t1": 0
+        }
+      },
+      "term_on_input": "0x0000000000000000000000000000000000000000000000000000000000000001"
+    },
+    {
+      "b_prod": "0x0000000000000000000000000000000000000000000000000000000000000004",
+      "hi": "0x0000000000000000000000000000000000000000000000000000000000000002",
+      "mismatch": true,
+      "term_delta": "0x0000000000000000000000000000000000000000000000000000000400000000",
+      "term_off": {
+        "decoded": {
+          "raw_symbol": [
+            1,
+            1,
+            0
+          ],
+          "t1": 1
+        },
+        "encoded_symbol": [
+          0,
+          0
+        ],
+        "input_v": "0x00000000000000000000000000000000000000000000000000000003fffffffe",
+        "post_i0": {
+          "u": "0x00000000000000000000000000000000000000000000000000000001ffffffff",
+          "v": "0x00000000000000000000000000000000000000000000000000000003000003cf"
+        },
+        "raw_symbol": [
+          1,
+          1,
+          0
+        ],
+        "tuple": {
+          "s2": 0,
+          "subtracted": 1,
+          "swp": 1,
+          "t1": 1
+        }
+      },
+      "term_off_input": "0x00000000000000000000000000000000000000000000000000000003fffffffe",
+      "term_on": {
+        "decoded": {
+          "raw_symbol": [
+            1,
+            1,
+            0
+          ],
+          "t1": 0
+        },
+        "encoded_symbol": [
+          1,
+          0
+        ],
+        "input_v": "0xfffffffffffffffffffffffffffffffffffffffffffffffffffffffefffffc2d",
+        "post_i0": {
+          "u": "0xfffffffffffffffffffffffffffffffffffffffffffffffffffffffefffffc2d",
+          "v": "0xfffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffd"
+        },
+        "raw_symbol": [
+          1,
+          1,
+          0
+        ],
+        "tuple": {
+          "s2": 0,
+          "subtracted": 1,
+          "swp": 1,
+          "t1": 0
+        }
+      },
+      "term_on_input": "0xfffffffffffffffffffffffffffffffffffffffffffffffffffffffefffffc2d"
+    },
+    {
+      "b_prod": "0x0000000000000000000000000000000000000000000000000000000000000004",
+      "hi": "0x0000000000000000000000000000000000000000000000000000000000000002",
+      "mismatch": true,
+      "term_delta": "0x0000000000000000000000000000000000000000000000000000000400000000",
+      "term_off": {
+        "decoded": {
+          "raw_symbol": [
+            1,
+            1,
+            0
+          ],
+          "t1": 0
+        },
+        "encoded_symbol": [
+          1,
+          0
+        ],
+        "input_v": "0x00000000000000000000000000000000000000000000000000000003ffffffff",
+        "post_i0": {
+          "u": "0x00000000000000000000000000000000000000000000000000000003ffffffff",
+          "v": "0x00000000000000000000000000000000000000000000000000000005000003cf"
+        },
+        "raw_symbol": [
+          1,
+          1,
+          0
+        ],
+        "tuple": {
+          "s2": 0,
+          "subtracted": 1,
+          "swp": 1,
+          "t1": 0
+        }
+      },
+      "term_off_input": "0x00000000000000000000000000000000000000000000000000000003ffffffff",
+      "term_on": {
+        "decoded": {
+          "raw_symbol": [
+            1,
+            1,
+            0
+          ],
+          "t1": 1
+        },
+        "encoded_symbol": [
+          0,
+          0
+        ],
+        "input_v": "0xfffffffffffffffffffffffffffffffffffffffffffffffffffffffefffffc2e",
+        "post_i0": {
+          "u": "0x7fffffffffffffffffffffffffffffffffffffffffffffffffffffff7ffffe17",
+          "v": "0x80000000000000000000000000000000000000000000000000000000800001e7"
+        },
+        "raw_symbol": [
+          1,
+          1,
+          0
+        ],
+        "tuple": {
+          "s2": 0,
+          "subtracted": 1,
+          "swp": 1,
+          "t1": 1
+        }
+      },
+      "term_on_input": "0xfffffffffffffffffffffffffffffffffffffffffffffffffffffffefffffc2e"
+    },
+    {
+      "b_prod": "0x0000000000000000000000000000000000000000000000000000000000000009",
+      "hi": "0x0000000000000000000000000000000000000000000000000000000000000003",
+      "mismatch": true,
+      "term_delta": "0x0000000000000000000000000000000000000000000000000000000900000000",
+      "term_off": {
+        "decoded": {
+          "raw_symbol": [
+            0,
+            0,
+            1
+          ],
+          "t1": 1
+        },
+        "encoded_symbol": [
+          1,
+          1
+        ],
+        "input_v": "0x0000000000000000000000000000000000000000000000000000000900000000",
+        "post_i0": {
+          "u": "0xfffffffffffffffffffffffffffffffffffffffffffffffffffffffefffffc2f",
+          "v": "0xfffffffffffffffffffffffffffffffffffffffffffffffffffffffdbfffffff"
+        },
+        "raw_symbol": [
+          0,
+          0,
+          1
+        ],
+        "tuple": {
+          "s2": 1,
+          "subtracted": 0,
+          "swp": 0,
+          "t1": 1
+        }
+      },
+      "term_off_input": "0x0000000000000000000000000000000000000000000000000000000900000000",
+      "term_on": {
+        "decoded": {
+          "raw_symbol": [
+            0,
+            0,
+            1
+          ],
+          "t1": 1
+        },
+        "encoded_symbol": [
+          1,
+          1
+        ],
+        "input_v": "0x0000000000000000000000000000000000000000000000000000000000000000",
+        "post_i0": {
+          "u": "0xfffffffffffffffffffffffffffffffffffffffffffffffffffffffefffffc2f",
+          "v": "0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"
+        },
+        "raw_symbol": [
+          0,
+          0,
+          1
+        ],
+        "tuple": {
+          "s2": 1,
+          "subtracted": 0,
+          "swp": 0,
+          "t1": 1
+        }
+      },
+      "term_on_input": "0x0000000000000000000000000000000000000000000000000000000000000000"
+    },
+    {
+      "b_prod": "0x0000000000000000000000000000000000000000000000000000000000000009",
+      "hi": "0x0000000000000000000000000000000000000000000000000000000000000003",
+      "mismatch": true,
+      "term_delta": "0x0000000000000000000000000000000000000000000000000000000900000000",
+      "term_off": {
+        "decoded": {
+          "raw_symbol": [
+            1,
+            1,
+            0
+          ],
+          "t1": 0
+        },
+        "encoded_symbol": [
+          1,
+          0
+        ],
+        "input_v": "0x0000000000000000000000000000000000000000000000000000000900000001",
+        "post_i0": {
+          "u": "0x0000000000000000000000000000000000000000000000000000000900000001",
+          "v": "0x0000000000000000000000000000000000000000000000000000000a000003d1"
+        },
+        "raw_symbol": [
+          1,
+          1,
+          0
+        ],
+        "tuple": {
+          "s2": 0,
+          "subtracted": 1,
+          "swp": 1,
+          "t1": 0
+        }
+      },
+      "term_off_input": "0x0000000000000000000000000000000000000000000000000000000900000001",
+      "term_on": {
+        "decoded": {
+          "raw_symbol": [
+            1,
+            1,
+            0
+          ],
+          "t1": 0
+        },
+        "encoded_symbol": [
+          1,
+          0
+        ],
+        "input_v": "0x0000000000000000000000000000000000000000000000000000000000000001",
+        "post_i0": {
+          "u": "0x0000000000000000000000000000000000000000000000000000000000000001",
+          "v": "0x00000000000000000000000000000000000000000000000000000001000003d1"
+        },
+        "raw_symbol": [
+          1,
+          1,
+          0
+        ],
+        "tuple": {
+          "s2": 0,
+          "subtracted": 1,
+          "swp": 1,
+          "t1": 0
+        }
+      },
+      "term_on_input": "0x0000000000000000000000000000000000000000000000000000000000000001"
+    },
+    {
+      "b_prod": "0x0000000000000000000000000000000000000000000000000000000000000009",
+      "hi": "0x0000000000000000000000000000000000000000000000000000000000000003",
+      "mismatch": true,
+      "term_delta": "0x0000000000000000000000000000000000000000000000000000000900000000",
+      "term_off": {
+        "decoded": {
+          "raw_symbol": [
+            1,
+            1,
+            0
+          ],
+          "t1": 1
+        },
+        "encoded_symbol": [
+          0,
+          0
+        ],
+        "input_v": "0x00000000000000000000000000000000000000000000000000000008fffffffe",
+        "post_i0": {
+          "u": "0x000000000000000000000000000000000000000000000000000000047fffffff",
+          "v": "0x00000000000000000000000000000000000000000000000000000005800003cf"
+        },
+        "raw_symbol": [
+          1,
+          1,
+          0
+        ],
+        "tuple": {
+          "s2": 0,
+          "subtracted": 1,
+          "swp": 1,
+          "t1": 1
+        }
+      },
+      "term_off_input": "0x00000000000000000000000000000000000000000000000000000008fffffffe",
+      "term_on": {
+        "decoded": {
+          "raw_symbol": [
+            1,
+            1,
+            0
+          ],
+          "t1": 0
+        },
+        "encoded_symbol": [
+          1,
+          0
+        ],
+        "input_v": "0xfffffffffffffffffffffffffffffffffffffffffffffffffffffffefffffc2d",
+        "post_i0": {
+          "u": "0xfffffffffffffffffffffffffffffffffffffffffffffffffffffffefffffc2d",
+          "v": "0xfffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffd"
+        },
+        "raw_symbol": [
+          1,
+          1,
+          0
+        ],
+        "tuple": {
+          "s2": 0,
+          "subtracted": 1,
+          "swp": 1,
+          "t1": 0
+        }
+      },
+      "term_on_input": "0xfffffffffffffffffffffffffffffffffffffffffffffffffffffffefffffc2d"
+    },
+    {
+      "b_prod": "0x0000000000000000000000000000000000000000000000000000000000000009",
+      "hi": "0x0000000000000000000000000000000000000000000000000000000000000003",
+      "mismatch": true,
+      "term_delta": "0x0000000000000000000000000000000000000000000000000000000900000000",
+      "term_off": {
+        "decoded": {
+          "raw_symbol": [
+            1,
+            1,
+            0
+          ],
+          "t1": 0
+        },
+        "encoded_symbol": [
+          1,
+          0
+        ],
+        "input_v": "0x00000000000000000000000000000000000000000000000000000008ffffffff",
+        "post_i0": {
+          "u": "0x00000000000000000000000000000000000000000000000000000008ffffffff",
+          "v": "0x0000000000000000000000000000000000000000000000000000000a000003cf"
+        },
+        "raw_symbol": [
+          1,
+          1,
+          0
+        ],
+        "tuple": {
+          "s2": 0,
+          "subtracted": 1,
+          "swp": 1,
+          "t1": 0
+        }
+      },
+      "term_off_input": "0x00000000000000000000000000000000000000000000000000000008ffffffff",
+      "term_on": {
+        "decoded": {
+          "raw_symbol": [
+            1,
+            1,
+            0
+          ],
+          "t1": 1
+        },
+        "encoded_symbol": [
+          0,
+          0
+        ],
+        "input_v": "0xfffffffffffffffffffffffffffffffffffffffffffffffffffffffefffffc2e",
+        "post_i0": {
+          "u": "0x7fffffffffffffffffffffffffffffffffffffffffffffffffffffff7ffffe17",
+          "v": "0x80000000000000000000000000000000000000000000000000000000800001e7"
+        },
+        "raw_symbol": [
+          1,
+          1,
+          0
+        ],
+        "tuple": {
+          "s2": 0,
+          "subtracted": 1,
+          "swp": 1,
+          "t1": 1
+        }
+      },
+      "term_on_input": "0xfffffffffffffffffffffffffffffffffffffffffffffffffffffffefffffc2e"
+    },
+    {
+      "b_prod": "0x0000000000000000000000000000000100000000000000020000000000000001",
+      "hi": "0x0000000000000000000000000000000000000000000000010000000000000001",
+      "mismatch": true,
+      "term_delta": "0x0000000000000000000000010000000000000002000000000000000100000000",
+      "term_off": {
+        "decoded": {
+          "raw_symbol": [
+            0,
+            0,
+            1
+          ],
+          "t1": 1
+        },
+        "encoded_symbol": [
+          1,
+          1
+        ],
+        "input_v": "0x0000000000000000000000010000000000000002000000000000000100000000",
+        "post_i0": {
+          "u": "0xfffffffffffffffffffffffffffffffffffffffffffffffffffffffefffffc2f",
+          "v": "0xffffffffffffffffffffffffbfffffffffffffff7fffffffffffffffbfffffff"
+        },
+        "raw_symbol": [
+          0,
+          0,
+          1
+        ],
+        "tuple": {
+          "s2": 1,
+          "subtracted": 0,
+          "swp": 0,
+          "t1": 1
+        }
+      },
+      "term_off_input": "0x0000000000000000000000010000000000000002000000000000000100000000",
+      "term_on": {
+        "decoded": {
+          "raw_symbol": [
+            0,
+            0,
+            1
+          ],
+          "t1": 1
+        },
+        "encoded_symbol": [
+          1,
+          1
+        ],
+        "input_v": "0x0000000000000000000000000000000000000000000000000000000000000000",
+        "post_i0": {
+          "u": "0xfffffffffffffffffffffffffffffffffffffffffffffffffffffffefffffc2f",
+          "v": "0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"
+        },
+        "raw_symbol": [
+          0,
+          0,
+          1
+        ],
+        "tuple": {
+          "s2": 1,
+          "subtracted": 0,
+          "swp": 0,
+          "t1": 1
+        }
+      },
+      "term_on_input": "0x0000000000000000000000000000000000000000000000000000000000000000"
+    },
+    {
+      "b_prod": "0x0000000000000000000000000000000100000000000000020000000000000001",
+      "hi": "0x0000000000000000000000000000000000000000000000010000000000000001",
+      "mismatch": true,
+      "term_delta": "0x0000000000000000000000010000000000000002000000000000000100000000",
+      "term_off": {
+        "decoded": {
+          "raw_symbol": [
+            1,
+            1,
+            0
+          ],
+          "t1": 0
+        },
+        "encoded_symbol": [
+          1,
+          0
+        ],
+        "input_v": "0x0000000000000000000000010000000000000002000000000000000100000001",
+        "post_i0": {
+          "u": "0x0000000000000000000000010000000000000002000000000000000100000001",
+          "v": "0x00000000000000000000000100000000000000020000000000000002000003d1"
+        },
+        "raw_symbol": [
+          1,
+          1,
+          0
+        ],
+        "tuple": {
+          "s2": 0,
+          "subtracted": 1,
+          "swp": 1,
+          "t1": 0
+        }
+      },
+      "term_off_input": "0x0000000000000000000000010000000000000002000000000000000100000001",
+      "term_on": {
+        "decoded": {
+          "raw_symbol": [
+            1,
+            1,
+            0
+          ],
+          "t1": 0
+        },
+        "encoded_symbol": [
+          1,
+          0
+        ],
+        "input_v": "0x0000000000000000000000000000000000000000000000000000000000000001",
+        "post_i0": {
+          "u": "0x0000000000000000000000000000000000000000000000000000000000000001",
+          "v": "0x00000000000000000000000000000000000000000000000000000001000003d1"
+        },
+        "raw_symbol": [
+          1,
+          1,
+          0
+        ],
+        "tuple": {
+          "s2": 0,
+          "subtracted": 1,
+          "swp": 1,
+          "t1": 0
+        }
+      },
+      "term_on_input": "0x0000000000000000000000000000000000000000000000000000000000000001"
+    },
+    {
+      "b_prod": "0x0000000000000000000000000000000100000000000000020000000000000001",
+      "hi": "0x0000000000000000000000000000000000000000000000010000000000000001",
+      "mismatch": true,
+      "term_delta": "0x0000000000000000000000010000000000000002000000000000000100000000",
+      "term_off": {
+        "decoded": {
+          "raw_symbol": [
+            1,
+            1,
+            0
+          ],
+          "t1": 1
+        },
+        "encoded_symbol": [
+          0,
+          0
+        ],
+        "input_v": "0x00000000000000000000000100000000000000020000000000000000fffffffe",
+        "post_i0": {
+          "u": "0x000000000000000000000000800000000000000100000000000000007fffffff",
+          "v": "0x00000000000000000000000080000000000000010000000000000001800003cf"
+        },
+        "raw_symbol": [
+          1,
+          1,
+          0
+        ],
+        "tuple": {
+          "s2": 0,
+          "subtracted": 1,
+          "swp": 1,
+          "t1": 1
+        }
+      },
+      "term_off_input": "0x00000000000000000000000100000000000000020000000000000000fffffffe",
+      "term_on": {
+        "decoded": {
+          "raw_symbol": [
+            1,
+            1,
+            0
+          ],
+          "t1": 0
+        },
+        "encoded_symbol": [
+          1,
+          0
+        ],
+        "input_v": "0xfffffffffffffffffffffffffffffffffffffffffffffffffffffffefffffc2d",
+        "post_i0": {
+          "u": "0xfffffffffffffffffffffffffffffffffffffffffffffffffffffffefffffc2d",
+          "v": "0xfffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffd"
+        },
+        "raw_symbol": [
+          1,
+          1,
+          0
+        ],
+        "tuple": {
+          "s2": 0,
+          "subtracted": 1,
+          "swp": 1,
+          "t1": 0
+        }
+      },
+      "term_on_input": "0xfffffffffffffffffffffffffffffffffffffffffffffffffffffffefffffc2d"
+    },
+    {
+      "b_prod": "0x0000000000000000000000000000000100000000000000020000000000000001",
+      "hi": "0x0000000000000000000000000000000000000000000000010000000000000001",
+      "mismatch": true,
+      "term_delta": "0x0000000000000000000000010000000000000002000000000000000100000000",
+      "term_off": {
+        "decoded": {
+          "raw_symbol": [
+            1,
+            1,
+            0
+          ],
+          "t1": 0
+        },
+        "encoded_symbol": [
+          1,
+          0
+        ],
+        "input_v": "0x00000000000000000000000100000000000000020000000000000000ffffffff",
+        "post_i0": {
+          "u": "0x00000000000000000000000100000000000000020000000000000000ffffffff",
+          "v": "0x00000000000000000000000100000000000000020000000000000002000003cf"
+        },
+        "raw_symbol": [
+          1,
+          1,
+          0
+        ],
+        "tuple": {
+          "s2": 0,
+          "subtracted": 1,
+          "swp": 1,
+          "t1": 0
+        }
+      },
+      "term_off_input": "0x00000000000000000000000100000000000000020000000000000000ffffffff",
+      "term_on": {
+        "decoded": {
+          "raw_symbol": [
+            1,
+            1,
+            0
+          ],
+          "t1": 1
+        },
+        "encoded_symbol": [
+          0,
+          0
+        ],
+        "input_v": "0xfffffffffffffffffffffffffffffffffffffffffffffffffffffffefffffc2e",
+        "post_i0": {
+          "u": "0x7fffffffffffffffffffffffffffffffffffffffffffffffffffffff7ffffe17",
+          "v": "0x80000000000000000000000000000000000000000000000000000000800001e7"
+        },
+        "raw_symbol": [
+          1,
+          1,
+          0
+        ],
+        "tuple": {
+          "s2": 0,
+          "subtracted": 1,
+          "swp": 1,
+          "t1": 1
+        }
+      },
+      "term_on_input": "0xfffffffffffffffffffffffffffffffffffffffffffffffffffffffefffffc2e"
+    },
+    {
+      "b_prod": "0x3fffffffffffffffffffffffffffffff00000000000000000000000000000001",
+      "hi": "0x000000000000000000000000000000007fffffffffffffffffffffffffffffff",
+      "mismatch": true,
+      "term_delta": "0xffffffffffffffffffffffff000000000000000000000000400000f43ffffc2f",
+      "term_off": {
+        "decoded": {
+          "raw_symbol": [
+            1,
+            1,
+            0
+          ],
+          "t1": 0
+        },
+        "encoded_symbol": [
+          1,
+          0
+        ],
+        "input_v": "0xffffffffffffffffffffffff000000000000000000000000400000f43ffffc2f",
+        "post_i0": {
+          "u": "0xffffffffffffffffffffffff000000000000000000000000400000f43ffffc2f",
+          "v": "0xffffffffffffffffffffffff000000000000000000000000400000f53fffffff"
+        },
+        "raw_symbol": [
+          1,
+          1,
+          0
+        ],
+        "tuple": {
+          "s2": 0,
+          "subtracted": 1,
+          "swp": 1,
+          "t1": 0
+        }
+      },
+      "term_off_input": "0xffffffffffffffffffffffff000000000000000000000000400000f43ffffc2f",
+      "term_on": {
+        "decoded": {
+          "raw_symbol": [
+            0,
+            0,
+            1
+          ],
+          "t1": 1
+        },
+        "encoded_symbol": [
+          1,
+          1
+        ],
+        "input_v": "0x0000000000000000000000000000000000000000000000000000000000000000",
+        "post_i0": {
+          "u": "0xfffffffffffffffffffffffffffffffffffffffffffffffffffffffefffffc2f",
+          "v": "0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"
+        },
+        "raw_symbol": [
+          0,
+          0,
+          1
+        ],
+        "tuple": {
+          "s2": 1,
+          "subtracted": 0,
+          "swp": 0,
+          "t1": 1
+        }
+      },
+      "term_on_input": "0x0000000000000000000000000000000000000000000000000000000000000000"
+    },
+    {
+      "b_prod": "0x3fffffffffffffffffffffffffffffff00000000000000000000000000000001",
+      "hi": "0x000000000000000000000000000000007fffffffffffffffffffffffffffffff",
+      "mismatch": true,
+      "term_delta": "0xffffffffffffffffffffffff000000000000000000000000400000f43ffffc2f",
+      "term_off": {
+        "decoded": {
+          "raw_symbol": [
+            0,
+            0,
+            1
+          ],
+          "t1": 1
+        },
+        "encoded_symbol": [
+          1,
+          1
+        ],
+        "input_v": "0xffffffffffffffffffffffff000000000000000000000000400000f43ffffc30",
+        "post_i0": {
+          "u": "0xfffffffffffffffffffffffffffffffffffffffffffffffffffffffefffffc2f",
+          "v": "0xc000000000000000000000003fffffffffffffffffffffffefffffc2f00000f3"
+        },
+        "raw_symbol": [
+          0,
+          0,
+          1
+        ],
+        "tuple": {
+          "s2": 1,
+          "subtracted": 0,
+          "swp": 0,
+          "t1": 1
+        }
+      },
+      "term_off_input": "0xffffffffffffffffffffffff000000000000000000000000400000f43ffffc30",
+      "term_on": {
+        "decoded": {
+          "raw_symbol": [
+            1,
+            1,
+            0
+          ],
+          "t1": 0
+        },
+        "encoded_symbol": [
+          1,
+          0
+        ],
+        "input_v": "0x0000000000000000000000000000000000000000000000000000000000000001",
+        "post_i0": {
+          "u": "0x0000000000000000000000000000000000000000000000000000000000000001",
+          "v": "0x00000000000000000000000000000000000000000000000000000001000003d1"
+        },
+        "raw_symbol": [
+          1,
+          1,
+          0
+        ],
+        "tuple": {
+          "s2": 0,
+          "subtracted": 1,
+          "swp": 1,
+          "t1": 0
+        }
+      },
+      "term_on_input": "0x0000000000000000000000000000000000000000000000000000000000000001"
+    },
+    {
+      "b_prod": "0x3fffffffffffffffffffffffffffffff00000000000000000000000000000001",
+      "hi": "0x000000000000000000000000000000007fffffffffffffffffffffffffffffff",
+      "mismatch": true,
+      "term_delta": "0xffffffffffffffffffffffff000000000000000000000000400000f43ffffc2f",
+      "term_off": {
+        "decoded": {
+          "raw_symbol": [
+            1,
+            1,
+            0
+          ],
+          "t1": 0
+        },
+        "encoded_symbol": [
+          1,
+          0
+        ],
+        "input_v": "0xffffffffffffffffffffffff000000000000000000000000400000f43ffffc2d",
+        "post_i0": {
+          "u": "0xffffffffffffffffffffffff000000000000000000000000400000f43ffffc2d",
+          "v": "0xffffffffffffffffffffffff000000000000000000000000400000f53ffffffd"
+        },
+        "raw_symbol": [
+          1,
+          1,
+          0
+        ],
+        "tuple": {
+          "s2": 0,
+          "subtracted": 1,
+          "swp": 1,
+          "t1": 0
+        }
+      },
+      "term_off_input": "0xffffffffffffffffffffffff000000000000000000000000400000f43ffffc2d",
+      "term_on": {
+        "decoded": {
+          "raw_symbol": [
+            1,
+            1,
+            0
+          ],
+          "t1": 0
+        },
+        "encoded_symbol": [
+          1,
+          0
+        ],
+        "input_v": "0xfffffffffffffffffffffffffffffffffffffffffffffffffffffffefffffc2d",
+        "post_i0": {
+          "u": "0xfffffffffffffffffffffffffffffffffffffffffffffffffffffffefffffc2d",
+          "v": "0xfffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffd"
+        },
+        "raw_symbol": [
+          1,
+          1,
+          0
+        ],
+        "tuple": {
+          "s2": 0,
+          "subtracted": 1,
+          "swp": 1,
+          "t1": 0
+        }
+      },
+      "term_on_input": "0xfffffffffffffffffffffffffffffffffffffffffffffffffffffffefffffc2d"
+    },
+    {
+      "b_prod": "0x3fffffffffffffffffffffffffffffff00000000000000000000000000000001",
+      "hi": "0x000000000000000000000000000000007fffffffffffffffffffffffffffffff",
+      "mismatch": true,
+      "term_delta": "0xffffffffffffffffffffffff000000000000000000000000400000f43ffffc2f",
+      "term_off": {
+        "decoded": {
+          "raw_symbol": [
+            1,
+            1,
+            0
+          ],
+          "t1": 1
+        },
+        "encoded_symbol": [
+          0,
+          0
+        ],
+        "input_v": "0xffffffffffffffffffffffff000000000000000000000000400000f43ffffc2e",
+        "post_i0": {
+          "u": "0x7fffffffffffffffffffffff8000000000000000000000002000007a1ffffe17",
+          "v": "0x7fffffffffffffffffffffff8000000000000000000000002000007b200001e7"
+        },
+        "raw_symbol": [
+          1,
+          1,
+          0
+        ],
+        "tuple": {
+          "s2": 0,
+          "subtracted": 1,
+          "swp": 1,
+          "t1": 1
+        }
+      },
+      "term_off_input": "0xffffffffffffffffffffffff000000000000000000000000400000f43ffffc2e",
+      "term_on": {
+        "decoded": {
+          "raw_symbol": [
+            1,
+            1,
+            0
+          ],
+          "t1": 1
+        },
+        "encoded_symbol": [
+          0,
+          0
+        ],
+        "input_v": "0xfffffffffffffffffffffffffffffffffffffffffffffffffffffffefffffc2e",
+        "post_i0": {
+          "u": "0x7fffffffffffffffffffffffffffffffffffffffffffffffffffffff7ffffe17",
+          "v": "0x80000000000000000000000000000000000000000000000000000000800001e7"
+        },
+        "raw_symbol": [
+          1,
+          1,
+          0
+        ],
+        "tuple": {
+          "s2": 0,
+          "subtracted": 1,
+          "swp": 1,
+          "t1": 1
+        }
+      },
+      "term_on_input": "0xfffffffffffffffffffffffffffffffffffffffffffffffffffffffefffffc2e"
+    },
+    {
+      "b_prod": "0x4000000000000000000000000000000000000000000000000000000000000000",
+      "hi": "0x0000000000000000000000000000000080000000000000000000000000000000",
+      "mismatch": true,
+      "term_delta": "0x000000000000000000000000000000000000000000000000400000f440000000",
+      "term_off": {
+        "decoded": {
+          "raw_symbol": [
+            0,
+            0,
+            1
+          ],
+          "t1": 1
+        },
+        "encoded_symbol": [
+          1,
+          1
+        ],
+        "input_v": "0x000000000000000000000000000000000000000000000000400000f440000000",
+        "post_i0": {
+          "u": "0xfffffffffffffffffffffffffffffffffffffffffffffffffffffffefffffc2f",
+          "v": "0xffffffffffffffffffffffffffffffffffffffffffffffffefffffc2efffffff"
+        },
+        "raw_symbol": [
+          0,
+          0,
+          1
+        ],
+        "tuple": {
+          "s2": 1,
+          "subtracted": 0,
+          "swp": 0,
+          "t1": 1
+        }
+      },
+      "term_off_input": "0x000000000000000000000000000000000000000000000000400000f440000000",
+      "term_on": {
+        "decoded": {
+          "raw_symbol": [
+            0,
+            0,
+            1
+          ],
+          "t1": 1
+        },
+        "encoded_symbol": [
+          1,
+          1
+        ],
+        "input_v": "0x0000000000000000000000000000000000000000000000000000000000000000",
+        "post_i0": {
+          "u": "0xfffffffffffffffffffffffffffffffffffffffffffffffffffffffefffffc2f",
+          "v": "0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"
+        },
+        "raw_symbol": [
+          0,
+          0,
+          1
+        ],
+        "tuple": {
+          "s2": 1,
+          "subtracted": 0,
+          "swp": 0,
+          "t1": 1
+        }
+      },
+      "term_on_input": "0x0000000000000000000000000000000000000000000000000000000000000000"
+    },
+    {
+      "b_prod": "0x4000000000000000000000000000000000000000000000000000000000000000",
+      "hi": "0x0000000000000000000000000000000080000000000000000000000000000000",
+      "mismatch": true,
+      "term_delta": "0x000000000000000000000000000000000000000000000000400000f440000000",
+      "term_off": {
+        "decoded": {
+          "raw_symbol": [
+            1,
+            1,
+            0
+          ],
+          "t1": 0
+        },
+        "encoded_symbol": [
+          1,
+          0
+        ],
+        "input_v": "0x000000000000000000000000000000000000000000000000400000f440000001",
+        "post_i0": {
+          "u": "0x000000000000000000000000000000000000000000000000400000f440000001",
+          "v": "0x000000000000000000000000000000000000000000000000400000f5400003d1"
+        },
+        "raw_symbol": [
+          1,
+          1,
+          0
+        ],
+        "tuple": {
+          "s2": 0,
+          "subtracted": 1,
+          "swp": 1,
+          "t1": 0
+        }
+      },
+      "term_off_input": "0x000000000000000000000000000000000000000000000000400000f440000001",
+      "term_on": {
+        "decoded": {
+          "raw_symbol": [
+            1,
+            1,
+            0
+          ],
+          "t1": 0
+        },
+        "encoded_symbol": [
+          1,
+          0
+        ],
+        "input_v": "0x0000000000000000000000000000000000000000000000000000000000000001",
+        "post_i0": {
+          "u": "0x0000000000000000000000000000000000000000000000000000000000000001",
+          "v": "0x00000000000000000000000000000000000000000000000000000001000003d1"
+        },
+        "raw_symbol": [
+          1,
+          1,
+          0
+        ],
+        "tuple": {
+          "s2": 0,
+          "subtracted": 1,
+          "swp": 1,
+          "t1": 0
+        }
+      },
+      "term_on_input": "0x0000000000000000000000000000000000000000000000000000000000000001"
+    },
+    {
+      "b_prod": "0x4000000000000000000000000000000000000000000000000000000000000000",
+      "hi": "0x0000000000000000000000000000000080000000000000000000000000000000",
+      "mismatch": true,
+      "term_delta": "0x000000000000000000000000000000000000000000000000400000f440000000",
+      "term_off": {
+        "decoded": {
+          "raw_symbol": [
+            1,
+            1,
+            0
+          ],
+          "t1": 1
+        },
+        "encoded_symbol": [
+          0,
+          0
+        ],
+        "input_v": "0x000000000000000000000000000000000000000000000000400000f43ffffffe",
+        "post_i0": {
+          "u": "0x0000000000000000000000000000000000000000000000002000007a1fffffff",
+          "v": "0x0000000000000000000000000000000000000000000000002000007b200003cf"
+        },
+        "raw_symbol": [
+          1,
+          1,
+          0
+        ],
+        "tuple": {
+          "s2": 0,
+          "subtracted": 1,
+          "swp": 1,
+          "t1": 1
+        }
+      },
+      "term_off_input": "0x000000000000000000000000000000000000000000000000400000f43ffffffe",
+      "term_on": {
+        "decoded": {
+          "raw_symbol": [
+            1,
+            1,
+            0
+          ],
+          "t1": 0
+        },
+        "encoded_symbol": [
+          1,
+          0
+        ],
+        "input_v": "0xfffffffffffffffffffffffffffffffffffffffffffffffffffffffefffffc2d",
+        "post_i0": {
+          "u": "0xfffffffffffffffffffffffffffffffffffffffffffffffffffffffefffffc2d",
+          "v": "0xfffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffd"
+        },
+        "raw_symbol": [
+          1,
+          1,
+          0
+        ],
+        "tuple": {
+          "s2": 0,
+          "subtracted": 1,
+          "swp": 1,
+          "t1": 0
+        }
+      },
+      "term_on_input": "0xfffffffffffffffffffffffffffffffffffffffffffffffffffffffefffffc2d"
+    },
+    {
+      "b_prod": "0x4000000000000000000000000000000000000000000000000000000000000000",
+      "hi": "0x0000000000000000000000000000000080000000000000000000000000000000",
+      "mismatch": true,
+      "term_delta": "0x000000000000000000000000000000000000000000000000400000f440000000",
+      "term_off": {
+        "decoded": {
+          "raw_symbol": [
+            1,
+            1,
+            0
+          ],
+          "t1": 0
+        },
+        "encoded_symbol": [
+          1,
+          0
+        ],
+        "input_v": "0x000000000000000000000000000000000000000000000000400000f43fffffff",
+        "post_i0": {
+          "u": "0x000000000000000000000000000000000000000000000000400000f43fffffff",
+          "v": "0x000000000000000000000000000000000000000000000000400000f5400003cf"
+        },
+        "raw_symbol": [
+          1,
+          1,
+          0
+        ],
+        "tuple": {
+          "s2": 0,
+          "subtracted": 1,
+          "swp": 1,
+          "t1": 0
+        }
+      },
+      "term_off_input": "0x000000000000000000000000000000000000000000000000400000f43fffffff",
+      "term_on": {
+        "decoded": {
+          "raw_symbol": [
+            1,
+            1,
+            0
+          ],
+          "t1": 1
+        },
+        "encoded_symbol": [
+          0,
+          0
+        ],
+        "input_v": "0xfffffffffffffffffffffffffffffffffffffffffffffffffffffffefffffc2e",
+        "post_i0": {
+          "u": "0x7fffffffffffffffffffffffffffffffffffffffffffffffffffffff7ffffe17",
+          "v": "0x80000000000000000000000000000000000000000000000000000000800001e7"
+        },
+        "raw_symbol": [
+          1,
+          1,
+          0
+        ],
+        "tuple": {
+          "s2": 0,
+          "subtracted": 1,
+          "swp": 1,
+          "t1": 1
+        }
+      },
+      "term_on_input": "0xfffffffffffffffffffffffffffffffffffffffffffffffffffffffefffffc2e"
+    },
+    {
+      "b_prod": "0xfffffffffffffffffffffffffffffffc00000000000000000000000000000004",
+      "hi": "0x00000000000000000000000000000000fffffffffffffffffffffffffffffffe",
+      "mismatch": true,
+      "term_delta": "0xfffffffffffffffffffffffc000000000000000000000001000003d3fffffc2f",
+      "term_off": {
+        "decoded": {
+          "raw_symbol": [
+            1,
+            1,
+            0
+          ],
+          "t1": 0
+        },
+        "encoded_symbol": [
+          1,
+          0
+        ],
+        "input_v": "0xfffffffffffffffffffffffc000000000000000000000001000003d3fffffc2f",
+        "post_i0": {
+          "u": "0xfffffffffffffffffffffffc000000000000000000000001000003d3fffffc2f",
+          "v": "0xfffffffffffffffffffffffc000000000000000000000001000003d4ffffffff"
+        },
+        "raw_symbol": [
+          1,
+          1,
+          0
+        ],
+        "tuple": {
+          "s2": 0,
+          "subtracted": 1,
+          "swp": 1,
+          "t1": 0
+        }
+      },
+      "term_off_input": "0xfffffffffffffffffffffffc000000000000000000000001000003d3fffffc2f",
+      "term_on": {
+        "decoded": {
+          "raw_symbol": [
+            0,
+            0,
+            1
+          ],
+          "t1": 1
+        },
+        "encoded_symbol": [
+          1,
+          1
+        ],
+        "input_v": "0x0000000000000000000000000000000000000000000000000000000000000000",
+        "post_i0": {
+          "u": "0xfffffffffffffffffffffffffffffffffffffffffffffffffffffffefffffc2f",
+          "v": "0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"
+        },
+        "raw_symbol": [
+          0,
+          0,
+          1
+        ],
+        "tuple": {
+          "s2": 1,
+          "subtracted": 0,
+          "swp": 0,
+          "t1": 1
+        }
+      },
+      "term_on_input": "0x0000000000000000000000000000000000000000000000000000000000000000"
+    },
+    {
+      "b_prod": "0xfffffffffffffffffffffffffffffffc00000000000000000000000000000004",
+      "hi": "0x00000000000000000000000000000000fffffffffffffffffffffffffffffffe",
+      "mismatch": true,
+      "term_delta": "0xfffffffffffffffffffffffc000000000000000000000001000003d3fffffc2f",
+      "term_off": {
+        "decoded": {
+          "raw_symbol": [
+            0,
+            0,
+            1
+          ],
+          "t1": 1
+        },
+        "encoded_symbol": [
+          1,
+          1
+        ],
+        "input_v": "0xfffffffffffffffffffffffc000000000000000000000001000003d3fffffc30",
+        "post_i0": {
+          "u": "0xfffffffffffffffffffffffffffffffffffffffffffffffffffffffefffffc2f",
+          "v": "0xc00000000000000000000000ffffffffffffffffffffffffbfffff0b000000f3"
+        },
+        "raw_symbol": [
+          0,
+          0,
+          1
+        ],
+        "tuple": {
+          "s2": 1,
+          "subtracted": 0,
+          "swp": 0,
+          "t1": 1
+        }
+      },
+      "term_off_input": "0xfffffffffffffffffffffffc000000000000000000000001000003d3fffffc30",
+      "term_on": {
+        "decoded": {
+          "raw_symbol": [
+            1,
+            1,
+            0
+          ],
+          "t1": 0
+        },
+        "encoded_symbol": [
+          1,
+          0
+        ],
+        "input_v": "0x0000000000000000000000000000000000000000000000000000000000000001",
+        "post_i0": {
+          "u": "0x0000000000000000000000000000000000000000000000000000000000000001",
+          "v": "0x00000000000000000000000000000000000000000000000000000001000003d1"
+        },
+        "raw_symbol": [
+          1,
+          1,
+          0
+        ],
+        "tuple": {
+          "s2": 0,
+          "subtracted": 1,
+          "swp": 1,
+          "t1": 0
+        }
+      },
+      "term_on_input": "0x0000000000000000000000000000000000000000000000000000000000000001"
+    },
+    {
+      "b_prod": "0xfffffffffffffffffffffffffffffffc00000000000000000000000000000004",
+      "hi": "0x00000000000000000000000000000000fffffffffffffffffffffffffffffffe",
+      "mismatch": true,
+      "term_delta": "0xfffffffffffffffffffffffc000000000000000000000001000003d3fffffc2f",
+      "term_off": {
+        "decoded": {
+          "raw_symbol": [
+            1,
+            1,
+            0
+          ],
+          "t1": 0
+        },
+        "encoded_symbol": [
+          1,
+          0
+        ],
+        "input_v": "0xfffffffffffffffffffffffc000000000000000000000001000003d3fffffc2d",
+        "post_i0": {
+          "u": "0xfffffffffffffffffffffffc000000000000000000000001000003d3fffffc2d",
+          "v": "0xfffffffffffffffffffffffc000000000000000000000001000003d4fffffffd"
+        },
+        "raw_symbol": [
+          1,
+          1,
+          0
+        ],
+        "tuple": {
+          "s2": 0,
+          "subtracted": 1,
+          "swp": 1,
+          "t1": 0
+        }
+      },
+      "term_off_input": "0xfffffffffffffffffffffffc000000000000000000000001000003d3fffffc2d",
+      "term_on": {
+        "decoded": {
+          "raw_symbol": [
+            1,
+            1,
+            0
+          ],
+          "t1": 0
+        },
+        "encoded_symbol": [
+          1,
+          0
+        ],
+        "input_v": "0xfffffffffffffffffffffffffffffffffffffffffffffffffffffffefffffc2d",
+        "post_i0": {
+          "u": "0xfffffffffffffffffffffffffffffffffffffffffffffffffffffffefffffc2d",
+          "v": "0xfffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffd"
+        },
+        "raw_symbol": [
+          1,
+          1,
+          0
+        ],
+        "tuple": {
+          "s2": 0,
+          "subtracted": 1,
+          "swp": 1,
+          "t1": 0
+        }
+      },
+      "term_on_input": "0xfffffffffffffffffffffffffffffffffffffffffffffffffffffffefffffc2d"
+    },
+    {
+      "b_prod": "0xfffffffffffffffffffffffffffffffc00000000000000000000000000000004",
+      "hi": "0x00000000000000000000000000000000fffffffffffffffffffffffffffffffe",
+      "mismatch": true,
+      "term_delta": "0xfffffffffffffffffffffffc000000000000000000000001000003d3fffffc2f",
+      "term_off": {
+        "decoded": {
+          "raw_symbol": [
+            1,
+            1,
+            0
+          ],
+          "t1": 1
+        },
+        "encoded_symbol": [
+          0,
+          0
+        ],
+        "input_v": "0xfffffffffffffffffffffffc000000000000000000000001000003d3fffffc2e",
+        "post_i0": {
+          "u": "0x7ffffffffffffffffffffffe000000000000000000000000800001e9fffffe17",
+          "v": "0x7ffffffffffffffffffffffe000000000000000000000000800001eb000001e7"
+        },
+        "raw_symbol": [
+          1,
+          1,
+          0
+        ],
+        "tuple": {
+          "s2": 0,
+          "subtracted": 1,
+          "swp": 1,
+          "t1": 1
+        }
+      },
+      "term_off_input": "0xfffffffffffffffffffffffc000000000000000000000001000003d3fffffc2e",
+      "term_on": {
+        "decoded": {
+          "raw_symbol": [
+            1,
+            1,
+            0
+          ],
+          "t1": 1
+        },
+        "encoded_symbol": [
+          0,
+          0
+        ],
+        "input_v": "0xfffffffffffffffffffffffffffffffffffffffffffffffffffffffefffffc2e",
+        "post_i0": {
+          "u": "0x7fffffffffffffffffffffffffffffffffffffffffffffffffffffff7ffffe17",
+          "v": "0x80000000000000000000000000000000000000000000000000000000800001e7"
+        },
+        "raw_symbol": [
+          1,
+          1,
+          0
+        ],
+        "tuple": {
+          "s2": 0,
+          "subtracted": 1,
+          "swp": 1,
+          "t1": 1
+        }
+      },
+      "term_on_input": "0xfffffffffffffffffffffffffffffffffffffffffffffffffffffffefffffc2e"
+    }
+  ]
+}

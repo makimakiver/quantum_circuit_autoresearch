@@ -1,0 +1,245 @@
+{
+  "candidate_ops_sha256": "6519bd01424d5513cd7f8232d4c15dfcbfe67561eb1b7f05b2cfec87c233a097",
+  "canonical_ops_sha256": "0a4a412c939b05f59fa4bc33c2410e5bc110b07c7faded5e6db5f6b5db3ed0b0",
+  "changed_paths": [],
+  "checkpoint_ref": ".pi/campaigns/performance-2026-08-16/runs/20260816t232122Z/checkpoint.json",
+  "commands": [
+    "env PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=.pi python3 -B -m harness.cli continuations",
+    "env PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=.pi python3 -B - <<'PY'  # ownership_violations(structural-researcher, gcd.rs/codec.rs/fused.rs/arith.rs)\n...\nPY",
+    "find . -type f \\( -name \"*.pyc\" -o -name \"*.pyo\" \\) -print | sort | sha256sum"
+  ],
+  "dispatch_ref": ".pi/campaigns/performance-2026-08-16/runs/20260816t232122Z/dispatch.json",
+  "evidence": {
+    "actual_checkpoint_path": ".pi/campaign-runs/20260816t232122Z/lanes/structural-researcher/checkpoint.json",
+    "actual_dispatch_path": ".pi/campaign-runs/20260816t232122Z/lanes/structural-researcher/dispatch.json",
+    "actual_terminal_path": ".pi/campaign-runs/20260816t232122Z/terminal.log",
+    "continuation_observation": {
+      "EXP-P2-BZ-METRO": "COMPLETE / ANALYZE_ONLY; all armA/B/C done markers and required paths present; SHA-256 values match 6519bd01..., 9cb5010b..., and 6aa87651... exactly. Not parsed, adjudicated, restarted, or lifecycle-mutated by this lane.",
+      "EXP-SM-01": "READY / DO_NOT_START; launch and long-compute approval both false.",
+      "command": "env PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=.pi python3 -B -m harness.cli continuations",
+      "evidence_paths": [
+        ".pi/continuations/EXP-P2-BZ-METRO.json",
+        ".pi/continuations/EXP-SM-01.json"
+      ]
+    },
+    "frontier_evidence_paths": [
+      ".pi/frontier.json",
+      ".pi/state/campaign.json",
+      "CAMPAIGN_FINDINGS.md"
+    ],
+    "recovery_bundle_path": ".pi/campaigns/performance-2026-08-16/runs/20260816t232122Z/recovery/structural-walk-codec",
+    "recovery_bundle_paths": [
+      ".pi/campaigns/performance-2026-08-16/runs/20260816t232122Z/recovery/structural-walk-codec/EXP-STRUCTURAL-WALK-CODEC-R1-recovery.json",
+      ".pi/campaigns/performance-2026-08-16/runs/20260816t232122Z/recovery/structural-walk-codec/EXP-STRUCTURAL-WALK-CODEC-R1-recovery.txt"
+    ],
+    "report_path": ".pi/campaign-runs/20260816t232122Z/reports/round1-structural-walk-codec.json",
+    "research_cards": [
+      {
+        "canonical_lifecycle_state": "SCOPED (campaign record); local strong form is PARKED/LOCAL_PLATEAU only after its stated cost falsifier. Weak form is not a local promotion candidate.",
+        "cheapest_discriminator": "First, a no-source-mutation value-bound proof/classical emulator against the actual SCHED_J2 tail establishes the residual margin. Only if it passes, one default-off paired TLM_DEFER_MOD_CLEAN implementation does POINT_ADD_COUNT_ONLY=1 plus TRACE_TLM_TOF: both cleanup phase counters must approach zero while aggregate affected fold growth is strictly less than 4,943 expected-executed. This is cheaper than lambda metrology and does not use evaluator/grind.",
+        "discovery_lifecycle": "IDEA -> SCOPED -> MODELED -> CHEAP_PROBE (value-bound proof first) -> CANDIDATE only if every discriminator passes; currently SCOPED/MODELED.",
+        "emitted_to_executed_discount_assumptions": "Measured inherited ledger: each tlm_apply_forward_mod_add_clean and tlm_apply_inverse_mod_sub_clean has 4,943 emitted operations and 2,471.5 expected executed (50% condition/Hmr discount). Thus both are at most 4,943 expected-executed removal, not 9,886. Fold, register, and cswap phases must be repriced separately; cswap is full-price and no emitted gate delta is score evidence.",
+        "evidence_debt": [
+          "No candidate stream or value-distribution tail is measured.",
+          "No default-off identity/liveness proof exists because no flag has been implemented.",
+          "Deep-strip ordinal/occupancy transfer is unknown; transferred keys are forbidden.",
+          "Paired lambda, four 9,024-shot checks, canonical candidate hash, Q census, and stream-bound ground nonce remain future gated evidence."
+        ],
+        "evidence_paths": [
+          ".pi/experiments/EXP-BZ-02.md",
+          ".pi/experiments/EXP-ARCH-03.md",
+          "src/point_add/trailmix_ludicrous/gcd.rs:1738-1860",
+          "src/point_add/trailmix_ludicrous/arith.rs:1513-1536",
+          "src/point_add/trailmix_ludicrous/fused.rs:1865-1961",
+          "CAMPAIGN_FINDINGS.md:3.4"
+        ],
+        "exact_reproduction_commands": [
+          "cd /Users/makimakiver/ecdsafail-challenge && env -u TLM_DEFER_MOD_CLEAN git diff -- src/point_add/trailmix_ludicrous/gcd.rs src/point_add/trailmix_ludicrous/arith.rs src/point_add/trailmix_ludicrous/fused.rs",
+          "cd /Users/makimakiver/ecdsafail-challenge && CARGO_TARGET_DIR=/tmp/bz02-count TLM_DEFER_MOD_CLEAN=1 POINT_ADD_COUNT_ONLY=1 TRACE_TLM_TOF=1 cargo run --release --bin build_circuit 2>&1 | grep -E \"tlm_apply_(forward_mod_add_clean|inverse_mod_sub_clean|forward_fold|inverse_fold)|TLM_TOF_TOTAL\"",
+          "cd /Users/makimakiver/ecdsafail-challenge && sha256sum ops.bin && env PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=.pi python3 -B src/point_add/memory/repro/artifact_io.py --help"
+        ],
+        "experiment_id": "EXP-BZ-02",
+        "frontier_commit_and_identities": {
+          "average_executed_toffoli": 1283487.051,
+          "canonical_ops_sha256": "0a4a412c939b05f59fa4bc33c2410e5bc110b07c7faded5e6db5f6b5db3ed0b0",
+          "compressed_ops_sha256": "6519bd01424d5513cd7f8232d4c15dfcbfe67561eb1b7f05b2cfec87c233a097",
+          "frontier_id": "2026-08-16-a2067dcf",
+          "lambda_total_measured": 17.62,
+          "qubits": 1154,
+          "rounded_toffoli": 1283487,
+          "score": 1481143998,
+          "source_commit": "a2067dcf3c991bcecfd51a4bf07cd7d1cc56c3a5",
+          "sub4_tail_nonce": 1337610097
+        },
+        "mechanism": "Weak deferred reduction: retain the existing 256-bit cswap but remove only the post-add/post-sub MSBS clean into the existing next fused cdouble fold. The fold then absorbs the wider 7f rather than 3f contribution within LSBS=53. The strong version that moves the entire fold across cswap is not included: it requires 257-bit swap operands and costs +256 full-price Toffoli per iteration per direction.",
+        "predeclared_falsifier": [
+          "VALUE: any reachable/classically witnessed residual reaches 2^256 before the next cout adder or violates the LSBS=53 window.",
+          "COST: candidate fold growth is >=4,943 expected-executed cleanup removal.",
+          "REVERSIBILITY: any targeted replay/phase/ancilla check fails.",
+          "Q/STRIP: B0 peak exceeds 1,154 or stale/occupancy suppression erases the preliminary win.",
+          "LAMBDA: upper CI(delta lambda) >= +0.5; REFUTED immediately if mean classical >30 per 9,024-equivalent or a candidate round exceeds twice baseline maximum."
+        ],
+        "predicted_direction": {
+          "Q": "0 expected because fused double already has hi/hi2; unresolved +1 at an allocation plateau is a hard rejection.",
+          "executed_T": "Estimate -5,000 to -8,000 only if wider-fold growth remains below both cleanup removals; measured evidence is only the inherited cleanup ledger, not a candidate stream.",
+          "lambda": "Risk positive, estimated +0.5 to +2.5 from wider carry/fold escape. It is not measured; SAFE requires upper CI(delta lambda) < +0.5.",
+          "score": "At Q=1,154, preliminary estimate -5,770,000 to -9,232,000 from executed-T alone; no score claim before post-strip and Q evidence."
+        },
+        "reopening_trigger": "A source-level bound with >=8 bits residual headroom, or an LSBS/fold implementation change, plus a cross-cell serialization plan and lambda/strip budget. A bounded search stop is not a ceiling.",
+        "representation_scope": "Representation-spanning, not a local control knob: it crosses replay arithmetic and the fold representation. The strong local refinement is economically falsified; this does not bound other representations.",
+        "reversible_invariant_and_proof_obligation": "For every decoded (sub, swp, s2, t1) and each i, reverse replay must remain the exact inverse of forward replay over the same modulo-p coefficient state: the fwd add/swap/fold and reverse inverse-fold/swap/inverse-sub composition must restore values, controls, Hmr condition stack, phase word, and all hi/hi2/ancilla allocations. Prove the deferred residual is strictly below 2^256 minus the maximum next cout-addend before the next 256-bit adder; prove LSBS=53 contains the widened contribution; preserve s2-controlled fused-double directionality without weakening or reordering it.",
+        "rollback_unit": "One default-off TLM_DEFER_MOD_CLEAN flag wrapping both direction edits in a single implementer commit; rollback is unset flag/discard that one commit. No persistent strip table is changed or reused.",
+        "search_radius": "Paired Bezout apply only: gcd.rs apply_step_forward (controlled_mod_add_k -> 256-bit cswap -> fused_double_cdouble) and apply_step_reverse/controlled_mod_sub_vented (inverse fold -> same-width cswap -> inverse add/sub cleanup). Proposed implementation touch set is gcd.rs, arith.rs, and fused.rs; no schedule, tape symbol, tail-skip, or strip-table edit.",
+        "serialization_dependencies": [
+          "Pair-1/Pair-2: fwd and inverse replay edits must land as one default-off unit; no one-direction probe.",
+          "s2 control remains load-bearing for both fused_double_cdouble directions.",
+          "Run only after EXP-P2-BZ-METRO existing logs are adjudicated by its owner, so no competing apply-tail candidate shares an unpriced lambda baseline.",
+          "Post-strip stale-key/occupancy audit is required; altered stream cannot reuse the baseline table.",
+          "If the dependency bundle remains B3+shared primitives+lambda+strip, hand to EXP-ARCH-03/cross-cell reframer rather than local implementation."
+        ],
+        "severity": "medium",
+        "source_owner_and_allowed_paths": {
+          "allowed_paths": [
+            "src/point_add/trailmix_ludicrous/gcd.rs",
+            "src/point_add/trailmix_ludicrous/arith.rs",
+            "src/point_add/trailmix_ludicrous/fused.rs"
+          ],
+          "design_serialization_owner": "cross-cell-reframer because fold representation, lambda, and strip order span cells",
+          "ownership_evidence": ".pi/harness/ownership.py read-only check rejected structural-researcher edits on all listed paths.",
+          "source_owner": "implementer (sole scored-source writer)"
+        },
+        "trial_time_compute_budget": "No long compute authorized. Budget after proof approval: <=1 day proof/emulator; one 2-implementer-day paired edit; <=1 hour count/profile probes; one falsification cycle. Dirty scan, full evaluator, re-mine, and grind require separate authorization.",
+        "unresolved_directions": [
+          "Exact residual margin and inverse-side asymmetric cleanup cost.",
+          "Whether an adder-internal low-chunk merge is better; that is shared-primitive/reframing work.",
+          "Whether the wider fold is lambda-safe and avoids a Q plateau.",
+          "Whether the postpass discount survives stream order."
+        ]
+      },
+      {
+        "canonical_lifecycle_state": "IDEA / SCOPED discovery only; not a CANDIDATE. Codec-local work is LOCAL_PLATEAU (EXP-CODEC-01 and EXP-CODEC-02); this is explicitly handed to reframing.",
+        "cheapest_discriminator": "Static dependency-cut proof plus the retained y3_global_codec suffix census at a bounded 1,000 samples: confirm the final codec plan and enumerate observed terminal suffix support, then demonstrate whether the decoded s2 is needed before any available exact predecessor reconstruction. It is a ranking/disqualifying probe only, not lambda evidence and not a source build.",
+        "discovery_lifecycle": "IDEA -> SCOPED -> MODELED -> CHEAP_PROBE (dependency-cut proof) -> CANDIDATE only if a streaming cut is proved. Current state: SCOPED/MODELED.",
+        "emitted_to_executed_discount_assumptions": "No executable gate deletion is identified. Tape swaps/allocation changes are not Toffoli savings, and the 609->605 Tail4 local codec instead measured +8,570 CCX while Q stayed 1,154. Do not price information bits as executed-T or score savings.",
+        "evidence_debt": [
+          "No streaming rank/unrank circuit, cut proof, cost model, or candidate operation identity exists.",
+          "The y3 probe is Monte Carlo support evidence only and cannot prove exact support or lambda neutrality.",
+          "Any representation change needs full forward/inverse miter, allocation-liveness census, default identity proof, strip re-key plan, lambda adjudication if approximate, and evaluator gates."
+        ],
+        "evidence_paths": [
+          ".pi/experiments/EXP-CODEC-01.md",
+          ".pi/experiments/EXP-CODEC-02.md",
+          "src/point_add/trailmix_ludicrous/gcd.rs:1202-1431",
+          "src/point_add/trailmix_ludicrous/gcd.rs:1497-1620",
+          "src/point_add/trailmix_ludicrous/codec.rs:331-528",
+          "src/point_add/memory/repro/y3_global_codec.py:120-250",
+          "CAMPAIGN_FINDINGS.md:4.2"
+        ],
+        "exact_reproduction_commands": [
+          "cd /Users/makimakiver/ecdsafail-challenge && env PYTHONDONTWRITEBYTECODE=1 python3 -B src/point_add/memory/repro/y3_global_codec.py --samples 1000 --max-suffix 4 --state-cap 100000 --output /tmp/exp-wcr-01-suffix.json",
+          "cd /Users/makimakiver/ecdsafail-challenge && grep -nE \"circ.swap\\(s2, cur\\[2\\]\\)|apply_step_forward\\(|controlled_left_shift\\(circ, &s2\" src/point_add/trailmix_ludicrous/gcd.rs",
+          "cd /Users/makimakiver/ecdsafail-challenge && grep -nE \"jump_dialog_regions|dialog_tape_qubits|Self::(Pair|Triple)\" src/point_add/trailmix_ludicrous/codec.rs"
+        ],
+        "experiment_id": "EXP-WCR-01",
+        "frontier_commit_and_identities": {
+          "average_executed_toffoli": 1283487.051,
+          "canonical_ops_sha256": "0a4a412c939b05f59fa4bc33c2410e5bc110b07c7faded5e6db5f6b5db3ed0b0",
+          "compressed_ops_sha256": "6519bd01424d5513cd7f8232d4c15dfcbfe67561eb1b7f05b2cfec87c233a097",
+          "frontier_id": "2026-08-16-a2067dcf",
+          "lambda_total_measured": 17.62,
+          "qubits": 1154,
+          "rounded_toffoli": 1283487,
+          "score": 1481143998,
+          "source_commit": "a2067dcf3c991bcecfd51a4bf07cd7d1cc56c3a5",
+          "sub4_tail_nonce": 1337610097
+        },
+        "mechanism": "Do not locally delete s2 tape bits. Instead test whether an exact streaming rank/unrank representation can carry the required s2 information across the reverse replay boundary without materializing the tape beside the apply registers. The local dependency-cut observation is that reverse_gcd_jump decodes/swallows cur[2] into s2 before apply_step_forward, while the GCD body that could reconstruct predecessor state runs later; a valid design must commute or refactor that apply/body boundary while preserving the same symbol. This is representation-spanning by construction.",
+        "predeclared_falsifier": [
+          "No algebraic commutation moves the s2-controlled apply across reverse body without changing the coefficient map or adding at least the recovered-state work; then no local implementation is permitted.",
+          "Suffix support needs as many code bits as current restricted layout or code/decode Toffoli exceeds zero gate budget while Q remains 1,154.",
+          "Any approach assumes s2=0 rather than reconstructing it exactly, or changes Pair-1/Pair-2 symbol directionality.",
+          "A B0/probe confirms no binding tape-live peak, making a tape-only Q claim false."
+        ],
+        "predicted_direction": {
+          "Q": "0 for any suffix-only/tape-width local refinement because measured binding peaks are tape-free; a successful liveness redesign alone could change Q, but no magnitude is estimated.",
+          "executed_T": "No local saving claimed. A naive endpoint ranker adds traversals and is predicted nonnegative/worse; a successful streaming construction is unpriced.",
+          "lambda": "0 only for a bijective exact replay representation; any assumed tail s2=0 is lambda-exposed and excluded.",
+          "score": "nonnegative/no improvement expected for a local suffix codec at Q=1,154; unpriced for a complete streaming representation."
+        },
+        "reopening_trigger": "A constructive exact streaming cut that delivers s2 before replay apply, or a separately accepted cross-cell change that makes a binding peak tape-live. The two local negative refinements constitute LOCAL_PLATEAU only for codec-local controls, not a global codec bound.",
+        "representation_scope": "REFRAMING REQUIRED / LOCAL_PLATEAU for ordinary codec controls. This is not implementation-ready until the dependency-cut proof succeeds; it deliberately prevents a misleading tape-width or Q claim.",
+        "reversible_invariant_and_proof_obligation": "The code plus live walk state must bijectively reconstruct exactly the original (sub, swp, s2) for every step before the paired Bezout replay consumes it; decompression followed by replay must implement the inverse of compression followed by forward walk, return all code/scratch to zero, and leave zero residual phase. In particular s2 may not be reconstructed after apply because it controls fused_double_cdouble before reverse GCD body recovery. Prove a legal commutation/refactor cut or reject the local proposal.",
+        "rollback_unit": "One default-off TLM_STREAMING_DIALOG_CODEC flag in a single isolated implementer worktree, touching only codec/gcd; rollback is unset flag/discard commit. EXP-SQ-01 root edit remains absent; its rescue patch is irrelevant and must not be applied.",
+        "search_radius": "Exact JUMP=2 dialog/replay boundary: final symbols i=258 in the final Triple and i=259,260 in the final Pair at ITERS=261 (n3_for_iters=87, codec plan decrements to 86 triples, then Pair). Consider a restricted suffix representation only if it supplies s2 before apply_step_forward/apply_step_reverse, without changing the walk or tail-skip predicates. Proposed paths, if reframing approves, are gcd.rs and codec.rs only.",
+        "serialization_dependencies": [
+          "Walk recording, codec compression/decompression, reverse replay, and both Pair directions share the same s2 semantics.",
+          "A candidate must serialize against BZ replay changes: s2 is consumed by fused doubles and tail skips, so EXP-P2-01/EXP-BZ-01 results need repricing.",
+          "Binding Q peaks are owned by tape-free apply/square phases; coordinate/square liveness work is required before tape bits have Q value.",
+          "Changed stream order invalidates deep-strip ordinal keys and requires an occupancy/re-mine decision."
+        ],
+        "severity": "high for scope risk, low for immediate executable upside",
+        "source_owner_and_allowed_paths": {
+          "allowed_paths": [
+            "src/point_add/trailmix_ludicrous/gcd.rs",
+            "src/point_add/trailmix_ludicrous/codec.rs"
+          ],
+          "design_serialization_owner": "cross-cell-reframer",
+          "ownership_evidence": ".pi/harness/ownership.py rejects this read-only role on both scored paths.",
+          "source_owner": "implementer (sole writer) after cross-cell-reframer accepts a representation plan"
+        },
+        "trial_time_compute_budget": "Cheap discriminator only: <=30 minutes static proof/repro, 1,000-sample retained suffix probe, no circuit build. Stop after one failed dependency-cut proof. Any synthesis, source change, lambda scan, full evaluator, or re-mine needs separate cross-cell dispatch/approval.",
+        "unresolved_directions": [
+          "Whether a true streaming ranker has a pre-apply s2 recovery cut.",
+          "Exact terminal restricted-dialog rank and reversible gate cost.",
+          "Whether a cross-cell liveness redesign can make tape live at a binding peak.",
+          "Unrestricted joint codec synthesis remains open outside the closed local neighborhoods."
+        ]
+      }
+    ],
+    "residual_risks": [
+      "EXP-P2-BZ-METRO is now complete but intentionally not parsed/adjudicated here; its arm-B Pair-2 result can change BZ scheduling priority.",
+      "Root status is dirty outside this lane (results.tsv and untracked campaign files); no source build was run and no source file was edited.",
+      "Schema-v2 logical references use the schema-required .pi/campaigns namespace while exact durable paths above use this runtime's authoritative .pi/campaign-runs namespace.",
+      "BLOCKER (parent terminal retained evidence): src/point_add/memory/repro/__pycache__/artifact_io.cpython-313.pyc has tracked bytecode drift. The parent reports this must be reconciled before another source-bound campaign or promotion; this lane did not alter or restore it."
+    ]
+  },
+  "experiment_id": "EXP-STRUCTURAL-WALK-CODEC-R1",
+  "frontier_id": "2026-08-16-a2067dcf",
+  "metrics": {
+    "frontier": {
+      "average_executed_toffoli": 1283487.051,
+      "canonical_ops_sha256": "0a4a412c939b05f59fa4bc33c2410e5bc110b07c7faded5e6db5f6b5db3ed0b0",
+      "compressed_ops_sha256": "6519bd01424d5513cd7f8232d4c15dfcbfe67561eb1b7f05b2cfec87c233a097",
+      "frontier_id": "2026-08-16-a2067dcf",
+      "lambda_total_measured": 17.62,
+      "qubits": 1154,
+      "rounded_toffoli": 1283487,
+      "score": 1481143998,
+      "source_commit": "a2067dcf3c991bcecfd51a4bf07cd7d1cc56c3a5",
+      "sub4_tail_nonce": 1337610097
+    },
+    "measurement_boundary": "All deltas in cards are estimates unless explicitly labelled measured inherited evidence. No build, evaluator, lambda scan, census, or nonce grind was run by this lane."
+  },
+  "nonce": 1337610097,
+  "nonce_env": "SUB4_TAIL_NONCE",
+  "recovery": {
+    "actual_bundle_path": ".pi/campaigns/performance-2026-08-16/runs/20260816t232122Z/recovery/structural-walk-codec",
+    "command": "env PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=.pi python3 -B -m harness.cli continuations",
+    "first_attempt": "output-dir under .pi/campaign-runs was rejected by helper policy; retry under .pi/campaigns succeeded.",
+    "reason": "normal read-only discovery completion; emitted before handoff per circuit-evidence runtime contract",
+    "status": "EMITTED"
+  },
+  "recovery_ref": ".pi/campaigns/performance-2026-08-16/runs/20260816t232122Z/recovery/structural-walk-codec",
+  "role": "structural-researcher",
+  "run_id": "20260816t232122Z",
+  "schema_version": 2,
+  "scientific_verdict": "INCONCLUSIVE: one paired Bezout replay card has a bounded cheap proof/probe path; tape s2 elision is representation-spanning and not a local score candidate. No ceiling is inferred.",
+  "status": "SCOPED",
+  "terminal_ref": ".pi/campaigns/performance-2026-08-16/runs/20260816t232122Z/terminal.log",
+  "verification": {
+    "bytecode_guard": "Pre/post retry pyc-list digest was c0d29329dafc30089d2634401dfd5f5824cee8018be301b994908f3a29b16878; first continuation invocation used PYTHONPATH=. and failed before audit completion, then the correct PYTHONPATH=.pi retry passed with the same pre/post digest.",
+    "candidate_hash_interpretation": "candidate_ops_sha256/canonical_ops_sha256 are required schema anchors for this SCOPED no-edit result and denote the pinned baseline, not an altered candidate artifact.",
+    "default_source_identity": "Not re-built by this discovery lane; frontier.json records 9024/9024 four checks green for the exact identities above.",
+    "ownership": "ownership_violations returned implementer-only violations for all proposed scored paths; no source edits were made."
+  }
+}

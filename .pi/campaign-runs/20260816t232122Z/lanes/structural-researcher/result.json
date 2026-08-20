@@ -1,0 +1,132 @@
+{
+  "schema_version": 1,
+  "experiment_id": "EXP-BZ-02",
+  "role": "structural-researcher",
+  "status": "PARKED",
+  "frontier_id": "2026-08-16-a2067dcf",
+  "candidate_ops_sha256": "6519bd01424d5513cd7f8232d4c15dfcbfe67561eb1b7f05b2cfec87c233a097",
+  "canonical_ops_sha256": "0a4a412c939b05f59fa4bc33c2410e5bc110b07c7faded5e6db5f6b5db3ed0b0",
+  "changed_paths": [],
+  "nonce_env": "SUB4_TAIL_NONCE",
+  "nonce": 1337610097,
+  "scientific_verdict": "PARKED/LOCAL_PLATEAU for the local strong deferred-reduction form; the remaining weak form is representation-spanning and is already escalated as EXP-ARCH-03. This is not a global ceiling.",
+  "commands": [
+    "python3 - <<'PY' ... ownership_violations(\"structural-researcher\", [\"src/point_add/trailmix_ludicrous/gcd.rs\", \"src/point_add/trailmix_ludicrous/fused.rs\", \"src/point_add/trailmix_ludicrous/arith.rs\"]) ... PY (read-only ownership check; returned three implementer-only violations)",
+    "python3 -m json.tool .pi/campaign-runs/20260816t232122Z/lanes/structural-researcher/result.json"
+  ],
+  "metrics": {
+    "baseline": {
+      "T_executed": 1283487.051,
+      "T_rounded": 1283487,
+      "Q": 1154,
+      "score": 1481143998,
+      "lambda_total": 17.62
+    },
+    "weak_deferred_clean_hypothesis": {
+      "T_executed_sign": "negative only if fold growth is smaller than the two removed clean phases; scoped estimate -5000 to -8000 executed Toffoli",
+      "score_sign_at_Q1154": "negative; estimated -5770000 to -9232000 only before lambda, strip, and Q-guard adjudication",
+      "Q_sign": "nominally 0 because fused_double_cdouble already allocates hi and hi2; unresolved +1 plateau risk must be rejected by B0 owner census",
+      "lambda_sign": "positive risk +0.5 to +2.5 lambda from the wider fold/carry-escape exposure; this multiplies expected grind work by exp(0.5) to exp(2.5), and no paired candidate measurement exists",
+      "emitted_to_executed_note": "each clean target is 4943 emitted and 2471.5 expected-executed (50% discount); do not price its emitted count as an executed saving"
+    },
+    "strong_defer_add_fold_form": {
+      "verdict": "locally falsified at scout pricing",
+      "reason": "the cswap between add and doubling must widen from 256 to 257 bits, adding +256 full-price Toffoli per iteration per direction, which exceeds the approximately 66.7 saved per relevant operation"
+    }
+  },
+  "verification": {
+    "current_candidate_status": "No candidate source stream was implemented or built by this read-only lane. candidate_ops_sha256 and canonical_ops_sha256 are schema-required pinned-baseline anchors, not a claim that an altered candidate artifact exists.",
+    "baseline_identity": "compressed 6519bd01424d5513cd7f8232d4c15dfcbfe67561eb1b7f05b2cfec87c233a097; canonical 0a4a412c939b05f59fa4bc33c2410e5bc110b07c7faded5e6db5f6b5db3ed0b0; 9024/9024 four checks green as recorded in .pi/frontier.json",
+    "required_before_reopen": [
+      "default-off compressed and canonical identity proof",
+      "knob liveness via changed operation identity/count",
+      "value-bounds proof that the widened post-fold residual remains below 2^256 minus the next cout-addend bound",
+      "paired forward/reverse reversible replay with phase word clean and all allocations freed",
+      "B0 plateau-owner census at every affected window showing Q <= 1154",
+      "paired dirty-scan lambda adjudication: SAFE only if upper CI(delta lambda) < +0.5",
+      "post-strip occupancy/stale-key audit and, if it changes stream order, a stream-specific strip re-mine before any full evaluation"
+    ],
+    "not_run_by_lane": [
+      "build_circuit",
+      "eval_circuit",
+      "TRACE_TLM_TOF",
+      "TRACE_TLM_PROFILE",
+      "TLM_DIRTY_SCAN",
+      "full metrology",
+      "nonce grind"
+    ]
+  },
+  "evidence": {
+    "card_type": "single-cell B3 Bezout-apply structural card, parked at its local boundary; weak continuation crosses B3/P/lambda/strip and is owned for reframing by EXP-ARCH-03",
+    "dispatch_receipt": ".pi/campaign-runs/20260816t232122Z/lanes/structural-researcher/dispatch.json",
+    "authoritative_campaign_state": [
+      "CAMPAIGN_FINDINGS.md:3.4",
+      ".pi/frontier.json",
+      ".pi/state/campaign.json:records[id=EXP-BZ-02]",
+      ".pi/experiments/EXP-BZ-02.md"
+    ],
+    "invocation_and_dependency_evidence": [
+      "src/point_add/trailmix_ludicrous/gcd.rs:1558-1570 invokes apply_step_forward during forward replay; gcd.rs:1327-1339 invokes apply_step_reverse during reverse replay.",
+      "src/point_add/trailmix_ludicrous/gcd.rs:1738-1783 orders forward controlled_mod_add_k -> 256-bit cswap -> fused_double_cdouble; the reduction clean to be deferred is inside arith::controlled_mod_add_k.",
+      "src/point_add/trailmix_ludicrous/gcd.rs:1786-1823 orders reverse fused_double_cdouble_reverse -> 256-bit cswap -> controlled_mod_sub_vented, giving the required inverse-side paired edit.",
+      "src/point_add/trailmix_ludicrous/arith.rs:1503-1536 shows controlled_mod_add_k emits fold then tlm_apply_forward_mod_add_clean / controlled_lt_msbs_conditional; gcd.rs:1826-1860 supplies the inverse fold and clean path.",
+      "src/point_add/trailmix_ludicrous/fused.rs:1865-1903 and :1921-1961 show the paired fused fold calls, existing transient hi/hi2 allocation, their cleanup, and LSBS-indexed borrow window.",
+      "src/point_add/trailmix_ludicrous/arith.rs:450-454 sets PAD=19 and LSBS=20+F_BITLEN (53); therefore the claimed wider addend must stay within the existing fold-window layout, not merely fit an arithmetic integer."
+    ],
+    "reversible_and_phase_invariants": [
+      "Pair-1/Pair-2 directionality: apply_step_forward and apply_step_reverse must change as a mathematical inverse pair; changing only the forward clean leaves the M^-T replay unmatched and can dirty the phase word.",
+      "The deferred clean is a width-growth guard. The proof obligation is stronger than functional equality: before the next 256-bit cout adder, post-fold residual < 2^256 - max(next-cout-addend); otherwise overflow changes value and/or cleanup.",
+      "The strong form cannot move the full add fold through the interposed cswap without changing the swap operand lifetime/width to 257 bits; its full-price +256 Toffoli/iteration/direction falsifies the local saving estimate.",
+      "fused_double_cdouble and reverse explicitly zero_and_free hi and hi2; any weak rewrite must preserve these allocation lifetimes, clean all conditional/Hmr scratch, and leave zero residual phase. Final ancilla=0 alone is insufficient because reset laundering can surface as phase.",
+      "s2 remains the control for fused_double_cdouble in both directions. No s2 conditionality may be weakened, re-ordered, or paired asymmetrically."
+    ],
+    "strip_and_replay_constraints": [
+      "The current deep-strip table is tuple/occurrence/occupancy keyed and has zero stale keys at baseline (CAMPAIGN_FINDINGS.md:2.2). Any edit reorders the stream, so pre-strip arithmetic savings are not final executed savings.",
+      "EXP-SQ-01 demonstrates the relevant failure mode: -1086 pre-strip CCX became +5806 final CCX after 6799 stale keys. A BZ-02 candidate requires post-strip occupancy evidence or a stream-specific re-mine, not transferred keys.",
+      "The engine is tape-recorded/replayed JUMP=2 binary extended Euclid; this card changes replay reduction, not the walk/tape symbols. Replaying applies must consume precisely the existing symbol interpretation."
+    ],
+    "falsifier": [
+      "FOLD COST: count-only/TRACE evidence shows aggregate affected fold growth >= removal of tlm_apply_forward_mod_add_clean plus tlm_apply_inverse_mod_sub_clean.",
+      "VALUE/REVERSIBILITY: a symbolic bound or classical counterexample permits post-fold residual >= 2^256 before the next cout adder, or any four-check/phase failure occurs.",
+      "LAMBDA: paired dirty scan upper CI(delta lambda) >= +0.5 (not SAFE); immediate REFUTED if mean classical >30 per 9024-equivalent or any candidate round exceeds twice the baseline maximum.",
+      "Q/STRIP: B0 owner census exceeds Q=1154, or stream perturbation has stale-key/occupancy suppression large enough to erase the pre-strip saving."
+    ],
+    "cheapest_discriminator": {
+      "action": "First execute the value-bound proof/emulation without source mutation; only if it establishes margin, implementer adds one default-off paired TLM_DEFER_MOD_CLEAN flag and runs POINT_ADD_COUNT_ONLY plus TRACE_TLM_TOF.",
+      "future_command_not_run": "CARGO_TARGET_DIR=/tmp/w1scout-target TLM_DEFER_MOD_CLEAN=1 POINT_ADD_COUNT_ONLY=1 TRACE_TLM_TOF=1 cargo run --release --bin build_circuit",
+      "acceptance_observation": "both clean phases approximately zero and affected fold growth strictly less than 4943 expected-executed total clean removal; artifact identity must differ while default-off preserves both pinned hashes."
+    },
+    "source_ownership_scope": {
+      "proposed_edit_paths": [
+        "src/point_add/trailmix_ludicrous/gcd.rs",
+        "src/point_add/trailmix_ludicrous/fused.rs",
+        "src/point_add/trailmix_ludicrous/arith.rs"
+      ],
+      "ownership_check": ".pi/harness/ownership.py returned only implementer may edit scored circuit source for each proposed path",
+      "disposition": "This lane made no edits. Because the weak continuation couples B3 replay to shared fold representation, lambda, and stream strip economics, it must remain with cross-cell reframing/implementer serialization, not this read-only structural lane."
+    },
+    "budget": {
+      "local_budget_remaining": "No experiment budget consumed by this lane; use existing EXP-BZ-02 cap if reopened.",
+      "predeclared_cap": "0.5-1 day value proof, then at most 2 implementer-days for one paired default-off restructure and 1 hour probes; one falsification cycle only.",
+      "forbidden_without_authorization": [
+        "dirty-scan/metrology",
+        "9024-shot evaluation",
+        "strip re-mine",
+        "nonce grind"
+      ]
+    },
+    "rollback_unit": "One default-off TLM_DEFER_MOD_CLEAN flag wrapping both forward and reverse edits; rollback is unset flag or discard the single implementer commit. No persistent table may be reused across altered stream order.",
+    "unresolved_directions": [
+      "Whether a proof can establish the necessary post-fold headroom; no measured tail distribution is retained for this card.",
+      "Whether an asymmetric inverse cleanup substitution has a strictly smaller exact form; it is a separate card only if the count probe exposes a gap.",
+      "Whether folding the f-addend into the low adder chunk can avoid representation/lambda debt; this belongs to shared primitives/cross-cell reframing.",
+      "Whether the weak form preserves Q and survives the deep-strip occupancy tax is unmeasured."
+    ],
+    "reopening_trigger": [
+      "A source-level value proof or measured distribution establishes at least eight bits of headroom below 2^256 for the relevant post-fold residual.",
+      "An LSBS/fold-window implementation change re-prices the wider-addend layout.",
+      "A cross-cell reframer accepts the B3/P/lambda/strip dependency bundle and provides a stream-specific strip plan plus a paired-lambda budget."
+    ],
+    "severity": "medium: the local strong form is economically falsified; the weak form has material estimated T upside but unclosed correctness, phase, lambda, Q, and strip obligations."
+  }
+}

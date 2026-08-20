@@ -1,0 +1,767 @@
+EXP-ARCH-07 D0=PASSED D1=VERIFIED_WITNESS(28/28) D2=NOT_RUN_PRECONDITION_FALSE REPLAY=PASSED verdict=REFUTED_DIRECT_NO_CARRIER_TERM_TRANSPORT
+FLEET_RECOVERY_BUNDLE_BEGIN
+timestamp_utc=2026-08-17T08:50:52.196482+00:00
+repository=/Users/makimakiver/ecdsafail-challenge
+status=REFUTED
+reason=D0 extraction agrees; deterministic D1 found and independently replayed a local i=0 mismatch for named b_hi_f_32_sub direct no-carrier transport; D2 condition was false.
+experiment_id=EXP-ARCH-07
+source_commit=a2067dcf3c991bcecfd51a4bf07cd7d1cc56c3a5
+--- REPRODUCTION COMMANDS ---
+command[1]=PYTHONDONTWRITEBYTECODE=1 python3 -B .pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/artifacts/exp_arch07_miter.py --source-root /Users/makimakiver/ecdsafail-challenge --d0 --emit .pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/artifacts/d0-extraction-map.json
+command[2]=PYTHONDONTWRITEBYTECODE=1 python3 -B .pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/artifacts/exp_arch07_miter.py --source-root /Users/makimakiver/ecdsafail-challenge --d1 --emit .pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/artifacts/d1.json
+command[3]=PYTHONDONTWRITEBYTECODE=1 python3 -B .pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/artifacts/exp_arch07_miter.py --source-root /Users/makimakiver/ecdsafail-challenge --replay .pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/artifacts/d1.json --emit .pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/artifacts/replay.json
+--- GIT STATUS ---
+ M results.tsv
+?? .pi/
+?? AGENTS.md
+?? CAMPAIGN_FINDINGS.md
+--- GIT DIFF ---
+diff --git a/results.tsv b/results.tsv
+index 22b9f18..0ccae93 100644
+--- a/results.tsv
++++ b/results.tsv
+@@ -6,3 +6,6 @@ timestamp	commit	toffoli	clifford	qubits	ops	correct	notes
+ 1780024119	935dc1f	3962753.000	22627113.285	2715	28697222	OK	
+ 1780047641	750fdf9	3962753.000	22627113.285	2715	28697222	OK	
+ 1780052385	196206e	3962753.000	22627113.285	2715	28697222	OK	
++1786907851	a2067dc	1283487.051	5299506.551	1154	8958690	OK	
++1786915207	bb23789	1283487.051	5299506.551	1154	8958690	OK	
++1786915310	bb23789	1283487.051	5299506.551	1154	8958690	OK	
+--- GIT DIFF CACHED ---
+
+--- FILE results.tsv ---
+timestamp	commit	toffoli	clifford	qubits	ops	correct	notes
+1780021974	fa473ea	3942753.000	22627118.169	2715	28677221	OK	
+1780022568	935dc1f	3942753.000	22627118.169	2715	28677221	OK	
+1780023874	935dc1f	3942753.000	22627118.169	2715	28677221	OK	
+1780023900	935dc1f	3962753.000	22627113.285	2715	28697222	OK	
+1780024119	935dc1f	3962753.000	22627113.285	2715	28697222	OK	
+1780047641	750fdf9	3962753.000	22627113.285	2715	28697222	OK	
+1780052385	196206e	3962753.000	22627113.285	2715	28697222	OK	
+1786907851	a2067dc	1283487.051	5299506.551	1154	8958690	OK	
+1786915207	bb23789	1283487.051	5299506.551	1154	8958690	OK	
+1786915310	bb23789	1283487.051	5299506.551	1154	8958690	OK	
+--- FILE score.json ---
+{
+  "score": 1481143998,
+  "metrics": {
+    "toffoli": 1283487,
+    "qubits": 1154
+  }
+}
+--- FILE .pi/experiments/EXP-ARCH-07.json ---
+.pi/experiments/EXP-ARCH-07.json: MISSING
+--- FILE .pi/experiments/EXP-ARCH-07.md ---
+# EXP-ARCH-07 — Square f-term modular-wrap cone certificate at the first forward-divstep boundary
+
+**Status:** SCOPED. This is a no-build dependency proof, not a circuit deletion or an implementation candidate.
+
+- **experiment_id:** `EXP-ARCH-07`
+- **lane / owner:** `REFRAMING` / `cross-cell-reframer`
+- **mechanism_id:** `square-term-transport`
+- **implementation_ready:** `false`
+- **search radius:** one selected square `b_hi` NAF term from `square.rs::apply_f_times_value_tagged(value.len()==N)` / `apply_shifted_hi_term`, through `ec_add.rs::tlm_forward_multiply` and `gcd.rs::forward_gcd_jump` iteration `i=0`; includes the first `v[0]`-controlled shifts, `(t1, s2, subtracted, swp)`, Step0 raw/encoded symbol, post-step active `(u,v)`, and matching reverse-decode requirement. Excludes schedule tuning, codec width, local square add/sub, early-sum freeing, deep-strip mutation, and census.
+- **mechanism:** a selected high-positioned f-term is still a mod-p update: carry or correction can alter low `v[0]`, then the first-divstep control tuple and Step0 dialog symbol. The necessary-condition proof compares exact term-on versus selected-term-deferred behavior before any hypothetical later restoration.
+- **invariants / proof obligations:** for every modeled input, the two paths must agree on complete `i=0` `(t1,s2,subtracted,swp)`, Step0 raw and encoded symbol, and post-step `(u,v)`. The Step0 encoder/decoder must remain paired, including `s2` conditionality. A future implementation still needs a source-use/paired-restore certificate, default identities, Q/occupancy, phase/ancilla, lambda, evaluator, and candidate nonce gates.
+- **cheapest discriminator:** deterministic exact-integer term-on/term-off miter after independently validating the baseline extraction map, followed only on a no-witness D1 outcome by one bounded exact bit-vector SAT/UNSAT query. SAT models require independent integer replay.
+- **falsifier:** any independently replayed reachable mismatch in the complete `i=0` control tuple, Step0 symbol, or post-step state refutes direct no-carrier defer/delete for this named term only. Sampling no-witness, timeout, extraction ambiguity, or unreplayed SAT is inconclusive.
+- **budget:** one temporary pure-model script and one solver query; maximum 30 minutes wall; no Rust build, source edit, lambda scan, evaluator, census, or grind.
+- **predicted direction:** proof stage itself has `T/Q/score/lambda = 0`. No candidate direction is established; future transport is separately priced and re-gated.
+- **unresolved direction:** whether a selected term has a modular-wrap-safe first-step cone and a later exact existing restore carrier; later source uses, replay, phase, allocation, strip ordinals, Q, lambda, and evaluation remain open.
+- **reopening trigger:** a different transported term, extraction map, restoration boundary, proven existing dialog/replay carrier restored before every consumer, changed paired first-divstep control map, or exact source certificate showing a witness lies outside the candidate domain.
+- **rollback unit:** if separately authorized after proof and source-use closure, one isolated implementer worktree commit behind default-off `TLM_SQ_STEP0_FTERM_TRANSPORT`, containing the complete paired square/walk/replay change; rollback is unset flag/discard the single commit.
+
+## Reproduction
+
+```bash
+# D1: approved temporary/output-only model, no cargo
+PYTHONDONTWRITEBYTECODE=1 python3 -B <run>/artifacts/exp_arch07_miter.py \
+  --source-root /Users/makimakiver/ecdsafail-challenge --term b_hi --first-step-only \
+  --edge-residues 0,1,p-2,p-1 --emit <run>/artifacts/d1.json
+
+# D2 only if D1 has no witness; replay each SAT model independently
+PYTHONDONTWRITEBYTECODE=1 python3 -B <run>/artifacts/exp_arch07_smt.py --emit <run>/artifacts/d2.json
+PYTHONDONTWRITEBYTECODE=1 python3 -B <run>/artifacts/exp_arch07_miter.py --replay <run>/artifacts/d2.json --emit <run>/artifacts/replay.json
+```
+
+This card preserves the round-2 `EXP-ARCH-07` mechanism, scope, invariants, falsifier, proof obligations, budget, and reopening trigger from `.pi/campaign-runs/20260816t232122Z/reports/round2-square-walk-reframe.json`.
+--- BINARY ops.bin ---
+ops.bin: size=29461502 sha256=6519bd01424d5513cd7f8232d4c15dfcbfe67561eb1b7f05b2cfec87c233a097
+--- BINARY .pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/artifacts/exp_arch07_miter.py ---
+.pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/artifacts/exp_arch07_miter.py: size=7868 sha256=c302afb370b9785f23bb15955e8e5dc821434c066aca37da3b66070364c5344c
+--- BINARY .pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/artifacts/d0-extraction-map.json ---
+.pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/artifacts/d0-extraction-map.json: size=1744 sha256=1f19fbf5e57062f9d95e560400c8a51121a09c5ad99ee29460c5aa1cda0c6f64
+--- BINARY .pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/artifacts/d1.json ---
+.pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/artifacts/d1.json: size=54910 sha256=7a413dc9bcb23ab6ee2bf72dfc09805d48e552a16f6366b75ced03facb7c9162
+--- BINARY .pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/artifacts/replay.json ---
+.pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/artifacts/replay.json: size=2469 sha256=72add013ab3de9baf4645dcdb50c18fe9cb0bb10e09e00fa188929436f593c42
+--- BINARY .pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/artifacts/commands.txt ---
+.pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/artifacts/commands.txt: size=1086 sha256=d2e17a8e1ca74f47c6c7528d644ffe3e724f5388c594a36f4fb7aea22fa569d0
+--- BINARY .pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/artifacts/recovery-context.json ---
+.pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/artifacts/recovery-context.json: size=4409 sha256=30f158f3379913391d41e71be70071cc4d76b25821bc30e8e7b3d108530b7629
+--- BINARY .pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/proof-agent-output.json ---
+.pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/proof-agent-output.json: size=6961 sha256=1d24d8c534c32942d3e2a904e0b0df51673aa522f7f4c56378048a4cab16ef51
+--- LOG TAIL .pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/terminal.log ---
+EXP-ARCH-07 D0=PASSED D1=VERIFIED_WITNESS(28/28) D2=NOT_RUN_PRECONDITION_FALSE REPLAY=PASSED verdict=REFUTED_DIRECT_NO_CARRIER_TERM_TRANSPORT
+FLEET_RECOVERY_BUNDLE_END
+--- PARENT RUN ENVELOPE ---
+--- FILE .pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/dispatch.json ---
+{
+  "agent": "cross-cell-reframer",
+  "base_identity": {
+    "repository_commit": "a2067dcf3c991bcecfd51a4bf07cd7d1cc56c3a5",
+    "scored_source_tree_sha256": "7ae7eabe20bc5459d902d2f4c921bb7ea53f48f9c82ae88d9a7f93c2bbefd7f9",
+    "trusted_source_tree_sha256": "fdd8fe31d933f8861d24d9ffc474a21899de22874ec41ff5579a3c138f320562"
+  },
+  "budget": {
+    "census": false,
+    "evaluation": false,
+    "grinding": false,
+    "kind": "bounded exact-integer and bit-vector proof",
+    "lambda": false,
+    "rust_build": false,
+    "solver_queries": 1,
+    "source_edits": false,
+    "wall_seconds": 1800
+  },
+  "campaign_id": "performance-2026-08-16",
+  "commands": [
+    "D0 validate exact selected b_hi extraction map from the pinned source",
+    "D1 deterministic exact-integer term-on/term-off miter including residues 0,1,p-2,p-1",
+    "D2 only after D1 has no witness: one bounded bit-vector query; independently integer-replay every SAT model",
+    "preserve scripts, models, witnesses, solver output, hashes, terminal output, and result evidence in this run envelope"
+  ],
+  "control_plane_sha256": "c4c09b006e1a02487d1dc6ab4abc792fd5fe04d4605b27a9f7e030968aefb122",
+  "expected_result": ".pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/result.json",
+  "experiment_id": "EXP-ARCH-07",
+  "frontier_id": "2026-08-16-a2067dcf",
+  "lane": "REFRAMING",
+  "owner": "cross-cell-reframer",
+  "run_id": "exp-arch-07-proof-20260817t08471786956426z",
+  "schema_version": 1,
+  "soft_deadlines": {
+    "checkpoint": 0.8,
+    "finalize": 0.9,
+    "grace": 0.95
+  },
+  "task": "Explicitly approved EXP-ARCH-07 bounded proof only: exact-integer D0/D1 plus, only after D1 no witness, one bounded bit-vector D2 query. No repository source edit, Rust build, lambda, evaluator, census, grind, certification, promotion, or continuation restart. Preserve all temporary proof artifacts in the run envelope.",
+  "timeout_seconds": 1800,
+  "worktree": "/Users/makimakiver/ecdsafail-challenge"
+}
+--- FILE .pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/checkpoint.json ---
+{
+  "artifact_hashes": {
+    ".pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/artifacts/commands.txt": "d2e17a8e1ca74f47c6c7528d644ffe3e724f5388c594a36f4fb7aea22fa569d0",
+    ".pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/artifacts/d0-extraction-map.json": "1f19fbf5e57062f9d95e560400c8a51121a09c5ad99ee29460c5aa1cda0c6f64",
+    ".pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/artifacts/d0.stdout.log": "20e358a2eb1c26a9cf9e08f134e2e79a8da4970516f8dd42f08b6a34d198474e",
+    ".pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/artifacts/d1.json": "7a413dc9bcb23ab6ee2bf72dfc09805d48e552a16f6366b75ced03facb7c9162",
+    ".pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/artifacts/d1.stdout.log": "8358f27cbb2b754c0396cf97765142d7b3306aeacbab3b834e6e6a23b1154f23",
+    ".pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/artifacts/exp_arch07_miter.py": "c302afb370b9785f23bb15955e8e5dc821434c066aca37da3b66070364c5344c",
+    ".pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/artifacts/recovery-context.json": "30f158f3379913391d41e71be70071cc4d76b25821bc30e8e7b3d108530b7629",
+    ".pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/artifacts/replay.json": "72add013ab3de9baf4645dcdb50c18fe9cb0bb10e09e00fa188929436f593c42",
+    ".pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/artifacts/replay.stdout.log": "6f4e94037519abf8f748aaae15b2810b1dce25ac25fc720a31e3fd64a51454aa",
+    ".pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/proof-agent-output.json": "1d24d8c534c32942d3e2a904e0b0df51673aa522f7f4c56378048a4cab16ef51"
+  },
+  "changed_paths": [
+    ".pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/artifacts/exp_arch07_miter.py",
+    ".pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/artifacts/d0-extraction-map.json",
+    ".pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/artifacts/d0.stdout.log",
+    ".pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/artifacts/d1.json",
+    ".pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/artifacts/d1.stdout.log",
+    ".pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/artifacts/replay.json",
+    ".pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/artifacts/replay.stdout.log",
+    ".pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/artifacts/commands.txt",
+    ".pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/artifacts/recovery-context.json",
+    ".pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/proof-agent-output.json"
+  ],
+  "commands": [
+    "PYTHONDONTWRITEBYTECODE=1 python3 -B .pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/artifacts/exp_arch07_miter.py --source-root /Users/makimakiver/ecdsafail-challenge --d0 --emit .pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/artifacts/d0-extraction-map.json",
+    "PYTHONDONTWRITEBYTECODE=1 python3 -B .pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/artifacts/exp_arch07_miter.py --source-root /Users/makimakiver/ecdsafail-challenge --d1 --emit .pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/artifacts/d1.json",
+    "PYTHONDONTWRITEBYTECODE=1 python3 -B .pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/artifacts/exp_arch07_miter.py --source-root /Users/makimakiver/ecdsafail-challenge --replay .pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/artifacts/d1.json --emit .pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/artifacts/replay.json"
+  ],
+  "evidence_paths": [
+    ".pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/artifacts/exp_arch07_miter.py",
+    ".pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/artifacts/d0-extraction-map.json",
+    ".pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/artifacts/d0.stdout.log",
+    ".pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/artifacts/d1.json",
+    ".pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/artifacts/d1.stdout.log",
+    ".pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/artifacts/replay.json",
+    ".pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/artifacts/replay.stdout.log",
+    ".pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/artifacts/commands.txt",
+    ".pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/artifacts/recovery-context.json",
+    ".pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/proof-agent-output.json"
+  ],
+  "gate": "D1_REPLAYED_WITNESS",
+  "remaining_obligations": [
+    "No source candidate exists. Any different term/extraction/restoration boundary needs a new dispatched proof; this finding does not address later source uses, paired restoration, phase/ancilla, Q, strip occupancy, lambda, or four-check evaluation.",
+    "Emit and preserve recovery bundle."
+  ],
+  "run_id": "exp-arch-07-proof-20260817t08471786956426z",
+  "schema_version": 1,
+  "timestamp": "2026-08-17T08:50:39.885209+00:00"
+}
+--- FILE .pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/result.json ---
+.pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/result.json: MISSING
+--- FILE .pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/terminal.log ---
+EXP-ARCH-07 D0=PASSED D1=VERIFIED_WITNESS(28/28) D2=NOT_RUN_PRECONDITION_FALSE REPLAY=PASSED verdict=REFUTED_DIRECT_NO_CARRIER_TERM_TRANSPORT
+--- BINARY .pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/recovery/worktree.patch ---
+.pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/recovery/worktree.patch: MISSING
+--- BINARY .pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/artifacts/exp_arch07_miter.py ---
+.pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/artifacts/exp_arch07_miter.py: size=7868 sha256=c302afb370b9785f23bb15955e8e5dc821434c066aca37da3b66070364c5344c
+--- BINARY .pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/artifacts/d0-extraction-map.json ---
+.pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/artifacts/d0-extraction-map.json: size=1744 sha256=1f19fbf5e57062f9d95e560400c8a51121a09c5ad99ee29460c5aa1cda0c6f64
+--- BINARY .pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/artifacts/d0.stdout.log ---
+.pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/artifacts/d0.stdout.log: size=154 sha256=20e358a2eb1c26a9cf9e08f134e2e79a8da4970516f8dd42f08b6a34d198474e
+--- BINARY .pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/artifacts/d1.json ---
+.pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/artifacts/d1.json: size=54910 sha256=7a413dc9bcb23ab6ee2bf72dfc09805d48e552a16f6366b75ced03facb7c9162
+--- BINARY .pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/artifacts/d1.stdout.log ---
+.pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/artifacts/d1.stdout.log: size=146 sha256=8358f27cbb2b754c0396cf97765142d7b3306aeacbab3b834e6e6a23b1154f23
+--- BINARY .pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/artifacts/replay.json ---
+.pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/artifacts/replay.json: size=2469 sha256=72add013ab3de9baf4645dcdb50c18fe9cb0bb10e09e00fa188929436f593c42
+--- BINARY .pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/artifacts/replay.stdout.log ---
+.pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/artifacts/replay.stdout.log: size=167 sha256=6f4e94037519abf8f748aaae15b2810b1dce25ac25fc720a31e3fd64a51454aa
+--- BINARY .pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/artifacts/commands.txt ---
+.pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/artifacts/commands.txt: size=1086 sha256=d2e17a8e1ca74f47c6c7528d644ffe3e724f5388c594a36f4fb7aea22fa569d0
+--- BINARY .pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/artifacts/recovery-context.json ---
+.pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/artifacts/recovery-context.json: size=4409 sha256=30f158f3379913391d41e71be70071cc4d76b25821bc30e8e7b3d108530b7629
+--- BINARY .pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/proof-agent-output.json ---
+.pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/proof-agent-output.json: size=6961 sha256=1d24d8c534c32942d3e2a904e0b0df51673aa522f7f4c56378048a4cab16ef51
+EXP-ARCH-07 recovery-delimiters=observed recovery=emitted
+EXP-ARCH-07 finalized schema-v2 output; emitting final recovery bundle.
+FLEET_RECOVERY_BUNDLE_BEGIN
+timestamp_utc=2026-08-17T08:51:30.654917+00:00
+repository=/Users/makimakiver/ecdsafail-challenge
+status=REFUTED
+reason=Finalized local direct-term proof: D0 passed; D1 witness independently replayed; D2 was correctly skipped because its no-witness precondition was false.
+experiment_id=EXP-ARCH-07
+source_commit=a2067dcf3c991bcecfd51a4bf07cd7d1cc56c3a5
+--- REPRODUCTION COMMANDS ---
+command[1]=PYTHONDONTWRITEBYTECODE=1 python3 -B .pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/artifacts/exp_arch07_miter.py --source-root /Users/makimakiver/ecdsafail-challenge --d0 --emit .pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/artifacts/d0-extraction-map.json
+command[2]=PYTHONDONTWRITEBYTECODE=1 python3 -B .pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/artifacts/exp_arch07_miter.py --source-root /Users/makimakiver/ecdsafail-challenge --d1 --emit .pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/artifacts/d1.json
+command[3]=PYTHONDONTWRITEBYTECODE=1 python3 -B .pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/artifacts/exp_arch07_miter.py --source-root /Users/makimakiver/ecdsafail-challenge --replay .pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/artifacts/d1.json --emit .pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/artifacts/replay.json
+--- GIT STATUS ---
+ M results.tsv
+?? .pi/
+?? AGENTS.md
+?? CAMPAIGN_FINDINGS.md
+--- GIT DIFF ---
+diff --git a/results.tsv b/results.tsv
+index 22b9f18..0ccae93 100644
+--- a/results.tsv
++++ b/results.tsv
+@@ -6,3 +6,6 @@ timestamp	commit	toffoli	clifford	qubits	ops	correct	notes
+ 1780024119	935dc1f	3962753.000	22627113.285	2715	28697222	OK	
+ 1780047641	750fdf9	3962753.000	22627113.285	2715	28697222	OK	
+ 1780052385	196206e	3962753.000	22627113.285	2715	28697222	OK	
++1786907851	a2067dc	1283487.051	5299506.551	1154	8958690	OK	
++1786915207	bb23789	1283487.051	5299506.551	1154	8958690	OK	
++1786915310	bb23789	1283487.051	5299506.551	1154	8958690	OK	
+--- GIT DIFF CACHED ---
+
+--- FILE results.tsv ---
+timestamp	commit	toffoli	clifford	qubits	ops	correct	notes
+1780021974	fa473ea	3942753.000	22627118.169	2715	28677221	OK	
+1780022568	935dc1f	3942753.000	22627118.169	2715	28677221	OK	
+1780023874	935dc1f	3942753.000	22627118.169	2715	28677221	OK	
+1780023900	935dc1f	3962753.000	22627113.285	2715	28697222	OK	
+1780024119	935dc1f	3962753.000	22627113.285	2715	28697222	OK	
+1780047641	750fdf9	3962753.000	22627113.285	2715	28697222	OK	
+1780052385	196206e	3962753.000	22627113.285	2715	28697222	OK	
+1786907851	a2067dc	1283487.051	5299506.551	1154	8958690	OK	
+1786915207	bb23789	1283487.051	5299506.551	1154	8958690	OK	
+1786915310	bb23789	1283487.051	5299506.551	1154	8958690	OK	
+--- FILE score.json ---
+{
+  "score": 1481143998,
+  "metrics": {
+    "toffoli": 1283487,
+    "qubits": 1154
+  }
+}
+--- FILE .pi/experiments/EXP-ARCH-07.json ---
+.pi/experiments/EXP-ARCH-07.json: MISSING
+--- FILE .pi/experiments/EXP-ARCH-07.md ---
+# EXP-ARCH-07 — Square f-term modular-wrap cone certificate at the first forward-divstep boundary
+
+**Status:** SCOPED. This is a no-build dependency proof, not a circuit deletion or an implementation candidate.
+
+- **experiment_id:** `EXP-ARCH-07`
+- **lane / owner:** `REFRAMING` / `cross-cell-reframer`
+- **mechanism_id:** `square-term-transport`
+- **implementation_ready:** `false`
+- **search radius:** one selected square `b_hi` NAF term from `square.rs::apply_f_times_value_tagged(value.len()==N)` / `apply_shifted_hi_term`, through `ec_add.rs::tlm_forward_multiply` and `gcd.rs::forward_gcd_jump` iteration `i=0`; includes the first `v[0]`-controlled shifts, `(t1, s2, subtracted, swp)`, Step0 raw/encoded symbol, post-step active `(u,v)`, and matching reverse-decode requirement. Excludes schedule tuning, codec width, local square add/sub, early-sum freeing, deep-strip mutation, and census.
+- **mechanism:** a selected high-positioned f-term is still a mod-p update: carry or correction can alter low `v[0]`, then the first-divstep control tuple and Step0 dialog symbol. The necessary-condition proof compares exact term-on versus selected-term-deferred behavior before any hypothetical later restoration.
+- **invariants / proof obligations:** for every modeled input, the two paths must agree on complete `i=0` `(t1,s2,subtracted,swp)`, Step0 raw and encoded symbol, and post-step `(u,v)`. The Step0 encoder/decoder must remain paired, including `s2` conditionality. A future implementation still needs a source-use/paired-restore certificate, default identities, Q/occupancy, phase/ancilla, lambda, evaluator, and candidate nonce gates.
+- **cheapest discriminator:** deterministic exact-integer term-on/term-off miter after independently validating the baseline extraction map, followed only on a no-witness D1 outcome by one bounded exact bit-vector SAT/UNSAT query. SAT models require independent integer replay.
+- **falsifier:** any independently replayed reachable mismatch in the complete `i=0` control tuple, Step0 symbol, or post-step state refutes direct no-carrier defer/delete for this named term only. Sampling no-witness, timeout, extraction ambiguity, or unreplayed SAT is inconclusive.
+- **budget:** one temporary pure-model script and one solver query; maximum 30 minutes wall; no Rust build, source edit, lambda scan, evaluator, census, or grind.
+- **predicted direction:** proof stage itself has `T/Q/score/lambda = 0`. No candidate direction is established; future transport is separately priced and re-gated.
+- **unresolved direction:** whether a selected term has a modular-wrap-safe first-step cone and a later exact existing restore carrier; later source uses, replay, phase, allocation, strip ordinals, Q, lambda, and evaluation remain open.
+- **reopening trigger:** a different transported term, extraction map, restoration boundary, proven existing dialog/replay carrier restored before every consumer, changed paired first-divstep control map, or exact source certificate showing a witness lies outside the candidate domain.
+- **rollback unit:** if separately authorized after proof and source-use closure, one isolated implementer worktree commit behind default-off `TLM_SQ_STEP0_FTERM_TRANSPORT`, containing the complete paired square/walk/replay change; rollback is unset flag/discard the single commit.
+
+## Reproduction
+
+```bash
+# D1: approved temporary/output-only model, no cargo
+PYTHONDONTWRITEBYTECODE=1 python3 -B <run>/artifacts/exp_arch07_miter.py \
+  --source-root /Users/makimakiver/ecdsafail-challenge --term b_hi --first-step-only \
+  --edge-residues 0,1,p-2,p-1 --emit <run>/artifacts/d1.json
+
+# D2 only if D1 has no witness; replay each SAT model independently
+PYTHONDONTWRITEBYTECODE=1 python3 -B <run>/artifacts/exp_arch07_smt.py --emit <run>/artifacts/d2.json
+PYTHONDONTWRITEBYTECODE=1 python3 -B <run>/artifacts/exp_arch07_miter.py --replay <run>/artifacts/d2.json --emit <run>/artifacts/replay.json
+```
+
+This card preserves the round-2 `EXP-ARCH-07` mechanism, scope, invariants, falsifier, proof obligations, budget, and reopening trigger from `.pi/campaign-runs/20260816t232122Z/reports/round2-square-walk-reframe.json`.
+--- BINARY ops.bin ---
+ops.bin: size=29461502 sha256=6519bd01424d5513cd7f8232d4c15dfcbfe67561eb1b7f05b2cfec87c233a097
+--- BINARY .pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/artifacts/exp_arch07_miter.py ---
+.pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/artifacts/exp_arch07_miter.py: size=7868 sha256=c302afb370b9785f23bb15955e8e5dc821434c066aca37da3b66070364c5344c
+--- BINARY .pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/artifacts/d0-extraction-map.json ---
+.pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/artifacts/d0-extraction-map.json: size=1744 sha256=1f19fbf5e57062f9d95e560400c8a51121a09c5ad99ee29460c5aa1cda0c6f64
+--- BINARY .pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/artifacts/d1.json ---
+.pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/artifacts/d1.json: size=54910 sha256=7a413dc9bcb23ab6ee2bf72dfc09805d48e552a16f6366b75ced03facb7c9162
+--- BINARY .pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/artifacts/replay.json ---
+.pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/artifacts/replay.json: size=2469 sha256=72add013ab3de9baf4645dcdb50c18fe9cb0bb10e09e00fa188929436f593c42
+--- BINARY .pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/artifacts/commands.txt ---
+.pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/artifacts/commands.txt: size=1086 sha256=d2e17a8e1ca74f47c6c7528d644ffe3e724f5388c594a36f4fb7aea22fa569d0
+--- BINARY .pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/artifacts/recovery-context.json ---
+.pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/artifacts/recovery-context.json: size=4409 sha256=30f158f3379913391d41e71be70071cc4d76b25821bc30e8e7b3d108530b7629
+--- BINARY .pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/proof-agent-output.json ---
+.pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/proof-agent-output.json: size=7651 sha256=0e7550eb9bf5e0cbe2e4f0cc4e6592948f98737b6aaae84aadd91e37099f4b09
+--- LOG TAIL .pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/terminal.log ---
+--- FILE .pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/checkpoint.json ---
+{
+  "artifact_hashes": {
+    ".pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/artifacts/commands.txt": "d2e17a8e1ca74f47c6c7528d644ffe3e724f5388c594a36f4fb7aea22fa569d0",
+    ".pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/artifacts/d0-extraction-map.json": "1f19fbf5e57062f9d95e560400c8a51121a09c5ad99ee29460c5aa1cda0c6f64",
+    ".pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/artifacts/d0.stdout.log": "20e358a2eb1c26a9cf9e08f134e2e79a8da4970516f8dd42f08b6a34d198474e",
+    ".pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/artifacts/d1.json": "7a413dc9bcb23ab6ee2bf72dfc09805d48e552a16f6366b75ced03facb7c9162",
+    ".pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/artifacts/d1.stdout.log": "8358f27cbb2b754c0396cf97765142d7b3306aeacbab3b834e6e6a23b1154f23",
+    ".pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/artifacts/exp_arch07_miter.py": "c302afb370b9785f23bb15955e8e5dc821434c066aca37da3b66070364c5344c",
+    ".pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/artifacts/recovery-context.json": "30f158f3379913391d41e71be70071cc4d76b25821bc30e8e7b3d108530b7629",
+    ".pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/artifacts/replay.json": "72add013ab3de9baf4645dcdb50c18fe9cb0bb10e09e00fa188929436f593c42",
+    ".pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/artifacts/replay.stdout.log": "6f4e94037519abf8f748aaae15b2810b1dce25ac25fc720a31e3fd64a51454aa",
+    ".pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/proof-agent-output.json": "1d24d8c534c32942d3e2a904e0b0df51673aa522f7f4c56378048a4cab16ef51"
+  },
+  "changed_paths": [
+    ".pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/artifacts/exp_arch07_miter.py",
+    ".pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/artifacts/d0-extraction-map.json",
+    ".pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/artifacts/d0.stdout.log",
+    ".pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/artifacts/d1.json",
+    ".pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/artifacts/d1.stdout.log",
+    ".pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/artifacts/replay.json",
+    ".pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/artifacts/replay.stdout.log",
+    ".pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/artifacts/commands.txt",
+    ".pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/artifacts/recovery-context.json",
+    ".pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/proof-agent-output.json"
+  ],
+  "commands": [
+    "PYTHONDONTWRITEBYTECODE=1 python3 -B .pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/artifacts/exp_arch07_miter.py --source-root /Users/makimakiver/ecdsafail-challenge --d0 --emit .pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/artifacts/d0-extraction-map.json",
+    "PYTHONDONTWRITEBYTECODE=1 python3 -B .pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/artifacts/exp_arch07_miter.py --source-root /Users/makimakiver/ecdsafail-challenge --d1 --emit .pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/artifacts/d1.json",
+    "PYTHONDONTWRITEBYTECODE=1 python3 -B .pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/artifacts/exp_arch07_miter.py --source-root /Users/makimakiver/ecdsafail-challenge --replay .pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/artifacts/d1.json --emit .pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/artifacts/replay.json"
+  ],
+  "evidence_paths": [
+    ".pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/artifacts/exp_arch07_miter.py",
+    ".pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/artifacts/d0-extraction-map.json",
+    ".pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/artifacts/d0.stdout.log",
+    ".pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/artifacts/d1.json",
+    ".pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/artifacts/d1.stdout.log",
+    ".pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/artifacts/replay.json",
+    ".pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/artifacts/replay.stdout.log",
+    ".pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/artifacts/commands.txt",
+    ".pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/artifacts/recovery-context.json",
+    ".pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/proof-agent-output.json"
+  ],
+  "gate": "D1_REPLAYED_WITNESS",
+  "remaining_obligations": [
+    "No source candidate exists. Any different term/extraction/restoration boundary needs a new dispatched proof; this finding does not address later source uses, paired restoration, phase/ancilla, Q, strip occupancy, lambda, or four-check evaluation.",
+    "Emit and preserve recovery bundle."
+  ],
+  "run_id": "exp-arch-07-proof-20260817t08471786956426z",
+  "schema_version": 1,
+  "timestamp": "2026-08-17T08:50:39.885209+00:00"
+}
+--- FILE .pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/result.json ---
+.pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/result.json: MISSING
+--- FILE .pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/terminal.log ---
+EXP-ARCH-07 D0=PASSED D1=VERIFIED_WITNESS(28/28) D2=NOT_RUN_PRECONDITION_FALSE REPLAY=PASSED verdict=REFUTED_DIRECT_NO_CARRIER_TERM_TRANSPORT
+--- BINARY .pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/recovery/worktree.patch ---
+.pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/recovery/worktree.patch: MISSING
+--- BINARY .pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/artifacts/exp_arch07_miter.py ---
+.pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/artifacts/exp_arch07_miter.py: size=7868 sha256=c302afb370b9785f23bb15955e8e5dc821434c066aca37da3b66070364c5344c
+--- BINARY .pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/artifacts/d0-extraction-map.json ---
+.pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/artifacts/d0-extraction-map.json: size=1744 sha256=1f19fbf5e57062f9d95e560400c8a51121a09c5ad99ee29460c5aa1cda0c6f64
+--- BINARY .pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/artifacts/d0.stdout.log ---
+.pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/artifacts/d0.stdout.log: size=154 sha256=20e358a2eb1c26a9cf9e08f134e2e79a8da4970516f8dd42f08b6a34d198474e
+--- BINARY .pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/artifacts/d1.json ---
+.pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/artifacts/d1.json: size=54910 sha256=7a413dc9bcb23ab6ee2bf72dfc09805d48e552a16f6366b75ced03facb7c9162
+--- BINARY .pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/artifacts/d1.stdout.log ---
+.pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/artifacts/d1.stdout.log: size=146 sha256=8358f27cbb2b754c0396cf97765142d7b3306aeacbab3b834e6e6a23b1154f23
+--- BINARY .pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/artifacts/replay.json ---
+.pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/artifacts/replay.json: size=2469 sha256=72add013ab3de9baf4645dcdb50c18fe9cb0bb10e09e00fa188929436f593c42
+--- BINARY .pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/artifacts/replay.stdout.log ---
+.pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/artifacts/replay.stdout.log: size=167 sha256=6f4e94037519abf8f748aaae15b2810b1dce25ac25fc720a31e3fd64a51454aa
+--- BINARY .pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/artifacts/commands.txt ---
+.pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/artifacts/commands.txt: size=1086 sha256=d2e17a8e1ca74f47c6c7528d644ffe3e724f5388c594a36f4fb7aea22fa569d0
+--- BINARY .pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/artifacts/recovery-context.json ---
+.pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/artifacts/recovery-context.json: size=4409 sha256=30f158f3379913391d41e71be70071cc4d76b25821bc30e8e7b3d108530b7629
+--- BINARY .pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/proof-agent-output.json ---
+.pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/proof-agent-output.json: size=6961 sha256=1d24d8c534c32942d3e2a904e0b0df51673aa522f7f4c56378048a4cab16ef51
+EXP-ARCH-07 recovery-delimiters=observed recovery=emitted
+EXP-ARCH-07 finalized schema-v2 output; emitting final recovery bundle.
+FLEET_RECOVERY_BUNDLE_END
+--- PARENT RUN ENVELOPE ---
+--- FILE .pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/dispatch.json ---
+{
+  "agent": "cross-cell-reframer",
+  "base_identity": {
+    "repository_commit": "a2067dcf3c991bcecfd51a4bf07cd7d1cc56c3a5",
+    "scored_source_tree_sha256": "7ae7eabe20bc5459d902d2f4c921bb7ea53f48f9c82ae88d9a7f93c2bbefd7f9",
+    "trusted_source_tree_sha256": "fdd8fe31d933f8861d24d9ffc474a21899de22874ec41ff5579a3c138f320562"
+  },
+  "budget": {
+    "census": false,
+    "evaluation": false,
+    "grinding": false,
+    "kind": "bounded exact-integer and bit-vector proof",
+    "lambda": false,
+    "rust_build": false,
+    "solver_queries": 1,
+    "source_edits": false,
+    "wall_seconds": 1800
+  },
+  "campaign_id": "performance-2026-08-16",
+  "commands": [
+    "D0 validate exact selected b_hi extraction map from the pinned source",
+    "D1 deterministic exact-integer term-on/term-off miter including residues 0,1,p-2,p-1",
+    "D2 only after D1 has no witness: one bounded bit-vector query; independently integer-replay every SAT model",
+    "preserve scripts, models, witnesses, solver output, hashes, terminal output, and result evidence in this run envelope"
+  ],
+  "control_plane_sha256": "c4c09b006e1a02487d1dc6ab4abc792fd5fe04d4605b27a9f7e030968aefb122",
+  "expected_result": ".pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/result.json",
+  "experiment_id": "EXP-ARCH-07",
+  "frontier_id": "2026-08-16-a2067dcf",
+  "lane": "REFRAMING",
+  "owner": "cross-cell-reframer",
+  "run_id": "exp-arch-07-proof-20260817t08471786956426z",
+  "schema_version": 1,
+  "soft_deadlines": {
+    "checkpoint": 0.8,
+    "finalize": 0.9,
+    "grace": 0.95
+  },
+  "task": "Explicitly approved EXP-ARCH-07 bounded proof only: exact-integer D0/D1 plus, only after D1 no witness, one bounded bit-vector D2 query. No repository source edit, Rust build, lambda, evaluator, census, grind, certification, promotion, or continuation restart. Preserve all temporary proof artifacts in the run envelope.",
+  "timeout_seconds": 1800,
+  "worktree": "/Users/makimakiver/ecdsafail-challenge"
+}
+--- FILE .pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/checkpoint.json ---
+{
+  "artifact_hashes": {
+    ".pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/artifacts/commands.txt": "d2e17a8e1ca74f47c6c7528d644ffe3e724f5388c594a36f4fb7aea22fa569d0",
+    ".pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/artifacts/d0-extraction-map.json": "1f19fbf5e57062f9d95e560400c8a51121a09c5ad99ee29460c5aa1cda0c6f64",
+    ".pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/artifacts/d0.stdout.log": "20e358a2eb1c26a9cf9e08f134e2e79a8da4970516f8dd42f08b6a34d198474e",
+    ".pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/artifacts/d1.json": "7a413dc9bcb23ab6ee2bf72dfc09805d48e552a16f6366b75ced03facb7c9162",
+    ".pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/artifacts/d1.stdout.log": "8358f27cbb2b754c0396cf97765142d7b3306aeacbab3b834e6e6a23b1154f23",
+    ".pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/artifacts/exp_arch07_miter.py": "c302afb370b9785f23bb15955e8e5dc821434c066aca37da3b66070364c5344c",
+    ".pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/artifacts/recovery-context.json": "30f158f3379913391d41e71be70071cc4d76b25821bc30e8e7b3d108530b7629",
+    ".pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/artifacts/replay.json": "72add013ab3de9baf4645dcdb50c18fe9cb0bb10e09e00fa188929436f593c42",
+    ".pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/artifacts/replay.stdout.log": "6f4e94037519abf8f748aaae15b2810b1dce25ac25fc720a31e3fd64a51454aa",
+    ".pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/proof-agent-output.json": "1d24d8c534c32942d3e2a904e0b0df51673aa522f7f4c56378048a4cab16ef51"
+  },
+  "changed_paths": [
+    ".pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/artifacts/exp_arch07_miter.py",
+    ".pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/artifacts/d0-extraction-map.json",
+    ".pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/artifacts/d0.stdout.log",
+    ".pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/artifacts/d1.json",
+    ".pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/artifacts/d1.stdout.log",
+    ".pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/artifacts/replay.json",
+    ".pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/artifacts/replay.stdout.log",
+    ".pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/artifacts/commands.txt",
+    ".pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/artifacts/recovery-context.json",
+    ".pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/proof-agent-output.json"
+  ],
+  "commands": [
+    "PYTHONDONTWRITEBYTECODE=1 python3 -B .pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/artifacts/exp_arch07_miter.py --source-root /Users/makimakiver/ecdsafail-challenge --d0 --emit .pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/artifacts/d0-extraction-map.json",
+    "PYTHONDONTWRITEBYTECODE=1 python3 -B .pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/artifacts/exp_arch07_miter.py --source-root /Users/makimakiver/ecdsafail-challenge --d1 --emit .pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/artifacts/d1.json",
+    "PYTHONDONTWRITEBYTECODE=1 python3 -B .pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/artifacts/exp_arch07_miter.py --source-root /Users/makimakiver/ecdsafail-challenge --replay .pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/artifacts/d1.json --emit .pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/artifacts/replay.json"
+  ],
+  "evidence_paths": [
+    ".pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/artifacts/exp_arch07_miter.py",
+    ".pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/artifacts/d0-extraction-map.json",
+    ".pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/artifacts/d0.stdout.log",
+    ".pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/artifacts/d1.json",
+    ".pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/artifacts/d1.stdout.log",
+    ".pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/artifacts/replay.json",
+    ".pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/artifacts/replay.stdout.log",
+    ".pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/artifacts/commands.txt",
+    ".pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/artifacts/recovery-context.json",
+    ".pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/proof-agent-output.json"
+  ],
+  "gate": "RECOVERY_READY",
+  "remaining_obligations": [
+    "No source candidate exists. Reopen only with a different term/extraction/restoration boundary or an exact source certificate excluding the local witness."
+  ],
+  "run_id": "exp-arch-07-proof-20260817t08471786956426z",
+  "schema_version": 1,
+  "timestamp": "2026-08-17T08:51:30.592279+00:00"
+}
+--- FILE .pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/result.json ---
+.pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/result.json: MISSING
+--- FILE .pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/terminal.log ---
+EXP-ARCH-07 D0=PASSED D1=VERIFIED_WITNESS(28/28) D2=NOT_RUN_PRECONDITION_FALSE REPLAY=PASSED verdict=REFUTED_DIRECT_NO_CARRIER_TERM_TRANSPORT
+FLEET_RECOVERY_BUNDLE_BEGIN
+timestamp_utc=2026-08-17T08:50:52.196482+00:00
+repository=/Users/makimakiver/ecdsafail-challenge
+status=REFUTED
+reason=D0 extraction agrees; deterministic D1 found and independently replayed a local i=0 mismatch for named b_hi_f_32_sub direct no-carrier transport; D2 condition was false.
+experiment_id=EXP-ARCH-07
+source_commit=a2067dcf3c991bcecfd51a4bf07cd7d1cc56c3a5
+--- REPRODUCTION COMMANDS ---
+command[1]=PYTHONDONTWRITEBYTECODE=1 python3 -B .pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/artifacts/exp_arch07_miter.py --source-root /Users/makimakiver/ecdsafail-challenge --d0 --emit .pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/artifacts/d0-extraction-map.json
+command[2]=PYTHONDONTWRITEBYTECODE=1 python3 -B .pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/artifacts/exp_arch07_miter.py --source-root /Users/makimakiver/ecdsafail-challenge --d1 --emit .pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/artifacts/d1.json
+command[3]=PYTHONDONTWRITEBYTECODE=1 python3 -B .pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/artifacts/exp_arch07_miter.py --source-root /Users/makimakiver/ecdsafail-challenge --replay .pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/artifacts/d1.json --emit .pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/artifacts/replay.json
+--- GIT STATUS ---
+ M results.tsv
+?? .pi/
+?? AGENTS.md
+?? CAMPAIGN_FINDINGS.md
+--- GIT DIFF ---
+diff --git a/results.tsv b/results.tsv
+index 22b9f18..0ccae93 100644
+--- a/results.tsv
++++ b/results.tsv
+@@ -6,3 +6,6 @@ timestamp	commit	toffoli	clifford	qubits	ops	correct	notes
+ 1780024119	935dc1f	3962753.000	22627113.285	2715	28697222	OK	
+ 1780047641	750fdf9	3962753.000	22627113.285	2715	28697222	OK	
+ 1780052385	196206e	3962753.000	22627113.285	2715	28697222	OK	
++1786907851	a2067dc	1283487.051	5299506.551	1154	8958690	OK	
++1786915207	bb23789	1283487.051	5299506.551	1154	8958690	OK	
++1786915310	bb23789	1283487.051	5299506.551	1154	8958690	OK	
+--- GIT DIFF CACHED ---
+
+--- FILE results.tsv ---
+timestamp	commit	toffoli	clifford	qubits	ops	correct	notes
+1780021974	fa473ea	3942753.000	22627118.169	2715	28677221	OK	
+1780022568	935dc1f	3942753.000	22627118.169	2715	28677221	OK	
+1780023874	935dc1f	3942753.000	22627118.169	2715	28677221	OK	
+1780023900	935dc1f	3962753.000	22627113.285	2715	28697222	OK	
+1780024119	935dc1f	3962753.000	22627113.285	2715	28697222	OK	
+1780047641	750fdf9	3962753.000	22627113.285	2715	28697222	OK	
+1780052385	196206e	3962753.000	22627113.285	2715	28697222	OK	
+1786907851	a2067dc	1283487.051	5299506.551	1154	8958690	OK	
+1786915207	bb23789	1283487.051	5299506.551	1154	8958690	OK	
+1786915310	bb23789	1283487.051	5299506.551	1154	8958690	OK	
+--- FILE score.json ---
+{
+  "score": 1481143998,
+  "metrics": {
+    "toffoli": 1283487,
+    "qubits": 1154
+  }
+}
+--- FILE .pi/experiments/EXP-ARCH-07.json ---
+.pi/experiments/EXP-ARCH-07.json: MISSING
+--- FILE .pi/experiments/EXP-ARCH-07.md ---
+# EXP-ARCH-07 — Square f-term modular-wrap cone certificate at the first forward-divstep boundary
+
+**Status:** SCOPED. This is a no-build dependency proof, not a circuit deletion or an implementation candidate.
+
+- **experiment_id:** `EXP-ARCH-07`
+- **lane / owner:** `REFRAMING` / `cross-cell-reframer`
+- **mechanism_id:** `square-term-transport`
+- **implementation_ready:** `false`
+- **search radius:** one selected square `b_hi` NAF term from `square.rs::apply_f_times_value_tagged(value.len()==N)` / `apply_shifted_hi_term`, through `ec_add.rs::tlm_forward_multiply` and `gcd.rs::forward_gcd_jump` iteration `i=0`; includes the first `v[0]`-controlled shifts, `(t1, s2, subtracted, swp)`, Step0 raw/encoded symbol, post-step active `(u,v)`, and matching reverse-decode requirement. Excludes schedule tuning, codec width, local square add/sub, early-sum freeing, deep-strip mutation, and census.
+- **mechanism:** a selected high-positioned f-term is still a mod-p update: carry or correction can alter low `v[0]`, then the first-divstep control tuple and Step0 dialog symbol. The necessary-condition proof compares exact term-on versus selected-term-deferred behavior before any hypothetical later restoration.
+- **invariants / proof obligations:** for every modeled input, the two paths must agree on complete `i=0` `(t1,s2,subtracted,swp)`, Step0 raw and encoded symbol, and post-step `(u,v)`. The Step0 encoder/decoder must remain paired, including `s2` conditionality. A future implementation still needs a source-use/paired-restore certificate, default identities, Q/occupancy, phase/ancilla, lambda, evaluator, and candidate nonce gates.
+- **cheapest discriminator:** deterministic exact-integer term-on/term-off miter after independently validating the baseline extraction map, followed only on a no-witness D1 outcome by one bounded exact bit-vector SAT/UNSAT query. SAT models require independent integer replay.
+- **falsifier:** any independently replayed reachable mismatch in the complete `i=0` control tuple, Step0 symbol, or post-step state refutes direct no-carrier defer/delete for this named term only. Sampling no-witness, timeout, extraction ambiguity, or unreplayed SAT is inconclusive.
+- **budget:** one temporary pure-model script and one solver query; maximum 30 minutes wall; no Rust build, source edit, lambda scan, evaluator, census, or grind.
+- **predicted direction:** proof stage itself has `T/Q/score/lambda = 0`. No candidate direction is established; future transport is separately priced and re-gated.
+- **unresolved direction:** whether a selected term has a modular-wrap-safe first-step cone and a later exact existing restore carrier; later source uses, replay, phase, allocation, strip ordinals, Q, lambda, and evaluation remain open.
+- **reopening trigger:** a different transported term, extraction map, restoration boundary, proven existing dialog/replay carrier restored before every consumer, changed paired first-divstep control map, or exact source certificate showing a witness lies outside the candidate domain.
+- **rollback unit:** if separately authorized after proof and source-use closure, one isolated implementer worktree commit behind default-off `TLM_SQ_STEP0_FTERM_TRANSPORT`, containing the complete paired square/walk/replay change; rollback is unset flag/discard the single commit.
+
+## Reproduction
+
+```bash
+# D1: approved temporary/output-only model, no cargo
+PYTHONDONTWRITEBYTECODE=1 python3 -B <run>/artifacts/exp_arch07_miter.py \
+  --source-root /Users/makimakiver/ecdsafail-challenge --term b_hi --first-step-only \
+  --edge-residues 0,1,p-2,p-1 --emit <run>/artifacts/d1.json
+
+# D2 only if D1 has no witness; replay each SAT model independently
+PYTHONDONTWRITEBYTECODE=1 python3 -B <run>/artifacts/exp_arch07_smt.py --emit <run>/artifacts/d2.json
+PYTHONDONTWRITEBYTECODE=1 python3 -B <run>/artifacts/exp_arch07_miter.py --replay <run>/artifacts/d2.json --emit <run>/artifacts/replay.json
+```
+
+This card preserves the round-2 `EXP-ARCH-07` mechanism, scope, invariants, falsifier, proof obligations, budget, and reopening trigger from `.pi/campaign-runs/20260816t232122Z/reports/round2-square-walk-reframe.json`.
+--- BINARY ops.bin ---
+ops.bin: size=29461502 sha256=6519bd01424d5513cd7f8232d4c15dfcbfe67561eb1b7f05b2cfec87c233a097
+--- BINARY .pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/artifacts/exp_arch07_miter.py ---
+.pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/artifacts/exp_arch07_miter.py: size=7868 sha256=c302afb370b9785f23bb15955e8e5dc821434c066aca37da3b66070364c5344c
+--- BINARY .pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/artifacts/d0-extraction-map.json ---
+.pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/artifacts/d0-extraction-map.json: size=1744 sha256=1f19fbf5e57062f9d95e560400c8a51121a09c5ad99ee29460c5aa1cda0c6f64
+--- BINARY .pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/artifacts/d1.json ---
+.pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/artifacts/d1.json: size=54910 sha256=7a413dc9bcb23ab6ee2bf72dfc09805d48e552a16f6366b75ced03facb7c9162
+--- BINARY .pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/artifacts/replay.json ---
+.pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/artifacts/replay.json: size=2469 sha256=72add013ab3de9baf4645dcdb50c18fe9cb0bb10e09e00fa188929436f593c42
+--- BINARY .pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/artifacts/commands.txt ---
+.pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/artifacts/commands.txt: size=1086 sha256=d2e17a8e1ca74f47c6c7528d644ffe3e724f5388c594a36f4fb7aea22fa569d0
+--- BINARY .pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/artifacts/recovery-context.json ---
+.pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/artifacts/recovery-context.json: size=4409 sha256=30f158f3379913391d41e71be70071cc4d76b25821bc30e8e7b3d108530b7629
+--- BINARY .pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/proof-agent-output.json ---
+.pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/proof-agent-output.json: size=6961 sha256=1d24d8c534c32942d3e2a904e0b0df51673aa522f7f4c56378048a4cab16ef51
+--- LOG TAIL .pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/terminal.log ---
+EXP-ARCH-07 D0=PASSED D1=VERIFIED_WITNESS(28/28) D2=NOT_RUN_PRECONDITION_FALSE REPLAY=PASSED verdict=REFUTED_DIRECT_NO_CARRIER_TERM_TRANSPORT
+FLEET_RECOVERY_BUNDLE_END
+--- PARENT RUN ENVELOPE ---
+--- FILE .pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/dispatch.json ---
+{
+  "agent": "cross-cell-reframer",
+  "base_identity": {
+    "repository_commit": "a2067dcf3c991bcecfd51a4bf07cd7d1cc56c3a5",
+    "scored_source_tree_sha256": "7ae7eabe20bc5459d902d2f4c921bb7ea53f48f9c82ae88d9a7f93c2bbefd7f9",
+    "trusted_source_tree_sha256": "fdd8fe31d933f8861d24d9ffc474a21899de22874ec41ff5579a3c138f320562"
+  },
+  "budget": {
+    "census": false,
+    "evaluation": false,
+    "grinding": false,
+    "kind": "bounded exact-integer and bit-vector proof",
+    "lambda": false,
+    "rust_build": false,
+    "solver_queries": 1,
+    "source_edits": false,
+    "wall_seconds": 1800
+  },
+  "campaign_id": "performance-2026-08-16",
+  "commands": [
+    "D0 validate exact selected b_hi extraction map from the pinned source",
+    "D1 deterministic exact-integer term-on/term-off miter including residues 0,1,p-2,p-1",
+    "D2 only after D1 has no witness: one bounded bit-vector query; independently integer-replay every SAT model",
+    "preserve scripts, models, witnesses, solver output, hashes, terminal output, and result evidence in this run envelope"
+  ],
+  "control_plane_sha256": "c4c09b006e1a02487d1dc6ab4abc792fd5fe04d4605b27a9f7e030968aefb122",
+  "expected_result": ".pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/result.json",
+  "experiment_id": "EXP-ARCH-07",
+  "frontier_id": "2026-08-16-a2067dcf",
+  "lane": "REFRAMING",
+  "owner": "cross-cell-reframer",
+  "run_id": "exp-arch-07-proof-20260817t08471786956426z",
+  "schema_version": 1,
+  "soft_deadlines": {
+    "checkpoint": 0.8,
+    "finalize": 0.9,
+    "grace": 0.95
+  },
+  "task": "Explicitly approved EXP-ARCH-07 bounded proof only: exact-integer D0/D1 plus, only after D1 no witness, one bounded bit-vector D2 query. No repository source edit, Rust build, lambda, evaluator, census, grind, certification, promotion, or continuation restart. Preserve all temporary proof artifacts in the run envelope.",
+  "timeout_seconds": 1800,
+  "worktree": "/Users/makimakiver/ecdsafail-challenge"
+}
+--- FILE .pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/checkpoint.json ---
+{
+  "artifact_hashes": {
+    ".pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/artifacts/commands.txt": "d2e17a8e1ca74f47c6c7528d644ffe3e724f5388c594a36f4fb7aea22fa569d0",
+    ".pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/artifacts/d0-extraction-map.json": "1f19fbf5e57062f9d95e560400c8a51121a09c5ad99ee29460c5aa1cda0c6f64",
+    ".pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/artifacts/d0.stdout.log": "20e358a2eb1c26a9cf9e08f134e2e79a8da4970516f8dd42f08b6a34d198474e",
+    ".pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/artifacts/d1.json": "7a413dc9bcb23ab6ee2bf72dfc09805d48e552a16f6366b75ced03facb7c9162",
+    ".pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/artifacts/d1.stdout.log": "8358f27cbb2b754c0396cf97765142d7b3306aeacbab3b834e6e6a23b1154f23",
+    ".pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/artifacts/exp_arch07_miter.py": "c302afb370b9785f23bb15955e8e5dc821434c066aca37da3b66070364c5344c",
+    ".pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/artifacts/recovery-context.json": "30f158f3379913391d41e71be70071cc4d76b25821bc30e8e7b3d108530b7629",
+    ".pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/artifacts/replay.json": "72add013ab3de9baf4645dcdb50c18fe9cb0bb10e09e00fa188929436f593c42",
+    ".pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/artifacts/replay.stdout.log": "6f4e94037519abf8f748aaae15b2810b1dce25ac25fc720a31e3fd64a51454aa",
+    ".pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/proof-agent-output.json": "1d24d8c534c32942d3e2a904e0b0df51673aa522f7f4c56378048a4cab16ef51"
+  },
+  "changed_paths": [
+    ".pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/artifacts/exp_arch07_miter.py",
+    ".pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/artifacts/d0-extraction-map.json",
+    ".pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/artifacts/d0.stdout.log",
+    ".pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/artifacts/d1.json",
+    ".pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/artifacts/d1.stdout.log",
+    ".pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/artifacts/replay.json",
+    ".pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/artifacts/replay.stdout.log",
+    ".pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/artifacts/commands.txt",
+    ".pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/artifacts/recovery-context.json",
+    ".pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/proof-agent-output.json"
+  ],
+  "commands": [
+    "PYTHONDONTWRITEBYTECODE=1 python3 -B .pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/artifacts/exp_arch07_miter.py --source-root /Users/makimakiver/ecdsafail-challenge --d0 --emit .pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/artifacts/d0-extraction-map.json",
+    "PYTHONDONTWRITEBYTECODE=1 python3 -B .pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/artifacts/exp_arch07_miter.py --source-root /Users/makimakiver/ecdsafail-challenge --d1 --emit .pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/artifacts/d1.json",
+    "PYTHONDONTWRITEBYTECODE=1 python3 -B .pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/artifacts/exp_arch07_miter.py --source-root /Users/makimakiver/ecdsafail-challenge --replay .pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/artifacts/d1.json --emit .pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/artifacts/replay.json"
+  ],
+  "evidence_paths": [
+    ".pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/artifacts/exp_arch07_miter.py",
+    ".pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/artifacts/d0-extraction-map.json",
+    ".pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/artifacts/d0.stdout.log",
+    ".pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/artifacts/d1.json",
+    ".pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/artifacts/d1.stdout.log",
+    ".pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/artifacts/replay.json",
+    ".pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/artifacts/replay.stdout.log",
+    ".pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/artifacts/commands.txt",
+    ".pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/artifacts/recovery-context.json",
+    ".pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/proof-agent-output.json"
+  ],
+  "gate": "D1_REPLAYED_WITNESS",
+  "remaining_obligations": [
+    "No source candidate exists. Any different term/extraction/restoration boundary needs a new dispatched proof; this finding does not address later source uses, paired restoration, phase/ancilla, Q, strip occupancy, lambda, or four-check evaluation.",
+    "Emit and preserve recovery bundle."
+  ],
+  "run_id": "exp-arch-07-proof-20260817t08471786956426z",
+  "schema_version": 1,
+  "timestamp": "2026-08-17T08:50:39.885209+00:00"
+}
+--- FILE .pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/result.json ---
+.pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/result.json: MISSING
+--- FILE .pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/terminal.log ---
+EXP-ARCH-07 D0=PASSED D1=VERIFIED_WITNESS(28/28) D2=NOT_RUN_PRECONDITION_FALSE REPLAY=PASSED verdict=REFUTED_DIRECT_NO_CARRIER_TERM_TRANSPORT
+--- BINARY .pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/recovery/worktree.patch ---
+.pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/recovery/worktree.patch: MISSING
+--- BINARY .pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/artifacts/exp_arch07_miter.py ---
+.pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/artifacts/exp_arch07_miter.py: size=7868 sha256=c302afb370b9785f23bb15955e8e5dc821434c066aca37da3b66070364c5344c
+--- BINARY .pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/artifacts/d0-extraction-map.json ---
+.pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/artifacts/d0-extraction-map.json: size=1744 sha256=1f19fbf5e57062f9d95e560400c8a51121a09c5ad99ee29460c5aa1cda0c6f64
+--- BINARY .pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/artifacts/d0.stdout.log ---
+.pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/artifacts/d0.stdout.log: size=154 sha256=20e358a2eb1c26a9cf9e08f134e2e79a8da4970516f8dd42f08b6a34d198474e
+--- BINARY .pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/artifacts/d1.json ---
+.pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/artifacts/d1.json: size=54910 sha256=7a413dc9bcb23ab6ee2bf72dfc09805d48e552a16f6366b75ced03facb7c9162
+--- BINARY .pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/artifacts/d1.stdout.log ---
+.pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/artifacts/d1.stdout.log: size=146 sha256=8358f27cbb2b754c0396cf97765142d7b3306aeacbab3b834e6e6a23b1154f23
+--- BINARY .pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/artifacts/replay.json ---
+.pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/artifacts/replay.json: size=2469 sha256=72add013ab3de9baf4645dcdb50c18fe9cb0bb10e09e00fa188929436f593c42
+--- BINARY .pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/artifacts/replay.stdout.log ---
+.pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/artifacts/replay.stdout.log: size=167 sha256=6f4e94037519abf8f748aaae15b2810b1dce25ac25fc720a31e3fd64a51454aa
+--- BINARY .pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/artifacts/commands.txt ---
+.pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/artifacts/commands.txt: size=1086 sha256=d2e17a8e1ca74f47c6c7528d644ffe3e724f5388c594a36f4fb7aea22fa569d0
+--- BINARY .pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/artifacts/recovery-context.json ---
+.pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/artifacts/recovery-context.json: size=4409 sha256=30f158f3379913391d41e71be70071cc4d76b25821bc30e8e7b3d108530b7629
+--- BINARY .pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/proof-agent-output.json ---
+.pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/proof-agent-output.json: size=6961 sha256=1d24d8c534c32942d3e2a904e0b0df51673aa522f7f4c56378048a4cab16ef51
+EXP-ARCH-07 recovery-delimiters=observed recovery=emitted
+EXP-ARCH-07 finalized schema-v2 output; emitting final recovery bundle.
+--- BINARY .pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/recovery/worktree.patch ---
+.pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/recovery/worktree.patch: MISSING
+--- BINARY .pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/artifacts/exp_arch07_miter.py ---
+.pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/artifacts/exp_arch07_miter.py: size=7868 sha256=c302afb370b9785f23bb15955e8e5dc821434c066aca37da3b66070364c5344c
+--- BINARY .pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/artifacts/d0-extraction-map.json ---
+.pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/artifacts/d0-extraction-map.json: size=1744 sha256=1f19fbf5e57062f9d95e560400c8a51121a09c5ad99ee29460c5aa1cda0c6f64
+--- BINARY .pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/artifacts/d0.stdout.log ---
+.pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/artifacts/d0.stdout.log: size=154 sha256=20e358a2eb1c26a9cf9e08f134e2e79a8da4970516f8dd42f08b6a34d198474e
+--- BINARY .pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/artifacts/d1.json ---
+.pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/artifacts/d1.json: size=54910 sha256=7a413dc9bcb23ab6ee2bf72dfc09805d48e552a16f6366b75ced03facb7c9162
+--- BINARY .pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/artifacts/d1.stdout.log ---
+.pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/artifacts/d1.stdout.log: size=146 sha256=8358f27cbb2b754c0396cf97765142d7b3306aeacbab3b834e6e6a23b1154f23
+--- BINARY .pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/artifacts/replay.json ---
+.pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/artifacts/replay.json: size=2469 sha256=72add013ab3de9baf4645dcdb50c18fe9cb0bb10e09e00fa188929436f593c42
+--- BINARY .pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/artifacts/replay.stdout.log ---
+.pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/artifacts/replay.stdout.log: size=167 sha256=6f4e94037519abf8f748aaae15b2810b1dce25ac25fc720a31e3fd64a51454aa
+--- BINARY .pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/artifacts/commands.txt ---
+.pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/artifacts/commands.txt: size=1086 sha256=d2e17a8e1ca74f47c6c7528d644ffe3e724f5388c594a36f4fb7aea22fa569d0
+--- BINARY .pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/artifacts/recovery-context.json ---
+.pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/artifacts/recovery-context.json: size=4409 sha256=30f158f3379913391d41e71be70071cc4d76b25821bc30e8e7b3d108530b7629
+--- BINARY .pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/proof-agent-output.json ---
+.pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/proof-agent-output.json: size=7651 sha256=0e7550eb9bf5e0cbe2e4f0cc4e6592948f98737b6aaae84aadd91e37099f4b09
+
+--- parent verification recheck 20260817t124754z ---
+fresh D1 (a2067dcf-pinned): VERIFIED_WITNESS 28/28 mismatch; replay: INDEPENDENT_INTEGER_REPLAY_PASSED; classification REFUTED; implementation NOT dispatched; ledger untouched.

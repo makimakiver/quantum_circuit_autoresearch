@@ -1,0 +1,45 @@
+{
+  "artifact_hashes": {
+    "default": "6519bd01424d5513cd7f8232d4c15dfcbfe67561eb1b7f05b2cfec87c233a097",
+    "k-138": "6519bd01424d5513cd7f8232d4c15dfcbfe67561eb1b7f05b2cfec87c233a097",
+    "k-22": "6519bd01424d5513cd7f8232d4c15dfcbfe67561eb1b7f05b2cfec87c233a097",
+    "k-25": "6519bd01424d5513cd7f8232d4c15dfcbfe67561eb1b7f05b2cfec87c233a097",
+    "k-31": "6519bd01424d5513cd7f8232d4c15dfcbfe67561eb1b7f05b2cfec87c233a097",
+    "k-45": "6519bd01424d5513cd7f8232d4c15dfcbfe67561eb1b7f05b2cfec87c233a097",
+    "k-60": "6519bd01424d5513cd7f8232d4c15dfcbfe67561eb1b7f05b2cfec87c233a097",
+    "k-90": "6519bd01424d5513cd7f8232d4c15dfcbfe67561eb1b7f05b2cfec87c233a097"
+  },
+  "build_log_hashes": {
+    ".pi/campaigns/performance-2026-08-16/runs/round1-bz03-20260817t083500z/logs/default.log": "65230ef93a98bc4ce39cbbaa6e9e3791b6d21cb5e4f6ec1af387ef27c959da51",
+    ".pi/campaigns/performance-2026-08-16/runs/round1-bz03-20260817t083500z/logs/k-138.log": "c9cb196f639476611c494105168e0748cd5e6310a4e28296526d1ebff8d0e591",
+    ".pi/campaigns/performance-2026-08-16/runs/round1-bz03-20260817t083500z/logs/k-22.log": "0f70957b619c548875674bd2cb9729d5296ede3f3e49a6d0e3459427bb10e5d9",
+    ".pi/campaigns/performance-2026-08-16/runs/round1-bz03-20260817t083500z/logs/k-25.log": "5b76d132440195d44e19dbf4b37cf859760405ba9cb27fb9b5868e2b880be174",
+    ".pi/campaigns/performance-2026-08-16/runs/round1-bz03-20260817t083500z/logs/k-31.log": "5b76d132440195d44e19dbf4b37cf859760405ba9cb27fb9b5868e2b880be174",
+    ".pi/campaigns/performance-2026-08-16/runs/round1-bz03-20260817t083500z/logs/k-45.log": "5b76d132440195d44e19dbf4b37cf859760405ba9cb27fb9b5868e2b880be174",
+    ".pi/campaigns/performance-2026-08-16/runs/round1-bz03-20260817t083500z/logs/k-60.log": "5b76d132440195d44e19dbf4b37cf859760405ba9cb27fb9b5868e2b880be174",
+    ".pi/campaigns/performance-2026-08-16/runs/round1-bz03-20260817t083500z/logs/k-90.log": "5b76d132440195d44e19dbf4b37cf859760405ba9cb27fb9b5868e2b880be174"
+  },
+  "experiment_id": "EXP-BZ-03",
+  "pyc_audit_files": [
+    "audits/default-pyc-after.txt",
+    "audits/default-pyc-before.txt",
+    "audits/finalize-pyc-before.txt",
+    "audits/k-138-pyc-after.txt",
+    "audits/k-138-pyc-before.txt",
+    "audits/k-22-pyc-after.txt",
+    "audits/k-22-pyc-before.txt",
+    "audits/k-25-pyc-after.txt",
+    "audits/k-25-pyc-before.txt",
+    "audits/k-31-pyc-after.txt",
+    "audits/k-31-pyc-before.txt",
+    "audits/k-45-pyc-after.txt",
+    "audits/k-45-pyc-before.txt",
+    "audits/k-60-pyc-after.txt",
+    "audits/k-60-pyc-before.txt",
+    "audits/k-90-pyc-after.txt",
+    "audits/k-90-pyc-before.txt"
+  ],
+  "schema_version": 1,
+  "source_cleanliness_sha256": "4374b147d69af30e4b87dada3f60ba0e5cf5cd77b1172ee945a1d789cce65b49",
+  "sweep_summary_sha256": "06c6ee18ede6da0b9693b5bba6403f048969bb4bf1405678cf9c407aad4ac9a6"
+}

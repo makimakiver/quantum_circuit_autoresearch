@@ -1,0 +1,29 @@
+{
+  "artifacts": [
+    {
+      "exists": true,
+      "path": ".pi/campaign-runs/20260816t232122Z/reports/round1-structural-square-liveness.json",
+      "resolved_path": "/Users/makimakiver/ecdsafail-challenge/.pi/campaign-runs/20260816t232122Z/reports/round1-structural-square-liveness.json",
+      "sha256": "7108a8dc670d0d91631e0b21879505d8546319a85dbc263ef693ac99567a5fde",
+      "size": 15795
+    }
+  ],
+  "commands": [
+    "git rev-parse HEAD"
+  ],
+  "continuation": {
+    "next": "await worker result",
+    "role": "structural-researcher",
+    "schemaVersion": 1,
+    "scientific_verdict": null,
+    "state": "DISPATCHED"
+  },
+  "experiment_id": "R1-STRUCTURAL-SQUARE-LIVENESS",
+  "logs": [],
+  "reason": "read-only structural square liveness discovery complete; no candidate built",
+  "repository": "/Users/makimakiver/ecdsafail-challenge",
+  "schema_version": 1,
+  "source_commit": "a2067dcf3c991bcecfd51a4bf07cd7d1cc56c3a5",
+  "status": "SCOPED",
+  "timestamp_utc": "2026-08-17T08:21:05.901390+00:00"
+}

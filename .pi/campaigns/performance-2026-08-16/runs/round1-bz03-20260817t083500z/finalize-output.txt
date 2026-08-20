@@ -1,0 +1,1 @@
+{"arms": 8, "artifact_manifest_sha256": "94fefc4f6172bf97422252829566d81b13ef72725165c688d9cb7745976f1345", "sweep_summary_sha256": "06c6ee18ede6da0b9693b5bba6403f048969bb4bf1405678cf9c407aad4ac9a6"}

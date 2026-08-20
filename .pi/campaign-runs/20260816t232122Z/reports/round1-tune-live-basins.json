@@ -1,0 +1,206 @@
+{
+  "schema_version": 2,
+  "experiment_id": "EXP-TUNE-LIVE-BASINS-R1",
+  "role": "exploitation-tuner",
+  "status": "SCOPED",
+  "frontier_id": "2026-08-16-a2067dcf",
+  "candidate_ops_sha256": "e6ae6b52b7a655369df6f14a44b9c9e5a8d6c7a3a13b4c0a77930bb995524d57",
+  "changed_paths": [],
+  "run_id": "20260816t232122Z",
+  "dispatch_ref": ".pi/campaigns/performance-2026-08-16/runs/20260816t232122Z/dispatch.json",
+  "checkpoint_ref": ".pi/campaigns/performance-2026-08-16/runs/20260816t232122Z/checkpoint.json",
+  "terminal_ref": ".pi/campaigns/performance-2026-08-16/runs/20260816t232122Z/terminal.log",
+  "recovery_ref": ".pi/campaigns/performance-2026-08-16/runs/20260816t232122Z/recovery/EXP-TUNE-LIVE-BASINS-R1",
+  "scientific_verdict": "INCONCLUSIVE: one exact post-pass candidate is live but bundle-only, and one exact comparator-layout probe is implementation-ready; neither has new score, lambda, or four-check evidence from this read-only lane.",
+  "nonce_env": "SUB4_TAIL_NONCE",
+  "nonce": 1337610097,
+  "commands": [
+    "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=.pi python3 -B -c \"from harness.ownership import ownership_violations; assert ownership_violations('exploitation-tuner', []) == []\"",
+    "PYTHONDONTWRITEBYTECODE=1 python3 -B -c \"import json, jsonschema; jsonschema.validate(json.load(open('.pi/campaign-runs/20260816t232122Z/reports/round1-tune-live-basins.json')), json.load(open('.pi/schemas/result.schema.json')))\""
+  ],
+  "evidence": {
+    "report_path": ".pi/campaign-runs/20260816t232122Z/reports/round1-tune-live-basins.json",
+    "actual_runtime_paths": {
+      "lane_dispatch": ".pi/campaign-runs/20260816t232122Z/lanes/exploitation-tuner/dispatch.json",
+      "parent_dispatch": ".pi/campaign-runs/20260816t232122Z/dispatch.json",
+      "prior_strip02_probe": ".pi/campaign-runs/20260816t232122Z/rescue/exploitation-strip02-live/result.json",
+      "prior_strip02_recovery": ".pi/campaign-runs/20260816t232122Z/rescue/exploitation-strip02-live/artifacts/recovery/EXP-STRIP-02-recovery.json",
+      "frontier": ".pi/frontier.json",
+      "campaign_state": ".pi/state/campaign.json"
+    },
+    "schema_reference_note": "schema-v2 requires .pi/campaigns/... reference syntax, while this read-only runtime stores parent receipts under .pi/campaign-runs/...; actual existing receipt paths are recorded above. No nonexistent receipt was read as evidence.",
+    "frontier_binding": {
+      "source_commit": "a2067dcf3c991bcecfd51a4bf07cd7d1cc56c3a5",
+      "compressed_ops_sha256": "6519bd01424d5513cd7f8232d4c15dfcbfe67561eb1b7f05b2cfec87c233a097",
+      "canonical_ops_sha256": "0a4a412c939b05f59fa4bc33c2410e5bc110b07c7faded5e6db5f6b5db3ed0b0",
+      "sub4_tail_nonce": 1337610097,
+      "executed_T": 1283487.051,
+      "rounded_T": 1283487,
+      "Q": 1154,
+      "score": 1481143998,
+      "lambda": "17.62, measured over 400 rounds x 64 lanes",
+      "audit_status": "CURRENT, from .pi/frontier.json and parent-bound lane dispatch"
+    },
+    "read_only_scope": {
+      "performed": [
+        "Read frontier, campaign state, campaign findings, cards, continuations, source reachability, post-pass code, ownership policy, result schema, and circuit-evidence skill.",
+        "Observed EXP-P2-BZ-METRO and EXP-SM-01 continuation state without restarting either.",
+        "Inspected existing isolated EXP-STRIP-02 receipt/result; no new build, lambda scan, evaluator, grind, source edit, lifecycle application, staging, merge, or commit was started."
+      ],
+      "not_performed": [
+        "No TRACE_TLM_PROFILE, TRACE_TLM_CCX, TRACE_TLM_TOF, TRACE_PHASE_ACTIVE, B0, or card selftest was newly run because the assignment prohibits new implementation/probe execution in this lane.",
+        "No claim about a bounded search being a global ceiling."
+      ]
+    },
+    "continuations_observed": {
+      "EXP-P2-BZ-METRO": "PARKED_PROVIDER_LIMIT_SCAN_CONTINUES; launch_approved=false; parse only after all detached done markers exist.",
+      "EXP-SM-01": "PARKED_PROVIDER_LIMIT; pilot/full compute unapproved; do not restart."
+    },
+    "closed_family_guard": "No slope delta-3 variation is submitted. EXP-SLOPE-01 is REFUTED by measured delta-lambda +5252 (95% CI [4887,5617]); reopening requires its stated materially different proof/model trigger. This report does not satisfy that trigger.",
+    "measured_vs_estimated": {
+      "measured": [
+        "EXP-STRIP-02 isolated receipt: TLM_CCX_FINAL_CANCEL=1 produced compressed SHA e6ae6b52b7a655369df6f14a44b9c9e5a8d6c7a3a13b4c0a77930bb995524d57, one strict pair, two CCX removed, 8,958,688 emitted operations, and zero stale deep-strip keys.",
+        "The same receipt retained 12,202/12,202 deep-strip removals, 4,045/4,045 downgrades, and ten post-strip fanout passes.",
+        "CMP_K is read by load_schedule -> SCHED.cmp_k -> next_cmp_k -> both forward decision and reverse uncompute comparator consumers; it has no live environment accessor today."
+      ],
+      "estimates": [
+        "EXP-STRIP-02 executed saving is in [0,2] Toffoli: two emitted CCX are removed, but their conditional execution/admission has not been independently priced on the candidate stream. Score estimate is -2308 only at full two-Toffoli execution.",
+        "EXP-SLOPE-03 exact-layout scan has no measured on/off artifact. Its possible executed T movement is -600..+600 until paired static builds price it; no score direction is claimed as measured."
+      ]
+    },
+    "cards": [
+      {
+        "experiment_id": "EXP-STRIP-02",
+        "lifecycle": {
+          "pipeline": "IDEA -> SCOPED -> MODELED -> CHEAP_PROBE -> CANDIDATE",
+          "current": "CANDIDATE",
+          "canonical_campaign_state": "SCOPED (read-only report; no lifecycle transition applied)",
+          "basis": "CHEAP_PROBE was completed earlier in a receipt-bound isolated worktree; candidate remains deliberately unpromoted."
+        },
+        "frontier_commit_and_identities": {
+          "commit": "a2067dcf3c991bcecfd51a4bf07cd7d1cc56c3a5",
+          "compressed": "6519bd01424d5513cd7f8232d4c15dfcbfe67561eb1b7f05b2cfec87c233a097",
+          "canonical": "0a4a412c939b05f59fa4bc33c2410e5bc110b07c7faded5e6db5f6b5db3ed0b0"
+        },
+        "search_radius": "One existing default-off environment control, TLM_CCX_FINAL_CANCEL=1, on the exact pinned stream. TLM_CCX_FINAL_STRADDLE=1 is excluded because prior evidence says it is byte-identical.",
+        "mechanism": "The live build route calls constprop::ccx_final_cancel after first fanout, M60, and CCZ cancellation but before second fanout and the ordinal-sensitive deep strip. The strict matcher only removes returned self-inverse CCX pairs; the receipt observed one pair and removes both CCX.",
+        "predicted_direction": {
+          "executed_T": "negative, bounded [-2,0] executed Toffoli; central estimate -2",
+          "Q": "zero; this deletes operations and does not change allocation/liveness",
+          "score": "non-positive. Deterministic projection at Q=1154: if delta round(T)=-2 then delta S=-2308; if 0 then delta S=0. No standalone full-evaluation recommendation follows.",
+          "lambda": "zero transform-induced delta expected because strict self-inverse cancellation is an identity; candidate stream reseeding still makes baseline nonce evidence non-transferable."
+        },
+        "emitted_to_executed_discount_assumptions": "Measured emitted delta is exactly -2 CCX. Executed price is not asserted equal: use a conservative 0%..100% execution interval, hence [-2,0] rather than treating emitted count as score evidence. This corrects for phase/condition discounts and is deliberately weaker than a full scorer result.",
+        "reversible_invariant_and_proof_obligation": "For every matched pair, same controls and target plus strict clean support means CCX U CCX = U. Proof obligation on any bundled stream: preserve strict matcher semantics, report pair count/removal count, and show zero stale strip keys after the deletion; then run four-check evaluation only if a separately authorized bundled candidate passes preliminary score/lambda gates.",
+        "cheapest_discriminator": "Existing measured discriminator passed. On a changed upstream stream only: TLM_CCX_FINAL_CANCEL=1 CARGO_TARGET_DIR=/tmp/EXP-STRIP-02-target cargo run --release --bin build_circuit 2>&1 | grep -E 'FINAL CCX|deep-strip|emitted ops'; require pairs=1, removed_ccx=2, stale keys=0, and record the new compressed plus canonical operation identities.",
+        "anti_noop_and_executed_price_logic": "Anti-noop is pair/removal log plus a changed compressed hash; the pinned-stream result is e6ae6b52... rather than baseline 6519bd01.... Executed price remains an explicit uncertainty interval, not inferred from two emitted CCX.",
+        "predeclared_falsifier": "pairs!=1, removed_ccx!=2, any stale key skipped, changed-stream compressed/canonical identity not captured, or any later mandatory four-check/score gate failure. A failure kills this local cancellation on that stream only.",
+        "evidence_debt": "Candidate canonical hash; measured executed T/Q/score; candidate-stream lambda when policy requires it; all 9,024 correctness/reversibility/phase/ancilla checks; explicit GRIND_APPROVED; and a candidate-bound ground SUB4_TAIL_NONCE. None is supplied by the isolated build.",
+        "trial_time_compute_budget": "No standalone trial is allowed: bundle only with a separately approved regrind-forcing candidate. Marginal discriminator budget after any upstream stream move: one isolated build, target 20 minutes wall including identity extraction; zero lambda scan for the identity transform itself. Full evaluation, regrind, certification, and promotion are excluded.",
+        "source_owner_and_allowed_paths": "No source edit: implementer owns any future candidate worktree; allowed changed source paths for this card are [] and only the environment flag is set. This read-only role owns no source path.",
+        "serialization_dependencies": "Must serialize behind the chosen upstream candidate's final operation stream and its default compressed/canonical identity gate. Do not consume EXP-P2-BZ-METRO or restart EXP-SM-01. It is bundle-only: no standalone evaluation/regrind against e6ae6b52... .",
+        "rollback_unit": "Unset TLM_CCX_FINAL_CANCEL (or discard the isolated candidate worktree); rebuild default-off and require baseline compressed 6519bd... plus canonical 0a4a41... .",
+        "unresolved_directions": "Wire-equality/generalized matcher classes are not included; cardinality can change after an upstream stream edit. This card does not decide strip census, schedule, comparator, or square-local work.",
+        "reopening_trigger": "Any upstream operation-stream change: rerun exactly the one-build anti-noop/zero-stale discriminator on that stream. The pinned-stream proof does not transfer ordinal-sensitive post-strip survival.",
+        "exact_reproduction_commands": [
+          "cd /tmp/fleet-v3-strip02-20260816t232750Z && sha256sum ops.bin",
+          "grep -E 'FINAL CCX cancel|deep-strip-identity|emitted ops' /Users/makimakiver/ecdsafail-challenge/.pi/campaign-runs/20260816t232122Z/rescue/exploitation-strip02-live/terminal.log",
+          "TLM_CCX_FINAL_CANCEL=1 CARGO_TARGET_DIR=/tmp/EXP-STRIP-02-target cargo run --release --bin build_circuit 2>&1 | grep -E 'FINAL CCX|deep-strip|emitted ops'"
+        ]
+      },
+      {
+        "experiment_id": "EXP-SLOPE-03",
+        "lifecycle": {
+          "pipeline": "IDEA -> SCOPED -> MODELED -> CHEAP_PROBE -> CANDIDATE",
+          "current": "MODELED",
+          "next": "CHEAP_PROBE only after a serialized implementer dispatch",
+          "canonical_campaign_state": "SCOPED"
+        },
+        "frontier_commit_and_identities": {
+          "commit": "a2067dcf3c991bcecfd51a4bf07cd7d1cc56c3a5",
+          "compressed": "6519bd01424d5513cd7f8232d4c15dfcbfe67561eb1b7f05b2cfec87c233a097",
+          "canonical": "0a4a412c939b05f59fa4bc33c2410e5bc110b07c7faded5e6db5f6b5db3ed0b0"
+        },
+        "search_radius": "One default-off signed delta accessor for the existing CMP_K chunk-layout schedule only, then the two nearest arms delta=-1 and delta=+1. It must not change cmp_window/GAP_J2, SCHED_J2, divstep count, or any slope delta-3 family.",
+        "mechanism": "CMP_K selects how many top comparator carry bits are measurement-uncomputed by compare_geq_chunked_middle_direct; it changes the reversible partition, not the compared operand bits. At present CMP_K is widened in load_schedule and consumed sequentially through next_cmp_k by both controlled_swap_decision_lt_truncated and swap_decision_uncompute_vented. The re-partition is exact if k stays in 1..=n; clamping at target headroom can make an arm a no-op.",
+        "predicted_direction": {
+          "executed_T": "unknown local sign, modeled range -600..+600; objective is to find a negative exact-layout arm, not to assume one",
+          "Q": "zero expected under fixed TLM_TARGET_Q=1154; reject any cap/peak claim without a max-ID result",
+          "score": "deterministic conditional projection with Q fixed: delta S=1154*delta round(T). Negative only if the paired deterministic executed-T measurement is negative; zero/positive stops the arm before lambda/evaluation.",
+          "lambda": "zero expected because full operands and predicate are preserved and only carry cleanup layout changes; this is a proof obligation, not measured lambda evidence."
+        },
+        "emitted_to_executed_discount_assumptions": "Do not price CCX/CCZ emitted counts as executed T. The layout exchanges direct carry CCX with measurement-conditioned cleanup; require paired TRACE_TLM_TOF plus TLM_DIRTY_SCAN profile accounting and use the measured deterministic candidate-minus-baseline T. Until then the score range is [-692400,+692400] for the modeled +/-600 T range and is not positive evidence.",
+        "schedule_semantic_obligation": "Accessor agreement must preserve the current four-pass, 260-call CMP_K order at ITERS=261: load_schedule widens CMP_K with BLOCKS_4_SHORT, next_cmp_k consumes exactly one entry at each forward decision and reverse uncompute call, and each consumer must receive the same selected layout value it would receive absent the accessor. The change may alter ck only after selection; it must never alter cmp_eff, operand slices, swap predicate, or call count.",
+        "producer_consumer_accessor_agreement": "Producer proof: src/point_add/trailmix_ludicrous/mod.rs load_schedule assigns SCHED.cmp_k = widen_sched_blocks(CMP_K, BLOCKS_4_SHORT), where BAKED_ITERS-1=257 expands by three terminal entries/pass at ITERS=261. Accessor proof: next_cmp_k is the sole reader of SCHED.cmp_k. Consumer proof: comparator.rs calls it at controlled_swap_decision_lt_truncated:791 (forward) and swap_decision_uncompute_vented:907 (reverse); gcd.rs invokes these at forward i!=0 and reverse i!=0 with identical cmp_eff from cmp_window(i,current_n). Therefore the new accessor must increment once per existing call and may not conditionally skip either consumer.",
+        "reversible_invariant_and_proof_obligation": "compare_geq_chunked_middle_direct must implement the same controlled less-than predicate for every legal held-carry k, restore both operand registers and all ancillas, and preserve phase. Existing comparator.rs direct_final_carry_is_exhaustive_for_small_widths establishes the small-width primitive. Candidate obligation adds schedule-order coverage and a scaled classical boundary test before any build is scored.",
+        "targeted_classical_boundary_test": "Add a default-off accessor test plus comparator test that runs baseline/delta=-1/delta=+1 at representative live window scales n={11,23,52}; for each n test a=b, a=b-1, a=b+1, MSB-only difference, and low-bit-only difference, with ctrl in {0,1} and target in {0,1}. Assert identical a/b/control, expected target toggle iff ctrl and v<u, zero residual ancillas, and expected phase word for both forward-decision and reverse-uncompute bodies. Separately trace call ordinal at first/last forward and reverse positions (i=1 and i=260) to prove the four-pass producer/consumer mapping and that headroom clamping does not hide the arm.",
+        "cheapest_discriminator": "Implementer first adds only the default-off accessor and the boundary test, proves unflagged compressed/canonical baseline identities, then builds three arms in an isolated worktree: delta=0, -1, +1 with TRACE_TLM_PROFILE=1 TRACE_TLM_CCX=1 TRACE_TLM_TOF=1 TRACE_PHASE_ACTIVE=1 TRACE_TLM_COMPARE_DIRECT=1. Reject no-op if candidate hash/count equals delta=0 or trace says all selected k values clamp. Compare emitted hashes/counts, max referenced qubit, phase-active/B0 evidence, and executed T separately.",
+        "anti_noop_and_executed_price_logic": "delta=0 must reproduce both baseline identities exactly. A nonzero arm is live only if TRACE_TLM_COMPARE_DIRECT shows selected k differs on an unclamped call and its compressed hash differs. Rank arms on executed T, not emitted CCX: profile T/CCX/TOF/phase signals are a cheap discriminator only and must be reconciled before a score gate.",
+        "predeclared_falsifier": "Both nearest arms have nonnegative deterministic executed-T delta, either arm has >=50 stale deep-strip keys, any boundary assertion/phase-clean invariant fails, or accessor tracing proves a forward/reverse call-order mismatch. This is a two-refinement LOCAL_PLATEAU only if both +/-1 arms are live, semantically clean, and non-improving; then hand to reframing rather than enlarge the radius.",
+        "evidence_debt": "No accessor exists; no candidate hashes, default identity proof after the edit, changed-stream post-strip survival, executed-T profile, Q scan, lambda pair, or four-check evaluation exists. Exactness rests on source reading plus the primitive's small-width test and must be extended by the declared boundary test.",
+        "trial_time_compute_budget": "One serialized implementer edit plus test; at most three isolated builds and their lightweight traces, hard cap 90 minutes wall / 3 CPU-hours. No 12-round lambda scan (triage is not positive evidence), no full evaluator, no grind, and no promotion. Stop after the two adjacent live refinements.",
+        "source_owner_and_allowed_paths": "implementer only; allowed paths are src/point_add/trailmix_ludicrous/mod.rs for the accessor and src/point_add/trailmix_ludicrous/comparator.rs only for the targeted test. No schedule table, gcd logic, square-local path, trusted harness, or root artifact edit is allowed.",
+        "serialization_dependencies": "Requires foreground frontier identity check and a clean isolated candidate worktree; serialize with all source mutation. It must not overlap the square-local lane, must not restart EXP-P2-BZ-METRO/EXP-SM-01, and must prove default-off identities before candidate pricing. A future full gate requires preliminary negative score projection first.",
+        "rollback_unit": "Revert the single accessor/test commit; unset TLM_CMP_K_DELTA; rebuild default-off and require compressed 6519bd... and canonical 0a4a41... .",
+        "unresolved_directions": "This does not change comparator window truncation or answer GAP_J2 delta2 extension EXP-SLOPE-04; it has no bearing on the closed delta-3 family. Larger/local per-call overrides are out of radius unless a nearest arm is live and negative without stale-key tax.",
+        "reopening_trigger": "If both +/-1 refinements satisfy the LOCAL_PLATEAU predicate, re-open only with a different mechanism (per-call cost attribution or a proof of systematic unclamped slack), not a wider blind delta sweep. If a stream re-mine removes ordinal tax, repeat only the nearest negative arm.",
+        "exact_reproduction_commands": [
+          "git -C <isolated-worktree> diff -- src/point_add/trailmix_ludicrous/mod.rs src/point_add/trailmix_ludicrous/comparator.rs",
+          "cd <isolated-worktree> && cargo test --release comparator::tests::direct_final_carry_is_exhaustive_for_small_widths -- --exact",
+          "cd <isolated-worktree> && CARGO_TARGET_DIR=/tmp/exp-slope03-target cargo run --release --bin build_circuit && sha256sum ops.bin",
+          "cd <isolated-worktree> && TLM_CMP_K_DELTA=-1 TRACE_TLM_PROFILE=1 TRACE_TLM_CCX=1 TRACE_TLM_TOF=1 TRACE_PHASE_ACTIVE=1 TRACE_TLM_COMPARE_DIRECT=1 CARGO_TARGET_DIR=/tmp/exp-slope03-target cargo run --release --bin build_circuit 2>&1 | tee /tmp/exp-slope03-minus1.log",
+          "cd <isolated-worktree> && TLM_CMP_K_DELTA=1 TRACE_TLM_PROFILE=1 TRACE_TLM_CCX=1 TRACE_TLM_TOF=1 TRACE_PHASE_ACTIVE=1 TRACE_TLM_COMPARE_DIRECT=1 CARGO_TARGET_DIR=/tmp/exp-slope03-target cargo run --release --bin build_circuit 2>&1 | tee /tmp/exp-slope03-plus1.log",
+          "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=.pi python3 -B -m harness.cli continuations"
+        ]
+      }
+    ],
+    "bounded_negative": {
+      "scope": "No third schedule-gap/truncation or square-local card is submitted.",
+      "evidence": "The only nearby gap extension card, EXP-SLOPE-04, still changes comparator decision width and has no new semantic/lambda evidence. The delta-3 family has a decisive measured lambda refutation. FOLD_SCHED/FFG_G micro-retunes are already LOCAL_PLATEAU, and square-local ownership is excluded.",
+      "disposition": "INCONCLUSIVE within this bounded portfolio, not a ceiling on live tuning basins."
+    },
+    "review_findings": [
+      "info: src/point_add/trailmix_ludicrous/constprop.rs:1126-1147 and src/point_add/mod.rs:2351-2398 - EXP-STRIP-02 is reachable, default-off, and placed before ordinal-sensitive deep strip; measured zero stale keys are material evidence.",
+      "risk: .pi/experiments/EXP-STRIP-02.md and rescue/exploitation-strip02-live/result.json - the exact two-CCX stream hash e6ae6b52... invalidates baseline nonce binding, so standalone evaluation/regrind is uneconomic and prohibited by this card.",
+      "info: src/point_add/trailmix_ludicrous/mod.rs:391 and comparator.rs:791,907 - CMP_K has live producer/consumer reachability but no environment accessor; proposed card needs an implementer-owned, default-off accessor plus semantic test.",
+      "risk: src/point_add/trailmix_ludicrous/comparator.rs:676-752 - target-Q headroom clamps ck, so an emitted count alone can conceal a CMP_K no-op; trace-selected k and hash delta are mandatory.",
+      "risk: CAMPAIGN_FINDINGS.md section 3.1 - no delta-3 slope reopening trigger is met."
+    ],
+    "residual_risks": [
+      "No new live profiling was allowed; all cheap-probe measurements in this report are historical receipt/card evidence and must not be promoted to score/correctness evidence.",
+      "CMP_K exact-layout claim needs the declared scale-and-conditionality boundary test, default identity proof, and actual on/off liveness before any lambda interpretation.",
+      "EXP-STRIP-02 may cease to survive or may stale strip keys after any upstream stream change; two emitted CCX do not establish a two-executed-T score gain.",
+      "Candidate streams need new compressed/canonical identities and ground nonce evidence; baseline SUB4_TAIL_NONCE=1337610097 is not transferable."
+    ],
+    "acceptance": {
+      "criterion_1": "satisfied: concrete bounded findings, source/card/receipt paths, severities, two implementation-ready cards, and residual risks are recorded.",
+      "changed_files": [".pi/campaign-runs/20260816t232122Z/reports/round1-tune-live-basins.json"],
+      "tests_added_or_updated": [],
+      "commands_run": ["bytecode guard plus ownership/schema audit; recovery bundle emitted"],
+      "no_staged_files": true,
+      "diff_summary": "Report artifact only; no source, harness, state, or main edit."
+    }
+  },
+  "metrics": {
+    "baseline_executed_T": 1283487.051,
+    "baseline_Q": 1154,
+    "baseline_score": 1481143998,
+    "strip02_candidate_emitted_operations": 8958688,
+    "strip02_candidate_predicted_executed_T_delta_interval": [-2, 0],
+    "cmpk_candidate_predicted_executed_T_delta_interval": [-600, 600]
+  },
+  "verification": {
+    "source_or_state_edits": false,
+    "no_new_probe_or_evaluation": true,
+    "prior_strip02_probe_only": true,
+    "full_evaluation_not_run": true,
+    "lambda_scan_not_run": true,
+    "nonce_grind_not_run": true
+  },
+  "recovery": {
+    "status": "SCOPED",
+    "reason": "Read-only live-basin report finalized; no source mutation or new compute authorized.",
+    "command": "python3 .pi/skills/circuit-evidence/scripts/emit_recovery_bundle.py --status SCOPED --reason 'Read-only live-basin report finalized; no source mutation or new compute authorized.' --experiment-id EXP-TUNE-LIVE-BASINS-R1 --command 'PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=.pi python3 -B -m harness.cli continuations' --artifact .pi/campaign-runs/20260816t232122Z/reports/round1-tune-live-basins.json --output-dir /tmp/EXP-TUNE-LIVE-BASINS-R1-recovery",
+    "artifact_output": "/tmp/EXP-TUNE-LIVE-BASINS-R1-recovery/EXP-TUNE-LIVE-BASINS-R1-recovery.json"
+  }
+}

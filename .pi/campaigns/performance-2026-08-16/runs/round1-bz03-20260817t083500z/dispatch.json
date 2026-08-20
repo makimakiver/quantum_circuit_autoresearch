@@ -1,0 +1,39 @@
+{
+  "agent": "implementer",
+  "base_identity": {
+    "repository_commit": "a2067dcf3c991bcecfd51a4bf07cd7d1cc56c3a5",
+    "scored_source_tree_sha256": "7ae7eabe20bc5459d902d2f4c921bb7ea53f48f9c82ae88d9a7f93c2bbefd7f9",
+    "trusted_source_tree_sha256": "fdd8fe31d933f8861d24d9ffc474a21899de22874ec41ff5579a3c138f320562"
+  },
+  "budget": {
+    "arms": 7,
+    "evaluation": false,
+    "grinding": false,
+    "kind": "cheap env-only sweep",
+    "lambda": false,
+    "source_edits": false,
+    "wall_seconds": 1800
+  },
+  "campaign_id": "performance-2026-08-16",
+  "commands": [
+    "CARGO_TARGET_DIR=/tmp/round1-bz03-target TLM_COUT_K_CALL_OVERRIDES=<four calls> TRACE_TLM_TOF=1 cargo run --release --bin build_circuit",
+    "fingerprint compressed and canonical artifact identities",
+    "no source edit or lifecycle promotion"
+  ],
+  "control_plane_sha256": "0987fc5c2974c3f943170b150e926405869d6535ba444d2bcf10ba6c3a5f56fb",
+  "expected_result": ".pi/campaigns/performance-2026-08-16/runs/round1-bz03-20260817t083500z/result.json",
+  "experiment_id": "EXP-BZ-03",
+  "frontier_id": "2026-08-16-a2067dcf",
+  "lane": "STRUCTURAL",
+  "owner": "implementer",
+  "run_id": "round1-bz03-20260817t083500z",
+  "schema_version": 1,
+  "soft_deadlines": {
+    "checkpoint": 0.8,
+    "finalize": 0.9,
+    "grace": 0.95
+  },
+  "task": "Authorized bounded cheap-probe-only environment sweep: EXP-BZ-03. No source edits, no lambda/evaluator/grind/certification/promotion. Use isolated worktree /tmp/ecdsafail-round1-bz03 from exact frontier. Seven TLM_COUT_K_CALL_OVERRIDES arms only; preserve defaults and report hashes, Q, postpass stale logs, TRACE TLM TOF. Persist artifacts/logs/recovery in this envelope.",
+  "timeout_seconds": 2700,
+  "worktree": "/tmp/ecdsafail-round1-bz03"
+}

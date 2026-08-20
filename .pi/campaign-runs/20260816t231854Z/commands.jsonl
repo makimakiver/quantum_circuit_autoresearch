@@ -1,0 +1,13 @@
+{"command": "git rev-parse HEAD", "exitCode": 0, "label": "git-commit"}
+{"command": "git status --short", "exitCode": 0, "label": "git-status-before"}
+{"command": "shasum -a 256 .pi/frontier.json .pi/state/campaign.json results.tsv src/point_add/trailmix_ludicrous/square.rs", "exitCode": 0, "label": "protected-hashes-before"}
+{"command": "env PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=.pi python3 -m harness.cli validate", "exitCode": 0, "label": "harness-validate"}
+{"command": "env PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=.pi python3 -m harness.cli status", "exitCode": 0, "label": "harness-status"}
+{"command": "env PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=.pi python3 -m unittest discover -s .pi/harness/tests -v", "exitCode": 1, "label": "harness-tests"}
+{"command": "python3 .pi/skills/circuit-evidence/scripts/validate_fleet.py .", "exitCode": 0, "label": "fleet-validator"}
+{"command": "PYTHONDONTWRITEBYTECODE=1 python3 - <<'PY'\nimport hashlib,json,subprocess\nfrom pathlib import Path\nf=Path('.pi/frontier.json')\ndata=json.loads(f.read_text())\nprint(json.dumps(data,indent=2,sort_keys=True))\nfor group, paths in {\n 'scored_worktree': subprocess.check_output(['git','ls-files','src/point_add'],text=True).splitlines(),\n 'trusted_worktree': subprocess.check_output(['git','ls-files','src/bin','Cargo.toml','Cargo.lock','.cargo'],text=True).splitlines(),\n}.items():\n h=hashlib.sha256()\n for raw in paths:\n  p=Path(raw)\n  if p.is_file():\n   b=p.read_bytes(); h.update(raw.encode()+b'\\0'+hashlib.sha256(b).digest())\n print(group+'_tree_sha256='+h.hexdigest())\nPY", "exitCode": 0, "label": "frontier-identity-and-source-hashes"}
+{"command": "find . -path './target' -prune -o -type f \\( -name 'ops.bin' -o -name 'score.json' \\) -print | sort | while IFS= read -r p; do shasum -a 256 \"$p\"; if [ \"$(basename \"$p\")\" = score.json ]; then printf '%s\\n' \"--- $p ---\"; cat \"$p\"; fi; done", "exitCode": 0, "label": "ops-hashes-and-score-artifacts"}
+{"command": "git grep -n SUB4_TAIL_NONCE -- src/point_add", "exitCode": 0, "label": "tail-nonce-source"}
+{"command": "shasum -a 256 .pi/frontier.json .pi/state/campaign.json results.tsv src/point_add/trailmix_ludicrous/square.rs", "exitCode": 0, "label": "protected-hashes-after-preflight"}
+{"command": "git status --short", "exitCode": 0, "label": "git-status-after-preflight"}
+{"command": "write final-status.json with BLOCKED_FOR_CONTROL_PLANE_UPGRADE and scientific_verdict null", "exitCode": 0, "label": "control-plane-block-finalization"}

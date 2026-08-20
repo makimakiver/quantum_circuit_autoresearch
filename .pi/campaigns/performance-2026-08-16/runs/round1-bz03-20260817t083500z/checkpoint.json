@@ -1,0 +1,19 @@
+{
+  "artifact_hashes": {},
+  "changed_paths": [],
+  "commands": [
+    "CARGO_TARGET_DIR=/tmp/round1-bz03-target TLM_COUT_K_CALL_OVERRIDES=<four calls> TRACE_TLM_TOF=1 cargo run --release --bin build_circuit",
+    "fingerprint compressed and canonical artifact identities",
+    "no source edit or lifecycle promotion"
+  ],
+  "evidence_paths": [],
+  "gate": "DISPATCHED",
+  "remaining_obligations": [
+    "worker gate checkpoints",
+    "schema-v2 result",
+    "terminal recovery"
+  ],
+  "run_id": "round1-bz03-20260817t083500z",
+  "schema_version": 1,
+  "timestamp": "2026-08-17T08:25:57Z"
+}

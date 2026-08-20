@@ -1,0 +1,79 @@
+{
+  "candidate_ops_sha256": "0e2afb690e0a6e01865e1962a850ed146f29a3112bf8c790c9ca7e3c64766dbc",
+  "changed_paths": [],
+  "commands": [
+    "TLM_SQUARE_ADDSUB_LOCAL=1 TLM_SQ_SELFTEST=1 TLM_SQ_SELFTEST_ONLY=1 CARGO_TARGET_DIR=/tmp/fleet-v3-square-addsub-local-20260816t233502Z/target-selftest cargo run --release --bin build_circuit"
+  ],
+  "evidence": {
+    "budget": "One receipt command in the specified sandbox; compile and semantic gate completed in 16.18 seconds with exit 0. No follow-on measurement budget was consumed.",
+    "cheapest_discriminator": "Next exact information need: a separately authorized candidate-versus-baseline live-stream operation identity/count comparison with TLM_SQUARE_ADDSUB_LOCAL=1, plus a default-off compressed and canonical identity check. This proves the flag reaches the emitted route before any TRACE_TLM_PROFILE/CCX/TOF or TRACE_PHASE_ACTIVE measurement.",
+    "dispatch_receipt": "/Users/makimakiver/ecdsafail-challenge/.pi/campaign-runs/20260816t232122Z/rescue/square-addsub-local-selftest/dispatch.json",
+    "evidence_debt": [
+      "No candidate stream artifact or candidate canonical hash was built in this run.",
+      "No baseline/candidate operation identity or count delta was measured; flag liveness on the emitted route remains unproven by this gate.",
+      "No TRACE_TLM_PROFILE, TRACE_TLM_CCX, TRACE_TLM_TOF, or TRACE_PHASE_ACTIVE evidence was collected.",
+      "Executed T, binding Q, and lambda remain independently unmeasured.",
+      "No 9,024-shot correctness/reversibility/phase/ancilla evaluation was run."
+    ],
+    "falsifier": "Scoped REFUTED_CONFIGURATION if this receipt reports any square-vs-classical divergence, a non-clean inverse result, or a nonzero process exit. None occurred.",
+    "mechanism": "The candidate selects the vented local add/sub square implementation. The gate compares its forward square against classical x^2 and verifies that forward followed by inverse drains prod and is clean.",
+    "ownership_check": "PYTHONPATH=.pi ownership_violations('exploitation-tuner', []) returned []; no source/control-plane path is claimed changed.",
+    "predicted_signs": {
+      "Q": "Not measured globally. The selftest local peak is lower, but this does not establish a change to the binding frontier Q=1154.",
+      "executed_T": "Not measured. The local raw CCX direction is favorable at n=128/n=129, but it is not an executed whole-stream T measurement.",
+      "lambda": "Not measured; no dirty-scan/metrology was authorized or run."
+    },
+    "recovery_bundle": "/Users/makimakiver/ecdsafail-challenge/.pi/campaign-runs/20260816t232122Z/rescue/square-addsub-local-selftest/recovery.log",
+    "recovery_log_sha256": "2779b18c2aeb7c2ed51495b03a4f36d966a660a1e9fbc462251adf48e809436b",
+    "reopening_trigger": "Not a closed/refuted family: advance only when the parent authorizes the stated live-stream identity/count discriminator. If this configuration later fails that gate, reopen only after a materially changed square implementation or selftest domain is supplied.",
+    "residual_risks": [
+      "The test-only route can pass while the candidate flag is not live in the emitted production stream.",
+      "Stream-order/deep-strip effects, phase behavior outside the local inverse test, and lambda exposure are unmeasured.",
+      "No certification condition is addressed by this semantic gate."
+    ],
+    "review_findings": [
+      "info: scoped semantic gate passed; it establishes local arithmetic semantics only.",
+      "warning: local raw CCX/peak figures cannot be promoted to executed T/Q or score claims without the next live-stream discriminator."
+    ],
+    "sandbox": "/tmp/fleet-v3-square-addsub-local-20260816t233502Z",
+    "search_radius": "Exactly one parent-authorized semantic selftest: TLM_SQUARE_ADDSUB_LOCAL=1 with TLM_SQ_SELFTEST=1 and TLM_SQ_SELFTEST_ONLY=1; local square widths n=128 and n=129 only. No artifact comparison, evaluator, metrology, nonce grind, or promotion was run.",
+    "semantic_gate": {
+      "inverse": "forward+inverse drains prod to 0, clean",
+      "n128": "current(AND) CCX=16511 peakQ=644; addsub_vented CCX=9147 peakQ=513; local raw CCX delta=7364",
+      "n129": "current(AND) CCX=16769 peakQ=649; addsub_vented CCX=9283 peakQ=517; local raw CCX delta=7486",
+      "true_exit": 0,
+      "vented_vs_classical": "0 divergence"
+    },
+    "terminal_log": "/Users/makimakiver/ecdsafail-challenge/.pi/campaign-runs/20260816t232122Z/rescue/square-addsub-local-selftest/terminal.log",
+    "terminal_log_sha256": "8efc92dcfb2ed121db2be315734ad5e8246cd5e60f90cec5ae5bd10600a125f0"
+  },
+  "experiment_id": "RESCUE-SQUARE-ADDSUB-LOCAL",
+  "frontier_id": "2026-08-16-a2067dcf",
+  "metrics": {
+    "candidate_Q": null,
+    "candidate_executed_T": null,
+    "candidate_lambda": null,
+    "frontier_Q": 1154,
+    "frontier_T": 1283487.051,
+    "frontier_lambda": 17.62
+  },
+  "recovery": {
+    "log": "/Users/makimakiver/ecdsafail-challenge/.pi/campaign-runs/20260816t232122Z/rescue/square-addsub-local-selftest/recovery.log",
+    "preserved": true,
+    "status": "LIVE_CANDIDATE_SEMANTIC_GATE"
+  },
+  "role": "exploitation-tuner",
+  "schema_version": 1,
+  "scientific_verdict": "LIVE_CANDIDATE_SEMANTIC_GATE",
+  "status": "SCOPED",
+  "timestamp": "2026-08-16T23:39:22.586352+00:00",
+  "verification": {
+    "artifact_built": false,
+    "eval_run": false,
+    "metrology_run": false,
+    "nonce_grind_run": false,
+    "promotion_run": false,
+    "scope": "semantic selftest only",
+    "source_or_control_plane_edits": false
+  }
+}

@@ -1,0 +1,67 @@
+{
+  "campaignStatus": "NO_CANDIDATE_SELECTED",
+  "evaluatorOutput": "not produced; evaluator-certifier was not dispatched",
+  "notDispatched": [
+    {
+      "reason": "no explicit EXP-SM-01 tooling/census approval",
+      "role": "strip-census-miner"
+    },
+    {
+      "reason": "no implementation-ready card selected",
+      "role": "implementer"
+    },
+    {
+      "reason": "no selected candidate requiring lambda evidence",
+      "role": "lambda-metrologist"
+    },
+    {
+      "reason": "no selected candidate passed cheap/semantic gates",
+      "role": "evaluator-certifier"
+    },
+    {
+      "reason": "no exact-artifact GRIND_APPROVED authority",
+      "role": "nonce-grinder"
+    }
+  ],
+  "phase0": "PASS",
+  "protectedHashesUnchanged": true,
+  "resultsTsv": "not produced or modified by this campaign; protected hash unchanged",
+  "roles": [
+    {
+      "experimentId": "EXP-ARCH-04",
+      "resultPath": "lanes/cross-cell-reframer/result.json",
+      "role": "cross-cell-reframer",
+      "status": "PARKED"
+    },
+    {
+      "experimentId": "EXP-STRIP-02",
+      "resultPath": "lanes/exploitation-tuner/result.json",
+      "role": "exploitation-tuner",
+      "status": "SCOPED"
+    },
+    {
+      "experimentId": "FRONTIER-AUDIT",
+      "resultPath": "lanes/frontier-auditor/result.json",
+      "role": "frontier-auditor",
+      "status": "PARKED"
+    },
+    {
+      "experimentId": "EXP-BZ-02",
+      "resultPath": "lanes/structural-researcher/result.json",
+      "role": "structural-researcher",
+      "status": "PARKED"
+    }
+  ],
+  "schemaVersion": 1,
+  "scientific_verdict": null,
+  "selectionPath": "selection.json",
+  "unresolvedObligations": [
+    "A clean/properly bound schema-v3 frontier identity or an authorized resolution of the locked square.rs source state.",
+    "Fresh, card-specific liveness/hash proof for EXP-STRIP-02 before any implementation/evaluation path.",
+    "Explicit approval before EXP-SM-01 pilot/tooling or any long compute.",
+    "No GRIND_APPROVED authority exists.",
+    "Three discovery lanes did not supply a durable child terminal.log in their lane directories; parent workflow-events.jsonl and each result.json/status.json/recovery.json were retained and the missing logs are explicitly recorded."
+  ],
+  "workflowMissionId": "baf84bc2-68fd-443c-9fc9-b8e728530186",
+  "workflowRunId": "95aab693-7a74-4e51-9177-73ee6ab8fb2f"
+}

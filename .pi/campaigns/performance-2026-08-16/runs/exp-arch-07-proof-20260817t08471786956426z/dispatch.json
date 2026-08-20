@@ -1,0 +1,42 @@
+{
+  "agent": "cross-cell-reframer",
+  "base_identity": {
+    "repository_commit": "a2067dcf3c991bcecfd51a4bf07cd7d1cc56c3a5",
+    "scored_source_tree_sha256": "7ae7eabe20bc5459d902d2f4c921bb7ea53f48f9c82ae88d9a7f93c2bbefd7f9",
+    "trusted_source_tree_sha256": "fdd8fe31d933f8861d24d9ffc474a21899de22874ec41ff5579a3c138f320562"
+  },
+  "budget": {
+    "census": false,
+    "evaluation": false,
+    "grinding": false,
+    "kind": "bounded exact-integer and bit-vector proof",
+    "lambda": false,
+    "rust_build": false,
+    "solver_queries": 1,
+    "source_edits": false,
+    "wall_seconds": 1800
+  },
+  "campaign_id": "performance-2026-08-16",
+  "commands": [
+    "D0 validate exact selected b_hi extraction map from the pinned source",
+    "D1 deterministic exact-integer term-on/term-off miter including residues 0,1,p-2,p-1",
+    "D2 only after D1 has no witness: one bounded bit-vector query; independently integer-replay every SAT model",
+    "preserve scripts, models, witnesses, solver output, hashes, terminal output, and result evidence in this run envelope"
+  ],
+  "control_plane_sha256": "c4c09b006e1a02487d1dc6ab4abc792fd5fe04d4605b27a9f7e030968aefb122",
+  "expected_result": ".pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/result.json",
+  "experiment_id": "EXP-ARCH-07",
+  "frontier_id": "2026-08-16-a2067dcf",
+  "lane": "REFRAMING",
+  "owner": "cross-cell-reframer",
+  "run_id": "exp-arch-07-proof-20260817t08471786956426z",
+  "schema_version": 1,
+  "soft_deadlines": {
+    "checkpoint": 0.8,
+    "finalize": 0.9,
+    "grace": 0.95
+  },
+  "task": "Explicitly approved EXP-ARCH-07 bounded proof only: exact-integer D0/D1 plus, only after D1 no witness, one bounded bit-vector D2 query. No repository source edit, Rust build, lambda, evaluator, census, grind, certification, promotion, or continuation restart. Preserve all temporary proof artifacts in the run envelope.",
+  "timeout_seconds": 1800,
+  "worktree": "/Users/makimakiver/ecdsafail-challenge"
+}

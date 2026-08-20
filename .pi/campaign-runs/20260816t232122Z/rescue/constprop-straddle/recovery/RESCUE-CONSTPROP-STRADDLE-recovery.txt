@@ -1,0 +1,124 @@
+FLEET_RECOVERY_BUNDLE_BEGIN
+timestamp_utc=2026-08-16T23:36:17.355429+00:00
+repository=/private/tmp/fleet-v3-constprop-straddle-20260816t233502Z
+status=REFUTED_CONFIGURATION
+reason=Flag-on build completed but CONSTPROP_STRADDLE found zero extra pairs and produced the pinned byte-identical stream.
+experiment_id=RESCUE-CONSTPROP-STRADDLE
+source_commit=a2067dcf3c991bcecfd51a4bf07cd7d1cc56c3a5
+--- REPRODUCTION COMMANDS ---
+command[1]=cd /tmp/fleet-v3-constprop-straddle-20260816t233502Z && TLM_CONSTPROP_STRADDLE=1 CARGO_TARGET_DIR=/tmp/fleet-v3-constprop-straddle-20260816t233502Z/target cargo run --release --bin build_circuit
+--- GIT STATUS ---
+?? build.exitcode
+?? terminal.log
+--- GIT DIFF ---
+
+--- GIT DIFF CACHED ---
+
+--- FILE results.tsv ---
+timestamp	commit	toffoli	clifford	qubits	ops	correct	notes
+1780021974	fa473ea	3942753.000	22627118.169	2715	28677221	OK	
+1780022568	935dc1f	3942753.000	22627118.169	2715	28677221	OK	
+1780023874	935dc1f	3942753.000	22627118.169	2715	28677221	OK	
+1780023900	935dc1f	3962753.000	22627113.285	2715	28697222	OK	
+1780024119	935dc1f	3962753.000	22627113.285	2715	28697222	OK	
+1780047641	750fdf9	3962753.000	22627113.285	2715	28697222	OK	
+1780052385	196206e	3962753.000	22627113.285	2715	28697222	OK	
+--- FILE score.json ---
+score.json: MISSING
+--- FILE .pi/experiments/RESCUE-CONSTPROP-STRADDLE.json ---
+.pi/experiments/RESCUE-CONSTPROP-STRADDLE.json: MISSING
+--- FILE .pi/experiments/RESCUE-CONSTPROP-STRADDLE.md ---
+.pi/experiments/RESCUE-CONSTPROP-STRADDLE.md: MISSING
+--- BINARY ops.bin ---
+ops.bin: size=29461502 sha256=6519bd01424d5513cd7f8232d4c15dfcbfe67561eb1b7f05b2cfec87c233a097
+--- BINARY /Users/makimakiver/ecdsafail-challenge/.pi/campaign-runs/20260816t232122Z/rescue/constprop-straddle/artifacts/ops.bin ---
+/Users/makimakiver/ecdsafail-challenge/.pi/campaign-runs/20260816t232122Z/rescue/constprop-straddle/artifacts/ops.bin: size=29461502 sha256=6519bd01424d5513cd7f8232d4c15dfcbfe67561eb1b7f05b2cfec87c233a097
+--- CONTINUATION ---
+{
+  "next": "one bounded flag-on build",
+  "schemaVersion": 1,
+  "scientific_verdict": null,
+  "state": "DISPATCHED"
+}
+--- LOG TAIL /Users/makimakiver/ecdsafail-challenge/.pi/campaign-runs/20260816t232122Z/rescue/constprop-straddle/terminal.log ---
+   Compiling block-buffer v0.10.4
+   Compiling crypto-common v0.1.6
+   Compiling digest v0.10.7
+   Compiling sha3 v0.10.8
+   Compiling zstd-sys v2.0.16+zstd.1.5.7
+   Compiling derive_more-impl v2.1.1
+   Compiling derive_more v2.1.1
+   Compiling alloy-primitives v1.5.7
+   Compiling zstd v0.13.3
+   Compiling quantum_ecc v0.1.0 (/private/tmp/fleet-v3-constprop-straddle-20260816t233502Z)
+warning: unused variable: `b`
+   --> src/bin/../point_add/arith/multiply.rs:638:24
+    |
+638 |     let borrow_lane = |b: &mut B, _need: usize| -> Vec<QubitId> {
+    |                        ^ help: if this is intentional, prefix it with an underscore: `_b`
+    |
+    = note: `#[warn(unused_variables)]` (part of `#[warn(unused)]`) on by default
+
+warning: unused variable: `seg_w`
+   --> src/bin/../point_add/arith/multiply.rs:649:13
+    |
+649 |         let seg_w = hi - lo;
+    |             ^^^^^ help: if this is intentional, prefix it with an underscore: `_seg_w`
+
+warning: variable does not need to be mutable
+  --> src/bin/../point_add/dirtyscan.rs:57:9
+   |
+57 |     let mut note = |writers: &mut Vec<[usize; TRAIL]>, wpos: &mut Vec<u8>, q: u64, index: usize| {
+   |         ----^^^^
+   |         |
+   |         help: remove this `mut`
+   |
+   = note: `#[warn(unused_mut)]` (part of `#[warn(unused)]`) on by default
+
+warning: `quantum_ecc` (bin "build_circuit") generated 3 warnings (run `cargo fix --bin "build_circuit" -p quantum_ecc` to apply 3 suggestions)
+    Finished `release` profile [optimized] target(s) in 17.09s
+     Running `/tmp/fleet-v3-constprop-straddle-20260816t233502Z/target/release/build_circuit`
+=== quantum_ecc: build_circuit (untrusted stage) ===
+
+-- building circuit --
+CASCADE_ACCEPT pair=CCX(531,583->584) triple=(530,531,1149)
+CASCADE_ACCEPT pair=CCX(531,583->584) triple=(530,531,1150)
+CASCADE_ACCEPT pair=CCX(531,583->584) triple=(530,531,1132)
+CASCADE_ACCEPT pair=CCX(271,323->324) triple=(9,270,271)
+CASCADE_ACCEPT pair=CCX(272,324->325) triple=(143,271,272)
+CASCADE_ACCEPT pair=CCX(274,326->327) triple=(143,273,274)
+CASCADE_ACCEPT pair=CCX(275,327->328) triple=(274,275,1147)
+CASCADE_ACCEPT pair=CCX(272,324->325) triple=(271,272,886)
+CASCADE_ACCEPT pair=CCX(275,327->328) triple=(274,275,1088)
+CASCADE_ACCEPT pair=CCX(274,326->327) triple=(273,274,915)
+CASCADE_ACCEPT pair=CCX(275,327->328) triple=(274,275,889)
+CONSTPROP iter=1 ccx_total=1347642 dropped=141 folded_cx=23 folded_x=0 inverse_pairs=12 aff_drop=9 aff_fold=3 (this-iter toffoli removed = 200)
+CONSTPROP iter=2 ccx_total=1347442 dropped=3 folded_cx=0 folded_x=0 inverse_pairs=11 aff_drop=0 aff_fold=0 (this-iter toffoli removed = 25)
+CONSTPROP iter=3 ccx_total=1347417 dropped=0 folded_cx=0 folded_x=0 inverse_pairs=11 aff_drop=0 aff_fold=0 (this-iter toffoli removed = 22)
+CONSTPROP iter=4 ccx_total=1347395 dropped=0 folded_cx=0 folded_x=0 inverse_pairs=11 aff_drop=0 aff_fold=0 (this-iter toffoli removed = 22)
+CONSTPROP iter=5 ccx_total=1347373 dropped=0 folded_cx=0 folded_x=0 inverse_pairs=11 aff_drop=0 aff_fold=0 (this-iter toffoli removed = 22)
+CONSTPROP iter=6 ccx_total=1347351 dropped=0 folded_cx=0 folded_x=0 inverse_pairs=11 aff_drop=0 aff_fold=0 (this-iter toffoli removed = 22)
+CONSTPROP iter=7 ccx_total=1347329 dropped=0 folded_cx=0 folded_x=0 inverse_pairs=11 aff_drop=0 aff_fold=0 (this-iter toffoli removed = 22)
+CONSTPROP iter=8 ccx_total=1347307 dropped=0 folded_cx=0 folded_x=0 inverse_pairs=11 aff_drop=0 aff_fold=0 (this-iter toffoli removed = 22)
+CONSTPROP iter=9 ccx_total=1347285 dropped=0 folded_cx=0 folded_x=0 inverse_pairs=11 aff_drop=0 aff_fold=0 (this-iter toffoli removed = 22)
+CONSTPROP iter=10 ccx_total=1347263 dropped=0 folded_cx=0 folded_x=0 inverse_pairs=11 aff_drop=0 aff_fold=0 (this-iter toffoli removed = 22)
+CONSTPROP iter=11 ccx_total=1347241 dropped=0 folded_cx=0 folded_x=0 inverse_pairs=11 aff_drop=0 aff_fold=0 (this-iter toffoli removed = 22)
+CONSTPROP iter=12 ccx_total=1347219 dropped=0 folded_cx=0 folded_x=0 inverse_pairs=11 aff_drop=0 aff_fold=0 (this-iter toffoli removed = 22)
+CONSTPROP iter=13 ccx_total=1347197 dropped=0 folded_cx=0 folded_x=0 inverse_pairs=11 aff_drop=0 aff_fold=0 (this-iter toffoli removed = 22)
+CONSTPROP iter=14 ccx_total=1347175 dropped=0 folded_cx=0 folded_x=0 inverse_pairs=5 aff_drop=0 aff_fold=0 (this-iter toffoli removed = 10)
+CONSTPROP iter=15 ccx_total=1347165 dropped=0 folded_cx=0 folded_x=0 inverse_pairs=3 aff_drop=0 aff_fold=0 (this-iter toffoli removed = 6)
+CONSTPROP iter=16 ccx_total=1347159 dropped=0 folded_cx=0 folded_x=0 inverse_pairs=3 aff_drop=0 aff_fold=0 (this-iter toffoli removed = 6)
+CONSTPROP reached max_iters=16, stopping
+CONSTPROP TOTAL iters=16 dropped=144 folded_cx=23 folded_x=0 inverse_pairs=155 aff_drop=9 aff_fold=3 (toffoli removed = 489)
+CONSTPROP_STRADDLE TOTAL straddle_extra_pairs=0 (of inverse_pairs=155)
+SINGLE_CCX_FANOUT: STOP passes=27 input_ops=8970929 output_ops=8970902 reason=no target-fanout conjugation found
+SINGLE_CCX_FANOUT: SUMMARY input_ops=8970929 output_ops=8970902 passes=27
+  [M-60] disabled -> emitting C1 (unfiltered)
+  [W018 CCZ straddle] total_ccz=4792 same_triple_candidates=0 cancelled_pairs=0 removed_ccz=0 -> 8970902 ops
+[deep-strip-identity] removed 12202 / 12202 dead; downgraded 4045 / 4045 to CX/CZ; 0 stale keys skipped
+POST_STRIP_TARGET_FANOUT_DONE: passes=10
+  emitted ops : 8958690
+  wrote       : ops.bin (29461502 bytes on disk, 501686656 uncompressed, 17.0x)
+
+=== build_circuit OK ===
+FLEET_RECOVERY_BUNDLE_END

@@ -1,0 +1,99 @@
+{
+  "schema_version": 1,
+  "campaign_id": "campaign-20260817t082219z",
+  "record_type": "phase3-selection",
+  "timestamp": "2026-08-17T08:37:49Z",
+  "deduplication": [
+    {
+      "merged_card": "EXP-REV-01",
+      "sources": [
+        "EXP-LTC-02 (exploitation)",
+        "DISC-REV-01 (structural)",
+        "RFR-01 (reframing)"
+      ],
+      "mechanism": "reverse-walk replay premium attribution then paired shared-primitive refit",
+      "seam": "gcd.rs reverse body + comparator.rs + gidney.rs read consumers"
+    },
+    {
+      "merged_card": "EXP-RED-01",
+      "sources": [
+        "DISC-RED-01 (structural)",
+        "RFR-04 (reframing)"
+      ],
+      "mechanism": "weak deferred/tagged modular-reduction syndrome handoff across swap->fold",
+      "seam": "gcd.rs:1722-1868 + arith.rs + fused.rs"
+    }
+  ],
+  "selected": [
+    {
+      "card": "EXP-BZ-03",
+      "lane": "EXPLOITATION",
+      "run_id": "impl-bz03-20260817t083749z",
+      "seam": "trailmix_ludicrous/mod.rs widen_sched_blocks/APPLY_COUT_K + next_cout_k consumers; live probe knob TLM_COUT_K_CALL_OVERRIDES",
+      "falsifier_predeclared": "all k within +-20 expected executed CCX of baseline, or nonnegative score projection round(dT)*1154+round(T_cand)*dQ >= 0, or accessor/boundary disagreement"
+    },
+    {
+      "card": "EXP-SQ-02",
+      "lane": "EXPLOITATION",
+      "run_id": "impl-sq02-20260817t083749z",
+      "seam": "ec_add.rs:14-53 coord_addsub, first site tlm_coord_x_sub at ec_add.rs:288",
+      "falsifier_predeclared": "phase discount <0.2, unsupported conditioned gate family, altered default hashes, selftest failure, or Q rise"
+    },
+    {
+      "card": "EXP-REV-01",
+      "lane": "STRUCTURAL",
+      "run_id": "impl-rev01-20260817t083749z",
+      "seam": "gcd.rs reverse replay body substages + comparator.rs",
+      "falsifier_predeclared": ">=80% of ~59,242 executed premium is comparator-uncompute at proven floor, or all probes improve <5k emitted CCX after strips"
+    }
+  ],
+  "queued_serialized": [
+    {
+      "card": "EXP-RED-01",
+      "lane": "REFRAMING",
+      "reason": "overlaps gcd.rs apply seam with EXP-REV-01; serialized behind it; stage-1 value/tag proof is offline"
+    },
+    {
+      "card": "DISC-STR-01",
+      "lane": "STRUCTURAL",
+      "reason": "first gate is offline reachable-state enumeration + synthesis lower bound; consumes no writer capacity until a map is proven"
+    }
+  ],
+  "rejected": [
+    {
+      "card": "EXP-STRIP-02 standalone",
+      "reason": "exact but -2 CCX only; bundle rider on a future stream-changing candidate, not standalone"
+    },
+    {
+      "card": "EXP-P2-01 arm B",
+      "reason": "lambda not SAFE (paired dCI +4.58 [+1.85,+7.32] wholly above +0.5); final-stream lambda unmeasured; no evaluation authorized"
+    },
+    {
+      "card": "EXP-BZ-01 arm C",
+      "reason": "deterministic post-strip +485 CCX adverse score sign; lambda INCONCLUSIVE cannot rescue"
+    },
+    {
+      "card": "RFR-02",
+      "reason": "dependency-blocked on P2 final-stream adjudication plus proof-first tail miter; lambda-exposed"
+    },
+    {
+      "card": "RFR-03",
+      "reason": "requires unapproved census/long-compute (EXP-SM-01 blocked in project state)"
+    },
+    {
+      "card": "SLOPE-04",
+      "reason": "lambda-exposed in a band where SLOPE-01 delta3 refutation bars static-only promotion; needs paired lambda + schedule gate first"
+    },
+    {
+      "card": "STRIP-03",
+      "reason": "requires unapproved census/miner infrastructure"
+    }
+  ],
+  "portfolio_note": "Selected implementable set 2 EXP / 1 STR dispatched concurrently (non-overlapping seams: mod.rs+schedule cout fit; ec_add coord shell; gcd reverse trace). EXP-RED-01 serialized on gcd.rs overlap; DISC-STR-01 offline. Deviation from 50/30/20 forced by seam-overlap serialization and evidence-blocked EXP arms (P2/BZ).",
+  "evidence_refs": [
+    ".pi/campaigns/campaign-20260817t082219z/runs/exploitation-20260817t082608z/findings.md",
+    ".pi/campaigns/campaign-20260817t082219z/runs/structural-20260817t082608z/findings.md",
+    ".pi/campaigns/campaign-20260817t082219z/runs/reframing-20260817t082608z/findings.md",
+    ".pi/campaigns/campaign-20260817t082219z/runs/lambda-20260817t082608z/findings.md"
+  ]
+}

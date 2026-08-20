@@ -1,0 +1,18 @@
+{
+  "checkpointPath": "checkpoint.json",
+  "dispatchPath": "dispatch.json",
+  "dispatchSha256": "6103b98bc5c297fc3c613ba8dc0b5e975e1d96065bffb5cabfcb06faa6ec8d2e",
+  "experimentId": "EXP-ARCH-04",
+  "lifecycleStatus": "PARKED",
+  "missingEvidence": [
+    "Child did not supply a terminal.log at this durable lane path; the parent workflow-events.jsonl and result.json are retained instead."
+  ],
+  "parentDisposition": "read-only result retained; no lifecycle transition applied by parent",
+  "resultPath": "result.json",
+  "resultSha256": "975dd4653d376fb3155e2098ac3be70f7e18ff7ff611e71649e3dd43646ad35d",
+  "role": "cross-cell-reframer",
+  "schemaVersion": 1,
+  "scientific_verdict": "PARKED: the strip-key lifecycle composite is blocked before its predeclared pilot gates; no new claim or measurement is made.",
+  "sourceEditsClaimed": [],
+  "terminalLog": null
+}

@@ -1,0 +1,7 @@
+== final read-only integrity ==
+no-staged-files: true
+protected-path status:
+ownership check for empty proposed mutation set:
+[]
+result receipt schema:
+status=IMPLEMENTED scientific_verdict=CURRENT changed_paths=[]

@@ -1,0 +1,71 @@
+{
+  "schema_version": 2,
+  "experiment_id": "EXP-BZ-03",
+  "role": "implementer",
+  "status": "IMPLEMENTED",
+  "frontier_id": "2026-08-16-a2067dcf",
+  "candidate_ops_sha256": "6519bd01424d5513cd7f8232d4c15dfcbfe67561eb1b7f05b2cfec87c233a097",
+  "canonical_ops_sha256": "0a4a412c939b05f59fa4bc33c2410e5bc110b07c7faded5e6db5f6b5db3ed0b0",
+  "changed_paths": [],
+  "evidence": {
+    "dispatch_bound_scope": "Default plus exactly seven environment-only override arms; no source edit, evaluator, lambda, grind, certification, or promotion.",
+    "default_identity": {
+      "compressed_ops_sha256": "6519bd01424d5513cd7f8232d4c15dfcbfe67561eb1b7f05b2cfec87c233a097",
+      "canonical_ops_sha256": "0a4a412c939b05f59fa4bc33c2410e5bc110b07c7faded5e6db5f6b5db3ed0b0",
+      "reproduced": true
+    },
+    "sweep_summary_ref": ".pi/campaigns/performance-2026-08-16/runs/round1-bz03-20260817t083500z/sweep-summary.json",
+    "sweep_summary_sha256": "06c6ee18ede6da0b9693b5bba6403f048969bb4bf1405678cf9c407aad4ac9a6",
+    "artifact_manifest_ref": ".pi/campaigns/performance-2026-08-16/runs/round1-bz03-20260817t083500z/artifact-manifest.json",
+    "artifact_manifest_sha256": "94fefc4f6172bf97422252829566d81b13ef72725165c688d9cb7745976f1345",
+    "source_cleanliness_ref": ".pi/campaigns/performance-2026-08-16/runs/round1-bz03-20260817t083500z/post-sweep-source-cleanliness.txt",
+    "pyc_audits_ref": ".pi/campaigns/performance-2026-08-16/runs/round1-bz03-20260817t083500z/audits",
+    "negative_evidence": "Every override k=22,25,31,45,60,90,138 produced the exact default compressed and canonical identities, Q=1154, forward-register expected=147799.0, inverse-register expected=148392.5, total expected=1299076.0, and deep-strip stale_keys_skipped=0. No arm is improving or even live at artifact/TRACE resolution.",
+    "falsifier": "The predeclared ±20-CCX flat-register falsifier is met exactly across all seven arms.",
+    "routing": "LOCAL_PLATEAU: route this fill-entry schedule family to cross-cell reframing; do not construe this bounded local falsifier as a global ceiling.",
+    "recovery_pre_runner_failure_ref": ".pi/campaigns/performance-2026-08-16/runs/round1-bz03-20260817t083500z/recovery/pre-runner-failure",
+    "recovery_runner_audit_failure_ref": ".pi/campaigns/performance-2026-08-16/runs/round1-bz03-20260817t083500z/recovery/runner-audit-failure"
+  },
+  "metrics": {
+    "arms_total": 8,
+    "override_arms": 7,
+    "emitted_operations_each": 8958690,
+    "qubits_each": 1154,
+    "max_referenced_qubit_id_each": 1153,
+    "forward_register_expected_each": 147799.0,
+    "inverse_register_expected_each": 148392.5,
+    "total_expected_toffoli_each": 1299076.0,
+    "total_emitted_toffoli_each": 1352434,
+    "deep_strip_stale_keys_each": 0
+  },
+  "verification": {
+    "source_clean": true,
+    "staged_files": [],
+    "ops_bin_removed_from_worktree": true,
+    "tracked_artifact_io_pyc_sha256": "016debdfcfe5a6f7827bfb1610344ed98bfe0d1720a7458618ecb94faddffe89",
+    "tracked_artifact_io_pyc_clean_before_and_after_each_fingerprint": true,
+    "evaluator": "not run (dispatch budget evaluation=false)",
+    "lambda": "not run (dispatch budget lambda=false)",
+    "grind": "not run (dispatch budget grinding=false)",
+    "certification": "not run",
+    "promotion": "not run"
+  },
+  "commands": [
+    "cd /tmp/ecdsafail-round1-bz03 && env -u TLM_COUT_K_CALL_OVERRIDES CARGO_TARGET_DIR=/tmp/round1-bz03-target TRACE_TLM_TOF=1 cargo run --release --bin build_circuit",
+    "cd /tmp/ecdsafail-round1-bz03 && CARGO_TARGET_DIR=/tmp/round1-bz03-target TLM_COUT_K_CALL_OVERRIDES='258:k,259:k,262:k,263:k' TRACE_TLM_TOF=1 cargo run --release --bin build_circuit, for k in 22 25 31 45 60 90 138",
+    "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=/tmp/ecdsafail-round1-bz03/src/point_add/memory/repro python3 -B -c 'from artifact_io import fingerprint; ...' <copied per-arm ops.bin>",
+    "git -C /tmp/ecdsafail-round1-bz03 status --short; git -C /tmp/ecdsafail-round1-bz03 diff --cached --name-only"
+  ],
+  "recovery": {
+    "status": "IMPLEMENTED",
+    "reason": "Bounded environment sweep completed with LOCAL_PLATEAU negative evidence; no lifecycle change or promotion applied.",
+    "bundle_ref": ".pi/campaigns/performance-2026-08-16/runs/round1-bz03-20260817t083500z/recovery/final"
+  },
+  "timestamp": "2026-08-17T08:31:00Z",
+  "run_id": "round1-bz03-20260817t083500z",
+  "dispatch_ref": ".pi/campaigns/performance-2026-08-16/runs/round1-bz03-20260817t083500z/dispatch.json",
+  "checkpoint_ref": ".pi/campaigns/performance-2026-08-16/runs/round1-bz03-20260817t083500z/checkpoint.json",
+  "terminal_ref": ".pi/campaigns/performance-2026-08-16/runs/round1-bz03-20260817t083500z/terminal.log",
+  "recovery_ref": ".pi/campaigns/performance-2026-08-16/runs/round1-bz03-20260817t083500z/recovery/final",
+  "scientific_verdict": "LOCAL_PLATEAU: all seven authorized fill-value arms are artifact-identical and TRACE-identical to default; route to cross-cell reframing, not a global-ceiling conclusion."
+}

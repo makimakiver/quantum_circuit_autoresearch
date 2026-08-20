@@ -1,0 +1,114 @@
+{
+  "schema_version": 2,
+  "experiment_id": "EXP-BZ-03",
+  "role": "implementer",
+  "status": "REFUTED",
+  "frontier_id": "2026-08-16-a2067dcf",
+  "candidate_ops_sha256": "a451eafdc221874b7f25221877e9be96a448f5a93271ea266a36785dd9e44033",
+  "canonical_ops_sha256": "c735d1d66c5e99768af1c93813880754fa5d47874f7dd5721f28a89cf03d7fc9",
+  "changed_paths": [],
+  "evidence": {
+    "probe_table": ".pi/campaigns/campaign-20260817t082219z/runs/impl-bz03-20260817t083749z/probe-table.json",
+    "probe_logs": [
+      ".pi/campaigns/campaign-20260817t082219z/runs/impl-bz03-20260817t083749z/probes/A0.stderr",
+      ".pi/campaigns/campaign-20260817t082219z/runs/impl-bz03-20260817t083749z/probes/K6.stderr",
+      ".pi/campaigns/campaign-20260817t082219z/runs/impl-bz03-20260817t083749z/probes/K7.stderr",
+      ".pi/campaigns/campaign-20260817t082219z/runs/impl-bz03-20260817t083749z/probes/K9.stderr",
+      ".pi/campaigns/campaign-20260817t082219z/runs/impl-bz03-20260817t083749z/probes/K12.stderr",
+      ".pi/campaigns/campaign-20260817t082219z/runs/impl-bz03-20260817t083749z/probes/K14.stderr",
+      ".pi/campaigns/campaign-20260817t082219z/runs/impl-bz03-20260817t083749z/probes/K16.stderr",
+      ".pi/campaigns/campaign-20260817t082219z/runs/impl-bz03-20260817t083749z/probes/K18.stderr",
+      ".pi/campaigns/campaign-20260817t082219z/runs/impl-bz03-20260817t083749z/probes/K19.stderr"
+    ],
+    "default_identity": "clean-env build in bound worktree reproduced compressed 6519bd01424d5513cd7f8232d4c15dfcbfe67561eb1b7f05b2cfec87c233a097 and canonical 0a4a412c939b05f59fa4bc33c2410e5bc110b07c7faded5e6db5f6b5db3ed0b0; Q=1154",
+    "knob_liveness": "TLM_COUT_K_CALL_OVERRIDES=258:K,...,263:K changes artifact for K in 6..18; K=19 reproduces baseline byte-identically (effective k already headroom-capped at 19/18 by TLM_TARGET_Q=1154), proving both liveness and that all k>=20 are no-ops",
+    "card_premise_correction": "widen_sched_blocks duplicates the NARROW mirror-endpoint base=24 (selected 22, effective 19/18) into cursor slots 258,259,262,263 (260/261 are skipped adds), not a wide 138 endpoint; the reachable re-fit space is k<=19 only",
+    "falsifier_observed": "predeclared falsifier condition 2 fired on every reachable candidate: expected-executed Toffoli delta +15 (K18) .. +213 (K7), +175 (K6 boundary flip); emitted-op savings (-185..-10553) are non-Toffoli kinds (TLM_CCX_TOTAL identical 1347642; emitted Toffoli -46 at K7) while 793..1958 stale deep-strip keys forfeit executed-T credits; all projections round(dT)*1154 positive with dQ=0 (K7 max_referenced_qubit_id=1153)",
+    "schedule_semantics": "positional (pass,divstep) consumption preserved: producer next_cout_k and consumer take_cout_fit agreed 520/520 traced adds, 2 skipped adds at cursor 260/261 unchanged from baseline; no SCHED_J2/GAP_J2/tape/call-count change; selftests green in every successful build (k only selects among exact adder layouts)"
+  },
+  "metrics": {
+    "baseline_emitted_ops": 8958690,
+    "baseline_expected_executed_tof": 1299076.0,
+    "baseline_emitted_ccx_total": 1347642,
+    "probe_rows": [
+      {
+        "k": 6,
+        "d_ops": -10053,
+        "d_exec_tof": 175.0,
+        "stale_keys": 1958
+      },
+      {
+        "k": 7,
+        "d_ops": -9164,
+        "d_exec_tof": 213.0,
+        "stale_keys": 1772
+      },
+      {
+        "k": 9,
+        "d_ops": -8375,
+        "d_exec_tof": 195.0,
+        "stale_keys": 1463
+      },
+      {
+        "k": 12,
+        "d_ops": -6088,
+        "d_exec_tof": 153.0,
+        "stale_keys": 1517
+      },
+      {
+        "k": 14,
+        "d_ops": -4295,
+        "d_exec_tof": 115.0,
+        "stale_keys": 1418
+      },
+      {
+        "k": 16,
+        "d_ops": -2376,
+        "d_exec_tof": 69.0,
+        "stale_keys": 1122
+      },
+      {
+        "k": 18,
+        "d_ops": -185,
+        "d_exec_tof": 15.0,
+        "stale_keys": 793
+      },
+      {
+        "k": 19,
+        "d_ops": 0,
+        "d_exec_tof": 0.0,
+        "stale_keys": 0
+      }
+    ],
+    "best_candidate_score_projection_delta": 17310,
+    "frontier_score": 1481143998,
+    "Q": 1154
+  },
+  "verification": {
+    "full_9024_evaluation": "not run; falsifier fired at cheap-gate stage per card and dispatch budget evaluation=false",
+    "default_off_identity": "PASS (both hashes pinned)",
+    "anti_noop": "PASS (K19 byte-identity + K6..K18 hash deltas)",
+    "selftests": "green in all builds (build()-embedded)",
+    "schedule_semantic_gate": "PASS (accessor agreement 520/520; K19 identity proof)",
+    "score_sign_gate": "FAIL by falsifier: all projections positive"
+  },
+  "nonce_env": "SUB4_TAIL_NONCE",
+  "nonce": 1337610097,
+  "commands": [
+    "cd /Users/makimakiver/ecdsafail-wt/bz03 && env -i HOME=$HOME PATH=$PATH CARGO_TARGET_DIR=/Users/makimakiver/ecdsafail-wt/shared-target cargo run --release --bin build_circuit",
+    "cd /Users/makimakiver/ecdsafail-wt/bz03 && env -i HOME=$HOME PATH=$PATH CARGO_TARGET_DIR=/Users/makimakiver/ecdsafail-wt/shared-target TRACE_TLM_COUT=1 TRACE_TLM_TOF=1 TLM_COUT_K_CALL_OVERRIDES=258:7,259:7,260:7,261:7,262:7,263:7 cargo run --release --bin build_circuit",
+    "python3 -B src/point_add/memory/repro/artifact_io.py fingerprint (baseline + K7)"
+  ],
+  "recovery": {
+    "status": "REFUTED",
+    "reason": "predeclared falsifier fired (positive executed-T projection on every reachable candidate); local cout-k tail-fill cell only",
+    "bundle_ref": ".pi/campaigns/campaign-20260817t082219z/runs/impl-bz03-20260817t083749z/recovery/EXP-BZ-03-REFUTED/EXP-BZ-03-recovery.json"
+  },
+  "timestamp": "2026-08-17T09:05:59Z",
+  "run_id": "impl-bz03-20260817t083749z",
+  "dispatch_ref": ".pi/campaigns/campaign-20260817t082219z/runs/impl-bz03-20260817t083749z/dispatch.json",
+  "checkpoint_ref": ".pi/campaigns/campaign-20260817t082219z/runs/impl-bz03-20260817t083749z/checkpoint.json",
+  "terminal_ref": ".pi/campaigns/campaign-20260817t082219z/runs/impl-bz03-20260817t083749z/terminal.log",
+  "recovery_ref": ".pi/campaigns/campaign-20260817t082219z/runs/impl-bz03-20260817t083749z/recovery/EXP-BZ-03-REFUTED",
+  "scientific_verdict": "REFUTED_LOCAL_CELL"
+}

@@ -1,0 +1,31 @@
+{
+  "artifacts": [
+    {
+      "exists": true,
+      "path": "/Users/makimakiver/.pi/agent/sessions/--Users-makimakiver-ecdsafail-challenge--/subagent-artifacts/outputs/cda7ee75-8787-4792-afe8-dee7db3a4300/structural.md",
+      "resolved_path": "/Users/makimakiver/.pi/agent/sessions/--Users-makimakiver-ecdsafail-challenge--/subagent-artifacts/outputs/cda7ee75-8787-4792-afe8-dee7db3a4300/structural.md",
+      "sha256": "168916d0033119e17cfc2e6cf03f278e14507f759fcb6c6ddc05ae36c79d2962",
+      "size": 22026
+    }
+  ],
+  "commands": [
+    "Read-only reproduction: inspect CAMPAIGN_FINDINGS.md .pi/frontier.json .pi/state/campaign.json and src/point_add/trailmix_ludicrous/{codec,gcd,arith,fused,square,ec_add}.rs"
+  ],
+  "continuation": null,
+  "experiment_id": "DISCOVERY-STRUCTURAL",
+  "logs": [
+    {
+      "exists": true,
+      "path": ".pi/campaigns/campaign-20260817t082219z/runs/structural-20260817t082608z/terminal.log",
+      "resolved_path": "/Users/makimakiver/ecdsafail-challenge/.pi/campaigns/campaign-20260817t082219z/runs/structural-20260817t082608z/terminal.log",
+      "size": 0,
+      "tail": []
+    }
+  ],
+  "reason": "Read-only structural discovery completed; no source or artifact mutation.",
+  "repository": "/Users/makimakiver/ecdsafail-challenge",
+  "schema_version": 1,
+  "source_commit": "a2067dcf3c991bcecfd51a4bf07cd7d1cc56c3a5",
+  "status": "SCOPED",
+  "timestamp_utc": "2026-08-17T08:30:05.467088+00:00"
+}

@@ -1,0 +1,138 @@
+FLEET_RECOVERY_BUNDLE_BEGIN
+timestamp_utc=2026-08-17T08:30:05.467088+00:00
+repository=/Users/makimakiver/ecdsafail-challenge
+status=SCOPED
+reason=Read-only structural discovery completed; no source or artifact mutation.
+experiment_id=DISCOVERY-STRUCTURAL
+source_commit=a2067dcf3c991bcecfd51a4bf07cd7d1cc56c3a5
+--- REPRODUCTION COMMANDS ---
+command[1]=Read-only reproduction: inspect CAMPAIGN_FINDINGS.md .pi/frontier.json .pi/state/campaign.json and src/point_add/trailmix_ludicrous/{codec,gcd,arith,fused,square,ec_add}.rs
+--- GIT STATUS ---
+ M results.tsv
+?? .pi/
+?? AGENTS.md
+?? CAMPAIGN_FINDINGS.md
+--- GIT DIFF ---
+diff --git a/results.tsv b/results.tsv
+index 22b9f18..0ccae93 100644
+--- a/results.tsv
++++ b/results.tsv
+@@ -6,3 +6,6 @@ timestamp	commit	toffoli	clifford	qubits	ops	correct	notes
+ 1780024119	935dc1f	3962753.000	22627113.285	2715	28697222	OK	
+ 1780047641	750fdf9	3962753.000	22627113.285	2715	28697222	OK	
+ 1780052385	196206e	3962753.000	22627113.285	2715	28697222	OK	
++1786907851	a2067dc	1283487.051	5299506.551	1154	8958690	OK	
++1786915207	bb23789	1283487.051	5299506.551	1154	8958690	OK	
++1786915310	bb23789	1283487.051	5299506.551	1154	8958690	OK	
+--- GIT DIFF CACHED ---
+
+--- FILE results.tsv ---
+timestamp	commit	toffoli	clifford	qubits	ops	correct	notes
+1780021974	fa473ea	3942753.000	22627118.169	2715	28677221	OK	
+1780022568	935dc1f	3942753.000	22627118.169	2715	28677221	OK	
+1780023874	935dc1f	3942753.000	22627118.169	2715	28677221	OK	
+1780023900	935dc1f	3962753.000	22627113.285	2715	28697222	OK	
+1780024119	935dc1f	3962753.000	22627113.285	2715	28697222	OK	
+1780047641	750fdf9	3962753.000	22627113.285	2715	28697222	OK	
+1780052385	196206e	3962753.000	22627113.285	2715	28697222	OK	
+1786907851	a2067dc	1283487.051	5299506.551	1154	8958690	OK	
+1786915207	bb23789	1283487.051	5299506.551	1154	8958690	OK	
+1786915310	bb23789	1283487.051	5299506.551	1154	8958690	OK	
+--- FILE score.json ---
+{
+  "score": 1481143998,
+  "metrics": {
+    "toffoli": 1283487,
+    "qubits": 1154
+  }
+}
+--- FILE .pi/experiments/DISCOVERY-STRUCTURAL.json ---
+.pi/experiments/DISCOVERY-STRUCTURAL.json: MISSING
+--- FILE .pi/experiments/DISCOVERY-STRUCTURAL.md ---
+.pi/experiments/DISCOVERY-STRUCTURAL.md: MISSING
+--- BINARY ops.bin ---
+ops.bin: size=29461502 sha256=6519bd01424d5513cd7f8232d4c15dfcbfe67561eb1b7f05b2cfec87c233a097
+--- BINARY /Users/makimakiver/.pi/agent/sessions/--Users-makimakiver-ecdsafail-challenge--/subagent-artifacts/outputs/cda7ee75-8787-4792-afe8-dee7db3a4300/structural.md ---
+/Users/makimakiver/.pi/agent/sessions/--Users-makimakiver-ecdsafail-challenge--/subagent-artifacts/outputs/cda7ee75-8787-4792-afe8-dee7db3a4300/structural.md: size=22026 sha256=168916d0033119e17cfc2e6cf03f278e14507f759fcb6c6ddc05ae36c79d2962
+--- LOG TAIL .pi/campaigns/campaign-20260817t082219z/runs/structural-20260817t082608z/terminal.log ---
+FLEET_RECOVERY_BUNDLE_END
+--- PARENT RUN ENVELOPE ---
+--- FILE .pi/campaigns/campaign-20260817t082219z/runs/structural-20260817t082608z/dispatch.json ---
+{
+  "agent": "structural-researcher",
+  "base_identity": {
+    "repository_commit": "a2067dcf3c991bcecfd51a4bf07cd7d1cc56c3a5",
+    "scored_source_tree_sha256": "7ae7eabe20bc5459d902d2f4c921bb7ea53f48f9c82ae88d9a7f93c2bbefd7f9",
+    "trusted_source_tree_sha256": "fdd8fe31d933f8861d24d9ffc474a21899de22874ec41ff5579a3c138f320562"
+  },
+  "budget": {
+    "evaluation": false,
+    "kind": "read-only discovery",
+    "long_compute": false,
+    "metrology_expansion": false,
+    "nonce_grinding": false
+  },
+  "campaign_id": "campaign-20260817t082219z",
+  "commands": [
+    "derive implementation and geometry from source",
+    "read-only coverage ledger and falsifiable cards",
+    "no source mutation, full evaluation, metrology expansion, nonce grind, or promotion"
+  ],
+  "control_plane_sha256": "4bc23dae29c721a586b791b38c8aa422fdd3d7a807c4b3c65e33f71ce4ebdb47",
+  "expected_result": ".pi/campaigns/campaign-20260817t082219z/runs/structural-20260817t082608z/result.json",
+  "experiment_id": "DISCOVERY-STRUCTURAL",
+  "frontier_id": "2026-08-16-a2067dcf",
+  "lane": "STRUCTURAL",
+  "owner": "structural-researcher",
+  "run_id": "structural-20260817t082608z",
+  "schema_version": 1,
+  "soft_deadlines": {
+    "checkpoint": 0.8,
+    "finalize": 0.9,
+    "grace": 0.95
+  },
+  "task": "Read-only discovery: cross-seam reversible structural cards without source mutation.",
+  "timeout_seconds": 900,
+  "worktree": "/Users/makimakiver/ecdsafail-challenge"
+}
+--- FILE .pi/campaigns/campaign-20260817t082219z/runs/structural-20260817t082608z/checkpoint.json ---
+{
+  "schema_version": 1,
+  "run_id": "structural-20260817t082608z",
+  "gate": "CHECKPOINTED",
+  "timestamp": "2026-08-17T08:30:00Z",
+  "changed_paths": [],
+  "artifact_hashes": {
+    "structural_findings_md": "168916d0033119e17cfc2e6cf03f278e14507f759fcb6c6ddc05ae36c79d2962"
+  },
+  "evidence_paths": [
+    "/Users/makimakiver/.pi/agent/sessions/--Users-makimakiver-ecdsafail-challenge--/subagent-artifacts/outputs/cda7ee75-8787-4792-afe8-dee7db3a4300/structural.md",
+    ".pi/frontier.json",
+    ".pi/state/campaign.json",
+    "CAMPAIGN_FINDINGS.md"
+  ],
+  "commands": [
+    "read-only source/evidence inspection",
+    "PYTHONPATH=.pi ownership_violations inspection",
+    "emit_recovery_bundle.py --status SCOPED"
+  ],
+  "remaining_obligations": [
+    "parent collection of external findings artifact; no candidate implementation, evaluation, metrology expansion, or nonce grinding authorized"
+  ]
+}
+--- FILE .pi/campaigns/campaign-20260817t082219z/runs/structural-20260817t082608z/result.json ---
+.pi/campaigns/campaign-20260817t082219z/runs/structural-20260817t082608z/result.json: MISSING
+--- FILE .pi/campaigns/campaign-20260817t082219z/runs/structural-20260817t082608z/terminal.log ---
+
+--- BINARY .pi/campaigns/campaign-20260817t082219z/runs/structural-20260817t082608z/recovery/worktree.patch ---
+.pi/campaigns/campaign-20260817t082219z/runs/structural-20260817t082608z/recovery/worktree.patch: MISSING
+--- BINARY /Users/makimakiver/.pi/agent/sessions/--Users-makimakiver-ecdsafail-challenge--/subagent-artifacts/outputs/cda7ee75-8787-4792-afe8-dee7db3a4300/structural.md ---
+/Users/makimakiver/.pi/agent/sessions/--Users-makimakiver-ecdsafail-challenge--/subagent-artifacts/outputs/cda7ee75-8787-4792-afe8-dee7db3a4300/structural.md: MISSING
+--- BINARY .pi/frontier.json ---
+.pi/frontier.json: size=5028 sha256=042d41fa3c9cc28cb3d68bb1c02b59ab0e3418f2c576b8ed31116131901beb4e
+--- BINARY .pi/state/campaign.json ---
+.pi/state/campaign.json: size=4010 sha256=8cea90401ac4338523fc341fdabc1b5369997b78e4a99499613eb9a9fdb5c5cd
+--- BINARY CAMPAIGN_FINDINGS.md ---
+CAMPAIGN_FINDINGS.md: size=24203 sha256=e48cf34f1a0ecc3266ee99b89cc5a2dd2fa98588cbbe3a3a264608a7c6127275
+--- BINARY structural_findings_md ---
+structural_findings_md: MISSING

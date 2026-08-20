@@ -1,0 +1,20 @@
+{
+  "artifact_hashes": {
+    "probe-table.json": "2eba92322559dbfa764d325e90d62e0209e975499b082d49380f65b64d602cfe"
+  },
+  "changed_paths": [],
+  "commands": [
+    "cd /Users/makimakiver/ecdsafail-wt/bz03 && env -i HOME=$HOME PATH=$PATH CARGO_TARGET_DIR=/Users/makimakiver/ecdsafail-wt/shared-target TRACE_TLM_COUT=1 TRACE_TLM_TOF=1 TLM_COUT_K_CALL_OVERRIDES=258:K,259:K,260:K,261:K,262:K,263:K cargo run --release --bin build_circuit  (K in {6,7,9,12,14,16,18,19}; A0 no override)"
+  ],
+  "evidence_paths": [
+    "probe-table.json"
+  ],
+  "gate": "g7-falsifier-fired",
+  "remaining_obligations": [
+    "recovery bundle",
+    "schema-v2 result"
+  ],
+  "run_id": "impl-bz03-20260817t083749z",
+  "schema_version": 1,
+  "timestamp": "2026-08-17T09:05:26Z"
+}

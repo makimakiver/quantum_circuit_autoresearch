@@ -1,0 +1,122 @@
+diff --git a/src/point_add/trailmix_ludicrous/gcd.rs b/src/point_add/trailmix_ludicrous/gcd.rs
+index 1b789fa..be3cb34 100644
+--- a/src/point_add/trailmix_ludicrous/gcd.rs
++++ b/src/point_add/trailmix_ludicrous/gcd.rs
+@@ -149,6 +149,53 @@ fn trace_step_regions(circ: &mut B, direction: &str, i: usize, region_start: usi
+     }
+ }
+ 
++/// EXP-REV-01 stage-1 attribution knob (TRACE-only). Default off: the helper
++/// below emits nothing, adds no phase transitions, and leaves the artifact
++/// stream byte-identical. When set, each gcd walk body is split into stage
++/// segments so TRACE_TLM_CCX / TRACE_TLM_TOF can attribute the reverse replay
++/// premium to {dialog codec, flag restore, comparator decision/uncompute,
++/// cswap ladder, controlled_add_active, shift tail}.
++fn revtrace_enabled() -> bool {
++    std::env::var("TRACE_TLM_REVERSE_STAGES").is_ok()
++}
++
++#[derive(Clone, Copy)]
++enum RtStage {
++    CmpCompute,
++    Cswap,
++    Add,
++    FlagSwap,
++    CmpUncompute,
++    ShiftTail,
++}
++
++fn rt_phase(circ: &mut B, inverse: bool, reverse: bool, stage: RtStage) {
++    if !revtrace_enabled() {
++        return;
++    }
++    let label = match (inverse, reverse, stage) {
++        (false, false, RtStage::CmpCompute) => "rt_mf_cmp_compute",
++        (false, false, RtStage::Cswap) => "rt_mf_cswap",
++        (false, false, RtStage::Add) => "rt_mf_add",
++        (true, false, RtStage::CmpCompute) => "rt_if_cmp_compute",
++        (true, false, RtStage::Cswap) => "rt_if_cswap",
++        (true, false, RtStage::Add) => "rt_if_add",
++        (false, true, RtStage::FlagSwap) => "rt_mr_flag_swap",
++        (false, true, RtStage::Add) => "rt_mr_add",
++        (false, true, RtStage::Cswap) => "rt_mr_cswap",
++        (false, true, RtStage::CmpUncompute) => "rt_mr_cmp_uncompute",
++        (false, true, RtStage::ShiftTail) => "rt_mr_shift_tail",
++        (true, true, RtStage::FlagSwap) => "rt_ir_flag_swap",
++        (true, true, RtStage::Add) => "rt_ir_add",
++        (true, true, RtStage::Cswap) => "rt_ir_cswap",
++        (true, true, RtStage::CmpUncompute) => "rt_ir_cmp_uncompute",
++        (true, true, RtStage::ShiftTail) => "rt_ir_shift_tail",
++        // Combos that no walk site uses; kept exhaustive rather than panicking.
++        _ => "rt_unused",
++    };
++    circ.set_phase(label);
++}
++
+ fn clear_and(circ: &mut B, t: &QubitId, a: &QubitId, b: &QubitId) {
+     let bit = circ.alloc_bit();
+     circ.hmr(*t, bit);
+@@ -1254,6 +1301,7 @@ pub fn forward_gcd_jump(circ: &mut B, v: &mut Vec<QubitId>, apply_inv: Option<(&
+         } else {
+             "tlm_multiply_gcd_forward_compare"
+         });
++        rt_phase(circ, apply_inv.is_some(), false, RtStage::CmpCompute);
+         let swp = if i == 0 {
+             subtracted
+         } else {
+@@ -1269,6 +1317,7 @@ pub fn forward_gcd_jump(circ: &mut B, v: &mut Vec<QubitId>, apply_inv: Option<(&
+             sf
+         };
+ 
++        rt_phase(circ, apply_inv.is_some(), false, RtStage::Cswap);
+         for j in 1..current_n {
+             if !gcd_forward_cswap_has_structurally_dead_gate(i, j) {
+                 let old_context = crate::point_add::set_op_trace_context(
+@@ -1290,6 +1339,7 @@ pub fn forward_gcd_jump(circ: &mut B, v: &mut Vec<QubitId>, apply_inv: Option<(&
+         } else {
+             "tlm_multiply_gcd_forward_body"
+         });
++        rt_phase(circ, apply_inv.is_some(), false, RtStage::Add);
+         for q in &v[..current_n] {
+             circ.x(*q);
+         }
+@@ -1520,6 +1570,7 @@ pub fn reverse_gcd_jump(circ: &mut B, v: &mut Vec<QubitId>, tape: &mut Vec<Qubit
+                 pending.len(),
+             );
+         }
++        rt_phase(circ, apply_fwd.is_none(), true, RtStage::FlagSwap);
+         circ.swap(subtracted, cur[0]);
+         let swp = if i == 0 {
+             circ.cx(subtracted, cur[1]);
+@@ -1578,6 +1629,7 @@ pub fn reverse_gcd_jump(circ: &mut B, v: &mut Vec<QubitId>, tape: &mut Vec<Qubit
+         } else {
+             "tlm_inverse_gcd_reverse_body"
+         });
++        rt_phase(circ, apply_fwd.is_none(), true, RtStage::Add);
+         controlled_add_active(
+             circ,
+             i,
+@@ -1591,6 +1643,7 @@ pub fn reverse_gcd_jump(circ: &mut B, v: &mut Vec<QubitId>, tape: &mut Vec<Qubit
+             u[0] = restore_known_one(circ, q);
+         }
+ 
++        rt_phase(circ, apply_fwd.is_none(), true, RtStage::Cswap);
+         for j in 1..current_n {
+             let old_context = crate::point_add::set_op_trace_context(
+                 0x1200_0000 | (((i as u32) & 0xffff) << 8) | (j as u32 & 0xff),
+@@ -1601,6 +1654,7 @@ pub fn reverse_gcd_jump(circ: &mut B, v: &mut Vec<QubitId>, tape: &mut Vec<Qubit
+             crate::point_add::restore_op_trace_context(old_context);
+         }
+ 
++        rt_phase(circ, apply_fwd.is_none(), true, RtStage::CmpUncompute);
+         if i != 0 {
+             super::comparator::swap_decision_uncompute_vented(
+                 circ,
+@@ -1612,6 +1666,7 @@ pub fn reverse_gcd_jump(circ: &mut B, v: &mut Vec<QubitId>, tape: &mut Vec<Qubit
+             );
+         }
+ 
++        rt_phase(circ, apply_fwd.is_none(), true, RtStage::ShiftTail);
+         circ.cx(v[0], subtracted);
+ 
+         controlled_left_shift(circ, &s2, &v[..current_n]);

@@ -1,0 +1,78 @@
+{
+  "schema_version": 2,
+  "experiment_id": "EXP-KFIT-01",
+  "role": "implementer",
+  "status": "IMPLEMENTED",
+  "frontier_id": "2026-08-16-a2067dcf",
+  "candidate_ops_sha256": "6519bd01424d5513cd7f8232d4c15dfcbfe67561eb1b7f05b2cfec87c233a097",
+  "canonical_ops_sha256": "0a4a412c939b05f59fa4bc33c2410e5bc110b07c7faded5e6db5f6b5db3ed0b0",
+  "changed_paths": [],
+  "evidence": {
+    "stage1_adjudication_ref": ".pi/campaigns/campaign-20260817t082219z/runs/impl-kfit-20260817t091036z/stage1-adjudication.md",
+    "cout_call_table_ref": ".pi/campaigns/campaign-20260817t082219z/runs/impl-kfit-20260817t091036z/stage1-cout-table.tsv",
+    "trace_build_stderr_ref": ".pi/campaigns/campaign-20260817t082219z/runs/impl-kfit-20260817t091036z/stage1-trace.stderr",
+    "gate2_default_build_ref": ".pi/campaigns/campaign-20260817t082219z/runs/impl-kfit-20260817t091036z/gate2-default-build.stderr",
+    "worktree": "/Users/makimakiver/ecdsafail-wt/kfit",
+    "worktree_commit": "a2067dcf3c991bcecfd51a4bf07cd7d1cc56c3a5",
+    "adjudication": "TYPE (b) INTRINSIC: 0/520 cout calls have true slack (selected<headroom); 480/520 hard-capped (selected>headroom), 40/520 at exact headroom ceiling; override channel fit_schedule_value sets selected only and effective=min(selected,1154-active) is pinned at the ceiling everywhere; mirrored-pass divergence is entry_active-context-driven, not schedule-chosen k",
+    "asymmetry_location": "cout register phases: inv 148392.5 vs fwd 147799.0 expected executed (+593.5); the EXP-REV-01 ledger's ~-7838 potential lives in the walk-body family (tlm_*_gcd_*_body: mf 69549.0, if 73468.0, mr 148357.5, ir 144303.0 executed) which consumes GCD_SUB_K/GCD_BRANCH with no per-call override",
+    "q_corroboration": "TLM_PROFILE peak_qubits=1154 peak_phase=tlm_apply_inverse_mod_sub_register: the global Q binding peak sits inside the headroom-capped cout phase, so any k widening would breach Q=1154",
+    "knob_liveness": "TRACE_TLM_COUT produced 520 per-call rows; trace build left ops.bin byte-identical (6519bd...): instrumentation provably non-perturbing",
+    "no_source_edits": true,
+    "stage2_entered": false,
+    "stage3_bake": false
+  },
+  "metrics": {
+    "cout_calls_traced": 520,
+    "cout_calls_capped": 480,
+    "cout_calls_at_headroom_exactly": 40,
+    "cout_calls_true_slack": 0,
+    "fwd_apply_ops_added": 1222720,
+    "inv_apply_ops_added": 1239326,
+    "fwd_register_expected_executed": 147799.0,
+    "inv_register_expected_executed": 148392.5,
+    "prepostpass_expected_executed_total": 1299076.0,
+    "walk_body_executed": {
+      "multiply_forward": 69549.0,
+      "inverse_forward": 73468.0,
+      "multiply_reverse": 148357.5,
+      "inverse_reverse": 144303.0
+    },
+    "delta_T": 0,
+    "delta_Q": 0,
+    "delta_score": 0
+  },
+  "verification": {
+    "gate1_ownership": "PASS: worktree clean, no src/** edit, ownership scope src/point_add/** untouched",
+    "gate2_default_identity": "PASS: clean-env build reproduced both pinned hashes (6519bd01...a097, 0a4a412c...ed0b0); verify-default emitted 8958690, Q 1154",
+    "gate3_candidate_anti_noop": "NOT_REACHED: no candidate produced (type-b adjudication); trace-knob liveness proven non-perturbing instead",
+    "gate4_semantic_obligation": "ADJUDICATED: no call-count or accessor change possible; effective k pinned by headroom cap at every call",
+    "gate5_score_sign_gate": "NOT_REACHED: no candidate; dT=0 dQ=0 dS=0 vs S=1481143998",
+    "gate6_q_le_1154": "PASS: peak_qubits=1154 unchanged",
+    "falsifier": "predeclared first clause fired: no divergent overridable k at any mirrored pair (type b intrinsic)",
+    "builds_used": 2,
+    "builds_budget_max": 8,
+    "full_evaluation_run": false,
+    "nonce_grind": false
+  },
+  "nonce_env": "SUB4_TAIL_NONCE",
+  "nonce": 1337610097,
+  "commands": [
+    "cd /Users/makimakiver/ecdsafail-wt/kfit && env -i PATH HOME CARGO_TARGET_DIR=/Users/makimakiver/ecdsafail-wt/shared-target cargo run --release --bin build_circuit",
+    "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=.pi python3 -B -m harness.cli verify-default --ops /Users/makimakiver/ecdsafail-wt/kfit/ops.bin",
+    "cd /Users/makimakiver/ecdsafail-wt/kfit && env -i PATH HOME CARGO_TARGET_DIR=/Users/makimakiver/ecdsafail-wt/shared-target TRACE_TLM_COUT=1 TRACE_TLM_TOF=1 TRACE_TLM_CCX=1 TRACE_TLM_PROFILE=1 cargo run --release --bin build_circuit",
+    "shasum -a 256 ops.bin (both builds: 6519bd01424d5513cd7f8232d4c15dfcbfe67561eb1b7f05b2cfec87c233a097)"
+  ],
+  "recovery": {
+    "status": "UNSUPPORTED",
+    "reason": "Type-(b) intrinsic adjudication at stage 1; stage 2/3 not entered; zero source edits; nothing to roll back",
+    "bundle_ref": ".pi/campaigns/campaign-20260817t082219z/runs/impl-kfit-20260817t091036z/recovery/final"
+  },
+  "timestamp": "2026-08-17T09:33:00Z",
+  "run_id": "impl-kfit-20260817t091036z",
+  "dispatch_ref": ".pi/campaigns/campaign-20260817t082219z/runs/impl-kfit-20260817t091036z/dispatch.json",
+  "checkpoint_ref": ".pi/campaigns/campaign-20260817t082219z/runs/impl-kfit-20260817t091036z/checkpoint.json",
+  "terminal_ref": ".pi/campaigns/campaign-20260817t082219z/runs/impl-kfit-20260817t091036z/terminal.log",
+  "recovery_ref": ".pi/campaigns/campaign-20260817t082219z/runs/impl-kfit-20260817t091036z/recovery/final",
+  "scientific_verdict": "UNSUPPORTED"
+}

@@ -1,0 +1,160 @@
+{
+  "schema_version": 2,
+  "experiment_id": "RESCUE-SQUARE-ADDSUB-LOCAL",
+  "role": "exploitation-tuner",
+  "status": "PARKED",
+  "frontier_id": "2026-08-16-a2067dcf",
+  "candidate_ops_sha256": "0e2afb690e0a6e01865e1962a850ed146f29a3112bf8c790c9ca7e3c64766dbc",
+  "canonical_ops_sha256": "7836c7eed55c14213715554cd1f88bcef0856f6ab418785412a3f658dea9ba6e",
+  "changed_paths": [],
+  "nonce_env": "SUB4_TAIL_NONCE",
+  "nonce": 1337610097,
+  "run_id": "20260816t232122Z",
+  "dispatch_ref": ".pi/campaigns/performance-2026-08-16/runs/20260816t232122Z/dispatch.json",
+  "checkpoint_ref": ".pi/campaigns/performance-2026-08-16/runs/20260816t232122Z/checkpoint.json",
+  "terminal_ref": ".pi/campaigns/performance-2026-08-16/runs/20260816t232122Z/terminal.log",
+  "recovery_ref": ".pi/campaigns/performance-2026-08-16/runs/20260816t232122Z/recovery/RESCUE-SQUARE-ADDSUB-LOCAL",
+  "scientific_verdict": "PARKED: the live, non-noop candidate has passed its local semantic selftest, but current evidence cannot separately price executed T, lambda, and the 1,742 stale deep-strip keys. The Q=1159 score threshold is not cleared. This bounded read-only review is not a ceiling or refutation.",
+  "commands": [
+    "env PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=.pi python3 -B - <<'PY' ... ownership_violations('exploitation-tuner', []) and ownership_violations('exploitation-tuner', ['src/point_add/trailmix_ludicrous/square.rs']) ... PY",
+    "env PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=.pi python3 -B .pi/skills/circuit-evidence/scripts/emit_recovery_bundle.py --status PARKED --reason 'Read-only pricing gate exhausted; Q plus five and 1742 stale strip keys require stream-specific repricing before metrology or evaluation.' --experiment-id RESCUE-SQUARE-ADDSUB-LOCAL --command 'git worktree add --detach /tmp/square-addsub-local-price a2067dcf3c991bcecfd51a4bf07cd7d1cc56c3a5 && cd /tmp/square-addsub-local-price && TLM_SQUARE_ADDSUB_LOCAL=1 CARGO_TARGET_DIR=/tmp/square-addsub-local-price-target cargo run --release --bin build_circuit' --artifact .pi/campaign-runs/20260816t232122Z/rescue/square-addsub-local/artifacts/ops.bin --log .pi/campaign-runs/20260816t232122Z/rescue/square-addsub-local/terminal.log --continuation .pi/continuations/EXP-SM-01.json"
+  ],
+  "metrics": {
+    "measured_frontier": {
+      "source_commit": "a2067dcf3c991bcecfd51a4bf07cd7d1cc56c3a5",
+      "compressed_ops_sha256": "6519bd01424d5513cd7f8232d4c15dfcbfe67561eb1b7f05b2cfec87c233a097",
+      "canonical_ops_sha256": "0a4a412c939b05f59fa4bc33c2410e5bc110b07c7faded5e6db5f6b5db3ed0b0",
+      "average_executed_T": 1283487.051,
+      "rounded_executed_T": 1283487,
+      "Q": 1154,
+      "score": 1481143998,
+      "lambda": 17.62
+    },
+    "measured_candidate": {
+      "compressed_ops_sha256": "0e2afb690e0a6e01865e1962a850ed146f29a3112bf8c790c9ca7e3c64766dbc",
+      "canonical_ops_sha256": "7836c7eed55c14213715554cd1f88bcef0856f6ab418785412a3f658dea9ba6e",
+      "emitted_operations": 8839187,
+      "emitted_operation_delta": -119503,
+      "artifact_max_referenced_qubit_id": 1158,
+      "Q": 1159,
+      "Q_delta": 5,
+      "TRACE_TLM_TOF_emitted": 1407600,
+      "TRACE_TLM_TOF_expected": 1354242.0,
+      "TRACE_TLM_TOF_expected_discount_fraction": 0.0379,
+      "deep_strip": {
+        "dead_removed": "11134/12202",
+        "downgraded": "3371/4045",
+        "stale_keys_skipped": 1742
+      },
+      "executed_T": null,
+      "lambda": null
+    },
+    "deterministic_score_projection": {
+      "formula": "round(T_candidate) * 1159 < 1481143998",
+      "maximum_winning_rounded_T": 1277949,
+      "minimum_required_reduction_in_rounded_T": 5538,
+      "score_at_1277949": 1481142891,
+      "score_at_1277950": 1481144050,
+      "sign": "score improves only if candidate rounded executed T is <= 1277949; otherwise it regresses. This is a deterministic gate, not an estimate."
+    }
+  },
+  "verification": {
+    "lifecycle": {
+      "IDEA": "complete: a local inverse substitute was identified on the live reverse-square route.",
+      "SCOPED": "complete: isolated flag-on build and n=128/n=129 semantic selftest scope were bounded.",
+      "MODELED": "complete only for the Q arithmetic: +5 Q imposes the exact 5,538 rounded-T reduction. Whole-stream T/lambda model remains incomplete.",
+      "CHEAP_PROBE": "complete: compressed and canonical candidate identities differ from frontier; local selftest passed; one-sided TRACE_TLM_TOF recorded; no-op is excluded.",
+      "CANDIDATE": "conditional/live artifact only, not promotion candidate: it cannot advance to lambda/evaluation until matched executed-T pricing and stream-specific strip repricing clear the score gate.",
+      "canonical_lifecycle_state": "PARKED"
+    },
+    "reachability_and_accessor_agreement": {
+      "producer": "symmetric_square_into_prod in src/point_add/trailmix_ludicrous/square.rs:100 selects square_addsub_local when TLM_SQUARE_ADDSUB_LOCAL=1.",
+      "consumer": "symmetric_square_into_prod_reverse in square.rs:164 reads the identical accessor and selects square_addsub_local_inverse.",
+      "agreement": "Both forward and reverse paths use square_addsub_local_diag(), which reads exactly TLM_SQUARE_ADDSUB_LOCAL == 1. The changed compressed and canonical identities prove this accessor reaches the emitted live route.",
+      "schedule_semantic_obligation": "Not a schedule change; no producer/consumer schedule accessor or scale/conditionality boundary is modified. The analogous required boundary proof is forward/local-inverse agreement at n=128 and n=129, including flag-off use of the vented pair.",
+      "targeted_classical_boundary_test": "Measured: TLM_SQUARE_ADDSUB_LOCAL=1 TLM_SQ_SELFTEST=1 TLM_SQ_SELFTEST_ONLY=1 completed with zero vented-vs-classical divergence, and forward+inverse drained prod clean at n=128 and n=129. This is local semantic evidence, not the 9,024-shot four-check evaluation."
+    },
+    "reversible_invariant_and_proof_obligation": {
+      "invariant": "For each live square width used by this route, the selected local forward square maps clean prod=0 to prod=x^2, and the selected local inverse returns that prod to zero without changing x or leaving scratch/phase residue.",
+      "measured_local_evidence": "Selftest reports n128 local raw CCX delta 7364 and n129 delta 7486 versus the prior AND construction, zero classical divergence, and clean inverse drain.",
+      "remaining_proof_obligation": "In an isolated candidate worktree, show default-off compressed/canonical frontier identities, repeat the local selftest, and then obtain the full 9,024-shot correctness, reversibility, phase-clean, and ancilla-clean checks before any certification claim. No change may pair the local forward implementation with a different reverse accessor."
+    },
+    "pricing": {
+      "mechanism": "TLM_SQUARE_ADDSUB_LOCAL selects square_addsub_local_inverse instead of square_addsub_vented_inverse in the live reverse square path; the paired forward path makes the analogous local selection. The local implementation uses temporary 2n registers and low-q controlled subtract stages, changing stream order/allocation and therefore deep-strip key occupancy.",
+      "search_radius": "One already-built flag-on live stream at commit a2067dcf; source inspection limited to square.rs flag/accessor sites and arith/multiply.rs local inverse. No parameter sweep, new build, lambda scan, full evaluator, nonce grind, certification, or source edit was run in this review.",
+      "predicted_direction": {
+        "executed_T": "hypothesized negative only; unmeasured. It must be separately repriced after final post-passes. The -119,503 emitted-operation delta is not an executed-T delta.",
+        "Q": "positive and measured: +5 (1154 to 1159).",
+        "score": "conditional: negative only if rounded executed T <= 1,277,949; otherwise positive. Present sign is unknown because T is unmeasured.",
+        "lambda": "unknown/nonnegative-risk hypothesis; local use changes measurement/uncompute structure, so no favorable lambda sign is assumed without paired evidence."
+      },
+      "emitted_to_executed_discount_assumptions": "Do not apply a global conversion. The one-sided candidate TRACE_TLM_TOF reports expected 1,354,242 from emitted 1,407,600 (3.79% within that trace), while the campaign documents phase-dependent 0%-50% discounts and roughly 7.9%-8.2% in apply-register phases. Neither is a matched final executed-T discount. In particular, -119,503 emitted operations includes non-Toffoli and stale-strip effects and is deliberately not converted to executed T.",
+      "separate_pricing_required": "Price (1) final post-strip emitted CCX/CCZ/Toffoli-family delta on matched baseline/candidate streams, (2) candidate Q from artifact max id, and (3) executed T on the same deterministic input/nonce protocol separately. A stream-specific re-mine/repricing must account for all 1,742 stale keys; do not credit their baseline-strip savings."
+    },
+    "cheapest_discriminator": "After protected-source integrity is restored and explicit bounded authorization is granted, run a matched baseline/flag-on final-post-pass TRACE_TLM_TOF plus TRACE_TLM_CCX and TRACE_TLM_PROFILE build pair in an isolated worktree, fingerprint both artifacts, record Q, and calculate whether a defensible executed-T estimate can exceed the exact 5,538 rounded-T hurdle. TRACE_PHASE_ACTIVE is diagnostic only for the +5-Q allocation source. Stop before lambda/evaluator if the deterministic score projection cannot be positive.",
+    "predeclared_falsifier": "REFUTED_CONFIGURATION only if an authorized matched executed-T measurement establishes round(T_candidate) >= 1,277,950 while Q=1159, or an authorized semantic gate shows divergence/non-clean inverse. A failed stream-specific re-mine, unavailable pricing authority, or two local refinements without gain is PARKED/LOCAL_PLATEAU, not a global ceiling.",
+    "evidence_debt": [
+      "No matched baseline/candidate final post-strip TRACE_TLM_TOF, TRACE_TLM_CCX, or TRACE_TLM_PROFILE delta exists.",
+      "No executed-T measurement exists; candidate TRACE output is one-sided and cannot price score.",
+      "No paired dirty-scan lambda evidence exists; a 12-round scan would be triage only and unchanged triage is not positive evidence.",
+      "1742 stale deep-strip keys require stream-specific repricing/re-mine before strip economics are credited.",
+      "No 9,024-shot four-check evaluation, grind approval, ground nonce, certification, or promotion exists.",
+      "Historical rescue receipts recorded a tracked-bytecode drift. Current git status in this review does not list that path as modified; nevertheless, any new source-bound follow-up must repeat normal protected-source preflight."
+    ],
+    "trial_time_compute_budget": {
+      "consumed": "Read-only inspection, existing-receipt analysis, ownership audit, and recovery emission only. No build/evaluation/metrology/compute budget consumed in this task.",
+      "next_cheap_gate": "At most two isolated builds (baseline and flag-on) with the four trace flags and artifact fingerprints; no lambda scan or evaluator in that gate.",
+      "stop_rule": "If matched pricing cannot plausibly establish >=5,538 rounded executed-T reduction at Q=1159, stop and park. Do not spend a 12-round lambda scan as positive evidence or bypass a score regression.",
+      "long_compute": "EXP-SM-01 pilot/full census remains unapproved; observe only."
+    },
+    "source_owner_and_allowed_paths": {
+      "this_role": "exploitation-tuner is read-only; changed_paths is empty. ownership_violations(exploitation-tuner, []) passed.",
+      "ownership_check": "ownership_violations(exploitation-tuner, ['src/point_add/trailmix_ludicrous/square.rs']) correctly rejects the path: only implementer may edit scored circuit source.",
+      "future_implementation_owner": "implementer only; candidate control is already present in src/point_add/trailmix_ludicrous/square.rs. Any approved code correction must be restricted to the explicitly dispatched scored paths, expected to be square.rs and, only if necessary for the paired primitive proof, src/point_add/arith/multiply.rs.",
+      "root_constraint": "Do not reapply EXP-SQ-01 early-sum patch in root. Its exact rescue patch is .pi/campaign-runs/20260816t232122Z/rescue/structural-sq01-early-sum/artifacts/square.rs.patch (sha256 a32dba36a39ef7112049d94e5d5f7335bf2e58bcc3d884eff6ad043afa611ca1) and may be used only after an explicitly dispatched isolated-worktree approval."
+    },
+    "serialization_dependencies": [
+      "Repeat protected-source preflight before another source-bound candidate action; no current bytecode drift appeared in this review's git status.",
+      "Observe but never restart EXP-P2-BZ-METRO and EXP-SM-01 continuations; EXP-SM-01 has no pilot or long-compute approval.",
+      "Obtain explicit authorization for the two-build matched pricing gate before executing it.",
+      "Require stream-specific deep-strip repricing/re-mine for the 1,742 stale keys before using a post-strip T model.",
+      "Only a score-clearing T result can serialize into paired lambda metrology; only SAFE lambda plus separate authorization can serialize into the 9,024-shot evaluator."
+    ],
+    "rollback_unit": "No change was made by this task. For a later isolated implementation, rollback unit is the entire candidate worktree or its single TLM_SQUARE_ADDSUB_LOCAL-gated source patch; root remains untouched.",
+    "unresolved_directions": [
+      "Where and why the local temporary 2n allocations raise the binding global Q by five.",
+      "Matched final executed-T delta after post-passes, with stale deep-strip keys repriced rather than assumed free.",
+      "Paired lambda delta and whether changed local uncomputation introduces a phase/classical exposure.",
+      "Whether a stream-specific strip re-mine is economically justified after the cheap score gate."
+    ],
+    "reopening_trigger": "Reopen only after standard protected-source preflight and explicit two-build pricing authorization. Advance past PARKED only if matched final pricing supports rounded T <= 1,277,949 at Q=1159 and a stream-specific stale-key plan exists. This does not reopen the closed slope delta-3 family.",
+    "exact_reproduction_commands": [
+      "git worktree add --detach /tmp/square-addsub-local-price a2067dcf3c991bcecfd51a4bf07cd7d1cc56c3a5",
+      "cd /tmp/square-addsub-local-price && TLM_SQUARE_ADDSUB_LOCAL=1 TLM_SQ_SELFTEST=1 TLM_SQ_SELFTEST_ONLY=1 CARGO_TARGET_DIR=/tmp/square-addsub-local-price-target-selftest cargo run --release --bin build_circuit",
+      "cd /tmp/square-addsub-local-price && TLM_SQUARE_ADDSUB_LOCAL=1 TRACE_TLM_PROFILE=1 TRACE_TLM_CCX=1 TRACE_TLM_TOF=1 TRACE_PHASE_ACTIVE=1 CARGO_TARGET_DIR=/tmp/square-addsub-local-price-target cargo run --release --bin build_circuit",
+      "cd /tmp/square-addsub-local-price && env -u TLM_SQUARE_ADDSUB_LOCAL TRACE_TLM_PROFILE=1 TRACE_TLM_CCX=1 TRACE_TLM_TOF=1 TRACE_PHASE_ACTIVE=1 CARGO_TARGET_DIR=/tmp/square-addsub-local-price-target-base cargo run --release --bin build_circuit",
+      "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=.pi python3 -B -m harness.cli continuations"
+    ],
+    "measured_evidence_paths": [
+      ".pi/campaign-runs/20260816t232122Z/rescue/square-addsub-local/result.json",
+      ".pi/campaign-runs/20260816t232122Z/rescue/square-addsub-local-tof-profile/result.json",
+      ".pi/campaign-runs/20260816t232122Z/rescue/square-addsub-local-selftest/result.json",
+      ".pi/campaign-runs/20260816t232122Z/rescue/square-addsub-local/artifacts/ops.bin",
+      "/tmp/RESCUE-SQUARE-ADDSUB-LOCAL-pricing-recovery.log"
+    ],
+    "runtime_reference_note": "The runtime's actual durable receipt paths are under .pi/campaign-runs/20260816t232122Z; schema-v2 reference fields use the repository schema's required .pi/campaigns/... reference grammar. No claim is made that those schema-grammar aliases are materialized."
+  },
+  "evidence": {
+    "result_artifact": ".pi/campaign-runs/20260816t232122Z/reports/round1-tune-square-pricing.json",
+    "report_write": "The only file written by this task is this required report artifact; no source, trusted harness, frontier, campaign state, stage, merge, or commit was modified.",
+    "recovery_bundle": "/tmp/RESCUE-SQUARE-ADDSUB-LOCAL-pricing-recovery.log",
+    "recovery_bundle_status": "PARKED emitted successfully; terminal delimiter FLEET_RECOVERY_BUNDLE_END observed.",
+    "bytecode_guard": {
+      "path": "src/point_add/memory/repro/__pycache__/artifact_io.cpython-313.pyc",
+      "before_sha256": "016debdfcfe5a6f7827bfb1610344ed98bfe0d1720a7458618ecb94faddffe89",
+      "after_sha256": "016debdfcfe5a6f7827bfb1610344ed98bfe0d1720a7458618ecb94faddffe89",
+      "result": "pass"
+    },
+    "index": "git diff --cached --name-only produced no paths."
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "authority": "read-only discovery/audit; no lifecycle application, source edits, evaluator, metrology, nonce grind, promotion, commit, merge, push, or submission",
+  "baseCommit": "a2067dcf3c991bcecfd51a4bf07cd7d1cc56c3a5",
+  "expectedArtifacts": [
+    "result.json",
+    "checkpoint.json",
+    "terminal.log",
+    "status.json",
+    "recovery.json"
+  ],
+  "frontierId": "2026-08-16-a2067dcf",
+  "parentReceipt": "../../dispatch.json",
+  "parentReceiptSha256": "53ec484db53ef0991c665ebd354bcfc52e8e412e30a14ca8c007b6ef671ac67f",
+  "phase": "AUDIT",
+  "role": "frontier-auditor",
+  "schemaVersion": 1,
+  "scientificVerdictOnInterruption": null
+}

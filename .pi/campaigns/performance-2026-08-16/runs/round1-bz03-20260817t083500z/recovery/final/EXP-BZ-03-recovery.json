@@ -1,0 +1,66 @@
+{
+  "artifacts": [
+    {
+      "exists": true,
+      "path": ".pi/campaigns/performance-2026-08-16/runs/round1-bz03-20260817t083500z/artifact-manifest.json",
+      "resolved_path": "/Users/makimakiver/ecdsafail-challenge/.pi/campaigns/performance-2026-08-16/runs/round1-bz03-20260817t083500z/artifact-manifest.json",
+      "sha256": "94fefc4f6172bf97422252829566d81b13ef72725165c688d9cb7745976f1345",
+      "size": 2843
+    },
+    {
+      "exists": true,
+      "path": ".pi/campaigns/performance-2026-08-16/runs/round1-bz03-20260817t083500z/sweep-summary.json",
+      "resolved_path": "/Users/makimakiver/ecdsafail-challenge/.pi/campaigns/performance-2026-08-16/runs/round1-bz03-20260817t083500z/sweep-summary.json",
+      "sha256": "06c6ee18ede6da0b9693b5bba6403f048969bb4bf1405678cf9c407aad4ac9a6",
+      "size": 11866
+    },
+    {
+      "exists": true,
+      "path": ".pi/campaigns/performance-2026-08-16/runs/round1-bz03-20260817t083500z/result.json",
+      "resolved_path": "/Users/makimakiver/ecdsafail-challenge/.pi/campaigns/performance-2026-08-16/runs/round1-bz03-20260817t083500z/result.json",
+      "sha256": "1556a5e9833e856dcebf166b22a104ce4b9b13310b9e81f42e83e9f4e248ea26",
+      "size": 5005
+    }
+  ],
+  "commands": [
+    "cd /tmp/ecdsafail-round1-bz03 && env -u TLM_COUT_K_CALL_OVERRIDES CARGO_TARGET_DIR=/tmp/round1-bz03-target TRACE_TLM_TOF=1 cargo run --release --bin build_circuit",
+    "cd /tmp/ecdsafail-round1-bz03 && for k in 22 25 31 45 60 90 138; do CARGO_TARGET_DIR=/tmp/round1-bz03-target TLM_COUT_K_CALL_OVERRIDES=\"258:${k},259:${k},262:${k},263:${k}\" TRACE_TLM_TOF=1 cargo run --release --bin build_circuit; done",
+    "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=/tmp/ecdsafail-round1-bz03/src/point_add/memory/repro python3 -B -c \"from artifact_io import fingerprint; ...\" <copied per-arm ops.bin>"
+  ],
+  "continuation": null,
+  "experiment_id": "EXP-BZ-03",
+  "logs": [
+    {
+      "exists": true,
+      "path": ".pi/campaigns/performance-2026-08-16/runs/round1-bz03-20260817t083500z/logs/arm-completion.tsv",
+      "resolved_path": "/Users/makimakiver/ecdsafail-challenge/.pi/campaigns/performance-2026-08-16/runs/round1-bz03-20260817t083500z/logs/arm-completion.tsv",
+      "size": 458,
+      "tail": [
+        "label\toverrides\tcompleted_utc",
+        "default\t<unset-default>\t2026-08-17T08:28:23Z",
+        "k-22\t258:22,259:22,262:22,263:22\t2026-08-17T08:28:38Z",
+        "k-25\t258:25,259:25,262:25,263:25\t2026-08-17T08:28:53Z",
+        "k-31\t258:31,259:31,262:31,263:31\t2026-08-17T08:29:08Z",
+        "k-45\t258:45,259:45,262:45,263:45\t2026-08-17T08:29:24Z",
+        "k-60\t258:60,259:60,262:60,263:60\t2026-08-17T08:29:38Z",
+        "k-90\t258:90,259:90,262:90,263:90\t2026-08-17T08:29:53Z",
+        "k-138\t258:138,259:138,262:138,263:138\t2026-08-17T08:30:09Z"
+      ]
+    },
+    {
+      "exists": true,
+      "path": ".pi/campaigns/performance-2026-08-16/runs/round1-bz03-20260817t083500z/result-schema-validation.log",
+      "resolved_path": "/Users/makimakiver/ecdsafail-challenge/.pi/campaigns/performance-2026-08-16/runs/round1-bz03-20260817t083500z/result-schema-validation.log",
+      "size": 24,
+      "tail": [
+        "schema validation: PASS"
+      ]
+    }
+  ],
+  "reason": "Completed default plus exactly seven authorized COUT override arms. Default reproduced both identities; all override arms are flat/non-improving, satisfying the predeclared LOCAL_PLATEAU falsifier. No source edit, evaluator, lambda, grind, certification, or promotion.",
+  "repository": "/Users/makimakiver/ecdsafail-challenge",
+  "schema_version": 1,
+  "source_commit": "a2067dcf3c991bcecfd51a4bf07cd7d1cc56c3a5",
+  "status": "IMPLEMENTED",
+  "timestamp_utc": "2026-08-17T08:31:11.532115+00:00"
+}

@@ -1,0 +1,37 @@
+{
+  "agent": "frontier-auditor",
+  "base_identity": {
+    "repository_commit": "a2067dcf3c991bcecfd51a4bf07cd7d1cc56c3a5",
+    "scored_source_tree_sha256": "7ae7eabe20bc5459d902d2f4c921bb7ea53f48f9c82ae88d9a7f93c2bbefd7f9",
+    "trusted_source_tree_sha256": "fdd8fe31d933f8861d24d9ffc474a21899de22874ec41ff5579a3c138f320562"
+  },
+  "budget": {
+    "evaluation": false,
+    "kind": "read-only frontier audit",
+    "long_compute": false,
+    "metrology_expansion": false,
+    "nonce_grinding": false
+  },
+  "campaign_id": "performance-2026-08-16",
+  "commands": [
+    "PYTHONDONTWRITEBYTECODE=1 python3 -B .pi/skills/circuit-evidence/scripts/validate_fleet.py",
+    "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=.pi python3 -B -m harness.cli validate",
+    "read-only source/artifact/identity reconciliation; no build, evaluator, metrology, grind, promotion, or source mutation"
+  ],
+  "control_plane_sha256": "2edbf40dcf4e82bb25fd2a3b9ee4abb2064b2155de18151505280c72e91477f2",
+  "expected_result": ".pi/campaigns/performance-2026-08-16/runs/frontier-audit-20260817t08211786954877z/result.json",
+  "experiment_id": "FRONTIER-AUDIT",
+  "frontier_id": "2026-08-16-a2067dcf",
+  "lane": "REFRAMING",
+  "owner": "frontier-auditor",
+  "run_id": "frontier-audit-20260817t08211786954877z",
+  "schema_version": 1,
+  "soft_deadlines": {
+    "checkpoint": 0.8,
+    "finalize": 0.9,
+    "grace": 0.95
+  },
+  "task": "Read-only, schema-v2 frontier audit. Parent-owned run envelope is /Users/makimakiver/ecdsafail-challenge/.pi/campaigns/performance-2026-08-16/runs/frontier-audit-20260817t08211786954877z. Read dispatch, checkpoint, and write terminal evidence only within that envelope. Do not use .pi/campaign-runs/** as current receipts; it is historical evidence only. Reconcile HEAD/source tree/trusted tree, live build route, geometry, nonce, default artifact compressed and canonical hashes, T/Q/score, and retained verifier identity. Return status IMPLEMENTED, scientific_verdict CURRENT, changed_paths [], and only filesystem-valid run-envelope references under .pi/campaigns/performance-2026-08-16/runs/frontier-audit-20260817t08211786954877z if all identities reconcile. Do not edit source, frontier, campaign state, harness, artifacts, or historical receipts. Use python3 -B with PYTHONDONTWRITEBYTECODE=1, verifying the tracked artifact_io pycache is clean and hashes to 016debdfcfe5a6f7827bfb1610344ed98bfe0d1720a7458618ecb94faddffe89 before and after each Python audit.",
+  "timeout_seconds": 900,
+  "worktree": "/Users/makimakiver/ecdsafail-challenge"
+}

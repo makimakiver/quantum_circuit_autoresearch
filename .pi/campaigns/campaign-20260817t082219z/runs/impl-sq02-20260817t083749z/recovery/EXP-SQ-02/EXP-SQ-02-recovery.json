@@ -1,0 +1,28 @@
+{
+  "artifacts": [],
+  "commands": [
+    "cd /Users/makimakiver/ecdsafail-wt/sq02 && CARGO_TARGET_DIR=/Users/makimakiver/ecdsafail-wt/shared-target TRACE_TLM_PROFILE=1 TRACE_TLM_TOF=1 TRACE_TLM_COMPARE_DIRECT=1 cargo run --release --bin build_circuit"
+  ],
+  "continuation": null,
+  "experiment_id": "EXP-SQ-02",
+  "logs": [
+    {
+      "exists": true,
+      "path": "/Users/makimakiver/ecdsafail-challenge/.pi/campaigns/campaign-20260817t082219z/runs/impl-sq02-20260817t083749z/terminal.log",
+      "resolved_path": "/Users/makimakiver/ecdsafail-challenge/.pi/campaigns/campaign-20260817t082219z/runs/impl-sq02-20260817t083749z/terminal.log",
+      "size": 736,
+      "tail": [
+        "== gate 1 ownership == implementer owns planned src/point_add/trailmix_ludicrous/{ec_add,arith}.rs (0 violations); no edits made",
+        "== gate 2 default identity == baseline build (pre-edit, TRACE env set): ops.bin sha256 6519bd01424d5513cd7f8232d4c15dfcbfe67561eb1b7f05b2cfec87c233a097; canonical 0a4a412c939b05f59fa4bc33c2410e5bc110b07c7faded5e6db5f6b5db3ed0b0; Q=1154; emitted 8958690",
+        "== discriminator == TLM_TOF phase=tlm_coord_x_sub emitted=332 expected=320.0 discount=0.036; TLM_COMPARE_DIRECT call=0 n=19 k=19 split=0; conditionable <= 21 Toffoli; ceiling discount 0.063; realistic ~0.03",
+        "== verdict == predeclared falsifier (phase discount < 0.2) FIRED at the measurement gate; REFUTED for the first-site local cell; zero source edits"
+      ]
+    }
+  ],
+  "reason": "Predeclared falsifier fired at the measurement gate: first-site conditioning discount ceiling 0.063 (21/332 conditionable Toffoli) < 0.2 threshold; zero source edits; baseline identities reproduced",
+  "repository": "/Users/makimakiver/ecdsafail-challenge",
+  "schema_version": 1,
+  "source_commit": "a2067dcf3c991bcecfd51a4bf07cd7d1cc56c3a5",
+  "status": "REFUTED",
+  "timestamp_utc": "2026-08-17T08:57:35.631613+00:00"
+}

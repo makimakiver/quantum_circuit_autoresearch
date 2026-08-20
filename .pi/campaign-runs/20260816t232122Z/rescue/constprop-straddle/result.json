@@ -1,0 +1,102 @@
+{
+  "candidate_ops_sha256": "6519bd01424d5513cd7f8232d4c15dfcbfe67561eb1b7f05b2cfec87c233a097",
+  "canonical_ops_sha256": "0a4a412c939b05f59fa4bc33c2410e5bc110b07c7faded5e6db5f6b5db3ed0b0",
+  "changed_paths": [],
+  "commands": [
+    "cd /tmp/fleet-v3-constprop-straddle-20260816t233502Z && TLM_CONSTPROP_STRADDLE=1 CARGO_TARGET_DIR=/tmp/fleet-v3-constprop-straddle-20260816t233502Z/target cargo run --release --bin build_circuit"
+  ],
+  "evidence": {
+    "budget": "Consumed exactly one authorized build. No eval_circuit, dirty scan/metrology, nonce grind, promotion, or source/control-plane edit was performed.",
+    "cheapest_discriminator": "The exact flag-on build plus compressed and canonical artifact fingerprints; discriminating log line: CONSTPROP_STRADDLE TOTAL straddle_extra_pairs=0 (of inverse_pairs=155).",
+    "constprop_straddle": {
+      "adds_pairs": false,
+      "extra_pairs": 0,
+      "total_inverse_pairs": 155
+    },
+    "disposition": "REFUTED_CONFIGURATION/no-op scoped to TLM_CONSTPROP_STRADDLE=1 on the dispatched a2067dcf sandbox stream; not a global ceiling.",
+    "evidence_debt": [
+      "No 9,024-shot evaluation was run (not authorized).",
+      "No TRACE_TLM_PROFILE/CCX/TOF/PHASE_ACTIVE or lambda probe was run (not authorized and unnecessary for a byte-identical no-op).",
+      "No default-off recheck was run because this was a flag-on-only no-op receipt, not an implementation candidate."
+    ],
+    "falsifier": "Dispatch-defined: a byte-identical candidate is a scoped probe result. Both compressed and canonical identities equal the pinned frontier.",
+    "frontier_comparison": {
+      "canonical_equal": true,
+      "compressed_equal": true,
+      "emitted_ops_equal": true,
+      "qubits_equal": true
+    },
+    "mechanism": "CONSTPROP_STRADDLE enables the straddle branch in inverse-pair discovery. It would remove two Toffoli-family operations per additional matched inverse pair; log reports zero additional matches.",
+    "poststrip": {
+      "ccz_removed_pairs": 0,
+      "ccz_total": 4792,
+      "deep_strip_downgraded": "4045 / 4045",
+      "deep_strip_removed": "12202 / 12202",
+      "deep_strip_stale_keys": 0,
+      "final_emitted_ops": 8958690,
+      "poststrip_target_fanout_passes": 10,
+      "single_ccx_fanout_output_ops": 8970902,
+      "single_ccx_fanout_passes": 27,
+      "stable": true
+    },
+    "predicted_signs": {
+      "Q": "neutral",
+      "T": "negative only if extra inverse pairs are admitted; observed stream delta 0",
+      "lambda": "expected neutral for a pure cancellation if pairs existed; unmeasured and no stream change observed"
+    },
+    "reopening_trigger": "Reopen only with an implementation or independently live stream that changes inverse-pair matching and first produces a nonidentical compressed and canonical artifact; then repeat the identity/poststrip gate before any metrology. This result does not reopen the closed slope delta-3 family.",
+    "search_radius": "One parent-authorized flag-on build only: TLM_CONSTPROP_STRADDLE=1, current JUMP=2/ITERS=261 stream, constprop max_iters=16. No parameter sweep."
+  },
+  "experiment_id": "RESCUE-CONSTPROP-STRADDLE",
+  "frontier_id": "2026-08-16-a2067dcf",
+  "metrics": {
+    "artifact_bytes": 29461502,
+    "build_exit_code": 0,
+    "emitted_ops": 8958690,
+    "lambda": {
+      "delta": null,
+      "reason": "No dirty scan/metrology was authorized; a byte-identical operation stream provides no candidate-specific lambda change to measure.",
+      "value": null
+    },
+    "max_referenced_qubit_id": 1153,
+    "qubits": {
+      "basis": "parent artifact tool max_referenced_qubit_id=1153; equal canonical baseline",
+      "delta": 0,
+      "value": 1154
+    },
+    "referenced_qubits": 1154,
+    "toffoli_executed": {
+      "delta": null,
+      "reason": "No eval_circuit or metrology was authorized; byte identity makes a candidate T delta zero by stream identity, but no new executed-T measurement is claimed.",
+      "value": null
+    }
+  },
+  "nonce_env": "SUB4_TAIL_NONCE",
+  "recovery": {
+    "bundle_manifest": "/Users/makimakiver/ecdsafail-challenge/.pi/campaign-runs/20260816t232122Z/rescue/constprop-straddle/recovery/RESCUE-CONSTPROP-STRADDLE-recovery.json",
+    "bundle_terminal_log": "/Users/makimakiver/ecdsafail-challenge/.pi/campaign-runs/20260816t232122Z/rescue/constprop-straddle/recovery-terminal.log",
+    "bundle_text": "/Users/makimakiver/ecdsafail-challenge/.pi/campaign-runs/20260816t232122Z/rescue/constprop-straddle/recovery/RESCUE-CONSTPROP-STRADDLE-recovery.txt",
+    "status": "REFUTED_CONFIGURATION"
+  },
+  "role": "exploitation-tuner",
+  "schema_version": 1,
+  "scientific_verdict": "REFUTED_CONFIGURATION: the single authorized TLM_CONSTPROP_STRADDLE=1 build was byte-identical to the pinned stream; the flag reached CONSTPROP but added zero straddle inverse pairs.",
+  "status": "REFUTED",
+  "timestamp": "2026-08-16T23:36:17Z",
+  "verification": {
+    "artifact": "/Users/makimakiver/ecdsafail-challenge/.pi/campaign-runs/20260816t232122Z/rescue/constprop-straddle/artifacts/ops.bin",
+    "artifact_hashes_match_frontier": true,
+    "artifact_tool": "/Users/makimakiver/ecdsafail-challenge/src/point_add/memory/repro/artifact_io.py::fingerprint",
+    "build": "passed",
+    "build_exit_code_file": "/tmp/fleet-v3-constprop-straddle-20260816t233502Z/build.exitcode",
+    "evaluation": "not run (explicitly prohibited)",
+    "metrology": "not run (explicitly prohibited)",
+    "ownership_check": {
+      "claimed_changed_paths": [],
+      "command": "PYTHONPATH=/Users/makimakiver/ecdsafail-challenge/.pi python3 -c 'from harness.ownership import ownership_violations; print(ownership_violations(\"exploitation-tuner\", []))'",
+      "violations": []
+    },
+    "terminal_log": "/Users/makimakiver/ecdsafail-challenge/.pi/campaign-runs/20260816t232122Z/rescue/constprop-straddle/terminal.log",
+    "terminal_log_sha256": "5b8c5fecc4ddf326c59d6ee7afd5a15c04ea2f6bf78142944b49c20f751bfa62"
+  }
+}

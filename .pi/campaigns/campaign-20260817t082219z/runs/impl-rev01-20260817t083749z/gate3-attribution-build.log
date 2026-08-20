@@ -1,0 +1,149 @@
+warning: unused variable: `b`
+   --> src/bin/../point_add/arith/multiply.rs:638:24
+    |
+638 |     let borrow_lane = |b: &mut B, _need: usize| -> Vec<QubitId> {
+    |                        ^ help: if this is intentional, prefix it with an underscore: `_b`
+    |
+    = note: `#[warn(unused_variables)]` (part of `#[warn(unused)]`) on by default
+
+warning: unused variable: `seg_w`
+   --> src/bin/../point_add/arith/multiply.rs:649:13
+    |
+649 |         let seg_w = hi - lo;
+    |             ^^^^^ help: if this is intentional, prefix it with an underscore: `_seg_w`
+
+warning: variable does not need to be mutable
+  --> src/bin/../point_add/dirtyscan.rs:57:9
+   |
+57 |     let mut note = |writers: &mut Vec<[usize; TRAIL]>, wpos: &mut Vec<u8>, q: u64, index: usize| {
+   |         ----^^^^
+   |         |
+   |         help: remove this `mut`
+   |
+   = note: `#[warn(unused_mut)]` (part of `#[warn(unused)]`) on by default
+
+warning: `quantum_ecc` (bin "build_circuit") generated 3 warnings (run `cargo fix --bin "build_circuit" -p quantum_ecc` to apply 3 suggestions)
+    Finished `release` profile [optimized] target(s) in 0.12s
+     Running `/Users/makimakiver/ecdsafail-wt/shared-target/release/build_circuit`
+=== quantum_ecc: build_circuit (untrusted stage) ===
+
+-- building circuit --
+TLM_CCX phase=tlm_apply_inverse_mod_sub_register ccx=160428 pct=11.90 cum=11.90
+TLM_CCX phase=tlm_apply_forward_mod_add_register ccx=159241 pct=11.82 cum=23.72
+TLM_CCX phase=tlm_apply_inverse_fold ccx=84147 pct=6.24 cum=29.96
+TLM_CCX phase=tlm_apply_forward_fold ccx=83797 pct=6.22 cum=36.18
+TLM_CCX phase=rt_if_add ccx=76651 pct=5.69 cum=41.87
+TLM_CCX phase=rt_mr_add ccx=76651 pct=5.69 cum=47.56
+TLM_CCX phase=rt_ir_add ccx=69549 pct=5.16 cum=52.72
+TLM_CCX phase=rt_mf_add ccx=69549 pct=5.16 cum=57.88
+TLM_CCX phase=tlm_apply_forward_swap ccx=66048 pct=4.90 cum=62.78
+TLM_CCX phase=tlm_apply_inverse_swap ccx=66048 pct=4.90 cum=67.68
+TLM_CCX phase=rt_if_cswap ccx=34905 pct=2.59 cum=70.27
+TLM_CCX phase=rt_ir_cswap ccx=34905 pct=2.59 cum=72.86
+TLM_CCX phase=rt_mf_cswap ccx=34905 pct=2.59 cum=75.45
+TLM_CCX phase=rt_mr_cswap ccx=34905 pct=2.59 cum=78.04
+TLM_CCX phase=rt_ir_shift_tail ccx=34899 pct=2.59 cum=80.63
+TLM_CCX phase=rt_mr_shift_tail ccx=34899 pct=2.59 cum=83.22
+TLM_CCX phase=tlm_inverse_gcd_forward_shift ccx=34899 pct=2.59 cum=85.81
+TLM_CCX phase=tlm_multiply_gcd_forward_shift ccx=34899 pct=2.59 cum=88.40
+TLM_CCX phase=tlm_apply_forward_mod_add_fold ccx=15529 pct=1.15 cum=89.55
+TLM_CCX phase=tlm_apply_inverse_mod_sub_fold ccx=15414 pct=1.14 cum=90.70
+TLM_CCX phase=rt_if_cmp_compute ccx=10431 pct=0.77 cum=91.47
+TLM_CCX phase=rt_mr_cmp_uncompute ccx=10171 pct=0.75 cum=92.23
+TLM_CCX phase=rt_mf_cmp_compute ccx=10160 pct=0.75 cum=92.98
+TLM_CCX phase=rt_ir_cmp_uncompute ccx=9900 pct=0.73 cum=93.71
+TLM_CCX phase=square_c_sum_build ccx=9283 pct=0.69 cum=94.40
+TLM_CCX phase=square_c_sum_unbuild ccx=9283 pct=0.69 cum=95.09
+TLM_CCX phase=square_a_lo_build ccx=9147 pct=0.68 cum=95.77
+TLM_CCX phase=square_a_lo_unbuild ccx=9147 pct=0.68 cum=96.45
+TLM_CCX phase=square_b_hi_build ccx=9147 pct=0.68 cum=97.13
+TLM_CCX phase=square_b_hi_unbuild ccx=9147 pct=0.68 cum=97.81
+TLM_CCX_TOTAL 1347642 phases=66
+TLM_TOF phase=tlm_apply_inverse_mod_sub_register emitted=161682 expected=148392.5 discount=0.082
+TLM_TOF phase=tlm_apply_forward_mod_add_register emitted=160495 expected=147799.0 discount=0.079
+TLM_TOF phase=tlm_apply_inverse_fold emitted=84151 expected=83054.0 discount=0.013
+TLM_TOF phase=tlm_apply_forward_fold emitted=83807 expected=82687.5 discount=0.013
+TLM_TOF phase=rt_if_add emitted=77019 expected=73468.0 discount=0.046
+TLM_TOF phase=rt_mr_add emitted=77019 expected=73468.0 discount=0.046
+TLM_TOF phase=rt_ir_add emitted=69549 expected=69549.0 discount=0.000
+TLM_TOF phase=rt_mf_add emitted=69549 expected=69549.0 discount=0.000
+TLM_TOF phase=tlm_apply_forward_swap emitted=66048 expected=66048.0 discount=0.000
+TLM_TOF phase=tlm_apply_inverse_swap emitted=66048 expected=66048.0 discount=0.000
+TLM_TOF phase=rt_if_cswap emitted=34905 expected=34905.0 discount=0.000
+TLM_TOF phase=rt_ir_cswap emitted=34905 expected=34905.0 discount=0.000
+TLM_TOF phase=rt_mf_cswap emitted=34905 expected=34905.0 discount=0.000
+TLM_TOF phase=rt_mr_cswap emitted=34905 expected=34905.0 discount=0.000
+TLM_TOF phase=rt_ir_shift_tail emitted=34899 expected=34899.0 discount=0.000
+TLM_TOF phase=rt_mr_shift_tail emitted=34899 expected=34899.0 discount=0.000
+TLM_TOF phase=tlm_inverse_gcd_forward_shift emitted=34899 expected=34899.0 discount=0.000
+TLM_TOF phase=tlm_multiply_gcd_forward_shift emitted=34899 expected=34899.0 discount=0.000
+TLM_TOF phase=tlm_apply_forward_mod_add_fold emitted=16229 expected=14874.5 discount=0.083
+TLM_TOF phase=tlm_apply_inverse_mod_sub_fold emitted=16086 expected=14843.0 discount=0.077
+TLM_TOF phase=rt_if_cmp_compute emitted=10431 expected=10431.0 discount=0.000
+TLM_TOF phase=rt_mf_cmp_compute emitted=10160 expected=10160.0 discount=0.000
+TLM_TOF phase=square_c_sum_build emitted=9283 expected=9283.0 discount=0.000
+TLM_TOF phase=square_c_sum_unbuild emitted=9283 expected=9283.0 discount=0.000
+TLM_TOF phase=square_a_lo_build emitted=9147 expected=9147.0 discount=0.000
+TLM_TOF phase=square_a_lo_unbuild emitted=9147 expected=9147.0 discount=0.000
+TLM_TOF phase=square_b_hi_build emitted=9147 expected=9147.0 discount=0.000
+TLM_TOF phase=square_b_hi_unbuild emitted=9147 expected=9147.0 discount=0.000
+TLM_TOF phase=rt_mr_cmp_uncompute emitted=10171 expected=5085.5 discount=0.500
+TLM_TOF phase=rt_ir_cmp_uncompute emitted=9900 expected=4950.0 discount=0.500
+TLM_TOF phase=square_b_hi_apply_f_times_sub emitted=4573 expected=4383.0 discount=0.042
+TLM_TOF phase=tlm_apply_forward_mod_add_clean emitted=4943 expected=2471.5 discount=0.500
+TLM_TOF phase=tlm_apply_inverse_mod_sub_clean emitted=4943 expected=2471.5 discount=0.500
+TLM_TOF phase=square_c_sum_apply_shifted_128_sub emitted=2356 expected=2284.0 discount=0.031
+TLM_TOF phase=square_a_lo_apply_shifted_128_add emitted=2354 expected=2282.0 discount=0.031
+TLM_TOF phase=square_b_hi_apply_shifted_128_add emitted=2354 expected=2282.0 discount=0.031
+TLM_TOF phase=tlm_inverse_gcd_reverse_decode emitted=1466 expected=1466.0 discount=0.000
+TLM_TOF phase=tlm_multiply_gcd_reverse_decode emitted=1466 expected=1466.0 discount=0.000
+TLM_TOF phase=tlm_inverse_gcd_forward_codec emitted=1379 expected=1379.0 discount=0.000
+TLM_TOF phase=tlm_multiply_gcd_forward_codec emitted=1379 expected=1379.0 discount=0.000
+TLM_TOF phase=square_a_lo_apply_unshifted_sub emitted=333 expected=321.0 discount=0.036
+TLM_TOF phase=tlm_coord_add3x emitted=332 expected=320.0 discount=0.036
+TLM_TOF phase=tlm_coord_rsub_final emitted=332 expected=320.0 discount=0.036
+TLM_TOF phase=tlm_coord_x_sub emitted=332 expected=320.0 discount=0.036
+TLM_TOF phase=tlm_coord_y_sub emitted=332 expected=320.0 discount=0.036
+TLM_TOF phase=tlm_coord_y_sub_final emitted=332 expected=320.0 discount=0.036
+TLM_TOF phase=square_sum_hi_lo_unbuild emitted=258 expected=258.0 discount=0.000
+TLM_TOF phase=square_sum_hi_lo emitted=256 expected=256.0 discount=0.000
+TLM_TOF_TOTAL emitted=1352434 expected=1299076.0 discount=0.0395
+CASCADE_ACCEPT pair=CCX(531,583->584) triple=(530,531,1149)
+CASCADE_ACCEPT pair=CCX(531,583->584) triple=(530,531,1150)
+CASCADE_ACCEPT pair=CCX(531,583->584) triple=(530,531,1132)
+CASCADE_ACCEPT pair=CCX(271,323->324) triple=(9,270,271)
+CASCADE_ACCEPT pair=CCX(272,324->325) triple=(143,271,272)
+CASCADE_ACCEPT pair=CCX(274,326->327) triple=(143,273,274)
+CASCADE_ACCEPT pair=CCX(275,327->328) triple=(274,275,1147)
+CASCADE_ACCEPT pair=CCX(272,324->325) triple=(271,272,886)
+CASCADE_ACCEPT pair=CCX(275,327->328) triple=(274,275,1088)
+CASCADE_ACCEPT pair=CCX(274,326->327) triple=(273,274,915)
+CASCADE_ACCEPT pair=CCX(275,327->328) triple=(274,275,889)
+CONSTPROP iter=1 ccx_total=1347642 dropped=141 folded_cx=23 folded_x=0 inverse_pairs=12 aff_drop=9 aff_fold=3 (this-iter toffoli removed = 200)
+CONSTPROP iter=2 ccx_total=1347442 dropped=3 folded_cx=0 folded_x=0 inverse_pairs=11 aff_drop=0 aff_fold=0 (this-iter toffoli removed = 25)
+CONSTPROP iter=3 ccx_total=1347417 dropped=0 folded_cx=0 folded_x=0 inverse_pairs=11 aff_drop=0 aff_fold=0 (this-iter toffoli removed = 22)
+CONSTPROP iter=4 ccx_total=1347395 dropped=0 folded_cx=0 folded_x=0 inverse_pairs=11 aff_drop=0 aff_fold=0 (this-iter toffoli removed = 22)
+CONSTPROP iter=5 ccx_total=1347373 dropped=0 folded_cx=0 folded_x=0 inverse_pairs=11 aff_drop=0 aff_fold=0 (this-iter toffoli removed = 22)
+CONSTPROP iter=6 ccx_total=1347351 dropped=0 folded_cx=0 folded_x=0 inverse_pairs=11 aff_drop=0 aff_fold=0 (this-iter toffoli removed = 22)
+CONSTPROP iter=7 ccx_total=1347329 dropped=0 folded_cx=0 folded_x=0 inverse_pairs=11 aff_drop=0 aff_fold=0 (this-iter toffoli removed = 22)
+CONSTPROP iter=8 ccx_total=1347307 dropped=0 folded_cx=0 folded_x=0 inverse_pairs=11 aff_drop=0 aff_fold=0 (this-iter toffoli removed = 22)
+CONSTPROP iter=9 ccx_total=1347285 dropped=0 folded_cx=0 folded_x=0 inverse_pairs=11 aff_drop=0 aff_fold=0 (this-iter toffoli removed = 22)
+CONSTPROP iter=10 ccx_total=1347263 dropped=0 folded_cx=0 folded_x=0 inverse_pairs=11 aff_drop=0 aff_fold=0 (this-iter toffoli removed = 22)
+CONSTPROP iter=11 ccx_total=1347241 dropped=0 folded_cx=0 folded_x=0 inverse_pairs=11 aff_drop=0 aff_fold=0 (this-iter toffoli removed = 22)
+CONSTPROP iter=12 ccx_total=1347219 dropped=0 folded_cx=0 folded_x=0 inverse_pairs=11 aff_drop=0 aff_fold=0 (this-iter toffoli removed = 22)
+CONSTPROP iter=13 ccx_total=1347197 dropped=0 folded_cx=0 folded_x=0 inverse_pairs=11 aff_drop=0 aff_fold=0 (this-iter toffoli removed = 22)
+CONSTPROP iter=14 ccx_total=1347175 dropped=0 folded_cx=0 folded_x=0 inverse_pairs=5 aff_drop=0 aff_fold=0 (this-iter toffoli removed = 10)
+CONSTPROP iter=15 ccx_total=1347165 dropped=0 folded_cx=0 folded_x=0 inverse_pairs=3 aff_drop=0 aff_fold=0 (this-iter toffoli removed = 6)
+CONSTPROP iter=16 ccx_total=1347159 dropped=0 folded_cx=0 folded_x=0 inverse_pairs=3 aff_drop=0 aff_fold=0 (this-iter toffoli removed = 6)
+CONSTPROP reached max_iters=16, stopping
+CONSTPROP TOTAL iters=16 dropped=144 folded_cx=23 folded_x=0 inverse_pairs=155 aff_drop=9 aff_fold=3 (toffoli removed = 489)
+SINGLE_CCX_FANOUT: STOP passes=27 input_ops=8970929 output_ops=8970902 reason=no target-fanout conjugation found
+SINGLE_CCX_FANOUT: SUMMARY input_ops=8970929 output_ops=8970902 passes=27
+  [M-60] disabled -> emitting C1 (unfiltered)
+  [W018 CCZ straddle] total_ccz=4792 same_triple_candidates=0 cancelled_pairs=0 removed_ccz=0 -> 8970902 ops
+[deep-strip-identity] removed 12202 / 12202 dead; downgraded 4045 / 4045 to CX/CZ; 0 stale keys skipped
+POST_STRIP_TARGET_FANOUT_DONE: passes=10
+  emitted ops : 8958690
+  wrote       : ops.bin (29461502 bytes on disk, 501686656 uncompressed, 17.0x)
+
+=== build_circuit OK ===

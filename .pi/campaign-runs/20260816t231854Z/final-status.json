@@ -1,0 +1,59 @@
+{
+  "artifacts": [
+    "terminal.log",
+    "commands.jsonl",
+    "preflight.json",
+    "dispatch.json",
+    "final-status.json"
+  ],
+  "campaignStatus": "BLOCKED_FOR_CONTROL_PLANE_UPGRADE",
+  "dispatchReceipt": {
+    "mode": "0444",
+    "path": "dispatch.json",
+    "sha256": "8c6499e9f27d049c581256b77d65b6a7ab9a0fab60f6f85450acd41f646e3c97"
+  },
+  "dispatchedRoles": [],
+  "failedCommand": {
+    "command": "env PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=.pi python3 -m unittest discover -s .pi/harness/tests -v",
+    "exitCode": 1,
+    "label": "harness-tests"
+  },
+  "failureDetails": [
+    "harness.runtime is missing _hash_file_at expected by test_run_provenance_artifact_hash_survives_late_run_directory_swap",
+    "collection did not reject a post-synthesis run swap/forged receipt",
+    "symlinked and corrupt checkpoints were treated as absent rather than rejected"
+  ],
+  "nonDispatchedRoles": [
+    "frontier-auditor",
+    "exploitation-tuner",
+    "structural-researcher",
+    "cross-cell-reframer",
+    "strip-census-miner",
+    "implementer",
+    "lambda-metrologist",
+    "evaluator-certifier",
+    "nonce-grinder"
+  ],
+  "protectedHashes": {
+    "after": {
+      ".pi/frontier.json": "042d41fa3c9cc28cb3d68bb1c02b59ab0e3418f2c576b8ed31116131901beb4e",
+      ".pi/state/campaign.json": "29b3ff28ad084c16856d750fbd5d5032f4add9964ad423daaf40921e230b9005",
+      "results.tsv": "75a7b6aff06b30abbb3d3fff283c29569efdef8e826cf0856999ef2fe96dd06d",
+      "src/point_add/trailmix_ludicrous/square.rs": "4beca7e09b24aef7d38ff2efd6635542bc24cef3a87cb9fbdb910cc3bd0bf5f8"
+    },
+    "before": {
+      ".pi/frontier.json": "042d41fa3c9cc28cb3d68bb1c02b59ab0e3418f2c576b8ed31116131901beb4e",
+      ".pi/state/campaign.json": "29b3ff28ad084c16856d750fbd5d5032f4add9964ad423daaf40921e230b9005",
+      "results.tsv": "75a7b6aff06b30abbb3d3fff283c29569efdef8e826cf0856999ef2fe96dd06d",
+      "src/point_add/trailmix_ludicrous/square.rs": "4beca7e09b24aef7d38ff2efd6635542bc24cef3a87cb9fbdb910cc3bd0bf5f8"
+    },
+    "unchanged": true
+  },
+  "reason": "Full Fleet v3 harness test suite failed during Phase 0; no role was dispatched and no circuit writer was authorized.",
+  "schemaVersion": 1,
+  "scientific_verdict": null,
+  "unresolvedObligations": [
+    "Repair the runtime-recovery integrity checks and make the full harness suite green.",
+    "Rerun Phase 0 under a new parent-owned dispatch receipt before dispatching any discovery or writer role."
+  ]
+}

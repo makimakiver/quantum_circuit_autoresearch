@@ -1,0 +1,25 @@
+{
+  "artifacts": [],
+  "commands": [
+    "bash /tmp/run-exp-bz03-sweep.sh (initial invocation failed before first arm; corrected external runner resumes)"
+  ],
+  "continuation": null,
+  "experiment_id": "EXP-BZ-03",
+  "logs": [
+    {
+      "exists": true,
+      "path": ".pi/campaigns/performance-2026-08-16/runs/round1-bz03-20260817t083500z/logs/arm-completion.tsv",
+      "resolved_path": "/Users/makimakiver/ecdsafail-challenge/.pi/campaigns/performance-2026-08-16/runs/round1-bz03-20260817t083500z/logs/arm-completion.tsv",
+      "size": 30,
+      "tail": [
+        "label\toverrides\tcompleted_utc"
+      ]
+    }
+  ],
+  "reason": "External sweep runner stopped before the first arm because bash expanded local label before assignment; no cargo build, artifact, source edit, evaluator, lambda, grind, certification, or promotion was performed. Correct runner then resumes.",
+  "repository": "/Users/makimakiver/ecdsafail-challenge",
+  "schema_version": 1,
+  "source_commit": "a2067dcf3c991bcecfd51a4bf07cd7d1cc56c3a5",
+  "status": "CHECKPOINTED",
+  "timestamp_utc": "2026-08-17T08:27:28.572927+00:00"
+}

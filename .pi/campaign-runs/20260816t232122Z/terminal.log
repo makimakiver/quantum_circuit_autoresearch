@@ -1,0 +1,600 @@
+Fleet v3 campaign Phase 0 retry
+repo=/Users/makimakiver/ecdsafail-challenge
+run_dir=.pi/campaign-runs/20260816t232122Z
+started=2026-08-16T23:21:22Z
+dispatch receipt sha256: 53ec484db53ef0991c665ebd354bcfc52e8e412e30a14ca8c007b6ef671ac67f  .pi/campaign-runs/20260816t232122Z/dispatch.json
+
+===== git-commit =====
+$ git rev-parse HEAD
+a2067dcf3c991bcecfd51a4bf07cd7d1cc56c3a5
+[exit=0]
+
+===== git-status-before =====
+$ git status --short
+ M results.tsv
+ M src/point_add/trailmix_ludicrous/square.rs
+?? .pi/
+?? AGENTS.md
+?? CAMPAIGN_FINDINGS.md
+[exit=0]
+
+===== protected-hashes-before =====
+$ shasum -a 256 .pi/frontier.json .pi/state/campaign.json results.tsv src/point_add/trailmix_ludicrous/square.rs
+042d41fa3c9cc28cb3d68bb1c02b59ab0e3418f2c576b8ed31116131901beb4e  .pi/frontier.json
+29b3ff28ad084c16856d750fbd5d5032f4add9964ad423daaf40921e230b9005  .pi/state/campaign.json
+75a7b6aff06b30abbb3d3fff283c29569efdef8e826cf0856999ef2fe96dd06d  results.tsv
+4beca7e09b24aef7d38ff2efd6635542bc24cef3a87cb9fbdb910cc3bd0bf5f8  src/point_add/trailmix_ludicrous/square.rs
+[exit=0]
+
+===== harness-validate =====
+$ env PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=.pi python3 -m harness.cli validate
+{
+  "campaign_id": "performance-2026-08-16",
+  "collected_results": 0,
+  "continuations": 2,
+  "frontier_id": "2026-08-16-a2067dcf",
+  "records": 8,
+  "score": 1481143998,
+  "source_lock": {
+    "changed_paths": [
+      "src/point_add/trailmix_ludicrous/square.rs"
+    ],
+    "scored_diff_sha256": "30be19a685b8969824de1ed0784e340d30da583bc484b4d77b4b0d6e217034b6"
+  },
+  "status": "OK"
+}
+[exit=0]
+
+===== harness-tests =====
+$ env PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=.pi python3 -m unittest discover -s .pi/harness/tests -v
+test_campaign_binds_to_caller_supplied_frontier (test_campaign.CampaignTests.test_campaign_binds_to_caller_supplied_frontier) ... ok
+test_campaign_rejects_path_like_identifiers (test_campaign.CampaignTests.test_campaign_rejects_path_like_identifiers) ... ok
+test_campaign_requires_nonempty_baseline_frontier_id (test_campaign.CampaignTests.test_campaign_requires_nonempty_baseline_frontier_id) ... ok
+test_campaign_requires_unique_records_and_known_roles (test_campaign.CampaignTests.test_campaign_requires_unique_records_and_known_roles) ... ok
+test_collection_apply_writes_result_and_advances_state (test_campaign.CampaignTests.test_collection_apply_writes_result_and_advances_state) ... ok
+test_collection_is_dry_run_by_default (test_campaign.CampaignTests.test_collection_is_dry_run_by_default) ... ok
+test_collection_rejects_role_owned_source_violation (test_campaign.CampaignTests.test_collection_rejects_role_owned_source_violation) ... ok
+test_operational_record_requires_run_recovery_references (test_campaign.CampaignTests.test_operational_record_requires_run_recovery_references) ... ok
+test_operational_record_validates_bound_recovery_references (test_campaign.CampaignTests.test_operational_record_validates_bound_recovery_references) ... ok
+test_promotion_cannot_use_generic_collection (test_campaign.CampaignTests.test_promotion_cannot_use_generic_collection) ... ok
+test_continuation_command_observes_manifest (test_cli.CliTests.test_continuation_command_observes_manifest) ... ok
+test_lambda_verdict_command_is_machine_readable (test_cli.CliTests.test_lambda_verdict_command_is_machine_readable) ... ok
+test_status_rejects_an_unpromoted_frontier_rewrite (test_cli.CliTests.test_status_rejects_an_unpromoted_frontier_rewrite) ... ok
+test_declared_artifact_hashes_gate_analysis (test_continuations.ContinuationTests.test_declared_artifact_hashes_gate_analysis) ... ok
+test_done_markers_report_complete_without_starting_a_process (test_continuations.ContinuationTests.test_done_markers_report_complete_without_starting_a_process) ... ok
+test_missing_evidence_reports_missing_and_never_auto_resumes (test_continuations.ContinuationTests.test_missing_evidence_reports_missing_and_never_auto_resumes) ... ok
+test_candidate_binding_rejects_dirty_or_unbound_source (test_frontier_runtime.FrontierRuntimeTests.test_candidate_binding_rejects_dirty_or_unbound_source) ... ok
+test_frontier_binding_requires_a_git_revision (test_frontier_runtime.FrontierRuntimeTests.test_frontier_binding_requires_a_git_revision) ... ok
+test_v2_frontier_loads_without_compiled_score (test_frontier_runtime.FrontierRuntimeTests.test_v2_frontier_loads_without_compiled_score) ... ok
+test_v3_frontier_detects_scored_source_change (test_frontier_runtime.FrontierRuntimeTests.test_v3_frontier_detects_scored_source_change) ... ok
+test_v3_frontier_detects_trusted_source_change (test_frontier_runtime.FrontierRuntimeTests.test_v3_frontier_detects_trusted_source_change) ... ok
+test_certification_rejects_unbound_or_fabricated_evidence (test_gates.GateTests.test_certification_rejects_unbound_or_fabricated_evidence) ... ok
+test_certification_requires_green_eval_nonce_binding_and_lower_score (test_gates.GateTests.test_certification_requires_green_eval_nonce_binding_and_lower_score) ... ok
+test_default_identity_compares_both_operation_identities (test_gates.GateTests.test_default_identity_compares_both_operation_identities) ... ok
+test_evaluation_requires_exactly_9024_and_all_four_checks (test_gates.GateTests.test_evaluation_requires_exactly_9024_and_all_four_checks) ... ok
+test_grind_requires_explicit_approval_bound_to_exact_stream (test_gates.GateTests.test_grind_requires_explicit_approval_bound_to_exact_stream) ... ok
+test_lambda_verdict_uses_campaign_thresholds (test_gates.GateTests.test_lambda_verdict_uses_campaign_thresholds) ... ok
+test_evidence_roles_may_write_only_campaign_records (test_ownership.OwnershipTests.test_evidence_roles_may_write_only_campaign_records) ... ok
+test_no_role_may_change_trusted_source (test_ownership.OwnershipTests.test_no_role_may_change_trusted_source) ... ok
+test_only_implementer_may_change_scored_source (test_ownership.OwnershipTests.test_only_implementer_may_change_scored_source) ... ok
+test_strip_miner_may_change_only_its_project_tooling (test_ownership.OwnershipTests.test_strip_miner_may_change_only_its_project_tooling) ... ok
+test_working_tree_lock_preserves_the_default_off_source_edit (test_ownership.OwnershipTests.test_working_tree_lock_preserves_the_default_off_source_edit) ... ok
+test_complete_coverage_applies_exact_campaign_gate (test_p2_bz.P2BZTests.test_complete_coverage_applies_exact_campaign_gate) ... ok
+test_incomplete_round_max_coverage_cannot_claim_safe (test_p2_bz.P2BZTests.test_incomplete_round_max_coverage_cannot_claim_safe) ... ok
+test_apply_preserves_old_frontier_and_advances_campaign (test_promotion.PromotionTests.test_apply_preserves_old_frontier_and_advances_campaign) ... ok
+test_apply_requires_explicit_acknowledgement (test_promotion.PromotionTests.test_apply_requires_explicit_acknowledgement) ... ok
+test_promotion_is_dry_run_by_default (test_promotion.PromotionTests.test_promotion_is_dry_run_by_default) ... ok
+test_promotion_rejects_schema_v2_proposed_frontier (test_promotion.PromotionTests.test_promotion_rejects_schema_v2_proposed_frontier) ... ok
+test_checkpoint_is_validated_and_atomically_replaceable (test_runtime_recovery.RuntimeRecoveryTests.test_checkpoint_is_validated_and_atomically_replaceable) ... ok
+test_collection_preserves_worker_lost_and_run_references (test_runtime_recovery.RuntimeRecoveryTests.test_collection_preserves_worker_lost_and_run_references) ... ok
+test_collection_rejects_a_post_synthesis_run_swap_and_forged_receipt (test_runtime_recovery.RuntimeRecoveryTests.test_collection_rejects_a_post_synthesis_run_swap_and_forged_receipt) ... ok
+test_deadline_boundaries_and_expensive_command_policy (test_runtime_recovery.RuntimeRecoveryTests.test_deadline_boundaries_and_expensive_command_policy) ... ok
+test_discovered_artifact_manifest_is_portable_and_hashes_the_artifact (test_runtime_recovery.RuntimeRecoveryTests.test_discovered_artifact_manifest_is_portable_and_hashes_the_artifact) ... ok
+test_dispatch_is_exclusive_and_validated_before_creation (test_runtime_recovery.RuntimeRecoveryTests.test_dispatch_is_exclusive_and_validated_before_creation) ... ok
+test_exclusive_publication_preserves_worker_result_that_wins_the_race (test_runtime_recovery.RuntimeRecoveryTests.test_exclusive_publication_preserves_worker_result_that_wins_the_race) ... ok
+test_late_recovery_symlink_swap_is_rejected_at_the_safe_open_boundary (test_runtime_recovery.RuntimeRecoveryTests.test_late_recovery_symlink_swap_is_rejected_at_the_safe_open_boundary) ... ok
+test_operational_null_candidate_hash_records_the_exact_missing_obligation (test_runtime_recovery.RuntimeRecoveryTests.test_operational_null_candidate_hash_records_the_exact_missing_obligation) ... ok
+test_recovery_retains_the_complete_terminal_transcript (test_runtime_recovery.RuntimeRecoveryTests.test_recovery_retains_the_complete_terminal_transcript) ... ok
+test_run_provenance_artifact_hash_survives_late_run_directory_swap (test_runtime_recovery.RuntimeRecoveryTests.test_run_provenance_artifact_hash_survives_late_run_directory_swap) ... ok
+test_symlinked_or_corrupt_checkpoint_is_not_treated_as_absent (test_runtime_recovery.RuntimeRecoveryTests.test_symlinked_or_corrupt_checkpoint_is_not_treated_as_absent) ... ok
+test_symlinked_recovery_directory_cannot_receive_interruption_evidence (test_runtime_recovery.RuntimeRecoveryTests.test_symlinked_recovery_directory_cannot_receive_interruption_evidence) ... ok
+test_symlinked_run_directory_cannot_receive_a_dispatch_receipt (test_runtime_recovery.RuntimeRecoveryTests.test_symlinked_run_directory_cannot_receive_a_dispatch_receipt) ... ok
+test_synthesis_never_overwrites_an_existing_valid_result (test_runtime_recovery.RuntimeRecoveryTests.test_synthesis_never_overwrites_an_existing_valid_result) ... ok
+test_worker_timeout_synthesizes_recoverable_result (test_runtime_recovery.RuntimeRecoveryTests.test_worker_timeout_synthesizes_recoverable_result) ... ok
+test_artifact_manifest_rejects_absolute_or_malicious_paths (test_schema.OperationalSchemaTests.test_artifact_manifest_rejects_absolute_or_malicious_paths) ... ok
+test_checkpoint_requires_exact_lifecycle_progress_fields (test_schema.OperationalSchemaTests.test_checkpoint_requires_exact_lifecycle_progress_fields) ... ok
+test_dispatch_rejects_non_role_owner_and_path_like_identifier (test_schema.OperationalSchemaTests.test_dispatch_rejects_non_role_owner_and_path_like_identifier) ... ok
+test_dispatch_requires_a_run_contained_result_path (test_schema.OperationalSchemaTests.test_dispatch_requires_a_run_contained_result_path) ... ok
+test_dispatch_requires_agent_text_and_base_identity (test_schema.OperationalSchemaTests.test_dispatch_requires_agent_text_and_base_identity) ... ok
+test_dispatch_requires_exact_deadlines_and_concrete_base_identity (test_schema.OperationalSchemaTests.test_dispatch_requires_exact_deadlines_and_concrete_base_identity) ... ok
+test_dispatch_requires_exact_lifecycle_receipt_fields (test_schema.OperationalSchemaTests.test_dispatch_requires_exact_lifecycle_receipt_fields) ... ok
+test_interruption_requires_durable_recovery_evidence (test_schema.OperationalSchemaTests.test_interruption_requires_durable_recovery_evidence) ... ok
+test_non_operational_v2_result_requires_scientific_verdict (test_schema.OperationalSchemaTests.test_non_operational_v2_result_requires_scientific_verdict) ... ok
+test_null_candidate_hash_is_rejected_for_scientific_results (test_schema.OperationalSchemaTests.test_null_candidate_hash_is_rejected_for_scientific_results) ... ok
+test_operational_interruption_requires_result_schema_v2 (test_schema.OperationalSchemaTests.test_operational_interruption_requires_result_schema_v2) ... ok
+test_operational_null_candidate_hash_requires_exact_missing_obligation (test_schema.OperationalSchemaTests.test_operational_null_candidate_hash_requires_exact_missing_obligation) ... ok
+test_recovery_schema_patterns_match_safe_run_reference_rules (test_schema.OperationalSchemaTests.test_recovery_schema_patterns_match_safe_run_reference_rules) ... ok
+test_result_schema_matches_operational_hash_and_manifest_contract (test_schema.OperationalSchemaTests.test_result_schema_matches_operational_hash_and_manifest_contract) ... ok
+test_run_references_are_relative_and_bound_to_the_run (test_schema.OperationalSchemaTests.test_run_references_are_relative_and_bound_to_the_run) ... ok
+test_worker_lost_cannot_transition_to_refuted (test_schema.OperationalSchemaTests.test_worker_lost_cannot_transition_to_refuted) ... ok
+test_worker_lost_requires_null_scientific_verdict (test_schema.OperationalSchemaTests.test_worker_lost_requires_null_scientific_verdict) ... ok
+test_authoritative_frontier_rejects_unknown_fields (test_schema.SchemaTests.test_authoritative_frontier_rejects_unknown_fields) ... ok
+test_card_requires_declared_lambda_thresholds_and_recovery (test_schema.SchemaTests.test_card_requires_declared_lambda_thresholds_and_recovery) ... ok
+test_continuation_never_claims_launch_approval_without_a_resume_command (test_schema.SchemaTests.test_continuation_never_claims_launch_approval_without_a_resume_command) ... ok
+test_frontier_accepts_caller_supplied_baseline (test_schema.SchemaTests.test_frontier_accepts_caller_supplied_baseline) ... ok
+test_frontier_rejects_a_different_explicit_baseline_score (test_schema.SchemaTests.test_frontier_rejects_a_different_explicit_baseline_score) ... ok
+test_frontier_rejects_score_inconsistent_with_metrics (test_schema.SchemaTests.test_frontier_rejects_score_inconsistent_with_metrics) ... ok
+test_frontier_requires_strict_score_improvement_lock (test_schema.SchemaTests.test_frontier_requires_strict_score_improvement_lock) ... ok
+test_lifecycle_allows_adjudication_but_blocks_shortcut_to_promotion (test_schema.SchemaTests.test_lifecycle_allows_adjudication_but_blocks_shortcut_to_promotion) ... ok
+test_result_rejects_promoted_without_certification_evidence (test_schema.SchemaTests.test_result_rejects_promoted_without_certification_evidence) ... ok
+test_v3_frontier_requires_complete_source_identity (test_schema.SchemaTests.test_v3_frontier_requires_complete_source_identity) ... ok
+test_lock_includes_staged_allowed_diff (test_source_lock_runtime.SourceLockRuntimeTests.test_lock_includes_staged_allowed_diff) ... ok
+test_lock_rejects_staged_manifest_change (test_source_lock_runtime.SourceLockRuntimeTests.test_lock_rejects_staged_manifest_change) ... ok
+test_lock_rejects_staged_trusted_source (test_source_lock_runtime.SourceLockRuntimeTests.test_lock_rejects_staged_trusted_source) ... ok
+test_lock_rejects_untracked_scored_source (test_source_lock_runtime.SourceLockRuntimeTests.test_lock_rejects_untracked_scored_source) ... ok
+
+----------------------------------------------------------------------
+Ran 85 tests in 1.004s
+
+OK
+[exit=0]
+
+===== fleet-validator =====
+$ python3 .pi/skills/circuit-evidence/scripts/validate_fleet.py .
+fleet validation: OK
+[exit=0]
+
+===== live-identity =====
+$ PYTHONDONTWRITEBYTECODE=1 python3 - <<'PY'
+import hashlib,json,subprocess
+from pathlib import Path
+x=json.loads(Path('.pi/frontier.json').read_text())
+print('frontier_id='+str(x.get('frontier_id'))); print('source_commit='+str(x.get('source_commit')))
+print('ops_sha256='+str(x.get('artifact',{}).get('ops_sha256'))); print('canonical_ops_sha256='+str(x.get('artifact',{}).get('canonical_ops_sha256')))
+print('score='+str(x.get('metrics',{}).get('score'))); print('nonce='+str(x.get('nonce',{}).get('default')))
+for name, roots in [('scored',['src/point_add']),('trusted',['src/bin','Cargo.toml','Cargo.lock','.cargo'])]:
+ files=[]
+ for root in roots:
+  files += subprocess.check_output(['git','ls-files','--',root],text=True).splitlines()
+ h=hashlib.sha256()
+ for s in sorted(set(files)):
+  p=Path(s)
+  if p.is_file():
+   b=p.read_bytes(); h.update(s.encode()+b'\0'+hashlib.sha256(b).digest())
+ print(name+'_tree_sha256='+h.hexdigest())
+print('ops_bin_sha256='+hashlib.sha256(Path('ops.bin').read_bytes()).hexdigest() if Path('ops.bin').is_file() else 'ops_bin=MISSING')
+print('score_json='+Path('score.json').read_text() if Path('score.json').is_file() else 'score_json=MISSING')
+PY
+frontier_id=2026-08-16-a2067dcf
+source_commit=a2067dcf3c991bcecfd51a4bf07cd7d1cc56c3a5
+ops_sha256=6519bd01424d5513cd7f8232d4c15dfcbfe67561eb1b7f05b2cfec87c233a097
+canonical_ops_sha256=0a4a412c939b05f59fa4bc33c2410e5bc110b07c7faded5e6db5f6b5db3ed0b0
+score=1481143998
+nonce=1337610097
+scored_tree_sha256=8d90f8235b4a3688722ac3233e975a4ae6fffad73835a37e73ba7838a164ac2a
+trusted_tree_sha256=472044998b0c2d4c14253da8870f9bec69a7dbcc65b8762772347af502d77038
+ops_bin_sha256=6519bd01424d5513cd7f8232d4c15dfcbfe67561eb1b7f05b2cfec87c233a097
+score_json={
+  "score": 1481143998,
+  "metrics": {
+    "toffoli": 1283487,
+    "qubits": 1154
+  }
+}
+
+[exit=0]
+
+===== tail-nonce =====
+$ git grep -n SUB4_TAIL_NONCE -- src/point_add
+src/point_add/memory/04-traps.md:11:   `SUB4_TAIL_NONCE` (mod.rs ~2380).
+src/point_add/mod.rs:2402:    // SUB4_TAIL_NONCE overrides it for controlled re-grinding.
+src/point_add/mod.rs:2410:    let nonce: u64 = std::env::var("SUB4_TAIL_NONCE")
+[exit=0]
+
+===== protected-hashes-after =====
+$ shasum -a 256 .pi/frontier.json .pi/state/campaign.json results.tsv src/point_add/trailmix_ludicrous/square.rs
+042d41fa3c9cc28cb3d68bb1c02b59ab0e3418f2c576b8ed31116131901beb4e  .pi/frontier.json
+29b3ff28ad084c16856d750fbd5d5032f4add9964ad423daaf40921e230b9005  .pi/state/campaign.json
+75a7b6aff06b30abbb3d3fff283c29569efdef8e826cf0856999ef2fe96dd06d  results.tsv
+4beca7e09b24aef7d38ff2efd6635542bc24cef3a87cb9fbdb910cc3bd0bf5f8  src/point_add/trailmix_ludicrous/square.rs
+[exit=0]
+
+===== git-status-after =====
+$ git status --short
+ M results.tsv
+ M src/point_add/trailmix_ludicrous/square.rs
+?? .pi/
+?? AGENTS.md
+?? CAMPAIGN_FINDINGS.md
+[exit=0]
+
+===== PHASE 0 RESULT =====
+{
+  "commands": [
+    {
+      "command": "git rev-parse HEAD",
+      "exitCode": 0,
+      "label": "git-commit"
+    },
+    {
+      "command": "git status --short",
+      "exitCode": 0,
+      "label": "git-status-before"
+    },
+    {
+      "command": "shasum -a 256 .pi/frontier.json .pi/state/campaign.json results.tsv src/point_add/trailmix_ludicrous/square.rs",
+      "exitCode": 0,
+      "label": "protected-hashes-before"
+    },
+    {
+      "command": "env PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=.pi python3 -m harness.cli validate",
+      "exitCode": 0,
+      "label": "harness-validate"
+    },
+    {
+      "command": "env PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=.pi python3 -m unittest discover -s .pi/harness/tests -v",
+      "exitCode": 0,
+      "label": "harness-tests"
+    },
+    {
+      "command": "python3 .pi/skills/circuit-evidence/scripts/validate_fleet.py .",
+      "exitCode": 0,
+      "label": "fleet-validator"
+    },
+    {
+      "command": "PYTHONDONTWRITEBYTECODE=1 python3 - <<'PY'\nimport hashlib,json,subprocess\nfrom pathlib import Path\nx=json.loads(Path('.pi/frontier.json').read_text())\nprint('frontier_id='+str(x.get('frontier_id'))); print('source_commit='+str(x.get('source_commit')))\nprint('ops_sha256='+str(x.get('artifact',{}).get('ops_sha256'))); print('canonical_ops_sha256='+str(x.get('artifact',{}).get('canonical_ops_sha256')))\nprint('score='+str(x.get('metrics',{}).get('score'))); print('nonce='+str(x.get('nonce',{}).get('default')))\nfor name, roots in [('scored',['src/point_add']),('trusted',['src/bin','Cargo.toml','Cargo.lock','.cargo'])]:\n files=[]\n for root in roots:\n  files += subprocess.check_output(['git','ls-files','--',root],text=True).splitlines()\n h=hashlib.sha256()\n for s in sorted(set(files)):\n  p=Path(s)\n  if p.is_file():\n   b=p.read_bytes(); h.update(s.encode()+b'\\0'+hashlib.sha256(b).digest())\n print(name+'_tree_sha256='+h.hexdigest())\nprint('ops_bin_sha256='+hashlib.sha256(Path('ops.bin').read_bytes()).hexdigest() if Path('ops.bin').is_file() else 'ops_bin=MISSING')\nprint('score_json='+Path('score.json').read_text() if Path('score.json').is_file() else 'score_json=MISSING')\nPY",
+      "exitCode": 0,
+      "label": "live-identity"
+    },
+    {
+      "command": "git grep -n SUB4_TAIL_NONCE -- src/point_add",
+      "exitCode": 0,
+      "label": "tail-nonce"
+    },
+    {
+      "command": "shasum -a 256 .pi/frontier.json .pi/state/campaign.json results.tsv src/point_add/trailmix_ludicrous/square.rs",
+      "exitCode": 0,
+      "label": "protected-hashes-after"
+    },
+    {
+      "command": "git status --short",
+      "exitCode": 0,
+      "label": "git-status-after"
+    }
+  ],
+  "dispatchReceipt": "dispatch.json",
+  "failedCommands": [],
+  "phase0": "PASS",
+  "schemaVersion": 1,
+  "scientific_verdict": null,
+  "terminalLog": "terminal.log"
+}
+
+===== PHASE 1+2 PARENT DISPATCH RECEIPTS =====
+frontier-auditor .pi/campaign-runs/20260816t232122Z/lanes/frontier-auditor/dispatch.json sha256= da3de26adc03023ac50db276dacfe34a73bf01625adea87b7341311b2afce25f
+exploitation-tuner .pi/campaign-runs/20260816t232122Z/lanes/exploitation-tuner/dispatch.json sha256= a2828e66b66b28a1f5452aa0cc5e1fb7c4c81e8f69bbcf602753a42a2747d0a3
+structural-researcher .pi/campaign-runs/20260816t232122Z/lanes/structural-researcher/dispatch.json sha256= 3d00dbd321e733ab41aa4dacef02261b8db817c1e22bb60d8728fef8f1ce7543
+cross-cell-reframer .pi/campaign-runs/20260816t232122Z/lanes/cross-cell-reframer/dispatch.json sha256= 6103b98bc5c297fc3c613ba8dc0b5e975e1d96065bffb5cabfcb06faa6ec8d2e
+[exit=0]
+Phase 1+2 dispatch receipts prepared before any role launch.
+
+===== PHASE 1+2 EVIDENCE FINALIZATION =====
+$ cp workflow runtime status/events; create parent manifests from actual result files; do not invent missing terminal/recovery evidence
+{"lane": "cross-cell-reframer", "missing": ["Child did not supply a terminal.log at this durable lane path; the parent workflow-events.jsonl and result.json are retained instead."], "resultSha256": "975dd4653d376fb3155e2098ac3be70f7e18ff7ff611e71649e3dd43646ad35d", "status": "PARKED", "terminalLog": null}
+{"lane": "exploitation-tuner", "missing": ["Child did not supply a terminal.log at this durable lane path; the parent workflow-events.jsonl and result.json are retained instead."], "resultSha256": "ca2e7623582044e653da526069bf37afb89e2ea18dd0387d7b3363b0e722126d", "status": "SCOPED", "terminalLog": null}
+{"lane": "frontier-auditor", "missing": [], "resultSha256": "8fa457c6f093c30d1655c55beea216f9ee2f99c1c1405cdaac411566148a9670", "status": "PARKED", "terminalLog": "terminal.log"}
+{"lane": "structural-researcher", "missing": ["Child did not supply a terminal.log at this durable lane path; the parent workflow-events.jsonl and result.json are retained instead."], "resultSha256": "2a62cece0868d97e2d8e2f71d71b29d8487e9d1dba77ad13401e431599ed6916", "status": "PARKED", "terminalLog": null}
+[exit=0]
+
+===== PHASE 3 SELECTION =====
+{
+  "campaignDisposition": "NO_CANDIDATE_SELECTED",
+  "deduplication": {
+    "EXP-ARCH-04": "cross-cell strip-key lifecycle/re-mine composite",
+    "EXP-BZ-02": "Bezout deferred-clean representation change",
+    "EXP-STRIP-02": "final strict CCX cancellation; local exact stream transform"
+  },
+  "missingGates": [
+    "A clean/properly bound schema-v3 frontier identity or an authorized resolution of the locked square.rs source state.",
+    "Fresh, card-specific liveness/hash proof for EXP-STRIP-02 before any implementation/evaluation path.",
+    "Explicit approval before EXP-SM-01 pilot/tooling or any long compute.",
+    "No GRIND_APPROVED authority exists."
+  ],
+  "overlapPolicy": "No writer selected; therefore no overlapping source-family writer is active.",
+  "roles": [
+    {
+      "experimentId": "EXP-ARCH-04",
+      "resultPath": "lanes/cross-cell-reframer/result.json",
+      "role": "cross-cell-reframer",
+      "status": "PARKED"
+    },
+    {
+      "experimentId": "EXP-STRIP-02",
+      "resultPath": "lanes/exploitation-tuner/result.json",
+      "role": "exploitation-tuner",
+      "status": "SCOPED"
+    },
+    {
+      "experimentId": "FRONTIER-AUDIT",
+      "resultPath": "lanes/frontier-auditor/result.json",
+      "role": "frontier-auditor",
+      "status": "PARKED"
+    },
+    {
+      "experimentId": "EXP-BZ-02",
+      "resultPath": "lanes/structural-researcher/result.json",
+      "role": "structural-researcher",
+      "status": "PARKED"
+    }
+  ],
+  "schemaVersion": 1,
+  "scientific_verdict": null,
+  "selectedCard": null,
+  "selectionReason": [
+    "The independent frontier audit returned a schema-v3 STALE disposition: the locked but uncommitted square.rs scored-source diff prevents a truthful clean-worktree v3 binding, even though baseline operation identities reconcile.",
+    "EXP-STRIP-02 is bounded and potentially score-improving, but its historical candidate identity/liveness has not been freshly re-established and its stream-specific ground nonce is unavailable; its tiny estimated -2 T saving is not enough to authorize a writer against the present identity blocker.",
+    "EXP-BZ-02 and EXP-ARCH-04 are PARKED with unclosed correctness/phase/lambda/strip or explicit approval gates. EXP-SM-01 tooling is not approved; no strip-census-miner was dispatched.",
+    "No result makes a global-ceiling claim."
+  ]
+}
+[exit=0]
+
+===== PROTECTED HASHES AFTER DISCOVERY =====
+042d41fa3c9cc28cb3d68bb1c02b59ab0e3418f2c576b8ed31116131901beb4e  .pi/frontier.json
+29b3ff28ad084c16856d750fbd5d5032f4add9964ad423daaf40921e230b9005  .pi/state/campaign.json
+75a7b6aff06b30abbb3d3fff283c29569efdef8e826cf0856999ef2fe96dd06d  results.tsv
+4beca7e09b24aef7d38ff2efd6635542bc24cef3a87cb9fbdb910cc3bd0bf5f8  src/point_add/trailmix_ludicrous/square.rs
+
+===== CAMPAIGN FINALIZATION (NO WRITER) =====
+No implementer, lambda-metrologist, evaluator-certifier, or nonce-grinder launch: no selected card.
+.pi/campaign-runs/20260816t232122Z/commands.jsonl
+.pi/campaign-runs/20260816t232122Z/discovery-workflow.json
+.pi/campaign-runs/20260816t232122Z/dispatch.json
+.pi/campaign-runs/20260816t232122Z/lanes/cross-cell-reframer/checkpoint.json
+.pi/campaign-runs/20260816t232122Z/lanes/cross-cell-reframer/dispatch.json
+.pi/campaign-runs/20260816t232122Z/lanes/cross-cell-reframer/recovery.json
+.pi/campaign-runs/20260816t232122Z/lanes/cross-cell-reframer/result.json
+.pi/campaign-runs/20260816t232122Z/lanes/cross-cell-reframer/status.json
+.pi/campaign-runs/20260816t232122Z/lanes/exploitation-tuner/checkpoint.json
+.pi/campaign-runs/20260816t232122Z/lanes/exploitation-tuner/dispatch.json
+.pi/campaign-runs/20260816t232122Z/lanes/exploitation-tuner/recovery.json
+.pi/campaign-runs/20260816t232122Z/lanes/exploitation-tuner/result.json
+.pi/campaign-runs/20260816t232122Z/lanes/exploitation-tuner/status.json
+.pi/campaign-runs/20260816t232122Z/lanes/frontier-auditor/checkpoint.json
+.pi/campaign-runs/20260816t232122Z/lanes/frontier-auditor/dispatch.json
+.pi/campaign-runs/20260816t232122Z/lanes/frontier-auditor/recovery.json
+.pi/campaign-runs/20260816t232122Z/lanes/frontier-auditor/result.json
+.pi/campaign-runs/20260816t232122Z/lanes/frontier-auditor/status.json
+.pi/campaign-runs/20260816t232122Z/lanes/frontier-auditor/terminal.log
+.pi/campaign-runs/20260816t232122Z/lanes/structural-researcher/checkpoint.json
+.pi/campaign-runs/20260816t232122Z/lanes/structural-researcher/dispatch.json
+.pi/campaign-runs/20260816t232122Z/lanes/structural-researcher/recovery.json
+.pi/campaign-runs/20260816t232122Z/lanes/structural-researcher/result.json
+.pi/campaign-runs/20260816t232122Z/lanes/structural-researcher/status.json
+.pi/campaign-runs/20260816t232122Z/preflight.json
+.pi/campaign-runs/20260816t232122Z/selection.json
+.pi/campaign-runs/20260816t232122Z/terminal.log
+.pi/campaign-runs/20260816t232122Z/workflow-events.jsonl
+.pi/campaign-runs/20260816t232122Z/workflow-status.json
+
+===== FINAL CAMPAIGN STATUS =====
+{
+  "campaignStatus": "NO_CANDIDATE_SELECTED",
+  "evaluatorOutput": "not produced; evaluator-certifier was not dispatched",
+  "notDispatched": [
+    {
+      "reason": "no explicit EXP-SM-01 tooling/census approval",
+      "role": "strip-census-miner"
+    },
+    {
+      "reason": "no implementation-ready card selected",
+      "role": "implementer"
+    },
+    {
+      "reason": "no selected candidate requiring lambda evidence",
+      "role": "lambda-metrologist"
+    },
+    {
+      "reason": "no selected candidate passed cheap/semantic gates",
+      "role": "evaluator-certifier"
+    },
+    {
+      "reason": "no exact-artifact GRIND_APPROVED authority",
+      "role": "nonce-grinder"
+    }
+  ],
+  "phase0": "PASS",
+  "protectedHashesUnchanged": true,
+  "resultsTsv": "not produced or modified by this campaign; protected hash unchanged",
+  "roles": [
+    {
+      "experimentId": "EXP-ARCH-04",
+      "resultPath": "lanes/cross-cell-reframer/result.json",
+      "role": "cross-cell-reframer",
+      "status": "PARKED"
+    },
+    {
+      "experimentId": "EXP-STRIP-02",
+      "resultPath": "lanes/exploitation-tuner/result.json",
+      "role": "exploitation-tuner",
+      "status": "SCOPED"
+    },
+    {
+      "experimentId": "FRONTIER-AUDIT",
+      "resultPath": "lanes/frontier-auditor/result.json",
+      "role": "frontier-auditor",
+      "status": "PARKED"
+    },
+    {
+      "experimentId": "EXP-BZ-02",
+      "resultPath": "lanes/structural-researcher/result.json",
+      "role": "structural-researcher",
+      "status": "PARKED"
+    }
+  ],
+  "schemaVersion": 1,
+  "scientific_verdict": null,
+  "selectionPath": "selection.json",
+  "unresolvedObligations": [
+    "A clean/properly bound schema-v3 frontier identity or an authorized resolution of the locked square.rs source state.",
+    "Fresh, card-specific liveness/hash proof for EXP-STRIP-02 before any implementation/evaluation path.",
+    "Explicit approval before EXP-SM-01 pilot/tooling or any long compute.",
+    "No GRIND_APPROVED authority exists.",
+    "Three discovery lanes did not supply a durable child terminal.log in their lane directories; parent workflow-events.jsonl and each result.json/status.json/recovery.json were retained and the missing logs are explicitly recorded."
+  ],
+  "workflowMissionId": "baf84bc2-68fd-443c-9fc9-b8e728530186",
+  "workflowRunId": "95aab693-7a74-4e51-9177-73ee6ab8fb2f"
+}
+[exit=0]
+
+===== COMPLETE TERMINAL LOG =====
+
+===== RESCUE ROUND A1: EXP-STRIP-02 LIVE REPRODUCTION =====
+Preparing worktree (detached HEAD a2067dc)
+HEAD is now at a2067dc docs: plan Pi parameter tuning fleet
+sandbox=/tmp/fleet-v3-strip02-20260816t232750Z
+c613c79141a2fb3acd66959fb21a4dead200cddf3feb7c8bee780ff2357db55d  .pi/campaign-runs/20260816t232122Z/rescue/exploitation-strip02-live/dispatch.json
+
+===== RESCUE ROUND B1: EXP-SQ-01 ISOLATED IMPLEMENTATION =====
+Preparing worktree (detached HEAD a2067dc)
+HEAD is now at a2067dc docs: plan Pi parameter tuning fleet
+sandbox=/tmp/fleet-v3-sq01-20260816t233036Z
+200bca2271fcfbbdd6208de54145f47d59ce8707a365d1720031e04c6e779675  .pi/campaign-runs/20260816t232122Z/rescue/structural-sq01-early-sum/dispatch.json
+
+===== RESCUE ROUND A2/A3: TWO INDEPENDENT EXPLOITATION PROBES =====
+Preparing worktree (detached HEAD a2067dc)
+HEAD is now at a2067dc docs: plan Pi parameter tuning fleet
+constprop-straddle=TLM_CONSTPROP_STRADDLE sandbox=/tmp/fleet-v3-constprop-straddle-20260816t233502Z
+Preparing worktree (detached HEAD a2067dc)
+HEAD is now at a2067dc docs: plan Pi parameter tuning fleet
+square-addsub-local=TLM_SQUARE_ADDSUB_LOCAL sandbox=/tmp/fleet-v3-square-addsub-local-20260816t233502Z
+5a2f1d245541f3428e1d13ee63bff413735e78cbd895498a77369bfbcbef8318  .pi/campaign-runs/20260816t232122Z/rescue/constprop-straddle/dispatch.json
+9c1f6f13d7667a56b13a68d0a894978d59499eca86ce43becde855202d357e58  .pi/campaign-runs/20260816t232122Z/rescue/square-addsub-local/dispatch.json
+
+===== RESCUE ROUND A3-GATE: SQUARE ADDSUB LOCAL SELFTEST =====
+7b7fd9299182f4cb2275d274b4a917ff8cb05f5891dc7d91cb09246aafb4f197  .pi/campaign-runs/20260816t232122Z/rescue/square-addsub-local-selftest/dispatch.json
+
+===== RESCUE ROUND A3-PRICE: SQUARE ADDSUB LOCAL TOFFOLI PROFILE =====
+3741340bddfa2d01cb6372875bce87b689d5a01bc2b66956fced4934f9de1286  .pi/campaign-runs/20260816t232122Z/rescue/square-addsub-local-tof-profile/dispatch.json
+
+===== ANTI-SURRENDER RESCUE EVIDENCE FINALIZATION =====
+$ git status --short; git diff --numstat; shasum protected source artifacts
+ M results.tsv
+ M src/point_add/memory/repro/__pycache__/artifact_io.cpython-313.pyc
+ M src/point_add/trailmix_ludicrous/square.rs
+?? .pi/
+?? AGENTS.md
+?? CAMPAIGN_FINDINGS.md
+-	-	src/point_add/memory/repro/__pycache__/artifact_io.cpython-313.pyc
+20	2	src/point_add/trailmix_ludicrous/square.rs
+042d41fa3c9cc28cb3d68bb1c02b59ab0e3418f2c576b8ed31116131901beb4e  .pi/frontier.json
+29b3ff28ad084c16856d750fbd5d5032f4add9964ad423daaf40921e230b9005  .pi/state/campaign.json
+75a7b6aff06b30abbb3d3fff283c29569efdef8e826cf0856999ef2fe96dd06d  results.tsv
+4beca7e09b24aef7d38ff2efd6635542bc24cef3a87cb9fbdb910cc3bd0bf5f8  src/point_add/trailmix_ludicrous/square.rs
+77d13def48c2103fd78aeb5c11362c372c9a69ac5ab483fb4b12b1619b14c24a  src/point_add/memory/repro/__pycache__/artifact_io.cpython-313.pyc
+{
+  "antiSurrenderOutcome": "Authorized cheap campaign budget consumed on five distinct executable gates; no promotion claim. Further source-affecting work is blocked by a tracked protected pyc integrity drift outside any implementer receipt.",
+  "attempts": [
+    {
+      "experimentId": "EXP-STRIP-02",
+      "lane": "exploitation-strip02-live",
+      "resultPath": "rescue/exploitation-strip02-live/result.json",
+      "resultSha256": "b90b949d656232ce6ebccbc27450f20952757a3425184ad9305128cf7265f423",
+      "role": "exploitation-tuner",
+      "scientificVerdict": "LIVE_CANDIDATE",
+      "status": "IMPLEMENTED"
+    },
+    {
+      "experimentId": "EXP-SQ-01",
+      "lane": "structural-sq01-early-sum",
+      "resultPath": "rescue/structural-sq01-early-sum/result.json",
+      "resultSha256": "d0ba7e90c445d3bdbb52352eccf404ba394c69fe22c61de2cafc4e270769b3b4",
+      "role": "implementer",
+      "scientificVerdict": "IMPLEMENTED: default-off identities match the receipt and flag-on is live; no score, lambda, or correctness verdict was attempted.",
+      "status": "IMPLEMENTED"
+    },
+    {
+      "experimentId": "RESCUE-CONSTPROP-STRADDLE",
+      "lane": "constprop-straddle",
+      "resultPath": "rescue/constprop-straddle/result.json",
+      "resultSha256": "de44362ae78e1ebd70141503a8654a735885df70cd1125aae0cdef928575bb03",
+      "role": "exploitation-tuner",
+      "scientificVerdict": "REFUTED_CONFIGURATION: the single authorized TLM_CONSTPROP_STRADDLE=1 build was byte-identical to the pinned stream; the flag reached CONSTPROP but added zero straddle inverse pairs.",
+      "status": "REFUTED"
+    },
+    {
+      "experimentId": "RESCUE-SQUARE-ADDSUB-LOCAL",
+      "lane": "square-addsub-local",
+      "resultPath": "rescue/square-addsub-local/result.json",
+      "resultSha256": "3afcf354d92265344c4ed8ecb3fb810bcf38d0d0b0d3d0a044f3cea3bb15e26b",
+      "role": "exploitation-tuner",
+      "scientificVerdict": "LIVE_CANDIDATE only: the flag-on stream changed, but this one-build receipt does not measure executed T or lambda and does not certify correctness.",
+      "status": "INCONCLUSIVE"
+    },
+    {
+      "experimentId": "RESCUE-SQUARE-ADDSUB-LOCAL",
+      "lane": "square-addsub-local-selftest",
+      "resultPath": "rescue/square-addsub-local-selftest/result.json",
+      "resultSha256": "7da4dbb5c5093a6c96587e23c83eef6eb90052abc504c88a6dde06d1bacb6194",
+      "role": "exploitation-tuner",
+      "scientificVerdict": "LIVE_CANDIDATE_SEMANTIC_GATE",
+      "status": "SCOPED"
+    },
+    {
+      "experimentId": "RESCUE-SQUARE-ADDSUB-LOCAL",
+      "lane": "square-addsub-local-tof-profile",
+      "resultPath": "rescue/square-addsub-local-tof-profile/result.json",
+      "resultSha256": "b6c5f24bff928f67acc37c5239e192f9a5ff6d28dc64dcab1b01c706e60ecc05",
+      "role": "exploitation-tuner",
+      "scientificVerdict": "INCONCLUSIVE: exact candidate artifact was reproduced, but emitted TRACE_TLM_TOF evidence cannot price executed T and does not clear the Q=1159 break-even gate.",
+      "status": "INCONCLUSIVE"
+    }
+  ],
+  "campaignStatus": "CAMPAIGN_COMPLETE",
+  "candidateQueue": [
+    {
+      "evidence": "one pair/two CCX removed, zero stale keys, exact candidate hash e6ae...",
+      "id": "EXP-STRIP-02",
+      "mechanism": "strict final CCX self-inverse cancellation",
+      "next": "bundle with a regrind-forcing candidate only; no standalone full evaluation",
+      "state": "LIVE_CANDIDATE"
+    },
+    {
+      "evidence": "selftest/default identity green but candidate +12036 emitted ops and 6799 stale strip keys",
+      "id": "EXP-SQ-01",
+      "mechanism": "early sum unbuild to release square vents",
+      "reopening": "only a stream-specific re-mine/postpass-aware redesign, not the same configuration",
+      "state": "REFUTED_CONFIGURATION"
+    },
+    {
+      "evidence": "zero extra pairs and byte-identical compressed/canonical artifacts",
+      "id": "RESCUE-CONSTPROP-STRADDLE",
+      "mechanism": "straddling inverse CCX matcher",
+      "reopening": "a different stream that creates nonzero extra pair matches",
+      "state": "REFUTED_CONFIGURATION"
+    },
+    {
+      "evidence": "candidate -119503 emitted ops but Q=1159 (+5), semantic selftest passed, 1742 stale keys, executed T/lambda unknown",
+      "id": "RESCUE-SQUARE-ADDSUB-LOCAL",
+      "mechanism": "local square add/sub inverse",
+      "next": "after protected-source integrity restoration, run matched final post-strip candidate pricing/census; only pursue metrology/eval if measured T plausibly clears 5538 rounded-T break-even",
+      "state": "INCONCLUSIVE_LIVE_CANDIDATE"
+    }
+  ],
+  "hardBlocker": {
+    "detail": "tracked pyc bytecode changed by a child artifact-tool import outside its sandbox; parent did not restore it because orchestrator authority does not permit source edits.",
+    "kind": "protected-source-integrity-violation",
+    "path": "src/point_add/memory/repro/__pycache__/artifact_io.cpython-313.pyc",
+    "scientific_verdict": null
+  },
+  "schemaVersion": 1,
+  "scientific_verdict": null,
+  "unresolvedObligations": [
+    "Restore or otherwise authoritatively reconcile the tracked artifact_io.cpython-313.pyc bytecode drift before another source-bound campaign or promotion.",
+    "Preserve and review the high-upside TLM_SQUARE_ADDSUB_LOCAL candidate after integrity restoration; it is not refuted.",
+    "No 9024-shot evaluator, lambda metrology, nonce grind, certification, or promotion has occurred."
+  ]
+}
+[exit=0]
+
+===== COMPLETE TERMINAL LOG (CURRENT PARENT TRANSCRIPT) =====

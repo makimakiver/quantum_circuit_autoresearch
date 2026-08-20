@@ -1,0 +1,25 @@
+{
+  "artifact_hashes": {
+    "/Users/makimakiver/ecdsafail-wt/kfit/ops.bin": "6519bd01424d5513cd7f8232d4c15dfcbfe67561eb1b7f05b2cfec87c233a097"
+  },
+  "changed_paths": [],
+  "commands": [
+    "clean-env build + verify-default (gate2 PASS both hashes)",
+    "TRACE_TLM_COUT=1 TRACE_TLM_TOF=1 TRACE_TLM_CCX=1 TRACE_TLM_PROFILE=1 build (non-perturbing, ops.bin unchanged)",
+    "zero-slack adjudication: 0/520 cout calls with selected<headroom; 480 capped, 40 at exact headroom"
+  ],
+  "evidence_paths": [
+    "stage1-adjudication.md",
+    "stage1-cout-table.tsv",
+    "stage1-trace.stderr",
+    "gate2-default-build.stderr"
+  ],
+  "gate": "stage1-adjudication-type-b",
+  "remaining_obligations": [
+    "schema-v2 result",
+    "terminal recovery bundle"
+  ],
+  "run_id": "impl-kfit-20260817t091036z",
+  "schema_version": 1,
+  "timestamp": "2026-08-17T09:31:00Z"
+}

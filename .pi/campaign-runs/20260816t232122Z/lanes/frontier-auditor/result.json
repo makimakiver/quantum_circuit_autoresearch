@@ -1,0 +1,150 @@
+{
+  "candidate_ops_sha256": "6519bd01424d5513cd7f8232d4c15dfcbfe67561eb1b7f05b2cfec87c233a097",
+  "canonical_ops_sha256": "0a4a412c939b05f59fa4bc33c2410e5bc110b07c7faded5e6db5f6b5db3ed0b0",
+  "changed_paths": [],
+  "commands": [
+    "set -euo pipefail; git rev-parse HEAD; git status --porcelain=v1 --untracked-files=all -- src Cargo.toml Cargo.lock build.rs rust-toolchain rust-toolchain.toml .cargo; git diff --binary -- src/point_add | shasum -a 256; git diff --name-only -- src/point_add; PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=.pi python3 - <<'PY' ... artifact_io.fingerprint(Path('ops.bin')); tree_digest(Path.cwd(), SCORED_PREFIXES); tree_digest(Path.cwd(), TRUSTED_PREFIXES) ... PY; PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=.pi python3 - <<'PY' ... ownership_violations('frontier-auditor', []) ... PY",
+    "python3 .pi/skills/circuit-evidence/scripts/emit_recovery_bundle.py --status PARKED --reason 'Read-only frontier audit found a schema-v3 binding blocker: the protected scored source has the locked but uncommitted square.rs diff, so no v3 proposal can truthfully bind this worktree; artifacts and v2 frontier identities otherwise match.' --experiment-id FRONTIER-AUDIT --command 'PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=.pi python3 - <<'\"'\"'PY'\"'\"' ... artifact_io.fingerprint(Path(\"ops.bin\")); tree_digest(Path.cwd(), SCORED_PREFIXES); tree_digest(Path.cwd(), TRUSTED_PREFIXES) ... PY' --artifact ops.bin --artifact score.json | tee .pi/campaign-runs/20260816t232122Z/lanes/frontier-auditor/terminal.log"
+  ],
+  "evidence": {
+    "artifact_identity": {
+      "canonical_semantic_sha256": "0a4a412c939b05f59fa4bc33c2410e5bc110b07c7faded5e6db5f6b5db3ed0b0",
+      "compressed_ops_sha256": "6519bd01424d5513cd7f8232d4c15dfcbfe67561eb1b7f05b2cfec87c233a097",
+      "emitted_ops": 8958690,
+      "fingerprint_tool": "src/point_add/memory/repro/artifact_io.py::fingerprint",
+      "identity_binding": "Both observed hashes equal CAMPAIGN_FINDINGS.md section 1, .pi/frontier.json artifact, and AGENTS.md.",
+      "max_referenced_qubit_id": 1153,
+      "ops_bytes": 29461502,
+      "path": "ops.bin",
+      "qubits": 1154
+    },
+    "authority": {
+      "campaign_snapshot": "CAMPAIGN_FINDINGS.md",
+      "campaign_state": ".pi/state/campaign.json",
+      "dispatch": ".pi/campaign-runs/20260816t232122Z/lanes/frontier-auditor/dispatch.json",
+      "frontier": ".pi/frontier.json",
+      "frontier_schema": ".pi/schemas/frontier.schema.json",
+      "result_schema": ".pi/schemas/result.schema.json"
+    },
+    "live_route_and_geometry": {
+      "dialog_tape": "gcd.rs:86 n3_for_iters(261)=87; codec.rs:495-532 reduces this to 86 triples plus one Step0 and one Pair with TLM_TAIL4_TOP32 unset/default-off (codec.rs:68-70), yielding 609 qubits; forward/reverse assert tape length against dialog_tape_qubits at gcd.rs:1431 and :1439-1442.",
+      "engine_definition": "src/point_add/trailmix_ludicrous/mod.rs:453",
+      "forward_reverse": "src/point_add/trailmix_ludicrous/gcd.rs:1182 forward_gcd_jump and :1435 reverse_gcd_jump; call sites :1906/:1910 and :1915/:1920.",
+      "geometry": "src/point_add/trailmix_ludicrous/schedule.rs:2 JUMP=2, :4 ITERS=261, :12 BAKED_ITERS=258; gcd.rs imports and indexes SCHED_J2/GAP_J2 on both forward and reverse walks.",
+      "route": "src/point_add/mod.rs:2007 build() -> mod.rs:2302 trailmix_ludicrous::build_trailmix_ludicrous_ops() -> first fanout -> apply_m60_dead_t10 -> ccz_self_inverse_cancel -> constprop::ccx_final_cancel -> second fanout -> apply_deep_strip_identity -> post-strip fanout -> apply_tail_nonce."
+    },
+    "metric_binding": {
+      "average_executed_toffoli": 1283487.051,
+      "hash_binding": "The T/Q/score and emitted-op count are bound to compressed SHA-256 6519bd... and canonical semantic SHA-256 0a4a... above.",
+      "qubits": 1154,
+      "results_row": "results.tsv:8 (epoch 1786907851, commit a2067dc, T=1283487.051, Q=1154, ops=8958690, correct=OK)",
+      "rounded_toffoli": 1283487,
+      "score": 1481143998,
+      "score_formula_check": "1283487 * 1154 = 1481143998",
+      "score_json_path": "score.json",
+      "score_json_sha256": "b22776904513b4cc5b4c484854f7862c9c0300039313664240cfcc864a8e3e2c"
+    },
+    "nonce": {
+      "application": "src/point_add/mod.rs:2414 applies after the complete post-pass stack; apply_tail_nonce at mod.rs:1790 rewrites the final 96-op identity X-pair tail.",
+      "env": "SUB4_TAIL_NONCE",
+      "frontier_binding": ".pi/frontier.json nonce.default=1337610097 and CAMPAIGN_FINDINGS.md section 1 agree.",
+      "ground_nonce_status": "Historical pinned baseline nonce only; this audit found no candidate stream and neither granted nor used grind authority.",
+      "source_read": "src/point_add/mod.rs:2410-2413 parses override and defaults to 1337610097."
+    },
+    "recovery": {
+      "delimiters_verified": true,
+      "status": "PARKED",
+      "terminal_log": ".pi/campaign-runs/20260816t232122Z/lanes/frontier-auditor/terminal.log",
+      "terminal_log_sha256": "820b877167241ed3a5d34d146283bb3dbcdf5b77c62fcf20fb7723a4c0ec13cc"
+    },
+    "residual_risks": [
+      "A new schema-v3 binding remains blocked until the protected scored-source worktree is clean; only the parent/authorized lifecycle can decide how to serialize or preserve the parked SQ-01 edit.",
+      "The default artifact matching from this read-only fingerprint does not substitute for an authorized rebuild/evaluation after source or environment changes.",
+      "The raw 9,024-shot evaluator transcript is not locally retained; future certification should archive it with both artifact identities.",
+      "No claim is made about a global performance ceiling."
+    ],
+    "retained_9024_evidence": {
+      "declared_checks": ".pi/frontier.json verification: shots=9024; all 9024 green; classical mismatches=0; phase-garbage batches=0; ancilla-garbage batches=0.",
+      "independent_summary": "CAMPAIGN_FINDINGS.md section 1 and .pi/experiments/FRONTIER-AUDIT.json checks.measurements both state 9024/9024 green and the same T/Q/S/operation identities.",
+      "on_disk_summary": "score.json agrees on rounded T/Q/S; results.tsv retains the a2067dc average-T/ops/OK row.",
+      "raw_transcript_status": "No raw eval_circuit stdout transcript with individual four-check counters was found by this read-only audit; the retained evidence is the control-plane declaration plus score/results summaries."
+    },
+    "review_findings": [
+      {
+        "finding": "The only protected source delta is the locked, uncommitted EXP-SQ-01 default-off edit. Its SHA-256 matches the campaign lock, but it makes a clean-worktree schema-v3 binding fail; disposition is STALE, not a silent re-pin.",
+        "path": "src/point_add/trailmix_ludicrous/square.rs",
+        "severity": "blocker"
+      },
+      {
+        "finding": "Observed compressed hash, canonical semantic hash, emitted operations, and max qubit all match the pinned frontier exactly.",
+        "path": "ops.bin",
+        "severity": "info"
+      },
+      {
+        "finding": "The audited live route is trailmix_ludicrous followed by the strip stack and post-stack SUB4_TAIL_NONCE application; legacy dialog routing is not used by this call chain.",
+        "path": "src/point_add/mod.rs:2302-2414",
+        "severity": "info"
+      },
+      {
+        "finding": "Summary artifacts reconcile score/T/Q and the control plane declares all four 9024-shot checks, but a raw evaluator stdout transcript is not retained at a discovered path.",
+        "path": "score.json; results.tsv; .pi/frontier.json",
+        "severity": "warning"
+      }
+    ],
+    "schema_v3_disposition": {
+      "exact_drift": [
+        "git status --porcelain over protected paths reports M src/point_add/trailmix_ludicrous/square.rs.",
+        "git diff --binary -- src/point_add SHA-256 is 30be19a685b8969824de1ed0784e340d30da583bc484b4d77b4b0d6e217034b6, which equals .pi/state/campaign.json policy.working_tree_lock.scored_diff_sha256 and contains only the allowed locked EXP-SQ-01 path.",
+        ".pi/harness/frontier.py::bind_proposed_frontier rejects any protected-source git-status output before it accepts source_identity. Therefore a schema-v3 proposal cannot truthfully bind this dirty worktree, even though its default artifact matches.",
+        "The authoritative frontier is schema_version 2 and intentionally lacks source_identity; no frontier or campaign-state file was changed or re-pinned."
+      ],
+      "non_drift_reconciliation": "HEAD, locked scored diff, trusted-source digest, both artifact identities, emitted count, Q, score.json, results.tsv historical a2067dc row, nonce default/read path, and geometry agree with the schema-v2 pinned frontier.",
+      "proposal_emitted": false,
+      "state": "STALE"
+    },
+    "source_identity": {
+      "frontier_source_commit": "a2067dcf3c991bcecfd51a4bf07cd7d1cc56c3a5",
+      "head": "a2067dcf3c991bcecfd51a4bf07cd7d1cc56c3a5",
+      "locked_scored_diff_path": "src/point_add/trailmix_ludicrous/square.rs",
+      "locked_scored_diff_sha256": "30be19a685b8969824de1ed0784e340d30da583bc484b4d77b4b0d6e217034b6",
+      "ownership_check": "ownership_violations('frontier-auditor', []) returned []",
+      "scored_source_tree_sha256_current": "8d90f8235b4a3688722ac3233e975a4ae6fffad73835a37e73ba7838a164ac2a",
+      "trusted_source_tree_sha256_current": "fdd8fe31d933f8861d24d9ffc474a21899de22874ec41ff5579a3c138f320562",
+      "trusted_source_tree_sha256_expected": "fdd8fe31d933f8861d24d9ffc474a21899de22874ec41ff5579a3c138f320562",
+      "trusted_status": "clean for protected trusted paths in the audit command"
+    }
+  },
+  "experiment_id": "FRONTIER-AUDIT",
+  "frontier_id": "2026-08-16-a2067dcf",
+  "metrics": {
+    "audit_measurements": "No build, evaluation, metrology, census, grind, or promotion was run.",
+    "baseline": {
+      "average_executed_toffoli": 1283487.051,
+      "emitted_ops": 8958690,
+      "lambda": 17.62,
+      "qubits": 1154,
+      "rounded_toffoli": 1283487,
+      "score": 1481143998
+    }
+  },
+  "nonce": 1337610097,
+  "nonce_env": "SUB4_TAIL_NONCE",
+  "role": "frontier-auditor",
+  "schema_version": 1,
+  "scientific_verdict": "STALE for a schema-v3 frontier proposal: the live worktree is not clean because the locked, default-off EXP-SQ-01 scored-source diff remains in square.rs. The authoritative schema-v2 baseline itself is reconciled and remains PINNED at score 1481143998; this audit makes no promotion or global-ceiling claim.",
+  "status": "PARKED",
+  "verification": {
+    "not_performed": [
+      "No source, artifact, frontier, card, trusted-evaluator, or lifecycle edit.",
+      "No build, evaluator, metrology, nonce grind, promotion, commit, merge, push, or submission."
+    ],
+    "performed": [
+      "Read dispatch receipt first.",
+      "Read campaign snapshot, frontier, campaign state, schemas, live source, score.json, results.tsv, historical audit, and terminal evidence.",
+      "Computed only read-only source/artifact fingerprints and checked empty changed-path ownership.",
+      "Emitted a PARKED recovery bundle with terminal delimiters."
+    ],
+    "read_only": true,
+    "v3_frontier_proposal": "not emitted: STALE clean-worktree prerequisite described in evidence.schema_v3_disposition"
+  }
+}

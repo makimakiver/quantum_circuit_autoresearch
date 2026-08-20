@@ -1,0 +1,203 @@
+{
+  "schema_version": 1,
+  "experiment_id": "EXP-ARCH-04",
+  "role": "cross-cell-reframer",
+  "status": "PARKED",
+  "frontier_id": "2026-08-16-a2067dcf",
+  "candidate_ops_sha256": "6519bd01424d5513cd7f8232d4c15dfcbfe67561eb1b7f05b2cfec87c233a097",
+  "canonical_ops_sha256": "0a4a412c939b05f59fa4bc33c2410e5bc110b07c7faded5e6db5f6b5db3ed0b0",
+  "changed_paths": [],
+  "scientific_verdict": "PARKED: the strip-key lifecycle composite is blocked before its predeclared pilot gates; no new claim or measurement is made.",
+  "nonce_env": "SUB4_TAIL_NONCE",
+  "commands": [
+    "python3 - <<'PY' ... ownership_violations(...) for proposed owner/path seams ... PY",
+    "python3 .pi/skills/circuit-evidence/scripts/emit_recovery_bundle.py --status PARKED --reason 'EXP-ARCH-04 remains blocked by the predeclared EXP-SM-01 pilot and risk-reproduction gates; no source or metrology action was performed.' --experiment-id EXP-ARCH-04 --command 'SUB4_APPLY_STRIP=0 CARGO_TARGET_DIR=/tmp/sqscout-target /tmp/sqscout-target/release/build_circuit'"
+  ],
+  "evidence": {
+    "card_type": "one distinct cross-cell composite card: strip-key lifecycle / exact-synthesis boundary (EXP-ARCH-04)",
+    "authority": {
+      "dispatch": ".pi/campaign-runs/20260816t232122Z/lanes/cross-cell-reframer/dispatch.json",
+      "frontier": ".pi/frontier.json",
+      "campaign_state": ".pi/state/campaign.json",
+      "findings": "CAMPAIGN_FINDINGS.md",
+      "existing_card": ".pi/experiments/EXP-ARCH-04.md"
+    },
+    "park_basis": {
+      "severity": "blocker",
+      "existing_evidence": [
+        ".pi/state/campaign.json records EXP-SM-01 as PARKED with no long-compute approval.",
+        ".pi/continuations/EXP-SM-01.json sets launch_approved=false and long_compute_approved=false; its next action forbids even the pilot until explicit project-state approval.",
+        ".pi/experiments/EXP-SM-01.md records that the miner rebuild was not started because of provider limit and makes pilot overlap/risk reproduction mandatory before a census or table change."
+      ],
+      "disposition_reason": "This is an operational park, not a falsification and not a conclusion about the global search space."
+    },
+    "affected_cell_map": [
+      {
+        "cell": "stream/strip applier",
+        "interface": "final post-pass operation stream -> (kind, controls, target, condition, occurrence ordinal, tuple occupancy) key lookup",
+        "paths": [
+          "src/point_add/deep_strip_keys.rs",
+          "src/point_add/mod.rs"
+        ],
+        "effect": "A stream perturbation can stale ordinal/occupancy-addressed keys; baseline evidence is 12,202 removals plus 4,045 downgrades with 0 stale keys."
+      },
+      {
+        "cell": "census/miner",
+        "interface": "strip-off final stream -> event/fire counts -> greedy E/S key classification -> regenerated table",
+        "paths": [
+          ".pi/experiments/EXP-SM-01-tooling/Cargo.toml",
+          ".pi/experiments/EXP-SM-01-tooling/stream_census_main.rs"
+        ],
+        "effect": "The missing v5 reconstruction must establish table/risk self-consistency before it can price any statistical key."
+      },
+      {
+        "cell": "square/coordinate scheduling",
+        "interface": "SQ-01 early sum release changes allocation order before the final strip stage",
+        "paths": [
+          "src/point_add/trailmix_ludicrous/square.rs"
+        ],
+        "effect": "Existing SQ-01 evidence shows a real pre-strip gain but 6,799 stale strip keys and +5,806 final CCX; it is a consumer of a fresh variant-stream re-mine, never a transferable baseline table."
+      },
+      {
+        "cell": "walk/codec/replay and future geometry cards",
+        "interface": "any walk/codec/replay operation-order change -> mandatory stream-specific tripwire/re-mine before final T pricing",
+        "paths": [
+          "src/point_add/trailmix_ludicrous/gcd.rs",
+          "src/point_add/trailmix_ludicrous/codec.rs"
+        ],
+        "effect": "The rule applies even where no edit is proposed here: order-sensitive strip keys cannot be re-addressed across changed streams."
+      },
+      {
+        "cell": "tail/regrind",
+        "interface": "post-strip stream -> apply_tail_nonce(SUB4_TAIL_NONCE)",
+        "paths": [
+          "src/point_add/mod.rs"
+        ],
+        "effect": "E keys require exact proof; S keys consume classical-risk/regrind budget. Neither can bypass a candidate-stream ground nonce at promotion."
+      }
+    ],
+    "source_ownership_seams": {
+      "ownership_check": "ownership_violations() returned [] for the declared implementer source paths, [] for the strip-census-miner tooling paths, and [] for this role with changed_paths=[].",
+      "owners": [
+        "implementer only: src/point_add/deep_strip_keys.rs, src/point_add/mod.rs, and src/point_add/trailmix_ludicrous/square.rs",
+        "strip-census-miner only: .pi/experiments/EXP-SM-01-tooling/**",
+        "cross-cell-reframer: read-only; no owned mutation in this card"
+      ],
+      "seam_rule": "A generated strip table and SUB4_STRIP_RISK_BUDGET, if authorized, are one serialized implementation unit; square or walk changes are separate producer units and must deliver their own changed-stream census substrate."
+    },
+    "invariant_pairs": [
+      {
+        "pair": "stream identity <-> key identity",
+        "invariant": "A table is valid only for the exact final post-pass stream whose tuple occurrence ordinal and occupancy created it; strip remains last before nonce.",
+        "proof_obligation": "On unchanged baseline, regenerated table must reproduce 12,202/12,202 removals, 4,045/4,045 downgrades, and 0 stale keys before any changed-stream mining."
+      },
+      {
+        "pair": "E exact key <-> proof artifact",
+        "invariant": "E and S partitions are exclusive and exhaustive over admitted new keys; an E key carries an UNSAT mitre, wire equality, or bit-exact identity rather than census risk.",
+        "proof_obligation": "Per-cluster machine-checkable UNSAT/source-identity artifact and four green checks on its certified A/B."
+      },
+      {
+        "pair": "S statistical key <-> risk/regrind accounting",
+        "invariant": "Only S keys contribute census risk; no E credit may be counted as S risk headroom.",
+        "proof_obligation": "Reconstructed evaluator reproduces shipped Risk=1.239700 bit-for-bit; paired lambda evidence and later ground-seed/regrind evidence bind the candidate stream."
+      },
+      {
+        "pair": "producer perturbation <-> consumer re-mine",
+        "invariant": "SQ-01 or any walk/codec/replay geometry change cannot reuse baseline table keys or final T estimates.",
+        "proof_obligation": "Build-side stale-key tripwire followed by a fresh census on that exact candidate stream; only then price final strip credit."
+      }
+    ],
+    "staged_cheap_gates": [
+      {
+        "stage": 0,
+        "gate": "Authorization",
+        "required": "Explicit state approval to resume the parked miner; no pilot/full compute is authorized now."
+      },
+      {
+        "stage": 1,
+        "gate": "Pilot discriminator",
+        "required": "1e7-input baseline strip-off pilot must overlap at least 90% of shipped 16,247 keys and reproduce Risk=1.239700 exactly.",
+        "falsifier": "overlap <90% or no exact risk-functional reproduction"
+      },
+      {
+        "stage": 2,
+        "gate": "Baseline self-consistency",
+        "required": "Regenerated B=1.24 baseline table reproduces the shipped removal/downgrade counts at 0 stale keys before re-cut or variant work."
+      },
+      {
+        "stage": 3,
+        "gate": "Attribution split",
+        "required": "A 100-gate stratified attribution sample has >70% inside no more than five routines; then issue per-cluster E proofs before admitting E credit.",
+        "falsifier": "stable new statistical pool <300 gates at the declared deep-census gate, or the >70%/five-routine clustering test fails"
+      },
+      {
+        "stage": 4,
+        "gate": "Candidate-specific re-mine and bounded S sweep",
+        "required": "For SQ-01 or another producer stream, mine the exact candidate stream; sweep B only over residual S keys after E removal."
+      },
+      {
+        "stage": 5,
+        "gate": "Promotion ladder",
+        "required": "Default identity where applicable, paired lambda for S, 9,024-shot four-check evaluation, explicit grind approval, candidate-stream SUB4_TAIL_NONCE ground seed, both hashes, and strictly lower score."
+      }
+    ],
+    "explicit_falsifier": "Reject only this composite premise if its existing predeclared pilot conditions fire: key overlap below 90%, inability to reproduce Risk=1.239700 exactly, baseline effect mismatch, a stable deep-census pool below 300 gates, attribution failing the >70% within <=5 routines test, or a certified A/B failing any of four checks. None has fired in this read-only review.",
+    "reopening_trigger": [
+      "Explicit project-state approval to resume the EXP-SM-01 miner and launch its pilot.",
+      "Any accepted final-stream perturbation reporting stale strip keys; this triggers a candidate-specific re-mine rather than transfer of the baseline table.",
+      "A lambda decomposition that establishes census-risk headroom at least twice the current budget."
+    ],
+    "serialized_rollback_unit": {
+      "unit": "one regenerated src/point_add/deep_strip_keys.rs table plus one default-parity SUB4_STRIP_RISK_BUDGET setting (1.24)",
+      "rollback": "restore the prior table and unset/return the budget to shipped parity as one atomic rollback; proof artifacts are additive and have no runtime effect.",
+      "producer_boundary": "Do not include square.rs, gcd.rs, or codec.rs in this unit: those producer changes must be independently rollbackable and need a fresh census before this unit is rebuilt."
+    },
+    "budget": {
+      "authorized_now": "read-only review only; no pilot, metrology, build/evaluation, nonce grind, or source mutation",
+      "after_approval": "pilot: 1e7 inputs (~25-43 minutes); full shared pool: 6.55e8 inputs, estimated 28-80 hours on 8 threads; certificate attribution: <=5 mitre classes x 2 CPU-hours; hard composite cap: 3 working days plus one nohup weekend.",
+      "risk_budget": "shipped statistical budget B=1.24; candidate B sweep is 2.0, 3.0, 5.0 only after exact baseline reproduction; E keys price at zero only with proof."
+    },
+    "review_findings": [
+      {
+        "severity": "blocker",
+        "path": ".pi/continuations/EXP-SM-01.json",
+        "finding": "launch_approved=false and long_compute_approved=false prohibit the pilot that is the first composite discriminator."
+      },
+      {
+        "severity": "high",
+        "path": ".pi/experiments/EXP-SQ-01.md",
+        "finding": "The parked square variant cannot be priced from its pre-strip saving: it has 6,799 stale strip keys and +5,806 final CCX as shipped; only a stream-specific re-mine may reopen it."
+      },
+      {
+        "severity": "high",
+        "path": ".pi/experiments/EXP-SM-01.md",
+        "finding": "The v5 risk functional remains a reconstruction target; without exact reproduction of Risk=1.239700, any B sweep is unpriceable."
+      }
+    ],
+    "residual_risks": [
+      "The expected T ranges are scoped estimates, not score or correctness evidence.",
+      "A correct E/S partition does not itself provide a candidate-stream nonce or satisfy the 9,024-shot gate.",
+      "Source-indexed versus ordinal-based certificate encoding remains unresolved and must be fixed before E proof credit is merged.",
+      "This card makes no global-ceiling claim."
+    ]
+  },
+  "metrics": {
+    "baseline": {
+      "average_executed_toffoli": 1283487.051,
+      "qubits": 1154,
+      "score": 1481143998,
+      "baseline_lambda": 17.62
+    },
+    "scope_only": {
+      "exact_E_potential_executed_toffoli": "-3000 to -7700",
+      "statistical_S_potential_executed_toffoli": "-2000 to -5000",
+      "square_consumer_after_fresh_remine_estimate": "-500 to -800",
+      "qualification": "Existing-card estimates only; no composite candidate artifact or measurement was produced."
+    }
+  },
+  "verification": {
+    "performed": "Read-only evidence review and ownership seam check only; no build, evaluation, metrology, pilot, full census, nonce grind, or lifecycle action was run.",
+    "recovery_bundle": "FLEET_RECOVERY_BUNDLE emitted for PARKED / EXP-ARCH-04 before completion.",
+    "four_checks": "not run for this parked composite; prerequisite remains candidate construction after gates."
+  }
+}

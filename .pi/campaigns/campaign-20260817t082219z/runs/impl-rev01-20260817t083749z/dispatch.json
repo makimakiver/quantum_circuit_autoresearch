@@ -1,0 +1,42 @@
+{
+  "agent": "implementer",
+  "base_identity": {
+    "repository_commit": "a2067dcf3c991bcecfd51a4bf07cd7d1cc56c3a5",
+    "scored_source_tree_sha256": "7ae7eabe20bc5459d902d2f4c921bb7ea53f48f9c82ae88d9a7f93c2bbefd7f9",
+    "trusted_source_tree_sha256": "fdd8fe31d933f8861d24d9ffc474a21899de22874ec41ff5579a3c138f320562"
+  },
+  "budget": {
+    "allowed_paths": "src/point_add/** only",
+    "builds_allowed": true,
+    "cheap_gates_only": true,
+    "evaluation": false,
+    "full_9024_evaluation": false,
+    "kind": "isolated candidate implementation",
+    "long_compute": false,
+    "metrology_expansion": false,
+    "nonce_grinding": false,
+    "shared_cargo_target": "/Users/makimakiver/ecdsafail-wt/shared-target"
+  },
+  "campaign_id": "campaign-20260817t082219z",
+  "commands": [
+    "cd /Users/makimakiver/ecdsafail-wt/rev01 && CARGO_TARGET_DIR=/Users/makimakiver/ecdsafail-wt/shared-target cargo build --release",
+    "cd /Users/makimakiver/ecdsafail-wt/rev01 && CARGO_TARGET_DIR=/Users/makimakiver/ecdsafail-wt/shared-target TRACE_TLM_PROFILE=1 TRACE_TLM_CCX=1 TRACE_TLM_TOF=1 TRACE_PHASE_ACTIVE=1 cargo run --release --bin build_circuit",
+    "targeted classical/semantic selftests and anti-noop hash deltas only; no 9,024-shot evaluator run"
+  ],
+  "control_plane_sha256": "4bc23dae29c721a586b791b38c8aa422fdd3d7a807c4b3c65e33f71ce4ebdb47",
+  "expected_result": ".pi/campaigns/campaign-20260817t082219z/runs/impl-rev01-20260817t083749z/result.json",
+  "experiment_id": "EXP-REV-01",
+  "frontier_id": "2026-08-16-a2067dcf",
+  "lane": "STRUCTURAL",
+  "owner": "implementer",
+  "run_id": "impl-rev01-20260817t083749z",
+  "schema_version": 1,
+  "soft_deadlines": {
+    "checkpoint": 0.8,
+    "finalize": 0.9,
+    "grace": 0.95
+  },
+  "task": "Implement card EXP-REV-01 reverse replay attribution (TRACE-only stage, then bounded refit) in the bound worktree only.",
+  "timeout_seconds": 5400,
+  "worktree": "/Users/makimakiver/ecdsafail-wt/rev01"
+}

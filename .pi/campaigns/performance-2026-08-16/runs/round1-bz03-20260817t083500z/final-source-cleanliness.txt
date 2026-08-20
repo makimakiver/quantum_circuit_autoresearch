@@ -1,0 +1,10 @@
+timestamp_utc=2026-08-17T08:31:22Z
+commit=a2067dcf3c991bcecfd51a4bf07cd7d1cc56c3a5
+status:
+source_diff:
+staged_diff:
+ops_bin_present:
+no
+tracked_pyc:
+016debdfcfe5a6f7827bfb1610344ed98bfe0d1720a7458618ecb94faddffe89  /Users/makimakiver/ecdsafail-challenge/src/point_add/memory/repro/__pycache__/artifact_io.cpython-313.pyc
+tracked_pyc_status:

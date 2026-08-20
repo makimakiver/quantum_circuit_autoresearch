@@ -1,0 +1,679 @@
+Authorized integrity reconciliation
+repo=/Users/makimakiver/ecdsafail-challenge
+run=.pi/campaign-runs/integrity-20260816t235618Z
+
+$ git diff --cached --quiet
+[exit=0]
+
+$ git diff --cached --name-only
+[exit=0]
+
+$ git restore --source=HEAD -- src/point_add/memory/repro/__pycache__/artifact_io.cpython-313.pyc
+[exit=0]
+
+$ shasum -a 256 src/point_add/memory/repro/__pycache__/artifact_io.cpython-313.pyc
+016debdfcfe5a6f7827bfb1610344ed98bfe0d1720a7458618ecb94faddffe89  src/point_add/memory/repro/__pycache__/artifact_io.cpython-313.pyc
+[exit=0]
+
+$ git diff --check -- src/point_add/trailmix_ludicrous/square.rs
+[exit=0]
+
+===== default-off source guard =====
+154-}
+155-
+156-fn square_early_sum_unbuild() -> bool {
+157:    std::env::var("TLM_SQUARE_EARLY_SUM_UNBUILD")
+158-        .ok()
+159-        .as_deref()
+160-        == Some("1")
+161-}
+162-
+[exit=0]
+
+$ env -u TLM_SQUARE_EARLY_SUM_UNBUILD PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=. python3 -B -m harness.cli verify-default --ops ops.bin --canonical-sha 0a4a412c939b05f59fa4bc33c2410e5bc110b07c7faded5e6db5f6b5db3ed0b0
+/Users/makimakiver/anaconda3/bin/python3: Error while finding module specification for 'harness.cli' (ModuleNotFoundError: No module named 'harness')
+
+===== RECOVERY FOR HARNESS MODULE PATH FAILURE =====
+usage: emit_recovery_bundle.py [-h] [--root ROOT] --status STATUS
+                               --reason REASON --experiment-id EXPERIMENT_ID
+                               [--command COMMAND] [--artifact ARTIFACT]
+                               [--log LOG] [--continuation CONTINUATION]
+                               [--output-dir OUTPUT_DIR]
+                               [--log-tail-lines LOG_TAIL_LINES]
+emit_recovery_bundle.py: error: recovery output inside the repository must be under .pi/campaigns
+FLEET_RECOVERY_BUNDLE_BEGIN
+timestamp_utc=2026-08-16T23:56:23.510398+00:00
+repository=/Users/makimakiver/ecdsafail-challenge
+status=PARKED
+reason=verify-default invocation used PYTHONPATH=. rather than the project-local .pi harness path; no source was staged or committed.
+experiment_id=EXP-SQ-01-PRESERVE
+source_commit=a2067dcf3c991bcecfd51a4bf07cd7d1cc56c3a5
+--- REPRODUCTION COMMANDS ---
+command[1]=env -u TLM_SQUARE_EARLY_SUM_UNBUILD PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=.pi python3 -B -m harness.cli verify-default --ops ops.bin --canonical-sha 0a4a412c939b05f59fa4bc33c2410e5bc110b07c7faded5e6db5f6b5db3ed0b0
+--- GIT STATUS ---
+ M results.tsv
+ M src/point_add/trailmix_ludicrous/square.rs
+?? .pi/
+?? AGENTS.md
+?? CAMPAIGN_FINDINGS.md
+--- GIT DIFF ---
+diff --git a/results.tsv b/results.tsv
+index 22b9f18..0ccae93 100644
+--- a/results.tsv
++++ b/results.tsv
+@@ -6,3 +6,6 @@ timestamp	commit	toffoli	clifford	qubits	ops	correct	notes
+ 1780024119	935dc1f	3962753.000	22627113.285	2715	28697222	OK	
+ 1780047641	750fdf9	3962753.000	22627113.285	2715	28697222	OK	
+ 1780052385	196206e	3962753.000	22627113.285	2715	28697222	OK	
++1786907851	a2067dc	1283487.051	5299506.551	1154	8958690	OK	
++1786915207	bb23789	1283487.051	5299506.551	1154	8958690	OK	
++1786915310	bb23789	1283487.051	5299506.551	1154	8958690	OK	
+diff --git a/src/point_add/trailmix_ludicrous/square.rs b/src/point_add/trailmix_ludicrous/square.rs
+index 8e22da1..bbbc33e 100644
+--- a/src/point_add/trailmix_ludicrous/square.rs
++++ b/src/point_add/trailmix_ludicrous/square.rs
+@@ -153,6 +153,13 @@ fn square_addsub_probe() -> bool {
+     std::env::var("TLM_SQUARE_ADDSUB_PROBE").ok().as_deref() == Some("1")
+ }
+ 
++fn square_early_sum_unbuild() -> bool {
++    std::env::var("TLM_SQUARE_EARLY_SUM_UNBUILD")
++        .ok()
++        .as_deref()
++        == Some("1")
++}
++
+ fn symmetric_square_into_prod_reverse(circ: &mut B, x: &[QubitId], mut prod: Vec<QubitId>) {
+     let n = x.len();
+     if std::env::var("TLM_SQ_TRACE").ok().as_deref() == Some("1") {
+@@ -500,6 +507,15 @@ pub fn mod_square_sub_pm_secp256k1_symmetric(circ: &mut B, lambda: &[QubitId], o
+     circ.set_phase("square_c_sum_unbuild");
+     symmetric_square_into_prod_reverse(circ, &sum, c_prod);
+ 
++    let early_sum_unbuild = square_early_sum_unbuild();
++    let mut sum = Some(sum);
++    if early_sum_unbuild {
++        // moved up: sum is dead after the c unbuild; freeing it here hands
++        // the a/b apply phases 129 more qubits of vent budget (EXP-SQ-01)
++        circ.set_phase("square_sum_hi_lo_unbuild");
++        unbuild_sum_hi_lo(circ, lambda, sum.take().expect("sum unbuild twice"));
++    }
++
+     circ.set_phase("square_a_lo_build");
+     let lo = &lambda[..128];
+     let mut a_prod: Vec<QubitId> = Vec::with_capacity(2 * lo.len());
+@@ -522,8 +538,10 @@ pub fn mod_square_sub_pm_secp256k1_symmetric(circ: &mut B, lambda: &[QubitId], o
+     circ.set_phase("square_b_hi_unbuild");
+     symmetric_square_into_prod_reverse(circ, hi, b_prod);
+ 
+-    circ.set_phase("square_sum_hi_lo_unbuild");
+-    unbuild_sum_hi_lo(circ, lambda, sum);
++    if let Some(sum) = sum {
++        circ.set_phase("square_sum_hi_lo_unbuild");
++        unbuild_sum_hi_lo(circ, lambda, sum);
++    }
+ }
+ 
+ pub fn shifted128_low_miter() -> Result<usize, String> {
+--- GIT DIFF CACHED ---
+
+--- FILE results.tsv ---
+timestamp	commit	toffoli	clifford	qubits	ops	correct	notes
+1780021974	fa473ea	3942753.000	22627118.169	2715	28677221	OK	
+1780022568	935dc1f	3942753.000	22627118.169	2715	28677221	OK	
+1780023874	935dc1f	3942753.000	22627118.169	2715	28677221	OK	
+1780023900	935dc1f	3962753.000	22627113.285	2715	28697222	OK	
+1780024119	935dc1f	3962753.000	22627113.285	2715	28697222	OK	
+1780047641	750fdf9	3962753.000	22627113.285	2715	28697222	OK	
+1780052385	196206e	3962753.000	22627113.285	2715	28697222	OK	
+1786907851	a2067dc	1283487.051	5299506.551	1154	8958690	OK	
+1786915207	bb23789	1283487.051	5299506.551	1154	8958690	OK	
+1786915310	bb23789	1283487.051	5299506.551	1154	8958690	OK	
+--- FILE score.json ---
+{
+  "score": 1481143998,
+  "metrics": {
+    "toffoli": 1283487,
+    "qubits": 1154
+  }
+}
+--- FILE .pi/experiments/EXP-SQ-01-PRESERVE.json ---
+.pi/experiments/EXP-SQ-01-PRESERVE.json: MISSING
+--- FILE .pi/experiments/EXP-SQ-01-PRESERVE.md ---
+.pi/experiments/EXP-SQ-01-PRESERVE.md: MISSING
+--- BINARY ops.bin ---
+ops.bin: size=29461502 sha256=6519bd01424d5513cd7f8232d4c15dfcbfe67561eb1b7f05b2cfec87c233a097
+--- BINARY ops.bin ---
+ops.bin: size=29461502 sha256=6519bd01424d5513cd7f8232d4c15dfcbfe67561eb1b7f05b2cfec87c233a097
+--- LOG TAIL .pi/campaign-runs/integrity-20260816t235618Z/terminal.log ---
+Authorized integrity reconciliation
+repo=/Users/makimakiver/ecdsafail-challenge
+run=.pi/campaign-runs/integrity-20260816t235618Z
+
+$ git diff --cached --quiet
+[exit=0]
+
+$ git diff --cached --name-only
+[exit=0]
+
+$ git restore --source=HEAD -- src/point_add/memory/repro/__pycache__/artifact_io.cpython-313.pyc
+[exit=0]
+
+$ shasum -a 256 src/point_add/memory/repro/__pycache__/artifact_io.cpython-313.pyc
+016debdfcfe5a6f7827bfb1610344ed98bfe0d1720a7458618ecb94faddffe89  src/point_add/memory/repro/__pycache__/artifact_io.cpython-313.pyc
+[exit=0]
+
+$ git diff --check -- src/point_add/trailmix_ludicrous/square.rs
+[exit=0]
+
+===== default-off source guard =====
+154-}
+155-
+156-fn square_early_sum_unbuild() -> bool {
+157:    std::env::var("TLM_SQUARE_EARLY_SUM_UNBUILD")
+158-        .ok()
+159-        .as_deref()
+160-        == Some("1")
+161-}
+162-
+[exit=0]
+
+$ env -u TLM_SQUARE_EARLY_SUM_UNBUILD PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=. python3 -B -m harness.cli verify-default --ops ops.bin --canonical-sha 0a4a412c939b05f59fa4bc33c2410e5bc110b07c7faded5e6db5f6b5db3ed0b0
+/Users/makimakiver/anaconda3/bin/python3: Error while finding module specification for 'harness.cli' (ModuleNotFoundError: No module named 'harness')
+
+===== RECOVERY FOR HARNESS MODULE PATH FAILURE =====
+FLEET_RECOVERY_BUNDLE_END
+FLEET_RECOVERY_BUNDLE_BEGIN
+timestamp_utc=2026-08-16T23:56:30.917734+00:00
+repository=/Users/makimakiver/ecdsafail-challenge
+status=PARKED
+reason=verify-default invocation used PYTHONPATH=. rather than .pi; no source was staged or committed.
+experiment_id=EXP-SQ-01-PRESERVE
+source_commit=a2067dcf3c991bcecfd51a4bf07cd7d1cc56c3a5
+--- REPRODUCTION COMMANDS ---
+command[1]=env -u TLM_SQUARE_EARLY_SUM_UNBUILD PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=.pi python3 -B -m harness.cli verify-default --ops ops.bin --canonical-sha 0a4a412c939b05f59fa4bc33c2410e5bc110b07c7faded5e6db5f6b5db3ed0b0
+--- GIT STATUS ---
+ M results.tsv
+ M src/point_add/trailmix_ludicrous/square.rs
+?? .pi/
+?? AGENTS.md
+?? CAMPAIGN_FINDINGS.md
+--- GIT DIFF ---
+diff --git a/results.tsv b/results.tsv
+index 22b9f18..0ccae93 100644
+--- a/results.tsv
++++ b/results.tsv
+@@ -6,3 +6,6 @@ timestamp	commit	toffoli	clifford	qubits	ops	correct	notes
+ 1780024119	935dc1f	3962753.000	22627113.285	2715	28697222	OK	
+ 1780047641	750fdf9	3962753.000	22627113.285	2715	28697222	OK	
+ 1780052385	196206e	3962753.000	22627113.285	2715	28697222	OK	
++1786907851	a2067dc	1283487.051	5299506.551	1154	8958690	OK	
++1786915207	bb23789	1283487.051	5299506.551	1154	8958690	OK	
++1786915310	bb23789	1283487.051	5299506.551	1154	8958690	OK	
+diff --git a/src/point_add/trailmix_ludicrous/square.rs b/src/point_add/trailmix_ludicrous/square.rs
+index 8e22da1..bbbc33e 100644
+--- a/src/point_add/trailmix_ludicrous/square.rs
++++ b/src/point_add/trailmix_ludicrous/square.rs
+@@ -153,6 +153,13 @@ fn square_addsub_probe() -> bool {
+     std::env::var("TLM_SQUARE_ADDSUB_PROBE").ok().as_deref() == Some("1")
+ }
+ 
++fn square_early_sum_unbuild() -> bool {
++    std::env::var("TLM_SQUARE_EARLY_SUM_UNBUILD")
++        .ok()
++        .as_deref()
++        == Some("1")
++}
++
+ fn symmetric_square_into_prod_reverse(circ: &mut B, x: &[QubitId], mut prod: Vec<QubitId>) {
+     let n = x.len();
+     if std::env::var("TLM_SQ_TRACE").ok().as_deref() == Some("1") {
+@@ -500,6 +507,15 @@ pub fn mod_square_sub_pm_secp256k1_symmetric(circ: &mut B, lambda: &[QubitId], o
+     circ.set_phase("square_c_sum_unbuild");
+     symmetric_square_into_prod_reverse(circ, &sum, c_prod);
+ 
++    let early_sum_unbuild = square_early_sum_unbuild();
++    let mut sum = Some(sum);
++    if early_sum_unbuild {
++        // moved up: sum is dead after the c unbuild; freeing it here hands
++        // the a/b apply phases 129 more qubits of vent budget (EXP-SQ-01)
++        circ.set_phase("square_sum_hi_lo_unbuild");
++        unbuild_sum_hi_lo(circ, lambda, sum.take().expect("sum unbuild twice"));
++    }
++
+     circ.set_phase("square_a_lo_build");
+     let lo = &lambda[..128];
+     let mut a_prod: Vec<QubitId> = Vec::with_capacity(2 * lo.len());
+@@ -522,8 +538,10 @@ pub fn mod_square_sub_pm_secp256k1_symmetric(circ: &mut B, lambda: &[QubitId], o
+     circ.set_phase("square_b_hi_unbuild");
+     symmetric_square_into_prod_reverse(circ, hi, b_prod);
+ 
+-    circ.set_phase("square_sum_hi_lo_unbuild");
+-    unbuild_sum_hi_lo(circ, lambda, sum);
++    if let Some(sum) = sum {
++        circ.set_phase("square_sum_hi_lo_unbuild");
++        unbuild_sum_hi_lo(circ, lambda, sum);
++    }
+ }
+ 
+ pub fn shifted128_low_miter() -> Result<usize, String> {
+--- GIT DIFF CACHED ---
+
+--- FILE results.tsv ---
+timestamp	commit	toffoli	clifford	qubits	ops	correct	notes
+1780021974	fa473ea	3942753.000	22627118.169	2715	28677221	OK	
+1780022568	935dc1f	3942753.000	22627118.169	2715	28677221	OK	
+1780023874	935dc1f	3942753.000	22627118.169	2715	28677221	OK	
+1780023900	935dc1f	3962753.000	22627113.285	2715	28697222	OK	
+1780024119	935dc1f	3962753.000	22627113.285	2715	28697222	OK	
+1780047641	750fdf9	3962753.000	22627113.285	2715	28697222	OK	
+1780052385	196206e	3962753.000	22627113.285	2715	28697222	OK	
+1786907851	a2067dc	1283487.051	5299506.551	1154	8958690	OK	
+1786915207	bb23789	1283487.051	5299506.551	1154	8958690	OK	
+1786915310	bb23789	1283487.051	5299506.551	1154	8958690	OK	
+--- FILE score.json ---
+{
+  "score": 1481143998,
+  "metrics": {
+    "toffoli": 1283487,
+    "qubits": 1154
+  }
+}
+--- FILE .pi/experiments/EXP-SQ-01-PRESERVE.json ---
+.pi/experiments/EXP-SQ-01-PRESERVE.json: MISSING
+--- FILE .pi/experiments/EXP-SQ-01-PRESERVE.md ---
+.pi/experiments/EXP-SQ-01-PRESERVE.md: MISSING
+--- BINARY ops.bin ---
+ops.bin: size=29461502 sha256=6519bd01424d5513cd7f8232d4c15dfcbfe67561eb1b7f05b2cfec87c233a097
+--- BINARY ops.bin ---
+ops.bin: size=29461502 sha256=6519bd01424d5513cd7f8232d4c15dfcbfe67561eb1b7f05b2cfec87c233a097
+--- LOG TAIL .pi/campaign-runs/integrity-20260816t235618Z/terminal.log ---
+     circ.set_phase("square_b_hi_unbuild");
+     symmetric_square_into_prod_reverse(circ, hi, b_prod);
+ 
+-    circ.set_phase("square_sum_hi_lo_unbuild");
+-    unbuild_sum_hi_lo(circ, lambda, sum);
++    if let Some(sum) = sum {
++        circ.set_phase("square_sum_hi_lo_unbuild");
++        unbuild_sum_hi_lo(circ, lambda, sum);
++    }
+ }
+ 
+ pub fn shifted128_low_miter() -> Result<usize, String> {
+--- GIT DIFF CACHED ---
+
+--- FILE results.tsv ---
+timestamp	commit	toffoli	clifford	qubits	ops	correct	notes
+1780021974	fa473ea	3942753.000	22627118.169	2715	28677221	OK	
+1780022568	935dc1f	3942753.000	22627118.169	2715	28677221	OK	
+1780023874	935dc1f	3942753.000	22627118.169	2715	28677221	OK	
+1780023900	935dc1f	3962753.000	22627113.285	2715	28697222	OK	
+1780024119	935dc1f	3962753.000	22627113.285	2715	28697222	OK	
+1780047641	750fdf9	3962753.000	22627113.285	2715	28697222	OK	
+1780052385	196206e	3962753.000	22627113.285	2715	28697222	OK	
+1786907851	a2067dc	1283487.051	5299506.551	1154	8958690	OK	
+1786915207	bb23789	1283487.051	5299506.551	1154	8958690	OK	
+1786915310	bb23789	1283487.051	5299506.551	1154	8958690	OK	
+--- FILE score.json ---
+{
+  "score": 1481143998,
+  "metrics": {
+    "toffoli": 1283487,
+    "qubits": 1154
+  }
+}
+--- FILE .pi/experiments/EXP-SQ-01-PRESERVE.json ---
+.pi/experiments/EXP-SQ-01-PRESERVE.json: MISSING
+--- FILE .pi/experiments/EXP-SQ-01-PRESERVE.md ---
+.pi/experiments/EXP-SQ-01-PRESERVE.md: MISSING
+--- BINARY ops.bin ---
+ops.bin: size=29461502 sha256=6519bd01424d5513cd7f8232d4c15dfcbfe67561eb1b7f05b2cfec87c233a097
+--- BINARY ops.bin ---
+ops.bin: size=29461502 sha256=6519bd01424d5513cd7f8232d4c15dfcbfe67561eb1b7f05b2cfec87c233a097
+--- LOG TAIL .pi/campaign-runs/integrity-20260816t235618Z/terminal.log ---
+Authorized integrity reconciliation
+repo=/Users/makimakiver/ecdsafail-challenge
+run=.pi/campaign-runs/integrity-20260816t235618Z
+
+$ git diff --cached --quiet
+[exit=0]
+
+$ git diff --cached --name-only
+[exit=0]
+
+$ git restore --source=HEAD -- src/point_add/memory/repro/__pycache__/artifact_io.cpython-313.pyc
+[exit=0]
+
+$ shasum -a 256 src/point_add/memory/repro/__pycache__/artifact_io.cpython-313.pyc
+016debdfcfe5a6f7827bfb1610344ed98bfe0d1720a7458618ecb94faddffe89  src/point_add/memory/repro/__pycache__/artifact_io.cpython-313.pyc
+[exit=0]
+
+$ git diff --check -- src/point_add/trailmix_ludicrous/square.rs
+[exit=0]
+
+===== default-off source guard =====
+154-}
+155-
+156-fn square_early_sum_unbuild() -> bool {
+157:    std::env::var("TLM_SQUARE_EARLY_SUM_UNBUILD")
+158-        .ok()
+159-        .as_deref()
+160-        == Some("1")
+161-}
+162-
+[exit=0]
+
+$ env -u TLM_SQUARE_EARLY_SUM_UNBUILD PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=. python3 -B -m harness.cli verify-default --ops ops.bin --canonical-sha 0a4a412c939b05f59fa4bc33c2410e5bc110b07c7faded5e6db5f6b5db3ed0b0
+/Users/makimakiver/anaconda3/bin/python3: Error while finding module specification for 'harness.cli' (ModuleNotFoundError: No module named 'harness')
+
+===== RECOVERY FOR HARNESS MODULE PATH FAILURE =====
+FLEET_RECOVERY_BUNDLE_END
+FLEET_RECOVERY_BUNDLE_END
+helper_exit=0
+
+===== corrected default identity gate =====
+{
+  "canonical_ops_sha256": "0a4a412c939b05f59fa4bc33c2410e5bc110b07c7faded5e6db5f6b5db3ed0b0",
+  "ops_sha256": "6519bd01424d5513cd7f8232d4c15dfcbfe67561eb1b7f05b2cfec87c233a097"
+}
+verify_default_exit=0
+
+===== index remains empty =====
+
+===== AUTHORIZED SQUARE.RS-ONLY COMMIT =====
+index_pre_stage=empty
+src/point_add/trailmix_ludicrous/square.rs
+[main f7b3710] Preserve default-off EXP-SQ-01 experiment
+ 1 file changed, 20 insertions(+), 2 deletions(-)
+new_commit=f7b37108e59e50be7bc42cd47dacb89e6b32d45c
+
+===== POST-COMMIT STATUS =====
+ M results.tsv
+?? .pi/
+?? AGENTS.md
+?? CAMPAIGN_FINDINGS.md
+FLEET_RECOVERY_BUNDLE_BEGIN
+timestamp_utc=2026-08-16T23:56:39.978662+00:00
+repository=/Users/makimakiver/ecdsafail-challenge
+status=IMPLEMENTED
+reason=Authorized bytecode restoration completed; square.rs-only default-off EXP-SQ-01 preservation commit created.
+experiment_id=EXP-SQ-01-PRESERVE
+source_commit=f7b37108e59e50be7bc42cd47dacb89e6b32d45c
+--- REPRODUCTION COMMANDS ---
+command[1]=git restore --source=HEAD -- src/point_add/memory/repro/__pycache__/artifact_io.cpython-313.pyc && git add -- src/point_add/trailmix_ludicrous/square.rs && git commit -m "Preserve default-off EXP-SQ-01 experiment"
+--- GIT STATUS ---
+ M results.tsv
+?? .pi/
+?? AGENTS.md
+?? CAMPAIGN_FINDINGS.md
+--- GIT DIFF ---
+diff --git a/results.tsv b/results.tsv
+index 22b9f18..0ccae93 100644
+--- a/results.tsv
++++ b/results.tsv
+@@ -6,3 +6,6 @@ timestamp	commit	toffoli	clifford	qubits	ops	correct	notes
+ 1780024119	935dc1f	3962753.000	22627113.285	2715	28697222	OK	
+ 1780047641	750fdf9	3962753.000	22627113.285	2715	28697222	OK	
+ 1780052385	196206e	3962753.000	22627113.285	2715	28697222	OK	
++1786907851	a2067dc	1283487.051	5299506.551	1154	8958690	OK	
++1786915207	bb23789	1283487.051	5299506.551	1154	8958690	OK	
++1786915310	bb23789	1283487.051	5299506.551	1154	8958690	OK	
+--- GIT DIFF CACHED ---
+
+--- FILE results.tsv ---
+timestamp	commit	toffoli	clifford	qubits	ops	correct	notes
+1780021974	fa473ea	3942753.000	22627118.169	2715	28677221	OK	
+1780022568	935dc1f	3942753.000	22627118.169	2715	28677221	OK	
+1780023874	935dc1f	3942753.000	22627118.169	2715	28677221	OK	
+1780023900	935dc1f	3962753.000	22627113.285	2715	28697222	OK	
+1780024119	935dc1f	3962753.000	22627113.285	2715	28697222	OK	
+1780047641	750fdf9	3962753.000	22627113.285	2715	28697222	OK	
+1780052385	196206e	3962753.000	22627113.285	2715	28697222	OK	
+1786907851	a2067dc	1283487.051	5299506.551	1154	8958690	OK	
+1786915207	bb23789	1283487.051	5299506.551	1154	8958690	OK	
+1786915310	bb23789	1283487.051	5299506.551	1154	8958690	OK	
+--- FILE score.json ---
+{
+  "score": 1481143998,
+  "metrics": {
+    "toffoli": 1283487,
+    "qubits": 1154
+  }
+}
+--- FILE .pi/experiments/EXP-SQ-01-PRESERVE.json ---
+.pi/experiments/EXP-SQ-01-PRESERVE.json: MISSING
+--- FILE .pi/experiments/EXP-SQ-01-PRESERVE.md ---
+.pi/experiments/EXP-SQ-01-PRESERVE.md: MISSING
+--- BINARY ops.bin ---
+ops.bin: size=29461502 sha256=6519bd01424d5513cd7f8232d4c15dfcbfe67561eb1b7f05b2cfec87c233a097
+--- BINARY ops.bin ---
+ops.bin: size=29461502 sha256=6519bd01424d5513cd7f8232d4c15dfcbfe67561eb1b7f05b2cfec87c233a097
+--- LOG TAIL .pi/campaign-runs/integrity-20260816t235618Z/terminal.log ---
+1786915207	bb23789	1283487.051	5299506.551	1154	8958690	OK	
+1786915310	bb23789	1283487.051	5299506.551	1154	8958690	OK	
+--- FILE score.json ---
+{
+  "score": 1481143998,
+  "metrics": {
+    "toffoli": 1283487,
+    "qubits": 1154
+  }
+}
+--- FILE .pi/experiments/EXP-SQ-01-PRESERVE.json ---
+.pi/experiments/EXP-SQ-01-PRESERVE.json: MISSING
+--- FILE .pi/experiments/EXP-SQ-01-PRESERVE.md ---
+.pi/experiments/EXP-SQ-01-PRESERVE.md: MISSING
+--- BINARY ops.bin ---
+ops.bin: size=29461502 sha256=6519bd01424d5513cd7f8232d4c15dfcbfe67561eb1b7f05b2cfec87c233a097
+--- BINARY ops.bin ---
+ops.bin: size=29461502 sha256=6519bd01424d5513cd7f8232d4c15dfcbfe67561eb1b7f05b2cfec87c233a097
+--- LOG TAIL .pi/campaign-runs/integrity-20260816t235618Z/terminal.log ---
+Authorized integrity reconciliation
+repo=/Users/makimakiver/ecdsafail-challenge
+run=.pi/campaign-runs/integrity-20260816t235618Z
+
+$ git diff --cached --quiet
+[exit=0]
+
+$ git diff --cached --name-only
+[exit=0]
+
+$ git restore --source=HEAD -- src/point_add/memory/repro/__pycache__/artifact_io.cpython-313.pyc
+[exit=0]
+
+$ shasum -a 256 src/point_add/memory/repro/__pycache__/artifact_io.cpython-313.pyc
+016debdfcfe5a6f7827bfb1610344ed98bfe0d1720a7458618ecb94faddffe89  src/point_add/memory/repro/__pycache__/artifact_io.cpython-313.pyc
+[exit=0]
+
+$ git diff --check -- src/point_add/trailmix_ludicrous/square.rs
+[exit=0]
+
+===== default-off source guard =====
+154-}
+155-
+156-fn square_early_sum_unbuild() -> bool {
+157:    std::env::var("TLM_SQUARE_EARLY_SUM_UNBUILD")
+158-        .ok()
+159-        .as_deref()
+160-        == Some("1")
+161-}
+162-
+[exit=0]
+
+$ env -u TLM_SQUARE_EARLY_SUM_UNBUILD PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=. python3 -B -m harness.cli verify-default --ops ops.bin --canonical-sha 0a4a412c939b05f59fa4bc33c2410e5bc110b07c7faded5e6db5f6b5db3ed0b0
+/Users/makimakiver/anaconda3/bin/python3: Error while finding module specification for 'harness.cli' (ModuleNotFoundError: No module named 'harness')
+
+===== RECOVERY FOR HARNESS MODULE PATH FAILURE =====
+FLEET_RECOVERY_BUNDLE_END
+FLEET_RECOVERY_BUNDLE_END
+helper_exit=0
+
+===== corrected default identity gate =====
+{
+  "canonical_ops_sha256": "0a4a412c939b05f59fa4bc33c2410e5bc110b07c7faded5e6db5f6b5db3ed0b0",
+  "ops_sha256": "6519bd01424d5513cd7f8232d4c15dfcbfe67561eb1b7f05b2cfec87c233a097"
+}
+verify_default_exit=0
+
+===== index remains empty =====
+
+===== AUTHORIZED SQUARE.RS-ONLY COMMIT =====
+index_pre_stage=empty
+src/point_add/trailmix_ludicrous/square.rs
+[main f7b3710] Preserve default-off EXP-SQ-01 experiment
+ 1 file changed, 20 insertions(+), 2 deletions(-)
+new_commit=f7b37108e59e50be7bc42cd47dacb89e6b32d45c
+
+===== POST-COMMIT STATUS =====
+ M results.tsv
+?? .pi/
+?? AGENTS.md
+?? CAMPAIGN_FINDINGS.md
+FLEET_RECOVERY_BUNDLE_END
+recovery_exit=0
+FLEET_RECOVERY_BUNDLE_BEGIN
+timestamp_utc=2026-08-16T23:56:48.421623+00:00
+repository=/Users/makimakiver/ecdsafail-challenge
+status=PARKED
+reason=Post-commit Phase 0 fleet validation rejected stale pinned frontier source_commit a2067dcf after authorized square.rs-only preservation commit f7b3710; no frontier auditor or discovery was launched.
+experiment_id=FRONTIER-IDENTITY-RECONCILIATION
+source_commit=f7b37108e59e50be7bc42cd47dacb89e6b32d45c
+--- REPRODUCTION COMMANDS ---
+command[1]=PYTHONDONTWRITEBYTECODE=1 python3 -B .pi/skills/circuit-evidence/scripts/validate_fleet.py
+--- GIT STATUS ---
+ M results.tsv
+?? .pi/
+?? AGENTS.md
+?? CAMPAIGN_FINDINGS.md
+--- GIT DIFF ---
+diff --git a/results.tsv b/results.tsv
+index 22b9f18..0ccae93 100644
+--- a/results.tsv
++++ b/results.tsv
+@@ -6,3 +6,6 @@ timestamp	commit	toffoli	clifford	qubits	ops	correct	notes
+ 1780024119	935dc1f	3962753.000	22627113.285	2715	28697222	OK	
+ 1780047641	750fdf9	3962753.000	22627113.285	2715	28697222	OK	
+ 1780052385	196206e	3962753.000	22627113.285	2715	28697222	OK	
++1786907851	a2067dc	1283487.051	5299506.551	1154	8958690	OK	
++1786915207	bb23789	1283487.051	5299506.551	1154	8958690	OK	
++1786915310	bb23789	1283487.051	5299506.551	1154	8958690	OK	
+--- GIT DIFF CACHED ---
+
+--- FILE results.tsv ---
+timestamp	commit	toffoli	clifford	qubits	ops	correct	notes
+1780021974	fa473ea	3942753.000	22627118.169	2715	28677221	OK	
+1780022568	935dc1f	3942753.000	22627118.169	2715	28677221	OK	
+1780023874	935dc1f	3942753.000	22627118.169	2715	28677221	OK	
+1780023900	935dc1f	3962753.000	22627113.285	2715	28697222	OK	
+1780024119	935dc1f	3962753.000	22627113.285	2715	28697222	OK	
+1780047641	750fdf9	3962753.000	22627113.285	2715	28697222	OK	
+1780052385	196206e	3962753.000	22627113.285	2715	28697222	OK	
+1786907851	a2067dc	1283487.051	5299506.551	1154	8958690	OK	
+1786915207	bb23789	1283487.051	5299506.551	1154	8958690	OK	
+1786915310	bb23789	1283487.051	5299506.551	1154	8958690	OK	
+--- FILE score.json ---
+{
+  "score": 1481143998,
+  "metrics": {
+    "toffoli": 1283487,
+    "qubits": 1154
+  }
+}
+--- FILE .pi/experiments/FRONTIER-IDENTITY-RECONCILIATION.json ---
+.pi/experiments/FRONTIER-IDENTITY-RECONCILIATION.json: MISSING
+--- FILE .pi/experiments/FRONTIER-IDENTITY-RECONCILIATION.md ---
+.pi/experiments/FRONTIER-IDENTITY-RECONCILIATION.md: MISSING
+--- BINARY ops.bin ---
+ops.bin: size=29461502 sha256=6519bd01424d5513cd7f8232d4c15dfcbfe67561eb1b7f05b2cfec87c233a097
+--- BINARY ops.bin ---
+ops.bin: size=29461502 sha256=6519bd01424d5513cd7f8232d4c15dfcbfe67561eb1b7f05b2cfec87c233a097
+--- LOG TAIL .pi/campaign-runs/integrity-20260816t235618Z/terminal.log ---
+--- FILE score.json ---
+{
+  "score": 1481143998,
+  "metrics": {
+    "toffoli": 1283487,
+    "qubits": 1154
+  }
+}
+--- FILE .pi/experiments/EXP-SQ-01-PRESERVE.json ---
+.pi/experiments/EXP-SQ-01-PRESERVE.json: MISSING
+--- FILE .pi/experiments/EXP-SQ-01-PRESERVE.md ---
+.pi/experiments/EXP-SQ-01-PRESERVE.md: MISSING
+--- BINARY ops.bin ---
+ops.bin: size=29461502 sha256=6519bd01424d5513cd7f8232d4c15dfcbfe67561eb1b7f05b2cfec87c233a097
+--- BINARY ops.bin ---
+ops.bin: size=29461502 sha256=6519bd01424d5513cd7f8232d4c15dfcbfe67561eb1b7f05b2cfec87c233a097
+--- LOG TAIL .pi/campaign-runs/integrity-20260816t235618Z/terminal.log ---
+Authorized integrity reconciliation
+repo=/Users/makimakiver/ecdsafail-challenge
+run=.pi/campaign-runs/integrity-20260816t235618Z
+
+$ git diff --cached --quiet
+[exit=0]
+
+$ git diff --cached --name-only
+[exit=0]
+
+$ git restore --source=HEAD -- src/point_add/memory/repro/__pycache__/artifact_io.cpython-313.pyc
+[exit=0]
+
+$ shasum -a 256 src/point_add/memory/repro/__pycache__/artifact_io.cpython-313.pyc
+016debdfcfe5a6f7827bfb1610344ed98bfe0d1720a7458618ecb94faddffe89  src/point_add/memory/repro/__pycache__/artifact_io.cpython-313.pyc
+[exit=0]
+
+$ git diff --check -- src/point_add/trailmix_ludicrous/square.rs
+[exit=0]
+
+===== default-off source guard =====
+154-}
+155-
+156-fn square_early_sum_unbuild() -> bool {
+157:    std::env::var("TLM_SQUARE_EARLY_SUM_UNBUILD")
+158-        .ok()
+159-        .as_deref()
+160-        == Some("1")
+161-}
+162-
+[exit=0]
+
+$ env -u TLM_SQUARE_EARLY_SUM_UNBUILD PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=. python3 -B -m harness.cli verify-default --ops ops.bin --canonical-sha 0a4a412c939b05f59fa4bc33c2410e5bc110b07c7faded5e6db5f6b5db3ed0b0
+/Users/makimakiver/anaconda3/bin/python3: Error while finding module specification for 'harness.cli' (ModuleNotFoundError: No module named 'harness')
+
+===== RECOVERY FOR HARNESS MODULE PATH FAILURE =====
+FLEET_RECOVERY_BUNDLE_END
+FLEET_RECOVERY_BUNDLE_END
+helper_exit=0
+
+===== corrected default identity gate =====
+{
+  "canonical_ops_sha256": "0a4a412c939b05f59fa4bc33c2410e5bc110b07c7faded5e6db5f6b5db3ed0b0",
+  "ops_sha256": "6519bd01424d5513cd7f8232d4c15dfcbfe67561eb1b7f05b2cfec87c233a097"
+}
+verify_default_exit=0
+
+===== index remains empty =====
+
+===== AUTHORIZED SQUARE.RS-ONLY COMMIT =====
+index_pre_stage=empty
+src/point_add/trailmix_ludicrous/square.rs
+[main f7b3710] Preserve default-off EXP-SQ-01 experiment
+ 1 file changed, 20 insertions(+), 2 deletions(-)
+new_commit=f7b37108e59e50be7bc42cd47dacb89e6b32d45c
+
+===== POST-COMMIT STATUS =====
+ M results.tsv
+?? .pi/
+?? AGENTS.md
+?? CAMPAIGN_FINDINGS.md
+FLEET_RECOVERY_BUNDLE_END
+recovery_exit=0
+FLEET_RECOVERY_BUNDLE_END
+recovery_exit=0
+
+===== FINAL POST-COMMIT IDENTITIES =====
+f7b37108e59e50be7bc42cd47dacb89e6b32d45c
+frontier_id= 2026-08-16-a2067dcf
+frontier_source_commit= a2067dcf3c991bcecfd51a4bf07cd7d1cc56c3a5
+frontier_ops_sha256= 6519bd01424d5513cd7f8232d4c15dfcbfe67561eb1b7f05b2cfec87c233a097
+frontier_canonical_ops_sha256= 0a4a412c939b05f59fa4bc33c2410e5bc110b07c7faded5e6db5f6b5db3ed0b0

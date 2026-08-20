@@ -1,0 +1,23 @@
+{
+  "artifacts": [
+    {
+      "exists": true,
+      "path": ".pi/campaigns/performance-2026-08-16/runs/round1-bz03-20260817t083500z/result.json",
+      "resolved_path": "/Users/makimakiver/ecdsafail-challenge/.pi/campaigns/performance-2026-08-16/runs/round1-bz03-20260817t083500z/result.json",
+      "sha256": "1556a5e9833e856dcebf166b22a104ce4b9b13310b9e81f42e83e9f4e248ea26",
+      "size": 5005
+    }
+  ],
+  "commands": [
+    "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=.pi python3 -B -m harness.cli collect --result .pi/campaigns/performance-2026-08-16/runs/round1-bz03-20260817t083500z/result.json"
+  ],
+  "continuation": null,
+  "experiment_id": "EXP-BZ-03",
+  "logs": [],
+  "reason": "Harness collection rejected EXP-BZ-03 because campaign state has no registered record; negative result remains in isolated run envelope and no campaign state was mutated.",
+  "repository": "/Users/makimakiver/ecdsafail-challenge",
+  "schema_version": 1,
+  "source_commit": "a2067dcf3c991bcecfd51a4bf07cd7d1cc56c3a5",
+  "status": "PARKED",
+  "timestamp_utc": "2026-08-17T08:35:31.934439+00:00"
+}

@@ -1,0 +1,24 @@
+{
+  "schema_version": 1,
+  "run_id": "structural-20260817t082608z",
+  "gate": "CHECKPOINTED",
+  "timestamp": "2026-08-17T08:30:00Z",
+  "changed_paths": [],
+  "artifact_hashes": {
+    "structural_findings_md": "168916d0033119e17cfc2e6cf03f278e14507f759fcb6c6ddc05ae36c79d2962"
+  },
+  "evidence_paths": [
+    "/Users/makimakiver/.pi/agent/sessions/--Users-makimakiver-ecdsafail-challenge--/subagent-artifacts/outputs/cda7ee75-8787-4792-afe8-dee7db3a4300/structural.md",
+    ".pi/frontier.json",
+    ".pi/state/campaign.json",
+    "CAMPAIGN_FINDINGS.md"
+  ],
+  "commands": [
+    "read-only source/evidence inspection",
+    "PYTHONPATH=.pi ownership_violations inspection",
+    "emit_recovery_bundle.py --status SCOPED"
+  ],
+  "remaining_obligations": [
+    "parent collection of external findings artifact; no candidate implementation, evaluation, metrology expansion, or nonce grinding authorized"
+  ]
+}

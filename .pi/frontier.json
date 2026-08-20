@@ -1,0 +1,82 @@
+{
+  "schema_version": 2,
+  "state": "PINNED",
+  "frontier_id": "2026-08-16-a2067dcf",
+  "authoritative_snapshot": "CAMPAIGN_FINDINGS.md",
+  "source_commit": "a2067dcf3c991bcecfd51a4bf07cd7d1cc56c3a5",
+  "entrypoint": "point_add::build -> trailmix_ludicrous",
+  "nonce_env": "SUB4_TAIL_NONCE",
+  "nonce": {
+    "env": "SUB4_TAIL_NONCE",
+    "default": 1337610097,
+    "read_at": "src/point_add/mod.rs:2410-2413",
+    "applied_by": "apply_tail_nonce (src/point_add/mod.rs:1790) called at mod.rs:2414, after the full post-pass strip stack"
+  },
+  "geometry": {
+    "jump": 2,
+    "iterations": 261,
+    "baked_iterations": 258,
+    "dialog_tape_qubits": 609
+  },
+  "geometry_source": {
+    "jump": "trailmix_ludicrous/schedule.rs:2 pub const JUMP = 2",
+    "iterations": "trailmix_ludicrous/schedule.rs:4 pub const ITERS = 261",
+    "baked_iterations": "trailmix_ludicrous/schedule.rs:9 pub const BAKED_ITERS = 258 (baked_artifacts_valid(): ITERS != BAKED_ITERS, schedule re-blocked)",
+    "dialog_tape_qubits": "trailmix_ludicrous/codec.rs:528 dialog_tape_qubits(n3, iters); TLM_TAIL4_TOP32 default off (set nowhere on the build path); verified 609 by retained test memory/repro/test_y3_global_codec.py::test_production_tape_sizes (green)"
+  },
+  "reachability": {
+    "build_fn": "src/point_add/mod.rs:2007 pub fn build()",
+    "engine_call": "mod.rs:2302 trailmix_ludicrous::build_trailmix_ludicrous_ops() (defined trailmix_ludicrous/mod.rs:453)",
+    "strip_stack": "single_ccx_fanout fixpoint -> apply_m60_dead_t10 (M60_DISABLE=1 forced, so it is a no-op pass-through of C1) -> ccz_self_inverse_cancel -> constprop::ccx_final_cancel -> second single_ccx_fanout fixpoint -> apply_deep_strip_identity (SUB4_APPLY_STRIP default on) -> post-strip fanout -> apply_tail_nonce",
+    "dialog_gcd_path": "dead; build_builder() (mod.rs:1469) and configure_ecdsafail_submission_route() (mod.rs:1201) have zero callers in src/; DIALOG_GCD_* flags in build() only gate selftest early-returns and never feed the emitted stream"
+  },
+  "artifact": {
+    "ops_sha256": "6519bd01424d5513cd7f8232d4c15dfcbfe67561eb1b7f05b2cfec87c233a097",
+    "canonical_ops_sha256": "0a4a412c939b05f59fa4bc33c2410e5bc110b07c7faded5e6db5f6b5db3ed0b0",
+    "ops_bytes": 29461502,
+    "emitted_ops": 8958690,
+    "canonical_hash_tool": "src/point_add/memory/repro/artifact_io.py::fingerprint (zstd-decoded semantic stream)"
+  },
+  "metrics": {
+    "average_executed_toffoli": 1283487.051,
+    "rounded_toffoli": 1283487,
+    "qubits": 1154,
+    "score": 1481143998,
+    "avg_executed_clifford": 5299506.551,
+    "total_executed_toffoli": 11582187148
+  },
+  "verification": {
+    "shots": 9024,
+    "four_checks": "green",
+    "four_checks_detail": "all 9024 shots OK; classical mismatches 0; phase-garbage batches 0; ancilla-garbage batches 0",
+    "evidence_source": "cargo run --release --bin build_circuit && cargo run --release --bin eval_circuit at a2067dcf (clean env, no TLM_*/SUB4_* overrides); score.json + results.tsv row 1786907851 a2067dc; rebuild rerun byte-identical (ops_sha256 reproduced)",
+    "qubit_crosscheck": "artifact max_referenced_qubit_id=1153 -> Q=1154 (independent of eval_circuit)"
+  },
+  "lambda": {
+    "estimate": 17.62,
+    "classical": 15.16,
+    "phase_only": 8.81,
+    "confidence_interval": "se on 43/25600 fault lanes; see EXP-PR cards",
+    "rounds": 400,
+    "lanes_per_round": 64,
+    "nonce_set_id": "tlm-dirty-scan-inputs rounds 0-399 (Shake256 domain)",
+    "evidence_source": "shared-primitives Wave-2 paired scan, build-side, deterministic-replicable (.pi/experiments/EXP-PR-02..03)",
+    "note": "live measurement at a2067dcf; replaces null; consistent with 23.29-era minus retired 261-tail terms; baseline for paired adjudications"
+  },
+  "promotion_lock": {
+    "required_status": "CERTIFIED",
+    "requires_default_identity_gate": true,
+    "requires_lambda_safe": true,
+    "requires_9024_shot_evaluation": true,
+    "requires_explicit_grind_approval": true,
+    "requires_nonce_binding": true,
+    "requires_strict_score_improvement": true
+  },
+  "drift_notes": [
+    "memory/06-research-status.md certifies cf5aa021 with T=1291859.302, Q=1154, S=1490805286, ops 7333b19d..., canonical ec90afea... -- all superseded by live a2067dcf (S=1481143998, i.e. -9661288). The memory table is a historical handoff, not the live frontier.",
+    "mod.rs:2400-2401 prose comment claims 'avg 1283787.015 x 1154, score 1481490198'; measured is 1283487.051 -> S=1481143998. Prose overstates T by ~300; artifact + score.json are authoritative.",
+    "memory/repro/test_verifier_ceiling.py pins best_witness_upper_bound=1490805286 and fails ('red') against live score.json 1481143998 -- retained repro contract lags the live frontier.",
+    "On-disk ops.bin before this audit hashed 3f8fe060... (matched neither the cf5aa021 certificate 7333b19d... nor the live rebuild); results.tsv contained only pre-frontier rows (Q=2715 era). Both regenerated.",
+    "lambda block filled 2026-08-16 from EXP-PR 400-round paired scan"
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "authority": "parent-only",
+  "kind": "parent-owned-dispatch-receipt",
+  "plannedRoles": [
+    "frontier-auditor",
+    "exploitation-tuner",
+    "structural-researcher",
+    "cross-cell-reframer"
+  ],
+  "preflightRequired": true,
+  "repository": "/Users/makimakiver/ecdsafail-challenge",
+  "schemaVersion": 1,
+  "writerAuthorization": false
+}

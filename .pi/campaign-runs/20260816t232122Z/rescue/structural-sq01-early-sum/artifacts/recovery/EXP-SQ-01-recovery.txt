@@ -1,0 +1,182 @@
+FLEET_RECOVERY_BUNDLE_BEGIN
+timestamp_utc=2026-08-16T23:33:48.314685+00:00
+repository=/private/tmp/fleet-v3-sq01-20260816t233036Z
+status=IMPLEMENTED
+reason=default identity matched receipt; flag-on artifact changed; lightweight selftest and isolated builds completed
+experiment_id=EXP-SQ-01
+source_commit=a2067dcf3c991bcecfd51a4bf07cd7d1cc56c3a5
+--- REPRODUCTION COMMANDS ---
+command[1]=cd /tmp/fleet-v3-sq01-20260816t233036Z && CARGO_TARGET_DIR=/tmp/fleet-v3-sq01-20260816t233036Z-target-default env -u TLM_SQUARE_EARLY_SUM_UNBUILD cargo run --release --bin build_circuit
+command[2]=cd /tmp/fleet-v3-sq01-20260816t233036Z && CARGO_TARGET_DIR=/tmp/fleet-v3-sq01-20260816t233036Z-target-candidate TLM_SQUARE_EARLY_SUM_UNBUILD=1 cargo run --release --bin build_circuit
+--- GIT STATUS ---
+ M src/point_add/trailmix_ludicrous/square.rs
+--- GIT DIFF ---
+diff --git a/src/point_add/trailmix_ludicrous/square.rs b/src/point_add/trailmix_ludicrous/square.rs
+index 8e22da1..e689400 100644
+--- a/src/point_add/trailmix_ludicrous/square.rs
++++ b/src/point_add/trailmix_ludicrous/square.rs
+@@ -141,6 +141,10 @@ fn square_addsub_enabled() -> bool {
+     true
+ }
+ 
++fn square_early_sum_unbuild_enabled() -> bool {
++    std::env::var("TLM_SQUARE_EARLY_SUM_UNBUILD").ok().as_deref() == Some("1")
++}
++
+ fn square_addsub_local_diag() -> bool {
+     std::env::var("TLM_SQUARE_ADDSUB_LOCAL").ok().as_deref() == Some("1")
+ }
+@@ -490,15 +494,20 @@ pub fn mod_square_sub_pm_secp256k1_symmetric(circ: &mut B, lambda: &[QubitId], o
+     assert_eq!(output_reg.len(), n, "output must be n=256 bits (< q)");
+ 
+     circ.set_phase("square_sum_hi_lo");
+-    let sum = build_sum_hi_lo(circ, lambda);
++    let mut sum = Some(build_sum_hi_lo(circ, lambda));
+ 
+     circ.set_phase("square_c_sum_build");
+-    let mut c_prod: Vec<QubitId> = Vec::with_capacity(2 * sum.len());
+-    symmetric_square_into_prod(circ, &sum, &mut c_prod);
++    let mut c_prod: Vec<QubitId> = Vec::with_capacity(2 * sum.as_ref().unwrap().len());
++    symmetric_square_into_prod(circ, sum.as_ref().unwrap(), &mut c_prod);
+     circ.set_phase("square_c_sum_apply_shifted_128_sub");
+     apply_shifted_128_tagged(circ, &c_prod, output_reg, ShiftOp::Sub, "c");
+     circ.set_phase("square_c_sum_unbuild");
+-    symmetric_square_into_prod_reverse(circ, &sum, c_prod);
++    symmetric_square_into_prod_reverse(circ, sum.as_ref().unwrap(), c_prod);
++    let early_sum_unbuild = square_early_sum_unbuild_enabled();
++    if early_sum_unbuild {
++        circ.set_phase("square_sum_hi_lo_unbuild");
++        unbuild_sum_hi_lo(circ, lambda, sum.take().unwrap());
++    }
+ 
+     circ.set_phase("square_a_lo_build");
+     let lo = &lambda[..128];
+@@ -522,8 +531,10 @@ pub fn mod_square_sub_pm_secp256k1_symmetric(circ: &mut B, lambda: &[QubitId], o
+     circ.set_phase("square_b_hi_unbuild");
+     symmetric_square_into_prod_reverse(circ, hi, b_prod);
+ 
+-    circ.set_phase("square_sum_hi_lo_unbuild");
+-    unbuild_sum_hi_lo(circ, lambda, sum);
++    if !early_sum_unbuild {
++        circ.set_phase("square_sum_hi_lo_unbuild");
++        unbuild_sum_hi_lo(circ, lambda, sum.take().unwrap());
++    }
+ }
+ 
+ pub fn shifted128_low_miter() -> Result<usize, String> {
+--- GIT DIFF CACHED ---
+
+--- FILE results.tsv ---
+timestamp	commit	toffoli	clifford	qubits	ops	correct	notes
+1780021974	fa473ea	3942753.000	22627118.169	2715	28677221	OK	
+1780022568	935dc1f	3942753.000	22627118.169	2715	28677221	OK	
+1780023874	935dc1f	3942753.000	22627118.169	2715	28677221	OK	
+1780023900	935dc1f	3962753.000	22627113.285	2715	28697222	OK	
+1780024119	935dc1f	3962753.000	22627113.285	2715	28697222	OK	
+1780047641	750fdf9	3962753.000	22627113.285	2715	28697222	OK	
+1780052385	196206e	3962753.000	22627113.285	2715	28697222	OK	
+--- FILE score.json ---
+score.json: MISSING
+--- FILE .pi/experiments/EXP-SQ-01.json ---
+.pi/experiments/EXP-SQ-01.json: MISSING
+--- FILE .pi/experiments/EXP-SQ-01.md ---
+.pi/experiments/EXP-SQ-01.md: MISSING
+--- BINARY ops.bin ---
+ops.bin: size=29207521 sha256=486fa8945846a0fafbb9215d07a03f2eea1f9217f3705254c2ded42e61147dc6
+--- BINARY /Users/makimakiver/ecdsafail-challenge/.pi/campaign-runs/20260816t232122Z/rescue/structural-sq01-early-sum/artifacts/default-ops.bin ---
+/Users/makimakiver/ecdsafail-challenge/.pi/campaign-runs/20260816t232122Z/rescue/structural-sq01-early-sum/artifacts/default-ops.bin: size=29461502 sha256=6519bd01424d5513cd7f8232d4c15dfcbfe67561eb1b7f05b2cfec87c233a097
+--- BINARY /Users/makimakiver/ecdsafail-challenge/.pi/campaign-runs/20260816t232122Z/rescue/structural-sq01-early-sum/artifacts/candidate-ops.bin ---
+/Users/makimakiver/ecdsafail-challenge/.pi/campaign-runs/20260816t232122Z/rescue/structural-sq01-early-sum/artifacts/candidate-ops.bin: size=29207521 sha256=486fa8945846a0fafbb9215d07a03f2eea1f9217f3705254c2ded42e61147dc6
+--- BINARY /Users/makimakiver/ecdsafail-challenge/.pi/campaign-runs/20260816t232122Z/rescue/structural-sq01-early-sum/artifacts/square.rs.patch ---
+/Users/makimakiver/ecdsafail-challenge/.pi/campaign-runs/20260816t232122Z/rescue/structural-sq01-early-sum/artifacts/square.rs.patch: size=2338 sha256=a32dba36a39ef7112049d94e5d5f7335bf2e58bcc3d884eff6ad043afa611ca1
+--- BINARY /Users/makimakiver/ecdsafail-challenge/.pi/campaign-runs/20260816t232122Z/rescue/structural-sq01-early-sum/artifacts/artifact-fingerprints.json ---
+/Users/makimakiver/ecdsafail-challenge/.pi/campaign-runs/20260816t232122Z/rescue/structural-sq01-early-sum/artifacts/artifact-fingerprints.json: size=1143 sha256=baa42aa6bb15ba1a5eeb626ecda7f3005074c37a7c5a8f6c54f6e3e5dcd5b457
+--- CONTINUATION ---
+{
+  "next": "isolated default-off SQ-01 implementation and cheap gates",
+  "schemaVersion": 1,
+  "scientific_verdict": null,
+  "state": "DISPATCHED"
+}
+--- LOG TAIL /Users/makimakiver/ecdsafail-challenge/.pi/campaign-runs/20260816t232122Z/rescue/structural-sq01-early-sum/terminal.log ---
+      640940,
+      7906,
+      4210779,
+      513659,
+      276124,
+      486717,
+      512800,
+      1330933,
+      4728,
+      478182,
+      478182,
+      0
+    ],
+    "qubits": 1154
+  }
+}
+EXIT_CODE: 0
+COMMAND: git -C /tmp/fleet-v3-sq01-20260816t233036Z diff --binary -- src/point_add/trailmix_ludicrous/square.rs
+diff --git a/src/point_add/trailmix_ludicrous/square.rs b/src/point_add/trailmix_ludicrous/square.rs
+index 8e22da1..e689400 100644
+--- a/src/point_add/trailmix_ludicrous/square.rs
++++ b/src/point_add/trailmix_ludicrous/square.rs
+@@ -141,6 +141,10 @@ fn square_addsub_enabled() -> bool {
+     true
+ }
+ 
++fn square_early_sum_unbuild_enabled() -> bool {
++    std::env::var("TLM_SQUARE_EARLY_SUM_UNBUILD").ok().as_deref() == Some("1")
++}
++
+ fn square_addsub_local_diag() -> bool {
+     std::env::var("TLM_SQUARE_ADDSUB_LOCAL").ok().as_deref() == Some("1")
+ }
+@@ -490,15 +494,20 @@ pub fn mod_square_sub_pm_secp256k1_symmetric(circ: &mut B, lambda: &[QubitId], o
+     assert_eq!(output_reg.len(), n, "output must be n=256 bits (< q)");
+ 
+     circ.set_phase("square_sum_hi_lo");
+-    let sum = build_sum_hi_lo(circ, lambda);
++    let mut sum = Some(build_sum_hi_lo(circ, lambda));
+ 
+     circ.set_phase("square_c_sum_build");
+-    let mut c_prod: Vec<QubitId> = Vec::with_capacity(2 * sum.len());
+-    symmetric_square_into_prod(circ, &sum, &mut c_prod);
++    let mut c_prod: Vec<QubitId> = Vec::with_capacity(2 * sum.as_ref().unwrap().len());
++    symmetric_square_into_prod(circ, sum.as_ref().unwrap(), &mut c_prod);
+     circ.set_phase("square_c_sum_apply_shifted_128_sub");
+     apply_shifted_128_tagged(circ, &c_prod, output_reg, ShiftOp::Sub, "c");
+     circ.set_phase("square_c_sum_unbuild");
+-    symmetric_square_into_prod_reverse(circ, &sum, c_prod);
++    symmetric_square_into_prod_reverse(circ, sum.as_ref().unwrap(), c_prod);
++    let early_sum_unbuild = square_early_sum_unbuild_enabled();
++    if early_sum_unbuild {
++        circ.set_phase("square_sum_hi_lo_unbuild");
++        unbuild_sum_hi_lo(circ, lambda, sum.take().unwrap());
++    }
+ 
+     circ.set_phase("square_a_lo_build");
+     let lo = &lambda[..128];
+@@ -522,8 +531,10 @@ pub fn mod_square_sub_pm_secp256k1_symmetric(circ: &mut B, lambda: &[QubitId], o
+     circ.set_phase("square_b_hi_unbuild");
+     symmetric_square_into_prod_reverse(circ, hi, b_prod);
+ 
+-    circ.set_phase("square_sum_hi_lo_unbuild");
+-    unbuild_sum_hi_lo(circ, lambda, sum);
++    if !early_sum_unbuild {
++        circ.set_phase("square_sum_hi_lo_unbuild");
++        unbuild_sum_hi_lo(circ, lambda, sum.take().unwrap());
++    }
+ }
+ 
+ pub fn shifted128_low_miter() -> Result<usize, String> {
+EXIT_CODE: 0
+COMMAND: git -C /tmp/fleet-v3-sq01-20260816t233036Z status --short && git -C /tmp/fleet-v3-sq01-20260816t233036Z diff --name-only && git -C /tmp/fleet-v3-sq01-20260816t233036Z diff --cached --name-only
+ M src/point_add/trailmix_ludicrous/square.rs
+src/point_add/trailmix_ludicrous/square.rs
+EXIT_CODE: 0
+COMMAND: cd /Users/makimakiver/ecdsafail-challenge && PYTHONPATH=.pi python3 -c 'import json; from harness.ownership import ownership_violations; paths=["src/point_add/trailmix_ludicrous/square.rs"]; violations=ownership_violations("implementer", paths); print(json.dumps({"paths": paths, "violations": violations, "passed": not violations}, sort_keys=True)); raise SystemExit(bool(violations))'
+{"passed": true, "paths": ["src/point_add/trailmix_ludicrous/square.rs"], "violations": []}
+EXIT_CODE: 0
+COMMAND: python3 /Users/makimakiver/ecdsafail-challenge/.pi/skills/circuit-evidence/scripts/emit_recovery_bundle.py --root /tmp/fleet-v3-sq01-20260816t233036Z --status IMPLEMENTED --reason 'default identity matched receipt; flag-on artifact changed; lightweight selftest and isolated builds completed' --experiment-id EXP-SQ-01 --command 'cd /tmp/fleet-v3-sq01-20260816t233036Z && CARGO_TARGET_DIR=/tmp/fleet-v3-sq01-20260816t233036Z-target-default env -u TLM_SQUARE_EARLY_SUM_UNBUILD cargo run --release --bin build_circuit' --command 'cd /tmp/fleet-v3-sq01-20260816t233036Z && CARGO_TARGET_DIR=/tmp/fleet-v3-sq01-20260816t233036Z-target-candidate TLM_SQUARE_EARLY_SUM_UNBUILD=1 cargo run --release --bin build_circuit' --artifact '/Users/makimakiver/ecdsafail-challenge/.pi/campaign-runs/20260816t232122Z/rescue/structural-sq01-early-sum/artifacts/default-ops.bin' --artifact '/Users/makimakiver/ecdsafail-challenge/.pi/campaign-runs/20260816t232122Z/rescue/structural-sq01-early-sum/artifacts/candidate-ops.bin' --artifact '/Users/makimakiver/ecdsafail-challenge/.pi/campaign-runs/20260816t232122Z/rescue/structural-sq01-early-sum/artifacts/square.rs.patch' --artifact '/Users/makimakiver/ecdsafail-challenge/.pi/campaign-runs/20260816t232122Z/rescue/structural-sq01-early-sum/artifacts/artifact-fingerprints.json' --log '/Users/makimakiver/ecdsafail-challenge/.pi/campaign-runs/20260816t232122Z/rescue/structural-sq01-early-sum/terminal.log' --continuation '/Users/makimakiver/ecdsafail-challenge/.pi/campaign-runs/20260816t232122Z/rescue/structural-sq01-early-sum/checkpoint.json' --output-dir '/Users/makimakiver/ecdsafail-challenge/.pi/campaign-runs/20260816t232122Z/rescue/structural-sq01-early-sum/artifacts/recovery'
+FLEET_RECOVERY_BUNDLE_END

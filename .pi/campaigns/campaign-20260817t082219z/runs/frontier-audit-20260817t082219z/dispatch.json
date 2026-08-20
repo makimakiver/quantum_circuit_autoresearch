@@ -1,0 +1,37 @@
+{
+  "agent": "frontier-auditor",
+  "base_identity": {
+    "repository_commit": "a2067dcf3c991bcecfd51a4bf07cd7d1cc56c3a5",
+    "scored_source_tree_sha256": "7ae7eabe20bc5459d902d2f4c921bb7ea53f48f9c82ae88d9a7f93c2bbefd7f9",
+    "trusted_source_tree_sha256": "fdd8fe31d933f8861d24d9ffc474a21899de22874ec41ff5579a3c138f320562"
+  },
+  "budget": {
+    "evaluation": false,
+    "kind": "read-only frontier audit",
+    "long_compute": false,
+    "metrology_expansion": false,
+    "nonce_grinding": false
+  },
+  "campaign_id": "campaign-20260817t082219z",
+  "commands": [
+    "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=.pi python3 -B -m harness.cli validate",
+    "PYTHONDONTWRITEBYTECODE=1 python3 -B .pi/skills/circuit-evidence/scripts/validate_fleet.py",
+    "read-only source/artifact/identity reconciliation; no source mutation, evaluator, metrology, grind, or promotion"
+  ],
+  "control_plane_sha256": "4bc23dae29c721a586b791b38c8aa422fdd3d7a807c4b3c65e33f71ce4ebdb47",
+  "expected_result": ".pi/campaigns/campaign-20260817t082219z/runs/frontier-audit-20260817t082219z/result.json",
+  "experiment_id": "FRONTIER-AUDIT-20260817",
+  "frontier_id": "2026-08-16-a2067dcf",
+  "lane": "REFRAMING",
+  "owner": "frontier-auditor",
+  "run_id": "frontier-audit-20260817t082219z",
+  "schema_version": 1,
+  "soft_deadlines": {
+    "checkpoint": 0.8,
+    "finalize": 0.9,
+    "grace": 0.95
+  },
+  "task": "Fresh parent-owned frontier audit; reconcile live route and all pinned identities, read-only.",
+  "timeout_seconds": 900,
+  "worktree": "/Users/makimakiver/ecdsafail-challenge"
+}

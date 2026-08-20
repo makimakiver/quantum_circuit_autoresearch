@@ -1,0 +1,151 @@
+{
+  "schema_version": 2,
+  "experiment_id": "EXP-ARCH-06",
+  "role": "cross-cell-reframer",
+  "status": "SCOPED",
+  "frontier_id": "2026-08-16-a2067dcf",
+  "candidate_ops_sha256": "6519bd01424d5513cd7f8232d4c15dfcbfe67561eb1b7f05b2cfec87c233a097",
+  "canonical_ops_sha256": "0a4a412c939b05f59fa4bc33c2410e5bc110b07c7faded5e6db5f6b5db3ed0b0",
+  "changed_paths": [],
+  "nonce_env": "SUB4_TAIL_NONCE",
+  "nonce": 1337610097,
+  "run_id": "20260816t232122Z",
+  "dispatch_ref": ".pi/campaigns/performance-2026-08-16/runs/20260816t232122Z/dispatch.json",
+  "checkpoint_ref": ".pi/campaigns/performance-2026-08-16/runs/20260816t232122Z/checkpoint.json",
+  "terminal_ref": ".pi/campaigns/performance-2026-08-16/runs/20260816t232122Z/terminal.log",
+  "recovery_ref": ".pi/campaigns/performance-2026-08-16/runs/20260816t232122Z/recovery/round1-reframe-walk-replay",
+  "scientific_verdict": "INCONCLUSIVE",
+  "timestamp": "2026-08-16T23:21:22Z",
+  "metrics": {
+    "frontier_average_executed_toffoli": 1283487.051,
+    "frontier_rounded_toffoli": 1283487,
+    "frontier_qubits": 1154,
+    "frontier_score": 1481143998,
+    "frontier_lambda": 17.62,
+    "candidate_measurement": "none; no candidate artifact was built",
+    "schema_required_candidate_hash_interpretation": "candidate_ops_sha256 repeats the pinned frontier because SCOPED discovery emitted no changed operation stream; it is not a claim that EXP-ARCH-06 has a candidate artifact."
+  },
+  "verification": {
+    "frontier": "CURRENT at source commit a2067dcf3c991bcecfd51a4bf07cd7d1cc56c3a5; 9024/9024 four checks green in .pi/frontier.json.",
+    "this_task": "read-only discovery only; no implementation, build, lambda scan, evaluator, grind, certification, promotion, stage, merge, or commit was run."
+  },
+  "commands": [
+    "git status --short && git diff --cached --name-only",
+    "find . -type f -name '*.pyc' -o -type d -name '__pycache__' | sort",
+    "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=.pi python3 -B - <<'PY' ... ownership_violations('implementer', proposed_paths) ... PY",
+    "PYTHONDONTWRITEBYTECODE=1 python3 -B -m jsonschema -i .pi/campaign-runs/20260816t232122Z/reports/round1-reframe-walk-replay.json .pi/schemas/result.schema.json"
+  ],
+  "evidence": {
+    "authority": {
+      "bound_dispatch_actual": ".pi/campaign-runs/20260816t232122Z/lanes/cross-cell-reframer/dispatch.json",
+      "bound_checkpoint_actual": ".pi/campaign-runs/20260816t232122Z/lanes/cross-cell-reframer/checkpoint.json",
+      "schema_path_note": "The schema-v2 ref regex only accepts legacy .pi/campaigns/... paths. The root dispatch/checkpoint/terminal/recovery refs are schema-format aliases; the actual authoritative dispatch is the bound_dispatch_actual path above.",
+      "frontier_commit": "a2067dcf3c991bcecfd51a4bf07cd7d1cc56c3a5",
+      "compressed_ops_sha256": "6519bd01424d5513cd7f8232d4c15dfcbfe67561eb1b7f05b2cfec87c233a097",
+      "canonical_ops_sha256": "0a4a412c939b05f59fa4bc33c2410e5bc110b07c7faded5e6db5f6b5db3ed0b0"
+    },
+    "observed_inputs": [
+      "Measured: EXP-CODEC-02 puts both binding 1,154-q peaks outside tape ownership: early apply is four ~256-q registers plus 126 ancillas, and square is 258+256+255 registers plus 382 ancillas. A local codec-width reduction therefore cannot claim Q reduction.",
+      "Measured: EXP-ITX-00 rejects a separate deferred apply pass at live geometry: tape 609 + Bezout pair 512 + scratch about 130 = 1,251, which exceeds Q=1,154. Four-to-three traversal additionally needs Delta-y live (+256) or a third product.",
+      "Measured: EXP-SQ-01 has a real pre-strip -1,086 CCX early-sum saving but was refuted as shipped by +5,806 final CCX and 6,799 stale strip keys. Its root edit is absent and its exact rescue patch remains isolated-only.",
+      "Measured: EXP-SQ-04 leaves only the square-output to forward-replay top-window surface; square-unbuild/walk overlap is blocked by SCHED_J2[0..11]=256 and disjoint controls.",
+      "Measured: the final strip is live with 12,202 dead and 4,045 downgrade keys, zero stale keys. Any operation-order change must be treated as an unmined stream until its tuple-occupancy tripwire and a stream-specific re-mine say otherwise.",
+      "Observed, not adjudicated: EXP-P2-01 and EXP-BZ-01 remain METROLOGY through EXP-P2-BZ-METRO. This card only observed its continuation and does not parse, restart, or rely on a verdict from it. EXP-SM-01 remains PARKED with long_compute_approved=false."
+    ],
+    "composite_card": {
+      "experiment_id": "EXP-ARCH-06",
+      "title": "Square-output to paired forward-walk/replay f-term transport with source-indexed strip proof",
+      "lifecycle": {
+        "state": "SCOPED",
+        "path": "IDEA -> SCOPED (current) -> MODELED only after the bit-use/certificate model closes -> CHEAP_PROBE only after isolated implementer dispatch -> CANDIDATE only if every staged discriminator passes",
+        "not_a_ceiling": "No bounded dependency or two-surface rejection establishes a family-wide ceiling. This is a new cross-cell transport question, not a reopening of codec-local Q tuning, SQ-01 early unbuild, or traversal-count reduction."
+      },
+      "search_radius": "A source-indexed subset of the five NAF f-correction terms emitted by square.rs::apply_shifted_hi_term during square_b_hi_apply_f_times_sub and square_c_sum_apply_shifted_128_sub, across the ec_add x2 handoff into gcd.rs::mod_mul_inverse_in_place(Direction::Forward), its first forward divstep/truncation and paired reverse replay, codec dialog ownership, and the final deep-strip occurrence table. The card permits no retained b_hi/product register, no tape widening, no traversal-count change, no SCHED_J2 width change, and no reuse of EXP-SQ-01's early-unbuild patch.",
+      "mechanism": "Test a stronger, paired condition than SQ-04's local dead-bit conjecture: for a selected correction control/value slice, prove that its only pre-output influence is a first-forward-walk input slice which is canonically transported into already-existing dialog/replay state, then move the correction through that forward/reverse boundary and restore it at the paired replay boundary. The intended saving is deletion of the now-redundant correction/uncompute pair or a source-proven CCX-to-CX downgrade; merely moving an equal-cost correction is not success. The certificate must prove that no selected bit fans into a branch, swap predicate, dialog symbol, carry, later output, or phase operation before restoration. This co-design deliberately uses existing state only: retaining b_hi/product controls across the walk, allocating a new tape bit, or widening a cswap is disallowed because those alternatives reopen the known Q/traversal failures.",
+      "predicted_direction": {
+        "executed_T": "Estimate only, inherited from EXP-SQ-04: -500 to -2,000 executed Toffoli after post-strip accounting; 0 is the expected outcome if no source-certified transport pair exists. No measured delta exists.",
+        "Q": "0 required. Any candidate that retains even one new control at a measured 1,154-q binding window, allocates tape, or changes max referenced id is falsified before lambda work.",
+        "score": "Estimate only: -577,000 to -2,308,000 at fixed Q=1,154 if T saves 500 to 2,000; no score claim until exact 9,024-shot evaluation with a stream-bound nonce.",
+        "lambda": "0 expected only for a bit-exact certificate and no new Hmr/R/phase site. It is not measured and must be paired against the frontier lambda 17.62 before any candidate classification."
+      },
+      "emitted_to_executed_discount_assumptions": "The -500..-2,000 range is not a gate-count promise. Square build/unbuild is nearly fully executed; square applies have about a 3% discount in the SQ-01 vent probe, while conditioned clean phases can have a 50% discount. Price a removed selected f-term at its phase-local TRACE_TLM_TOF ratio, price a deletion-induced strip loss at approximately one executed T per stale key only as a provisional tax, and do not credit a relocated equal-cost gate pair. The score estimate assumes Q stays 1,154 and uses 1,154*d(round(T)).",
+      "interfaces": [
+        "square.rs::apply_shifted_hi_term(hi, output_reg, shift, op): selected f-term controls must have a source bit-use map and a stable phase/site label.",
+        "ec_add.rs::ec_add x2 handoff: output_reg remains the same 256-bit, reduced x2 consumed by the forward multiply; no register rename or lifetime extension is permitted.",
+        "gcd.rs::mod_mul_inverse_in_place(Direction::Forward): forward_gcd_jump writes and reverse_gcd_jump consumes the existing dialog; the transform may not alter codec bit count or positional dialog consumption.",
+        "codec.rs::dialog_tape_qubits: remains 609 for ITERS=261; a new symbol, tape allocation, or changed consumption order is outside this card.",
+        "mod.rs post-pass strip interface: apply_deep_strip_identity remains last before apply_tail_nonce; selected source certificates must be source-site addressed, while any remaining ordinal keys are re-mined for the changed final stream."
+      ],
+      "paired_invariants_and_proof_obligation": {
+        "invariant_pair_1": "Walk/replay pair: the modified first-forward step and its matching reverse replay step are exact inverses on (xv, y, dialog, phase). The exact same selected slice must be restored at the paired boundary; one-sided forward deletion is forbidden.",
+        "invariant_pair_2": "s2 pair: both the divstep walk and Bezout replay preserve the existing s2-conditionality and the coupling s = SCHED_J2[i] - cmp_window(i). No selected term may change a conditional predicate or its tape symbol in only one direction.",
+        "invariant_pair_3": "Arithmetic/liveness pair: x2 is reduced mod p at the square exit and has the original value before forward-output observation; no b_hi/product/extra dialog state remains live after its old lifetime, and all scratch returns to zero with zero residual phase.",
+        "invariant_pair_4": "Strip/proof pair: each removed or downgraded gate carries a source-level bit-use/UNSAT or affine-wire certificate independent of occurrence ordinal; the changed final stream still passes the occupancy tripwire, and every unproven affected statistical key is omitted pending re-mine.",
+        "proof_obligation": "Produce a machine-checkable per-site dependency witness containing selected square site, control bits, forward reads, dialog writes, reverse reads, restore site, and a proof that excluded bit-uses are absent. Then prove the transformed forward/reverse semantic stream and phase word equal on the card's finite selftest domain before relying on TLM_STRADDLE_VERIFY. Four 9,024-shot checks, unchanged Q, paired lambda, candidate compressed/canonical hashes, and strictly lower S remain promotion obligations, not scout evidence."
+      },
+      "cheapest_discriminator": "A default-off, TRACE-only isolated implementer probe (TLM_SQ_REPLAY_FTERM_MAP=1) that emits the per-selected-bit source-use map across square output, first forward divstep, dialog write, and reverse replay; plus the existing TRACE_TLM_TOF phase totals. It is positive only if at least one selected site has an existing paired restore point, zero prohibited uses, and an estimated deletion (not relocation) of >=500 emitted CCX. It must not run an evaluator, dirty scan, census, or grind.",
+      "staged_cheap_discriminators": [
+        "D0 / read-only model: map each candidate f-term's control and target bit fanout from square exit through the first forward divstep, codec writes, and matching reverse replay; reject on any branch/predicate/tape/phase use not included in the paired restore proof.",
+        "D1 / isolated TRACE-only edit: TLM_SQ_REPLAY_FTERM_MAP=1, default off, emits source-site labels and phase-local CCX/Toffoli counts; verify flag-off compressed and canonical identities equal the frontier.",
+        "D2 / one mechanism only: TLM_SQ_REPLAY_FTERM_FUSE=1 transports exactly one certified site pair; require changed candidate hash, no new qubit id, no stale-key credit, and emitted deletion >=500 before selftests.",
+        "D3 / proof and light semantic gate: source witness + TLM_STRADDLE_VERIFY bounded selftest; inspect phase word and B0 windows at early walk, late tape walk, and square. This does not certify score or lambda.",
+        "D4 / later authorized gates only: paired dirty scan n>=12 against lambda=17.62, stream-specific strip re-mine or exact-certificate-only configuration, then full 9,024-shot evaluation and separately approved nonce work."
+      ],
+      "predeclared_falsifier": "Refute this direct no-retention transport mechanism if any selected f-term bit (1) is read by a forward branch/swap/compare, s2 predicate, dialog symbol, carry, phase operation, or final output before the proposed paired restoration; (2) needs a retained b_hi/product control, extra tape bit, widened cswap, or any Q increase at a 1,154-q window; (3) has no net emitted deletion >=500 after the one-site probe; (4) makes a selftest/straddle phase or value mismatch; or (5) creates stale strip loss at least as large as the local deletion without a source certificate. A fired falsifier refutes EXP-ARCH-06's stated transport mechanism only, not square algebra, codec construction, or the general walk/replay family.",
+      "evidence_debt": [
+        "No selected source bit-use map or source certificate exists yet; EXP-SQ-04 is an escalation, not evidence that any f-term is transportable.",
+        "The -500..-2,000 executed estimate is inherited and overlap-unadjusted; local phase execution ratios and final strip tax are unmeasured.",
+        "Exact replay/tape positional agreement, phase-cleanliness, Q census, candidate lambda, and 9,024-shot correctness are all unmeasured.",
+        "EXP-SM-01 has no approval to re-mine; therefore a changed-stream result may claim only source-certified strip deletes until an explicitly approved stream-specific re-mine exists.",
+        "A changed stream reseeds test inputs, invalidating SUB4_TAIL_NONCE=1337610097 for candidate certification; no grind is authorized."
+      ],
+      "trial_time_compute_budget": "D0: one implementer half-day, static/model work only. D1: one TRACE-only isolated build and one default identity build, <=20 minutes total. D2: at most two single-site builds, <=20 minutes each; stop immediately on the falsifier. D3: bounded selftests only, <=1 implementer day cumulative. D4 is not authorized by this card: no lambda scan, full evaluator, census, or nonce grind until campaign state grants the corresponding gate. One falsification cycle maximum; no repeated local parameter sweep.",
+      "source_owner_and_allowed_paths": {
+        "owner": "implementer",
+        "allowed_paths": [
+          "src/point_add/trailmix_ludicrous/square.rs",
+          "src/point_add/trailmix_ludicrous/ec_add.rs",
+          "src/point_add/trailmix_ludicrous/gcd.rs",
+          "src/point_add/trailmix_ludicrous/codec.rs"
+        ],
+        "ownership_check": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=.pi python3 -B ownership audit returned no violations for implementer and rejected all four paths for cross-cell-reframer. No source path is owned or edited by this report.",
+        "prohibited_paths": [
+          "src/point_add/mod.rs except if a later implementer dispatch explicitly adds a trace registration need",
+          "src/point_add/deep_strip_keys.rs or any strip table; it is strip-owner material and a new table is not part of the rollback unit",
+          "trusted harness, evaluator, scorer, main worktree source, and EXP-SQ-01 rescue patch"
+        ]
+      },
+      "serialization_dependencies": [
+        "Observe, never restart EXP-P2-BZ-METRO. Do not use its unparsed outcome as evidence; if it completes, the reviewer adjudicates its independent tail-skip cards before bundling any candidate stream.",
+        "Observe EXP-SM-01 only. Its pilot/full census remains blocked (launch_approved=false, long_compute_approved=false); this card may proceed only in certificate-only mode until a new explicit approval re-mines the altered final stream.",
+        "Implementer receives an isolated candidate-worktree dispatch after D0 model review. The root remains clean and EXP-SQ-01's rescue patch SHA-256 a32dba36a39ef7112049d94e5d5f7335bf2e58bcc3d884eff6ad043afa611ca1 remains absent unless a distinct isolated dispatch explicitly authorizes it.",
+        "The strip owner reviews occupancy output after D2; no stale statistical key is retained by assertion. Lambda/evaluation/grind owners act only after D3 proof and campaign gates. STRIP-02's exact two-CCX cancel may ride only a separately regrind-forcing accepted stream."
+      ],
+      "serialized_edit_plan": [
+        "0. Cross-cell review approves D0's source-use model; no source edit before that approval.",
+        "1. Implementer makes a separate default-off TRACE-only commit for TLM_SQ_REPLAY_FTERM_MAP; verify both default hashes before and after it.",
+        "2. If D1 is positive, implementer makes one candidate commit with TLM_SQ_REPLAY_FTERM_FUSE default 0, covering the entire forward/reverse paired change. No second f-term or local refinement is added.",
+        "3. Strip owner checks tripwire only; source-certified deletes are retained, unmined ordinal keys are not.",
+        "4. Only then request semantic, lambda, evaluation, and nonce gates in that order; a rejected gate discards the single candidate rollback unit."
+      ],
+      "rollback_unit": "One isolated-worktree implementer commit guarded by one default-off environment flag, TLM_SQ_REPLAY_FTERM_FUSE. It includes the complete paired forward/reverse transport and its restore, and is discarded as one unit on any falsifier. TRACE-only mapping is a separate default-off commit and never shares the candidate rollback. No deep-strip table, nonce, source default, or EXP-SQ-01 patch is bundled.",
+      "unresolved_directions": [
+        "Whether any high f-term has the required existing dialog/replay carrier remains unknown; absence from a bounded selected-site map is not a representation-wide no-go.",
+        "A fundamentally new streaming rank/unrank codec remains outside this card and needs its own construction; codec-local width and vent tuning remain LOCAL_PLATEAU, not a global ceiling.",
+        "Traversal count 4-to-3 and separate apply deferral remain locally refuted by measured live geometry, but reopen only on their recorded tape/liveness or Delta-y-layout triggers.",
+        "EXP-SQ-01's re-mined early-sum configuration remains a distinct strip-dependent path; it is neither revived nor combined here."
+      ],
+      "reopening_trigger": "Reopen after a direct falsifier only if one of the interface assumptions changes: a new source certificate exposes an existing paired dialog/replay carrier; a schedule change changes the first-divstep bit-use map while preserving s2 pairing; a codec construction changes the 609-q tape without new Q pressure; a square/addsub layout changes the f-term site; or an approved stream-specific strip re-mine supplies ordinal-independent proof. Do not reopen merely because the D0/D2 budget ended or a local trace was flat.",
+      "exact_reproduction_commands": [
+        "# D0, read-only source audit (run only in an isolated implementer dispatch): rg -n 'apply_shifted_hi_term|square_b_hi_apply_f_times_sub|square_c_sum_apply_shifted_128_sub|mod_mul_inverse_in_place|forward_gcd_jump|reverse_gcd_jump|dialog_tape_qubits' src/point_add/trailmix_ludicrous/{square.rs,ec_add.rs,gcd.rs,codec.rs}",
+        "# D1 default identity, after TRACE-only implementation: env -u TLM_SQ_REPLAY_FTERM_MAP -u TLM_SQ_REPLAY_FTERM_FUSE CARGO_TARGET_DIR=/tmp/arch06-target cargo run --release --bin build_circuit && sha256sum ops.bin && PYTHONDONTWRITEBYTECODE=1 python3 -B -c 'import importlib.util; from pathlib import Path; s=importlib.util.spec_from_file_location('artifact_io','src/point_add/memory/repro/artifact_io.py'); m=importlib.util.module_from_spec(s); s.loader.exec_module(m); print(m.fingerprint(Path('ops.bin')))'",
+        "# D1 map discriminator, after TRACE-only implementation: TLM_SQ_REPLAY_FTERM_MAP=1 TRACE_TLM_TOF=1 CARGO_TARGET_DIR=/tmp/arch06-target cargo run --release --bin build_circuit 2>&1 | tee /tmp/arch06-fterm-map.log",
+        "# D2 one-site candidate, only after D1 positive: TLM_SQ_REPLAY_FTERM_FUSE=1 TRACE_TLM_TOF=1 TRACE_TLM_CCX=1 CARGO_TARGET_DIR=/tmp/arch06-target cargo run --release --bin build_circuit 2>&1 | tee /tmp/arch06-fuse.log; sha256sum ops.bin",
+        "# D3 light semantic/Q/strip gate, only after D2 changes the hash: TLM_SQ_REPLAY_FTERM_FUSE=1 TLM_STRADDLE_VERIFY=64 B0_WIN_LO=25940 B0_WIN_HI=26010 CARGO_TARGET_DIR=/tmp/arch06-target cargo run --release --bin build_circuit 2>&1 | tee /tmp/arch06-straddle-b0.log",
+        "# Required before any later Python audit: before=$(find . -type f -name '*.pyc' -o -type d -name '__pycache__' | sort | sha256sum | awk '{print $1}'); PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=.pi python3 -B -m harness.cli validate; after=$(find . -type f -name '*.pyc' -o -type d -name '__pycache__' | sort | sha256sum | awk '{print $1}'); test \"$before\" = \"$after\""
+      ]
+    },
+    "no_ceiling_conclusion": "The measured local exclusions are scoped: codec Q tuning, separate apply deferral, traversal-count reduction under the current Delta-y dependency, and SQ-01 as shipped. They do not prove that all square/walk/codec/replay co-designs are impossible. EXP-ARCH-06 is deliberately constrained to a proof-carrying, existing-state transport test so it can distinguish a local refutation from a family-wide claim.",
+    "report_artifact": ".pi/campaign-runs/20260816t232122Z/reports/round1-reframe-walk-replay.json"
+  }
+}

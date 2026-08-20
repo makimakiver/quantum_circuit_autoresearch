@@ -1,0 +1,50 @@
+{
+  "campaignDisposition": "NO_CANDIDATE_SELECTED",
+  "deduplication": {
+    "EXP-ARCH-04": "cross-cell strip-key lifecycle/re-mine composite",
+    "EXP-BZ-02": "Bezout deferred-clean representation change",
+    "EXP-STRIP-02": "final strict CCX cancellation; local exact stream transform"
+  },
+  "missingGates": [
+    "A clean/properly bound schema-v3 frontier identity or an authorized resolution of the locked square.rs source state.",
+    "Fresh, card-specific liveness/hash proof for EXP-STRIP-02 before any implementation/evaluation path.",
+    "Explicit approval before EXP-SM-01 pilot/tooling or any long compute.",
+    "No GRIND_APPROVED authority exists."
+  ],
+  "overlapPolicy": "No writer selected; therefore no overlapping source-family writer is active.",
+  "roles": [
+    {
+      "experimentId": "EXP-ARCH-04",
+      "resultPath": "lanes/cross-cell-reframer/result.json",
+      "role": "cross-cell-reframer",
+      "status": "PARKED"
+    },
+    {
+      "experimentId": "EXP-STRIP-02",
+      "resultPath": "lanes/exploitation-tuner/result.json",
+      "role": "exploitation-tuner",
+      "status": "SCOPED"
+    },
+    {
+      "experimentId": "FRONTIER-AUDIT",
+      "resultPath": "lanes/frontier-auditor/result.json",
+      "role": "frontier-auditor",
+      "status": "PARKED"
+    },
+    {
+      "experimentId": "EXP-BZ-02",
+      "resultPath": "lanes/structural-researcher/result.json",
+      "role": "structural-researcher",
+      "status": "PARKED"
+    }
+  ],
+  "schemaVersion": 1,
+  "scientific_verdict": null,
+  "selectedCard": null,
+  "selectionReason": [
+    "The independent frontier audit returned a schema-v3 STALE disposition: the locked but uncommitted square.rs scored-source diff prevents a truthful clean-worktree v3 binding, even though baseline operation identities reconcile.",
+    "EXP-STRIP-02 is bounded and potentially score-improving, but its historical candidate identity/liveness has not been freshly re-established and its stream-specific ground nonce is unavailable; its tiny estimated -2 T saving is not enough to authorize a writer against the present identity blocker.",
+    "EXP-BZ-02 and EXP-ARCH-04 are PARKED with unclosed correctness/phase/lambda/strip or explicit approval gates. EXP-SM-01 tooling is not approved; no strip-census-miner was dispatched.",
+    "No result makes a global-ceiling claim."
+  ]
+}

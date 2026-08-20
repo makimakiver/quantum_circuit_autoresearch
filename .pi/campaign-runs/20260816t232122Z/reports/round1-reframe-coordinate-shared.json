@@ -1,0 +1,251 @@
+{
+  "schema_version": 2,
+  "experiment_id": "EXP-RFRAME-COORD-01",
+  "role": "cross-cell-reframer",
+  "status": "SCOPED",
+  "frontier_id": "2026-08-16-a2067dcf",
+  "candidate_ops_sha256": "6519bd01424d5513cd7f8232d4c15dfcbfe67561eb1b7f05b2cfec87c233a097",
+  "canonical_ops_sha256": "0a4a412c939b05f59fa4bc33c2410e5bc110b07c7faded5e6db5f6b5db3ed0b0",
+  "changed_paths": [],
+  "nonce_env": "SUB4_TAIL_NONCE",
+  "nonce": 1337610097,
+  "run_id": "20260816t232122Z",
+  "dispatch_ref": ".pi/campaigns/performance-2026-08-16/runs/20260816t232122Z/dispatch.json",
+  "checkpoint_ref": ".pi/campaigns/performance-2026-08-16/runs/20260816t232122Z/checkpoint.json",
+  "terminal_ref": ".pi/campaigns/performance-2026-08-16/runs/20260816t232122Z/terminal.log",
+  "recovery_ref": ".pi/campaigns/performance-2026-08-16/runs/20260816t232122Z/recovery/EXP-RFRAME-COORD-01",
+  "scientific_verdict": "SCOPED: EXP-SQ-01 refutes its shipped allocator-lifetime move after strip occupancy loss, not the square-coordinate fusion family. The allocation-stable fusion below has no candidate artifact or new measurement and remains gated by an algebra miter, Q guard, and exact-stream strip occupancy evidence. EXP-SM-01 is operationally parked, so no census, pilot, or continuation restart is authorized.",
+  "timestamp": "2026-08-17T08:19:43Z",
+  "commands": [
+    "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=.pi python3 -B - <<'PY' ... ownership_violations('cross-cell-reframer', []), ownership_violations('implementer', ['src/point_add/trailmix_ludicrous/ec_add.rs','src/point_add/trailmix_ludicrous/square.rs']), ownership_violations('strip-census-miner', ['.pi/experiments/EXP-SM-01-tooling/stream_census_main.rs']) ... PY",
+    "PYTHONDONTWRITEBYTECODE=1 python3 -B .pi/skills/circuit-evidence/scripts/emit_recovery_bundle.py --status SCOPED --reason 'Read-only composite reframing completed; allocation-stable square-coordinate fusion is scoped behind algebra, liveness, and exact-stream strip gates; EXP-SM-01 remains unapproved.' --experiment-id EXP-RFRAME-COORD-01 --command 'cd /tmp/exp-rframe-coord && CARGO_TARGET_DIR=/tmp/exp-rframe-coord-target TLM_SQ_CONST_FUSE=1 POINT_ADD_COUNT_ONLY=1 cargo run --release --bin build_circuit 2>&1 | tee candidate-count.log' --output-dir /tmp/exp-rframe-coord-01-recovery"
+  ],
+  "metrics": {
+    "measured_frontier": {
+      "source_commit": "a2067dcf3c991bcecfd51a4bf07cd7d1cc56c3a5",
+      "compressed_ops_sha256": "6519bd01424d5513cd7f8232d4c15dfcbfe67561eb1b7f05b2cfec87c233a097",
+      "canonical_ops_sha256": "0a4a412c939b05f59fa4bc33c2410e5bc110b07c7faded5e6db5f6b5db3ed0b0",
+      "average_executed_toffoli": 1283487.051,
+      "rounded_toffoli": 1283487,
+      "qubits": 1154,
+      "score": 1481143998,
+      "lambda": 17.62,
+      "lambda_evidence": "Measured paired frontier scan: 400 rounds x 64 lanes."
+    },
+    "estimate_not_measurement": {
+      "candidate_executed_toffoli_delta": "0 to -320, with no positive candidate claim permitted",
+      "candidate_qubit_delta": "0 required",
+      "candidate_score_delta": "0 to -369280 at Q=1154, contingent on round(T) moving and no strip loss",
+      "candidate_lambda_delta": "0 expected only if the algebra miter proves an exact transformation; still require the campaign's paired candidate-stream lambda gate before promotion because the stream reseeds inputs.",
+      "estimate_limit": "The range prices only the coordinate-add surface. It excludes any strip re-mine credit, nonce cost, and speculative square vent credit; no bounded range is a ceiling."
+    }
+  },
+  "verification": {
+    "read_only": true,
+    "performed": [
+      "Read the bound cross-cell dispatch and checkpoint, frontier, campaign state, findings, SQ/SM/ARCH/strip/codec cards, continuations, source interfaces, ownership policy, result schema, and recovery record.",
+      "Observed, but did not restart or parse into an adjudication, EXP-P2-BZ-METRO and EXP-SM-01 continuations.",
+      "Ran only the bytecode-guarded ownership audit; all proposed writer seams pass for their declared owners and the reframer source-write seam is rejected."
+    ],
+    "not_performed": [
+      "No source, trusted-harness, main, frontier, campaign-state, card, continuation, lifecycle, stage, merge, or commit edit.",
+      "No build, lambda scan, full evaluator, census pilot/full run, grind, certification, promotion, or continuation restart."
+    ],
+    "schema_reference_note": "The schema-v2 required .pi/campaigns references are syntactic compatibility aliases. Actual bound dispatch/checkpoint are .pi/campaign-runs/20260816t232122Z/lanes/cross-cell-reframer/{dispatch,checkpoint}.json; actual parent terminal is .pi/campaign-runs/20260816t232122Z/terminal.log."
+  },
+  "evidence": {
+    "actual_artifact_paths": {
+      "report": ".pi/campaign-runs/20260816t232122Z/reports/round1-reframe-coordinate-shared.json",
+      "bound_dispatch": ".pi/campaign-runs/20260816t232122Z/lanes/cross-cell-reframer/dispatch.json",
+      "bound_checkpoint": ".pi/campaign-runs/20260816t232122Z/lanes/cross-cell-reframer/checkpoint.json",
+      "parent_terminal": ".pi/campaign-runs/20260816t232122Z/terminal.log",
+      "recovery_bundle_directory": "/tmp/exp-rframe-coord-01-recovery",
+      "exp_sq01_recovery_result": ".pi/campaign-runs/20260816t232122Z/rescue/structural-sq01-early-sum/result.json",
+      "exp_sq01_exact_patch": ".pi/campaign-runs/20260816t232122Z/rescue/structural-sq01-early-sum/artifacts/square.rs.patch",
+      "exp_sq01_patch_sha256": "a32dba36a39ef7112049d94e5d5f7335bf2e58bcc3d884eff6ad043afa611ca1"
+    },
+    "frontier_identity": {
+      "frontier_commit": "a2067dcf3c991bcecfd51a4bf07cd7d1cc56c3a5",
+      "frontier_compressed_sha256": "6519bd01424d5513cd7f8232d4c15dfcbfe67561eb1b7f05b2cfec87c233a097",
+      "frontier_canonical_sha256": "0a4a412c939b05f59fa4bc33c2410e5bc110b07c7faded5e6db5f6b5db3ed0b0",
+      "nonce": "SUB4_TAIL_NONCE=1337610097 is a historical baseline binding only; it is not reusable for a changed candidate stream."
+    },
+    "composite_cards": [
+      {
+        "experiment_id": "EXP-RFRAME-COORD-01",
+        "lifecycle_state": {
+          "path": "IDEA -> SCOPED -> MODELED -> CHEAP_PROBE -> CANDIDATE",
+          "current": "SCOPED",
+          "advance_to_modeled_only_when": "A field-algebra derivation and a deterministic classical miter specify the exact replacement map before source editing.",
+          "advance_to_cheap_probe_only_when": "An explicitly dispatched isolated worktree gives the implementer ownership of the two stated scored paths.",
+          "advance_to_candidate_only_when": "Default identities match, the flag-on stream is live, the selftest/miter is green, Q remains 1154, the count gate is favorable, and strip occupancy is either zero-stale or has a separately approved exact-stream re-mine path."
+        },
+        "frontier_commit_and_identities": {
+          "commit": "a2067dcf3c991bcecfd51a4bf07cd7d1cc56c3a5",
+          "compressed_sha256": "6519bd01424d5513cd7f8232d4c15dfcbfe67561eb1b7f05b2cfec87c233a097",
+          "canonical_sha256": "0a4a412c939b05f59fa4bc33c2410e5bc110b07c7faded5e6db5f6b5db3ed0b0"
+        },
+        "search_radius": "One allocation-stable producer fusion at the ec_add -> square interface: current coord_add3x(x2, ox) followed by mod_square_sub_pm_secp256k1_symmetric(y2, x2), without changing gcd.rs walk/replay, codec.rs tape encoding, schedule geometry, deep-strip applier, post-pass order, or tail nonce. Candidate source scope is only src/point_add/trailmix_ludicrous/ec_add.rs and square.rs.",
+        "mechanism": "Replace the sequential map S_lambda(A_3ox(x2)) with a field-proven fused S'_lambda,ox(x2), where A_3ox is the existing reversible classical-coordinate add and S_lambda is the modular square/update. Preserve all allocator alloc/free calls and phase boundaries after tlm_coord_add3x, including a zeroed temporary scaffold if needed, so the candidate does not repeat SQ-01's early release/reallocation mechanism. The intended gain is eliminating the standalone coordinate add's charged carry work, not claiming that freed scratch lowers Q or grants additional square vents.",
+        "predicted_direction": {
+          "executed_T": "Estimate 0 to -320. The existing standalone coordinate add is approximately 332 emitted / 320 expected-executed; a fused replacement must cost strictly less after the full post-pass stack.",
+          "Q": "0 required. The global 1154 peak is independently held by tape-free apply and square windows; this card is not a Q claim.",
+          "score": "0 to -369280 at fixed Q=1154; no score claim until exact candidate T and Q are measured.",
+          "lambda": "0 target under a bit-exact reversible identity. Candidate-stream paired lambda remains evidence debt because the altered stream changes the deterministic input/XOF relation."
+        },
+        "emitted_to_executed_discount_assumptions": "Measured existing coord_add3x pricing is 332 emitted versus about 320 expected-executed (about 0.964). Square shifted/carry phases are near fully executed (about 3% discount in SQ-01 evidence), so replacement gates are priced at their own phase admission rather than receiving a generic 50% discount. The 0..-320 range excludes unmeasured strip effects; emitted savings alone never establish executed savings.",
+        "interfaces": [
+          {
+            "producer": "ec_add.rs::coord_add3x",
+            "consumer": "square.rs::mod_square_sub_pm_secp256k1_symmetric",
+            "contract": "x2 remains the same 256-qubit register; at the square boundary it represents exactly the current field value after the coordinate contribution, and ox remains classical/read-only."
+          },
+          {
+            "producer": "square output",
+            "consumer": "gcd.rs::mod_mul_inverse_in_place(Direction::Forward)",
+            "contract": "At tlm_forward_multiply, x2 and y2 retain current identities, widths, timing, and reduced-field semantics; no walk, s2, dialog tape, or replay symbol changes."
+          },
+          {
+            "producer": "final post-pass stream",
+            "consumer": "mod.rs::apply_deep_strip_identity then apply_tail_nonce",
+            "contract": "Tuple occupancy plus occurrence ordinal remains a stream-specific address. Any stale-key report invalidates final T pricing, not circuit correctness by itself."
+          }
+        ],
+        "reversible_invariant_and_proof_obligation": [
+          {
+            "pair": "coordinate add <-> fused square entry",
+            "invariant": "For every x2, lambda=y2, and classical ox, fused code implements exactly S_lambda(A_3ox(x2)); x2 output equals the baseline output and ox/y2 are unchanged.",
+            "proof_obligation": "Before flag-on profiling, provide a symbolic mod-p coefficient derivation and a deterministic classical miter. In the candidate worktree add TLM_COORD_SQ_FUSE_SELFTEST=1, which compares baseline sequential and fused maps over the declared deterministic corpus and checks the temporary/ancilla return condition. The selftest is a discriminator, not the proof by sampling."
+          },
+          {
+            "pair": "forward arithmetic <-> reverse cleanup",
+            "invariant": "Every added fused operation has its exact inverse in the existing square cleanup ordering; all temporary quantum registers are zero before free and no phase-producing measurement/control path is added.",
+            "proof_obligation": "Square selftests plus a phase/ancilla four-check evaluation after the cheap gates; inspect the phase word rather than treating allocator zeroing as proof."
+          },
+          {
+            "pair": "allocation schedule <-> global Q/strip addressability",
+            "invariant": "The candidate preserves allocation/free topology and does not move the 129-qubit sum lifetime. Peak live sets remain at or below 1154, and any stream-key movement is reported rather than masked.",
+            "proof_obligation": "TRACE_TLM_PROFILE/TRACE_PHASE_ACTIVE at the existing tape-free apply and square plateau windows; require max referenced id 1153. Capture the deep-strip removed/downgraded/stale line on the exact candidate stream."
+          }
+        ],
+        "cheapest_discriminator": "First authorized isolated-worktree candidate: one default-off identity build plus TLM_COORD_SQ_FUSE_SELFTEST=1 TLM_COORD_SQ_FUSE_SELFTEST_ONLY=1. If green, one TLM_SQ_CONST_FUSE=1 POINT_ADD_COUNT_ONLY=1 build must show a changed compressed and canonical identity, tlm_coord_add3x removal/reduction, square-phase growth strictly less than the removed coordinate work, Q=1154, and the full deep-strip stale line. This is the first affordable liveness/algebra/count gate; no evaluator, lambda scan, census, or grind belongs in it.",
+        "staged_discriminators": [
+          {
+            "stage": "0 / global-liveness model",
+            "owner": "cross-cell-reframer, read-only",
+            "gate": "Use recorded EXP-CODEC-02 and EXP-ITX-00 censuses: 1154 has tape-free apply and square owners; card must carry Q=0, not a tape/codec or lifetime claim.",
+            "outcome": "completed from recorded evidence; no new computation"
+          },
+          {
+            "stage": "1 / MODEL",
+            "owner": "implementer with reviewer",
+            "gate": "Exact mod-p derivation and deterministic baseline-vs-fused classical miter design, including retained allocation scaffold and inverse ordering.",
+            "falsifier": "No exact identity can be derived, or the miter finds a mismatch."
+          },
+          {
+            "stage": "2 / CHEAP_PROBE",
+            "owner": "implementer in explicitly dispatched isolated worktree",
+            "gate": "Default-off compressed/canonical identities equal the frontier; flag-on selftest is green; flag-on hashes differ; count-only phase deltas are favorable; peak Q=1154; stale line captured.",
+            "falsifier": "Default identity drifts, flag is a noop, selftest fails, Q exceeds 1154, or square growth is at least the removed coordinate work."
+          },
+          {
+            "stage": "3 / stream occupancy decision",
+            "owner": "strip-census-miner only after explicit approval",
+            "gate": "If stale=0, retain measured count for a later candidate gate. If stale>0, do not extrapolate strip savings: require an exact-stream miner approval and EXP-SM-01 pilot parity before final T pricing.",
+            "falsifier": "Not a scientific refutation by itself; without approval it is an operational PARKED condition. EXP-SM-01 pilot overlap below 90% or failure to reproduce Risk=1.239700 exactly refutes the re-mine premise."
+          },
+          {
+            "stage": "4 / CANDIDATE ladder",
+            "owner": "implementer, lambda-metrologist, evaluator-certifier in serialized order",
+            "gate": "Selftests, paired lambda with upper CI delta < +0.5, full 9024-shot four checks, exact candidate hashes/Q/T, explicit GRIND_APPROVED, and a candidate-stream ground SUB4_TAIL_NONCE.",
+            "falsifier": "Any predeclared lambda or four-check failure; score not strictly below 1481143998."
+          }
+        ],
+        "predeclared_falsifier": "REFUTED for this fusion only if the exact field miter disagrees, the flag-on selftest disagrees, candidate square/carry executed work grows by at least the independently removed coordinate work, Q rises above 1154, or a required later four-check/lambda gate fails. Nonzero stale keys alone are not a fusion falsifier: they park final pricing behind an approved stream-specific re-mine. Do not infer a family-wide exclusion or a ceiling from either outcome.",
+        "evidence_debt": [
+          "No candidate implementation, algebra derivation, phase trace, candidate hash, or count has been produced by this review.",
+          "The 332 emitted / approximately 320 executed coordinate price is inherited measured-card evidence, not a measurement of a fused replacement.",
+          "The deep-strip table is ordinal/occupancy keyed. SQ-01's measured 6,799 stale keys and +5,806 final CCX prove that pre-strip benefit cannot be promoted as final T; they do not apply a universal negative verdict to allocation-stable fusion.",
+          "Candidate lambda, full 9024-shot correctness/reversibility/phase/ancilla checks, ground nonce, and strict score improvement remain entirely unpaid."
+        ],
+        "trial_time_compute_budget": {
+          "authorized_now": "Read-only only; spent zero builds and zero long compute.",
+          "after_explicit_dispatch": "One isolated implementation unit, one default-off identity build, one selftest-only run, and one count/profile build; hard stop immediately on a stage-1 or stage-2 falsifier. No lambda scan/evaluator/grind in the cheap-probe budget.",
+          "if_stale_requires_remine": "No pilot or census may start until campaign state records approval. The recorded EXP-SM-01 pilot is 1e7 inputs (about 25-43 minutes); full shared programme is 6.55e8 inputs and 28-80 hours on 8 threads, bounded by its existing three-working-day plus weekend cap.",
+          "promotion_budget": "Only after a positive candidate and authorization: paired lambda per campaign policy, exact 9024-shot evaluator, and separately approved bounded grind."
+        },
+        "source_owner_and_allowed_paths": {
+          "owner": "implementer",
+          "allowed_paths": [
+            "src/point_add/trailmix_ludicrous/ec_add.rs",
+            "src/point_add/trailmix_ludicrous/square.rs"
+          ],
+          "ownership_audit": "ownership_violations('implementer', proposed_paths) returned []; ownership_violations('cross-cell-reframer', proposed_paths) rejects the source seam. No trusted harness path is permitted.",
+          "strip_seam": "Only strip-census-miner may edit .pi/experiments/EXP-SM-01-tooling/**; an eventual deep_strip_keys.rs runtime table is implementer-owned and is not part of this producer rollback unit."
+        },
+        "serialization_dependencies": [
+          "Do not restart EXP-P2-BZ-METRO; its continuation is observation-only until its own evaluator/reviewer adjudicates recorded logs.",
+          "Do not restart EXP-SM-01 or launch its pilot/full census: continuation says launch_approved=false and long_compute_approved=false.",
+          "Run this producer alone in an isolated worktree. Do not bundle it with SQ-01 early-sum, walk/codec/replay, BZ deferred reduction, or a strip-table edit, because a changed final stream needs separately attributable stale-key evidence.",
+          "EXP-SQ-01's root edit remains absent. Its recovery patch SHA-256 a32dba36a39ef7112049d94e5d5f7335bf2e58bcc3d884eff6ad043afa611ca1 may be reapplied only in a separately explicitly dispatched isolated worktree after a stream-specific re-mine; this card neither reapplies nor depends on it.",
+          "If stage 3 needs a re-mine, serialize miner parity/pilot -> unchanged-stream B=1.24 self-consistency -> candidate-stream census -> only then candidate final-T price."
+        ],
+        "rollback_unit": "One default-off flag TLM_SQ_CONST_FUSE spanning both allowed source files in one isolated-worktree commit. Roll back by unsetting the flag and discarding that one producer commit; retain no root edit and do not alter deep_strip_keys.rs, schedule, codec, or nonce tail in this unit.",
+        "unresolved_directions": [
+          "Whether a retained zeroed coord temporary is sufficient to preserve all later allocator IDs/tuple occupancies while still removing enough charged work.",
+          "The exact coefficient form of S'_lambda,ox and whether it can reuse a square carry chain without violating the reduced-input requirement.",
+          "Whether any nonzero stale strip count is small enough to leave positive final T after a permitted re-mine; it is deliberately not estimated from SQ-01.",
+          "A larger square-output -> first-walk truncation fusion remains a separate paired walk/codec/replay card; this card does not assume top bits are dead."
+        ],
+        "reopening_trigger": [
+          "Explicit isolated-worktree implementation dispatch with the stated owner/path scope.",
+          "A new exact algebraic construction/miter for the S_lambda(A_3ox) boundary.",
+          "For a stale candidate stream, explicit EXP-SM-01 approval followed by pilot parity (>=90% shipped-key overlap and exact Risk=1.239700 reproduction).",
+          "Any accepted global-liveness representation change that removes at least 10 live qubits from a tape-free apply or square binding window requires repricing this card's Q and vent assumptions before use."
+        ],
+        "exact_reproduction_commands": [
+          "# Stage 1 design/miter command to be added by the implementer in the isolated worktree:\ncd /tmp/exp-rframe-coord && CARGO_TARGET_DIR=/tmp/exp-rframe-coord-target TLM_COORD_SQ_FUSE_SELFTEST=1 TLM_COORD_SQ_FUSE_SELFTEST_ONLY=1 cargo run --release --bin build_circuit",
+          "# Default-off identity gate (both fingerprints are mandatory):\ncd /tmp/exp-rframe-coord && env -u TLM_SQ_CONST_FUSE CARGO_TARGET_DIR=/tmp/exp-rframe-coord-target cargo run --release --bin build_circuit && sha256sum ops.bin && PYTHONDONTWRITEBYTECODE=1 python3 -B src/point_add/memory/repro/artifact_io.py ops.bin",
+          "# Stage 2 liveness/count/strip/Q gate; run only after the preceding selftest is green:\ncd /tmp/exp-rframe-coord && TLM_SQ_CONST_FUSE=1 POINT_ADD_COUNT_ONLY=1 TRACE_TLM_TOF=1 TRACE_TLM_PROFILE=1 TRACE_PHASE_ACTIVE=1 CARGO_TARGET_DIR=/tmp/exp-rframe-coord-target cargo run --release --bin build_circuit 2>&1 | tee candidate-count.log",
+          "# Exact-stream strip decision, not authorized by this card if stale keys are nonzero:\ngrep -E 'deep-strip-identity|TLM_TOF phase=(tlm_coord_add3x|square_)|TLM_PROFILE' /tmp/exp-rframe-coord/candidate-count.log",
+          "# Only after explicit EXP-SM-01 approval, observe the existing continuation first; never restart it implicitly:\nPYTHONPATH=.pi PYTHONDONTWRITEBYTECODE=1 python3 -B -m harness.cli continuations"
+        ]
+      }
+    ],
+    "family_wide_exclusion_guard": {
+      "finding": "EXP-SQ-01 is one measured bad refinement of an allocator-lifetime move: it has a real pre-strip benefit but 6,799 stale strip keys and +5,806 final CCX. It is PARKED/REFUTED_AS_SHIPPED, not evidence that all square/coordinate or arithmetic fusion is impossible.",
+      "local_plateau_labels": [
+        "EXP-CODEC-02 is LOCAL_PLATEAU for codec-local Q work: tape is absent at both binding 1154 peaks and cap probes are uneconomic.",
+        "EXP-PR-05 is LOCAL_PLATEAU for FOLD_SCHED/FFG_G micro-retunes.",
+        "No two independently bad refinements exist for allocation-stable square-coordinate fusion; this new subfamily is therefore SCOPED, not labelled LOCAL_PLATEAU. If two bounded implementations fail its own count/miter falsifiers, label it LOCAL_PLATEAU and return it to cross-cell reframing rather than closing square/coordinate work globally."
+      ]
+    },
+    "continuation_observation": {
+      "EXP-P2-BZ-METRO": "Observed manifest status PARKED_PROVIDER_LIMIT_SCAN_CONTINUES; launch_approved=false, resume_command=null, and next action is parse existing logs only if all done markers complete. No restart or adjudication performed.",
+      "EXP-SM-01": "Observed manifest status PARKED_PROVIDER_LIMIT; launch_approved=false and long_compute_approved=false. Its next action permits miner implementation only and explicitly forbids pilot/full census absent approval. No compute or restart performed."
+    },
+    "ownership_and_bytecode_guard": {
+      "ownership_results": {
+        "cross_cell_reframer_empty_paths": [],
+        "implementer_ec_add_and_square": [],
+        "strip_miner_tooling": [],
+        "cross_cell_reframer_source_attempt": [
+          "only implementer may edit scored circuit source: src/point_add/trailmix_ludicrous/ec_add.rs"
+        ]
+      },
+      "pycache_guard": "src/point_add/memory/repro/__pycache__/artifact_io.cpython-313.pyc SHA-256 was 016debdfcfe5a6f7827bfb1610344ed98bfe0d1720a7458618ecb94faddffe89 before and after each Python audit/recovery invocation."
+    },
+    "recovery": {
+      "status": "SCOPED",
+      "bundle_directory": "/tmp/exp-rframe-coord-01-recovery",
+      "exact_command": "cd /tmp/exp-rframe-coord && CARGO_TARGET_DIR=/tmp/exp-rframe-coord-target TLM_SQ_CONST_FUSE=1 POINT_ADD_COUNT_ONLY=1 cargo run --release --bin build_circuit 2>&1 | tee candidate-count.log",
+      "result": "FLEET_RECOVERY_BUNDLE delimiters emitted before report finalization."
+    },
+    "residual_risks": [
+      "Schema-required candidate hashes in this SCOPED result are the pinned baseline anchors, not a claim that a fused candidate exists.",
+      "The report uses no new computation; all measured values are explicitly attributed to the frontier or recorded cards.",
+      "The actual campaign-run layout differs from the schema-v2 .pi/campaigns reference pattern; actual paths are recorded above.",
+      "No result here claims safety, refutation of the broader family, a performance ceiling, certification, or promotion."
+    ]
+  }
+}

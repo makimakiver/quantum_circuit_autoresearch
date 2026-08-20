@@ -1,0 +1,206 @@
+# EXP-KFIT-01 stage-1 adjudication — cout k-fit harmonization
+
+Worktree `/Users/makimakiver/ecdsafail-wt/kfit` @ a2067dcf3c991bcecfd51a4bf07cd7d1cc56c3a5 (detached, clean; only
+untracked scratch `.pi-tmp/` removed after evidence copy). Zero source edits; env-only measurement.
+
+## Gate results
+
+| gate | result |
+|---|---|
+| 1 ownership/scope | PASS — `git status` clean; no `src/**` touched; no bake (no win) |
+| 2 default identity | PASS — clean-env build reproduced compressed `6519bd01…a097` AND canonical `0a4a412c…ed0b0` (verify-default: emitted 8,958,690, Q 1,154) |
+| anti-noop (instrumentation) | PASS — trace build (`TRACE_TLM_COUT/TOF/CCX/PROFILE=1`) left ops.bin byte-identical at `6519bd01…`; strip fully live (12,202 removed / 4,045 downgraded / 0 stale) |
+| 3 candidate anti-noop | NOT REACHED — no stage-2 candidate produced (stage-1 gate for (a) not met) |
+| 4 semantic obligation | ADJUDICATED — see below: `effective = min(selected, headroom)` pinned at every call; no accessor or call-count change possible or needed |
+| 5 score-sign gate | NOT REACHED — no candidate; projected ΔT=0, ΔQ=0, ΔS=0 |
+| 6 Q≤1154 | PASS observationally — `TLM_PROFILE peak_qubits=1154` inside `tlm_apply_inverse_mod_sub_register` |
+
+## Stage-1 measurement (520 cout calls; table in `stage1-cout-table.tsv`)
+
+Cout family = `next_cout_k()` → `take_cout_fit()` → `controlled_hybrid_add_cout_refs` (gidney.rs:1982) consuming
+`APPLY_COUT_K` widened `BLOCKS_2`; call range 0–259 = inverse apply (`tlm_apply_inverse_mod_sub_register`),
+262–521 = forward apply (`tlm_apply_forward_mod_add_register`), 260/261 skipped-tail adds.
+
+- Anti-parallel k-profiles: inverse pass traverses wide→narrow (base 138→~22), forward pass narrow→wide (24→138).
+- Emitted ops added: fwd 1,222,720 vs inv 1,239,326 (+16,606 pre-strip, all op kinds); executed-T asymmetry of the
+  two register phases: 148,392.5 (inv) − 147,799.0 (fwd) = **+593.5 executed Toffoli** (TLM_TOF rows).
+- Headroom saturation at EVERY call (`headroom = TLM_TARGET_Q − entry_active = 1154 − active`):
+  - 240/260 calls per pass: `selected > headroom` → hard-capped,
+  - 20/260 calls per pass: `selected == headroom` exactly,
+  - **0/260 calls with true slack (`selected < headroom`)** on either side (corrected filter; an earlier
+    filter that treated `eff==sel` as slack was wrong because `sel==headroom` re-caps any raise).
+
+## Type (a)/(b) adjudication: TYPE (b) — intrinsic context, overrides cannot touch
+
+`fit_schedule_value` (mod.rs:170) lets `TLM_COUT_K_CALL_OVERRIDES` replace only `selected`. The consumer
+(gidney.rs:1985) computes `effective = selected.min(headroom)`; since effective is already at the headroom
+ceiling everywhere it matters, any override is either (i) `k' ≥ headroom` → same effective → byte-identical
+noop, or (ii) `k' < headroom` → strictly narrower than the mined optimum (wider k is cheaper at n=256:
+3,949 ops at k_eff≈104 vs 6,938 at k_eff≈26 under similar context; the baked schedule is the mined optimum,
+and EXP-BZ-03 empirically showed narrowing probes regress executed T +213 net with 1,772 orphaned strip keys
+on a smaller perturbation). The divergence between mirrored passes is `entry_active`-driven (each pass runs in
+a different live-qubit window of its walk), not schedule-chosen k. Corroboration: the global Q binding peak
+(1,154) occurs inside `tlm_apply_inverse_mod_sub_register` itself — raising k on the expensive side would
+breach Q=1154 even if the cap were lifted.
+
+## Family attribution of the ledger's ~−7,838 potential
+
+The EXP-REV-01 ledger asymmetry (69,549 vs 76,651 emitted / 73,468 executed) is in the WALK-BODY adds
+(`controlled_add_active`, phases `tlm_*_gcd_*_body`), which consume `GCD_SUB_K`/`GCD_BRANCH`
+(widened `BLOCKS_4`) — a different family with no per-call override (only `TLM_GCD_K_*` i-window adjusters that
+hit all four passes symmetrically; `GCD_BRANCH` is a source schedule table). Its cap is the identical
+`k.min(headroom)` at gidney.rs:1967. TLM_TOF walk-body rows measured here: mf 69,549.0 / mr 148,357.5 /
+if 73,468.0 / ir 144,303.0 executed — consistent with the ledger.
+
+## Verdict and reopening
+
+- Predeclared falsifier first clause fired: **no divergent k that overrides can change at any mirrored pair** →
+  type (b) intrinsic → scientific verdict **UNSUPPORTED** for this card's mechanism under this geometry.
+  Not a global ceiling and not REFUTED-as-mechanism for schedule-table work.
+- Stage 2/3 not entered (their entry condition was type (a)); no candidate stream, no strip re-key, no lambda
+  exposure, no evaluation.
+- Rollback: none needed (no source edit, no persistent env change; all probes were single-command env vars).
+- Reopening triggers: (1) a certified stream-specific strip re-mine that makes schedule-table edits cheap — then
+  harmonize `GCD_SUB_K` per-block fits as a NEW card (source edit in `schedule.rs` + paired walk/replay proof);
+  (2) any change that frees live qubits in the walk/apply windows (raising headroom where the narrow fits sit);
+  (3) a Q-window redesign moving the 1,154 binding peak out of the apply-register phases.
+FLEET_RECOVERY_BUNDLE_BEGIN
+timestamp_utc=2026-08-17T09:24:06.283123+00:00
+repository=/Users/makimakiver/ecdsafail-challenge
+status=UNSUPPORTED
+reason=Stage-1 adjudication: cout k-fit divergence is headroom-forced (type b intrinsic); 0/520 calls overridable; no stage-2 candidate; no source edits
+experiment_id=EXP-KFIT-01
+source_commit=a2067dcf3c991bcecfd51a4bf07cd7d1cc56c3a5
+--- REPRODUCTION COMMANDS ---
+command[1]=cd /Users/makimakiver/ecdsafail-wt/kfit && env -i PATH=$PATH HOME=$HOME CARGO_TARGET_DIR=/Users/makimakiver/ecdsafail-wt/shared-target TRACE_TLM_COUT=1 TRACE_TLM_TOF=1 TRACE_TLM_CCX=1 TRACE_TLM_PROFILE=1 cargo run --release --bin build_circuit
+--- GIT STATUS ---
+ M results.tsv
+?? .pi/
+?? AGENTS.md
+?? CAMPAIGN_FINDINGS.md
+--- GIT DIFF ---
+diff --git a/results.tsv b/results.tsv
+index 22b9f18..0ccae93 100644
+--- a/results.tsv
++++ b/results.tsv
+@@ -6,3 +6,6 @@ timestamp	commit	toffoli	clifford	qubits	ops	correct	notes
+ 1780024119	935dc1f	3962753.000	22627113.285	2715	28697222	OK	
+ 1780047641	750fdf9	3962753.000	22627113.285	2715	28697222	OK	
+ 1780052385	196206e	3962753.000	22627113.285	2715	28697222	OK	
++1786907851	a2067dc	1283487.051	5299506.551	1154	8958690	OK	
++1786915207	bb23789	1283487.051	5299506.551	1154	8958690	OK	
++1786915310	bb23789	1283487.051	5299506.551	1154	8958690	OK	
+--- GIT DIFF CACHED ---
+
+--- FILE results.tsv ---
+timestamp	commit	toffoli	clifford	qubits	ops	correct	notes
+1780021974	fa473ea	3942753.000	22627118.169	2715	28677221	OK	
+1780022568	935dc1f	3942753.000	22627118.169	2715	28677221	OK	
+1780023874	935dc1f	3942753.000	22627118.169	2715	28677221	OK	
+1780023900	935dc1f	3962753.000	22627113.285	2715	28697222	OK	
+1780024119	935dc1f	3962753.000	22627113.285	2715	28697222	OK	
+1780047641	750fdf9	3962753.000	22627113.285	2715	28697222	OK	
+1780052385	196206e	3962753.000	22627113.285	2715	28697222	OK	
+1786907851	a2067dc	1283487.051	5299506.551	1154	8958690	OK	
+1786915207	bb23789	1283487.051	5299506.551	1154	8958690	OK	
+1786915310	bb23789	1283487.051	5299506.551	1154	8958690	OK	
+--- FILE score.json ---
+{
+  "score": 1481143998,
+  "metrics": {
+    "toffoli": 1283487,
+    "qubits": 1154
+  }
+}
+--- FILE .pi/experiments/EXP-KFIT-01.json ---
+.pi/experiments/EXP-KFIT-01.json: MISSING
+--- FILE .pi/experiments/EXP-KFIT-01.md ---
+.pi/experiments/EXP-KFIT-01.md: MISSING
+--- BINARY ops.bin ---
+ops.bin: size=29461502 sha256=6519bd01424d5513cd7f8232d4c15dfcbfe67561eb1b7f05b2cfec87c233a097
+--- BINARY /Users/makimakiver/ecdsafail-challenge/.pi/campaigns/campaign-20260817t082219z/runs/impl-kfit-20260817t091036z/stage1-cout-table.tsv ---
+/Users/makimakiver/ecdsafail-challenge/.pi/campaigns/campaign-20260817t082219z/runs/impl-kfit-20260817t091036z/stage1-cout-table.tsv: size=35063 sha256=1f1fd6640ef01df414ed8b5dea832eb47bac99486f01e09c39cd1821683ac6eb
+--- BINARY /Users/makimakiver/ecdsafail-challenge/.pi/campaigns/campaign-20260817t082219z/runs/impl-kfit-20260817t091036z/stage1-adjudication.md ---
+/Users/makimakiver/ecdsafail-challenge/.pi/campaigns/campaign-20260817t082219z/runs/impl-kfit-20260817t091036z/stage1-adjudication.md: size=5178 sha256=11f6d3efeb847337c6fb8aa2baf48f7a56ba2455298fabe8a9d53930caf29788
+--- LOG TAIL /Users/makimakiver/ecdsafail-challenge/.pi/campaigns/campaign-20260817t082219z/runs/impl-kfit-20260817t091036z/stage1-trace.stderr ---
+TLM_CCX phase=square_b_hi_apply_shifted_128_add ccx=2342 pct=0.17 cum=99.39
+TLM_CCX phase=tlm_inverse_gcd_reverse_decode ccx=1466 pct=0.11 cum=99.50
+TLM_CCX phase=tlm_multiply_gcd_reverse_decode ccx=1466 pct=0.11 cum=99.61
+TLM_CCX_TOTAL 1347642 phases=50
+TLM_TOF phase=tlm_apply_inverse_mod_sub_register emitted=161682 expected=148392.5 discount=0.082
+TLM_TOF phase=tlm_multiply_gcd_reverse_body emitted=156994 expected=148357.5 discount=0.055
+TLM_TOF phase=tlm_apply_forward_mod_add_register emitted=160495 expected=147799.0 discount=0.079
+TLM_TOF phase=tlm_inverse_gcd_reverse_body emitted=149253 expected=144303.0 discount=0.033
+TLM_TOF phase=tlm_apply_inverse_fold emitted=84151 expected=83054.0 discount=0.013
+TLM_TOF phase=tlm_apply_forward_fold emitted=83807 expected=82687.5 discount=0.013
+TLM_TOF phase=tlm_inverse_gcd_forward_body emitted=77019 expected=73468.0 discount=0.046
+TLM_TOF phase=tlm_multiply_gcd_forward_body emitted=69549 expected=69549.0 discount=0.000
+TLM_TOF phase=tlm_apply_forward_swap emitted=66048 expected=66048.0 discount=0.000
+TLM_TOF phase=tlm_apply_inverse_swap emitted=66048 expected=66048.0 discount=0.000
+TLM_TOF phase=tlm_inverse_gcd_forward_compare emitted=45336 expected=45336.0 discount=0.000
+TLM_TOF phase=tlm_multiply_gcd_forward_compare emitted=45065 expected=45065.0 discount=0.000
+TLM_TOF phase=tlm_inverse_gcd_forward_shift emitted=34899 expected=34899.0 discount=0.000
+TLM_TOF phase=tlm_multiply_gcd_forward_shift emitted=34899 expected=34899.0 discount=0.000
+TLM_TOF phase=tlm_apply_forward_mod_add_fold emitted=16229 expected=14874.5 discount=0.083
+TLM_TOF phase=tlm_apply_inverse_mod_sub_fold emitted=16086 expected=14843.0 discount=0.077
+TLM_TOF phase=square_c_sum_build emitted=9283 expected=9283.0 discount=0.000
+TLM_TOF phase=square_c_sum_unbuild emitted=9283 expected=9283.0 discount=0.000
+TLM_TOF phase=square_a_lo_build emitted=9147 expected=9147.0 discount=0.000
+TLM_TOF phase=square_a_lo_unbuild emitted=9147 expected=9147.0 discount=0.000
+TLM_TOF phase=square_b_hi_build emitted=9147 expected=9147.0 discount=0.000
+TLM_TOF phase=square_b_hi_unbuild emitted=9147 expected=9147.0 discount=0.000
+TLM_TOF phase=square_b_hi_apply_f_times_sub emitted=4573 expected=4383.0 discount=0.042
+TLM_TOF phase=tlm_apply_forward_mod_add_clean emitted=4943 expected=2471.5 discount=0.500
+TLM_TOF phase=tlm_apply_inverse_mod_sub_clean emitted=4943 expected=2471.5 discount=0.500
+TLM_TOF phase=square_c_sum_apply_shifted_128_sub emitted=2356 expected=2284.0 discount=0.031
+TLM_TOF phase=square_a_lo_apply_shifted_128_add emitted=2354 expected=2282.0 discount=0.031
+TLM_TOF phase=square_b_hi_apply_shifted_128_add emitted=2354 expected=2282.0 discount=0.031
+TLM_TOF phase=tlm_inverse_gcd_reverse_decode emitted=1466 expected=1466.0 discount=0.000
+TLM_TOF phase=tlm_multiply_gcd_reverse_decode emitted=1466 expected=1466.0 discount=0.000
+TLM_TOF phase=tlm_inverse_gcd_forward_codec emitted=1379 expected=1379.0 discount=0.000
+TLM_TOF phase=tlm_multiply_gcd_forward_codec emitted=1379 expected=1379.0 discount=0.000
+TLM_TOF phase=square_a_lo_apply_unshifted_sub emitted=333 expected=321.0 discount=0.036
+TLM_TOF phase=tlm_coord_add3x emitted=332 expected=320.0 discount=0.036
+TLM_TOF phase=tlm_coord_rsub_final emitted=332 expected=320.0 discount=0.036
+TLM_TOF phase=tlm_coord_x_sub emitted=332 expected=320.0 discount=0.036
+TLM_TOF phase=tlm_coord_y_sub emitted=332 expected=320.0 discount=0.036
+TLM_TOF phase=tlm_coord_y_sub_final emitted=332 expected=320.0 discount=0.036
+TLM_TOF phase=square_sum_hi_lo_unbuild emitted=258 expected=258.0 discount=0.000
+TLM_TOF phase=square_sum_hi_lo emitted=256 expected=256.0 discount=0.000
+TLM_TOF_TOTAL emitted=1352434 expected=1299076.0 discount=0.0395
+CASCADE_ACCEPT pair=CCX(531,583->584) triple=(530,531,1149)
+CASCADE_ACCEPT pair=CCX(531,583->584) triple=(530,531,1150)
+CASCADE_ACCEPT pair=CCX(531,583->584) triple=(530,531,1132)
+CASCADE_ACCEPT pair=CCX(271,323->324) triple=(9,270,271)
+CASCADE_ACCEPT pair=CCX(272,324->325) triple=(143,271,272)
+CASCADE_ACCEPT pair=CCX(274,326->327) triple=(143,273,274)
+CASCADE_ACCEPT pair=CCX(275,327->328) triple=(274,275,1147)
+CASCADE_ACCEPT pair=CCX(272,324->325) triple=(271,272,886)
+CASCADE_ACCEPT pair=CCX(275,327->328) triple=(274,275,1088)
+CASCADE_ACCEPT pair=CCX(274,326->327) triple=(273,274,915)
+CASCADE_ACCEPT pair=CCX(275,327->328) triple=(274,275,889)
+CONSTPROP iter=1 ccx_total=1347642 dropped=141 folded_cx=23 folded_x=0 inverse_pairs=12 aff_drop=9 aff_fold=3 (this-iter toffoli removed = 200)
+CONSTPROP iter=2 ccx_total=1347442 dropped=3 folded_cx=0 folded_x=0 inverse_pairs=11 aff_drop=0 aff_fold=0 (this-iter toffoli removed = 25)
+CONSTPROP iter=3 ccx_total=1347417 dropped=0 folded_cx=0 folded_x=0 inverse_pairs=11 aff_drop=0 aff_fold=0 (this-iter toffoli removed = 22)
+CONSTPROP iter=4 ccx_total=1347395 dropped=0 folded_cx=0 folded_x=0 inverse_pairs=11 aff_drop=0 aff_fold=0 (this-iter toffoli removed = 22)
+CONSTPROP iter=5 ccx_total=1347373 dropped=0 folded_cx=0 folded_x=0 inverse_pairs=11 aff_drop=0 aff_fold=0 (this-iter toffoli removed = 22)
+CONSTPROP iter=6 ccx_total=1347351 dropped=0 folded_cx=0 folded_x=0 inverse_pairs=11 aff_drop=0 aff_fold=0 (this-iter toffoli removed = 22)
+CONSTPROP iter=7 ccx_total=1347329 dropped=0 folded_cx=0 folded_x=0 inverse_pairs=11 aff_drop=0 aff_fold=0 (this-iter toffoli removed = 22)
+CONSTPROP iter=8 ccx_total=1347307 dropped=0 folded_cx=0 folded_x=0 inverse_pairs=11 aff_drop=0 aff_fold=0 (this-iter toffoli removed = 22)
+CONSTPROP iter=9 ccx_total=1347285 dropped=0 folded_cx=0 folded_x=0 inverse_pairs=11 aff_drop=0 aff_fold=0 (this-iter toffoli removed = 22)
+CONSTPROP iter=10 ccx_total=1347263 dropped=0 folded_cx=0 folded_x=0 inverse_pairs=11 aff_drop=0 aff_fold=0 (this-iter toffoli removed = 22)
+CONSTPROP iter=11 ccx_total=1347241 dropped=0 folded_cx=0 folded_x=0 inverse_pairs=11 aff_drop=0 aff_fold=0 (this-iter toffoli removed = 22)
+CONSTPROP iter=12 ccx_total=1347219 dropped=0 folded_cx=0 folded_x=0 inverse_pairs=11 aff_drop=0 aff_fold=0 (this-iter toffoli removed = 22)
+CONSTPROP iter=13 ccx_total=1347197 dropped=0 folded_cx=0 folded_x=0 inverse_pairs=11 aff_drop=0 aff_fold=0 (this-iter toffoli removed = 22)
+CONSTPROP iter=14 ccx_total=1347175 dropped=0 folded_cx=0 folded_x=0 inverse_pairs=5 aff_drop=0 aff_fold=0 (this-iter toffoli removed = 10)
+CONSTPROP iter=15 ccx_total=1347165 dropped=0 folded_cx=0 folded_x=0 inverse_pairs=3 aff_drop=0 aff_fold=0 (this-iter toffoli removed = 6)
+CONSTPROP iter=16 ccx_total=1347159 dropped=0 folded_cx=0 folded_x=0 inverse_pairs=3 aff_drop=0 aff_fold=0 (this-iter toffoli removed = 6)
+CONSTPROP reached max_iters=16, stopping
+CONSTPROP TOTAL iters=16 dropped=144 folded_cx=23 folded_x=0 inverse_pairs=155 aff_drop=9 aff_fold=3 (toffoli removed = 489)
+SINGLE_CCX_FANOUT: STOP passes=27 input_ops=8970929 output_ops=8970902 reason=no target-fanout conjugation found
+SINGLE_CCX_FANOUT: SUMMARY input_ops=8970929 output_ops=8970902 passes=27
+  [M-60] disabled -> emitting C1 (unfiltered)
+  [W018 CCZ straddle] total_ccz=4792 same_triple_candidates=0 cancelled_pairs=0 removed_ccz=0 -> 8970902 ops
+[deep-strip-identity] removed 12202 / 12202 dead; downgraded 4045 / 4045 to CX/CZ; 0 stale keys skipped
+POST_STRIP_TARGET_FANOUT_DONE: passes=10
+FLEET_RECOVERY_BUNDLE_END

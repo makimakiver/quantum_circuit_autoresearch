@@ -1,0 +1,15 @@
+{
+  "experimentId": "FRONTIER-AUDIT",
+  "missingObligations": [],
+  "recoveryEvidence": {
+    "delimiters_verified": true,
+    "status": "PARKED",
+    "terminal_log": ".pi/campaign-runs/20260816t232122Z/lanes/frontier-auditor/terminal.log",
+    "terminal_log_sha256": "820b877167241ed3a5d34d146283bb3dbcdf5b77c62fcf20fb7723a4c0ec13cc"
+  },
+  "resultSha256": "8fa457c6f093c30d1655c55beea216f9ee2f99c1c1405cdaac411566148a9670",
+  "role": "frontier-auditor",
+  "schemaVersion": 1,
+  "scientific_verdict": "STALE for a schema-v3 frontier proposal: the live worktree is not clean because the locked, default-off EXP-SQ-01 scored-source diff remains in square.rs. The authoritative schema-v2 baseline itself is reconciled and remains PINNED at score 1481143998; this audit makes no promotion or global-ceiling claim.",
+  "status": "PARKED"
+}

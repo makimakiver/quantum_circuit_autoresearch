@@ -1,0 +1,4 @@
+TLM_TOF phase=tlm_apply_inverse_mod_sub_register emitted=161682 expected=148392.5 discount=0.082
+TLM_TOF phase=tlm_apply_forward_mod_add_register emitted=160495 expected=147799.0 discount=0.079
+TLM_TOF_TOTAL emitted=1352434 expected=1299076.0 discount=0.0395
+[deep-strip-identity] removed 12202 / 12202 dead; downgraded 4045 / 4045 to CX/CZ; 0 stale keys skipped

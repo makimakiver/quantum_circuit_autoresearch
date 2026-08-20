@@ -1,0 +1,13 @@
+{
+  "campaign_id": "performance-2026-08-16",
+  "collected_results": 0,
+  "continuations": 2,
+  "frontier_id": "2026-08-16-a2067dcf",
+  "records": 8,
+  "score": 1481143998,
+  "source_lock": {
+    "changed_paths": [],
+    "scored_diff_sha256": "f392cf81926f6d8c6539d2b246ec4aceb9b6f8bac970c33d73554b6120650e33"
+  },
+  "status": "OK"
+}

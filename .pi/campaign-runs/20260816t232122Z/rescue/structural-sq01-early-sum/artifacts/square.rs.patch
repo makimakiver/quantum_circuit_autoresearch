@@ -1,0 +1,53 @@
+diff --git a/src/point_add/trailmix_ludicrous/square.rs b/src/point_add/trailmix_ludicrous/square.rs
+index 8e22da1..e689400 100644
+--- a/src/point_add/trailmix_ludicrous/square.rs
++++ b/src/point_add/trailmix_ludicrous/square.rs
+@@ -141,6 +141,10 @@ fn square_addsub_enabled() -> bool {
+     true
+ }
+ 
++fn square_early_sum_unbuild_enabled() -> bool {
++    std::env::var("TLM_SQUARE_EARLY_SUM_UNBUILD").ok().as_deref() == Some("1")
++}
++
+ fn square_addsub_local_diag() -> bool {
+     std::env::var("TLM_SQUARE_ADDSUB_LOCAL").ok().as_deref() == Some("1")
+ }
+@@ -490,15 +494,20 @@ pub fn mod_square_sub_pm_secp256k1_symmetric(circ: &mut B, lambda: &[QubitId], o
+     assert_eq!(output_reg.len(), n, "output must be n=256 bits (< q)");
+ 
+     circ.set_phase("square_sum_hi_lo");
+-    let sum = build_sum_hi_lo(circ, lambda);
++    let mut sum = Some(build_sum_hi_lo(circ, lambda));
+ 
+     circ.set_phase("square_c_sum_build");
+-    let mut c_prod: Vec<QubitId> = Vec::with_capacity(2 * sum.len());
+-    symmetric_square_into_prod(circ, &sum, &mut c_prod);
++    let mut c_prod: Vec<QubitId> = Vec::with_capacity(2 * sum.as_ref().unwrap().len());
++    symmetric_square_into_prod(circ, sum.as_ref().unwrap(), &mut c_prod);
+     circ.set_phase("square_c_sum_apply_shifted_128_sub");
+     apply_shifted_128_tagged(circ, &c_prod, output_reg, ShiftOp::Sub, "c");
+     circ.set_phase("square_c_sum_unbuild");
+-    symmetric_square_into_prod_reverse(circ, &sum, c_prod);
++    symmetric_square_into_prod_reverse(circ, sum.as_ref().unwrap(), c_prod);
++    let early_sum_unbuild = square_early_sum_unbuild_enabled();
++    if early_sum_unbuild {
++        circ.set_phase("square_sum_hi_lo_unbuild");
++        unbuild_sum_hi_lo(circ, lambda, sum.take().unwrap());
++    }
+ 
+     circ.set_phase("square_a_lo_build");
+     let lo = &lambda[..128];
+@@ -522,8 +531,10 @@ pub fn mod_square_sub_pm_secp256k1_symmetric(circ: &mut B, lambda: &[QubitId], o
+     circ.set_phase("square_b_hi_unbuild");
+     symmetric_square_into_prod_reverse(circ, hi, b_prod);
+ 
+-    circ.set_phase("square_sum_hi_lo_unbuild");
+-    unbuild_sum_hi_lo(circ, lambda, sum);
++    if !early_sum_unbuild {
++        circ.set_phase("square_sum_hi_lo_unbuild");
++        unbuild_sum_hi_lo(circ, lambda, sum.take().unwrap());
++    }
+ }
+ 
+ pub fn shifted128_low_miter() -> Result<usize, String> {

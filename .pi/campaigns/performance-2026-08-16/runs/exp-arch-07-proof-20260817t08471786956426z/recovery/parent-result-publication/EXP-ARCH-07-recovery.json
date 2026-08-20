@@ -1,0 +1,38 @@
+{
+  "artifacts": [
+    {
+      "exists": true,
+      "path": ".pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/result.json",
+      "resolved_path": "/Users/makimakiver/ecdsafail-challenge/.pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/result.json",
+      "sha256": "0e7550eb9bf5e0cbe2e4f0cc4e6592948f98737b6aaae84aadd91e37099f4b09",
+      "size": 7651
+    },
+    {
+      "exists": true,
+      "path": ".pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/artifacts/d1.json",
+      "resolved_path": "/Users/makimakiver/ecdsafail-challenge/.pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/artifacts/d1.json",
+      "sha256": "7a413dc9bcb23ab6ee2bf72dfc09805d48e552a16f6366b75ced03facb7c9162",
+      "size": 54910
+    },
+    {
+      "exists": true,
+      "path": ".pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/artifacts/replay.json",
+      "resolved_path": "/Users/makimakiver/ecdsafail-challenge/.pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/artifacts/replay.json",
+      "sha256": "72add013ab3de9baf4645dcdb50c18fe9cb0bb10e09e00fa188929436f593c42",
+      "size": 2469
+    }
+  ],
+  "commands": [
+    "PYTHONDONTWRITEBYTECODE=1 python3 -B .pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/artifacts/exp_arch07_miter.py --source-root /Users/makimakiver/ecdsafail-challenge --d1 --emit .pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/artifacts/d1.json",
+    "PYTHONDONTWRITEBYTECODE=1 python3 -B .pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/artifacts/exp_arch07_miter.py --source-root /Users/makimakiver/ecdsafail-challenge --replay .pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/artifacts/d1.json --emit .pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/artifacts/replay.json"
+  ],
+  "continuation": null,
+  "experiment_id": "EXP-ARCH-07",
+  "logs": [],
+  "reason": "EXP-ARCH-07 proof produced a replayed D1 counterexample; direct no-carrier transport of named b_hi_f_32_sub is locally refuted. Parent durably published the worker schema-v2 output as result.json; no implementation is authorized.",
+  "repository": "/Users/makimakiver/ecdsafail-challenge",
+  "schema_version": 1,
+  "source_commit": "a2067dcf3c991bcecfd51a4bf07cd7d1cc56c3a5",
+  "status": "REFUTED",
+  "timestamp_utc": "2026-08-17T08:52:33.269763+00:00"
+}

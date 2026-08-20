@@ -1,0 +1,92 @@
+{
+  "schema_version": 1,
+  "experiment_id": "EXP-SQ-01",
+  "role": "implementer",
+  "status": "IMPLEMENTED",
+  "frontier_id": "2026-08-16-a2067dcf",
+  "candidate_ops_sha256": "486fa8945846a0fafbb9215d07a03f2eea1f9217f3705254c2ded42e61147dc6",
+  "canonical_ops_sha256": "aa95565d0dfd74371be283343c7c93ce93c08037eabbfb0b9cfefde5251b2f2a",
+  "changed_paths": [
+    "src/point_add/trailmix_ludicrous/square.rs"
+  ],
+  "scientific_verdict": "IMPLEMENTED: default-off identities match the receipt and flag-on is live; no score, lambda, or correctness verdict was attempted.",
+  "evidence": {
+    "sandbox": "/tmp/fleet-v3-sq01-20260816t233036Z",
+    "source_commit": "a2067dcf3c991bcecfd51a4bf07cd7d1cc56c3a5",
+    "implementation": "Added default-off TLM_SQUARE_EARLY_SUM_UNBUILD helper. With value 1, square_sum_hi_lo_unbuild occurs immediately after square_c_sum_unbuild; otherwise the original late unbuild remains after b_hi unbuild. The identical phase label is retained in both branches.",
+    "selftest": {
+      "command": "cd /tmp/fleet-v3-sq01-20260816t233036Z && CARGO_TARGET_DIR=/tmp/fleet-v3-sq01-20260816t233036Z-target-selftest TLM_SQ_SELFTEST=1 TLM_SQ_SELFTEST_ONLY=1 cargo run --release --bin build_circuit",
+      "initial_exit_code": 101,
+      "initial_failure": "Rust E0382 conditional move of sum; recovery bundle emitted before correcting the ownership representation.",
+      "retry_exit_code": 0,
+      "result": "SQ_SELFTEST vented bit-exact x^2: 0 divergence; inverse forward+inverse drains prod to 0, clean."
+    },
+    "default_identity": {
+      "compressed_ops_sha256": "6519bd01424d5513cd7f8232d4c15dfcbfe67561eb1b7f05b2cfec87c233a097",
+      "canonical_ops_sha256": "0a4a412c939b05f59fa4bc33c2410e5bc110b07c7faded5e6db5f6b5db3ed0b0",
+      "emitted_ops": 8958690,
+      "matches_receipt_compressed": true,
+      "matches_receipt_canonical": true
+    },
+    "candidate_liveness": {
+      "flag": "TLM_SQUARE_EARLY_SUM_UNBUILD=1",
+      "compressed_ops_sha256": "486fa8945846a0fafbb9215d07a03f2eea1f9217f3705254c2ded42e61147dc6",
+      "canonical_ops_sha256": "aa95565d0dfd74371be283343c7c93ce93c08037eabbfb0b9cfefde5251b2f2a",
+      "emitted_ops": 8970726,
+      "compressed_identity_differs_from_default": true,
+      "canonical_identity_differs_from_default": true,
+      "observed_postpass_stale_key_evidence": "[deep-strip-identity] WARNING: 6799 keys discarded; removed 6813/12202 dead and downgraded 2635/4045; 6799 stale keys skipped. This is reported as observed output only, with no score inference."
+    },
+    "ownership": {
+      "check": "harness.ownership.ownership_violations('implementer', ['src/point_add/trailmix_ludicrous/square.rs'])",
+      "passed": true,
+      "violations": [],
+      "git_status": " M src/point_add/trailmix_ludicrous/square.rs",
+      "staged_files": []
+    },
+    "artifacts": {
+      "terminal_log": ".pi/campaign-runs/20260816t232122Z/rescue/structural-sq01-early-sum/terminal.log",
+      "default_ops": ".pi/campaign-runs/20260816t232122Z/rescue/structural-sq01-early-sum/artifacts/default-ops.bin",
+      "candidate_ops": ".pi/campaign-runs/20260816t232122Z/rescue/structural-sq01-early-sum/artifacts/candidate-ops.bin",
+      "default_build_log": ".pi/campaign-runs/20260816t232122Z/rescue/structural-sq01-early-sum/artifacts/default-build.log",
+      "candidate_build_log": ".pi/campaign-runs/20260816t232122Z/rescue/structural-sq01-early-sum/artifacts/candidate-build.log",
+      "fingerprints": ".pi/campaign-runs/20260816t232122Z/rescue/structural-sq01-early-sum/artifacts/artifact-fingerprints.json",
+      "patch": ".pi/campaign-runs/20260816t232122Z/rescue/structural-sq01-early-sum/artifacts/square.rs.patch",
+      "patch_sha256": "a32dba36a39ef7112049d94e5d5f7335bf2e58bcc3d884eff6ad043afa611ca1",
+      "recovery": ".pi/campaign-runs/20260816t232122Z/rescue/structural-sq01-early-sum/artifacts/recovery/EXP-SQ-01-recovery.json",
+      "result_schema_validation": ".pi/campaign-runs/20260816t232122Z/rescue/structural-sq01-early-sum/artifacts/result-schema-validation.log"
+    },
+    "recovery": {
+      "success_handoff_bundle": ".pi/campaign-runs/20260816t232122Z/rescue/structural-sq01-early-sum/artifacts/recovery/EXP-SQ-01-recovery.json",
+      "initial_compile_failure_recovery_emitted": true,
+      "note": "The second successful recovery invocation overwrote the helper's same-name manifest; the initial failure's complete helper output remains in terminal.log."
+    }
+  },
+  "metrics": {
+    "default_emitted_ops": 8958690,
+    "candidate_emitted_ops": 8970726,
+    "emitted_ops_delta_candidate_minus_default": 12036,
+    "qubits_default": 1154,
+    "qubits_candidate": 1154
+  },
+  "verification": {
+    "lightweight_selftest_green": true,
+    "default_identity_green": true,
+    "candidate_liveness_green": true,
+    "full_evaluation_run": false,
+    "lambda_metrology_run": false,
+    "nonce_grind_run": false
+  },
+  "commands": [
+    "git -C /tmp/fleet-v3-sq01-20260816t233036Z status --short; exit 0",
+    "TLM_SQ_SELFTEST=1 TLM_SQ_SELFTEST_ONLY=1 cargo run --release --bin build_circuit (CARGO_TARGET_DIR=/tmp/fleet-v3-sq01-20260816t233036Z-target-selftest); initial exit 101, retry exit 0",
+    "env -u TLM_SQUARE_EARLY_SUM_UNBUILD CARGO_TARGET_DIR=/tmp/fleet-v3-sq01-20260816t233036Z-target-default cargo run --release --bin build_circuit; exit 0",
+    "TLM_SQUARE_EARLY_SUM_UNBUILD=1 CARGO_TARGET_DIR=/tmp/fleet-v3-sq01-20260816t233036Z-target-candidate cargo run --release --bin build_circuit; exit 0",
+    "parent artifact_io.fingerprint on copied default and candidate artifacts; exit 0",
+    "git -C /tmp/fleet-v3-sq01-20260816t233036Z diff --binary -- src/point_add/trailmix_ludicrous/square.rs; exit 0",
+    "harness.ownership ownership_violations check; exit 0",
+    "emit_recovery_bundle BROKEN after initial compile failure; exit 0",
+    "emit_recovery_bundle IMPLEMENTED before handoff; exit 0",
+    "jsonschema.validate(result.json, result.schema.json); exit 0"
+  ]
+}

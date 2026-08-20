@@ -1,0 +1,3 @@
+[08:48:34Z] gates 1-2 complete: ownership OK, default-off compressed+canonical identities pinned
+[08:53:44Z] gate 3 complete: attribution ledger written; stage-2 trigger NOT met (add/cswap premium 0 net); verdict UNSUPPORTED
+[08:55:13Z] FINAL: status=IMPLEMENTED verdict=UNSUPPORTED; result.json + recovery bundle persisted

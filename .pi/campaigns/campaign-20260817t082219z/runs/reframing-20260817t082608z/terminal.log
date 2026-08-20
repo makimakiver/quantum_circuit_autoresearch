@@ -1,0 +1,160 @@
+# Cross-cell reframing — DISCOVERY-REFRAMING
+
+**Disposition:** `SCOPED` composite portfolio; no scientific claim, source edit, probe build, full evaluation, metrology expansion, census, or nonce grind was run.  The dispatch-bound frontier remains `2026-08-16-a2067dcf`, with baseline operation hash `6519bd01424d5513cd7f8232d4c15dfcbfe67561eb1b7f05b2cfec87c233a097`, canonical hash `0a4a412c939b05f59fa4bc33c2410e5bc110b07c7faded5e6db5f6b5db3ed0b0`, `T=1,283,487.051`, `Q=1,154`, and `S=1,481,143,998` (bound from `.pi/frontier.json`, not campaign prose).  Current λ baseline is 17.62, so an unproven λ increase is materially expensive.
+
+## Review findings
+
+1. **High — reverse cost is a cross-cell replay cost, not a schedule-family refutation.** `gcd.rs:1182-1432` emits forward dialog symbols and compresses them; `gcd.rs:1435-1648` reverses the same region plan, decodes each symbol, applies `apply_step_forward` only on the Pair-2 replay path, then invokes `controlled_add_active`, cswaps, and `swap_decision_uncompute_vented`.  The measured ≈59,242 executed-T reverse premium therefore crosses walk, codec, replay, comparator, and hybrid-adder ownership.  The δ3 `GAP_J2` failure only falsifies a semantic narrowing in its tested band; it does **not** prove that reverse-side bit-exact adder/chunk refits or replay-stage ordering have no gain.
+2. **High — the Pair-2 tail family remains unadjudicated, not closed.** The source confirms the important direction split: `apply_step_forward` is called only from `reverse_gcd_jump(..., Some(...))` in the Forward multiplication (`gcd.rs:1510-1569`, `1906-1928`); `apply_step_reverse` occurs only in the inverse carrier.  `TLM_APPLY_FWD_S2_ZERO_LAST` changes `fused_double_cdouble` to `fused_double_only` (`gcd.rs:1738-1832`), so it changes a decoded dialog symbol's semantic use and needs the detached paired λ result.  It must not be promoted/rejected from the local static saving or from the SLOPE λ refutation.
+3. **High — SQ-01 refutes a ported ordinal table, not the early-free mechanism.** `square.rs:487-526` demonstrates that `sum` has exactly one consumer (`c_prod`) before the a/b square phases.  The reported final regression is consistent with `src/point_add/mod.rs:1680-1788`: keys require tuple occupancy plus ordinal and are discarded if occupancy changes.  That is a deliberately safe stale-key tax, not evidence that freeing `sum` cannot save Toffoli after a stream-specific recovery or a proof-carrying replacement.
+4. **Medium — a proposed “top bits die at Pair-2 entry” argument is currently invalid.** `SCHED_J2[0..11]=256` (`schedule.rs:12-15`) and forward step 0 runs a full-width shift, compare decision, cswaps, and `controlled_add_active` before later narrowing (`gcd.rs:1225-1307`).  Thus SQ-04's broad “first truncation makes square top terms dead” hypothesis has no source-level proof at the entry boundary.  Do not delete `square_b_hi_apply_f_times_sub` terms on this argument.  The remaining legitimate square↔Pair-2 surface is constant/carry-chain absorption, not an assumed dead top cone.
+5. **Medium — codec-local Q closure is sound but not a codec/replay T ceiling.** `codec.rs:495-533` fixes the 261-step region plan and `dialog_tape_qubits`; the tape is consumed in reverse before replay operations.  The tape-free Q peaks in `EXP-CODEC-02.md` close a local tape-width Q claim.  They do not exclude a codec/replay co-design that preserves tape size/Q but removes decode/replay work or proves a tail predicate.  Any such card needs a semantic-support proof, not an information-gap assertion.
+
+## Coverage ledger
+
+| Required lane | Source/evidence anchor | Local status | Cross-cell repair / decision |
+|---|---|---|---|
+| Walk schedule | `trailmix_ludicrous/gcd.rs:1218-1432, 1467-1648`; `schedule.rs` | δ3 narrowing **REFUTED** only for i=200..237 by λ | Keep schedule semantics fixed; attribute reverse premium before refitting shared primitive tables (RFR-01). |
+| Codec/dialog | `codec.rs:495-533`; forward encode/reverse decode above | Tape-Q local plateau | Treat codec as a replay interface; test tail-symbol support only alongside a paired replay change (RFR-02). |
+| Replay / traversal count | `gcd.rs:1435-1648`, `1906-1928` | Four traversals are representation-constrained; reverse premium open | Do not relitigate 4→3 without a new Δy-preserving representation; isolate reverse body cost (RFR-01). |
+| Pair-1 | inverse `forward_gcd_jump(...Some)` then `reverse_gcd_jump(...None)` | Weak deferred reduction scoped; strong 257-bit cswap refuted | Require paired forward/inverse fold proof; no asymmetrical cleanup (RFR-04). |
+| Pair-2 | Forward path calls replay `apply_step_forward` | P2 tail bundle **METROLOGY**, no verdict | Parse existing continuation only; then prove/reject exact tail-support specialization (RFR-02). |
+| Square / coordinates | `ec_add.rs:285-306`; `square.rs:487-526` | Early sum mechanism parked due strips; first-truncation deletion unsupported | Bundle sum free with proof-carrying stream recovery; constant absorption is a small separate rider (RFR-03). |
+| Shared state / primitives | `controlled_add_active`, hybrid add, fused folds in `gcd.rs:1665-1904` | Local fit knobs plateau/noops do not cover reverse asymmetric call context | Use call-site/per-pass attribution and preserve `(pass,i)` consumption (RFR-01, RFR-04). |
+| Final stream / strip | `point_add/mod.rs:1680-1788`; `EXP-SM-01.md`, `EXP-STRIP-03.md` | Stream-order table fully live on baseline; miner parked | Partition exact vs statistical keys; no altered-stream table transfer (RFR-03). |
+| Q / global liveness | `EXP-CODEC-02.md`, `EXP-ITX-00.md` | Local Q axis closed at current representation | Every changed stream must recensus three binding windows; do not claim Q benefit from tape freeing alone. |
+
+## Ranked composite cards
+
+### RFR-01 — Reverse replay attribution and paired table refit (rank 1)
+
+**Mechanism / radius.** Within the measured ≈59,242 executed-T premium only, split the two `reverse_gcd_jump` bodies into decoded-dialog, `controlled_add_active`, cswap, and comparator-uncompute buckets, then refit **one** largest bit-exact shared-primitive table on matching `(pass, divstep)` slots.  This joins walk schedule, codec decode, replay, comparator, hybrid adder, and final strip; it explicitly excludes comparator-window truncation, `ITERS`, and traversal-count changes.  Predicted sign: `ΔT=-5k..-25k` executed if add/cswap fit dominates, `ΔQ=0`, λ expected 0 only after semantic proof.  The wider `-10k..-40k` historical envelope is not a prediction for a single refit.
+
+**Owners and interface.** Implementer owns `gcd.rs`, `comparator.rs`, and `gidney.rs`; strip owner owns stale-key accounting; λ/evaluator owns paired gate.  Interface is positional consumption: `next_gcd_k`, `next_cmp_k`, and `next_gcd_branch` must consume the same matching `(pass,i)` records in forward and reverse.  The codec contract is that `jump_dialog_regions` has identical forward/reverse plan and tape is empty after replay.
+
+**Invariant pair.** (A) Every changed reverse arithmetic layout is the exact inverse-compatible counterpart of its matching forward divstep layout; (B) `s=SCHED_J2[i]-cmp_window(i)` and dialog symbol decode/consume ordering stay unchanged.  Separately, preserve same peak register ownership and `Q≤1154` in the early walk, late walk, and square census windows.
+
+**Proof obligations.** (1) stage attribution identifies ≥5k emitted CCX in a mutable add/cswap bucket, not merely comparator uncompute; (2) a candidate changes the operation hash and improves post-strip executed proxy; (3) producer/consumer schedule accessors agree per `(pass,i)`; (4) `TLM_STRADDLE_VERIFY` and four evaluation checks are green; (5) canonical hash, three-window Q census, stale-key count, and paired λ gate are recorded.  A changed semantic stream requires a re-key decision, never inherited strip credit.
+
+**Staged discriminator / bounded budget.** First add a default-off `TRACE_TLM_REVERSE_STAGES` counter in its own trace-only commit (one baseline build; no evaluation).  If a mutable bucket survives, at most **three** `TLM_REV_BODY_REFIT` values, one mechanism per value, followed by only existing lightweight selftests.  Cap: one implementer-day, no long compute.
+
+**Falsifier and reopening.** Park this card if ≥80% of the premium is immutable comparator uncompute at its proven floor, or all three probes improve <5k emitted CCX after strips.  Reopen only after traversal order, comparator implementation, or stream-proof infrastructure changes.  This is `SCOPED`, not a family-wide reverse-traversal ceiling.
+
+**Single rollback unit.** One default-off `TLM_REV_BODY_REFIT` guard around the entire functional candidate; trace instrumentation is a separate commit and flag.
+
+### RFR-02 — Codec-supported Pair-2 tail specialization (rank 2, gated by existing metrology)
+
+**Mechanism / radius.** Do **not** assume the last `s2` values are zero merely from iteration number.  Instead, use the actual reversed tail codec plan and the decoded `cur=[sub,swp,s2]` interface to prove a support restriction for a bounded final suffix, then specialize the Pair-2 replay fold/add only where that proof holds.  It co-designs codec decode and `apply_step_forward`; it does not touch Pair-1.  Expected `ΔT=-0..-2k`, `ΔQ=0`, λ unknown until the existing P2 arm is adjudicated.  The currently dispatched `TLM_APPLY_ADD_SKIP_FWD=4 TLM_APPLY_FWD_S2_ZERO_LAST=3` arm is evidence for the outer radius, not a proof for any subcase.
+
+**Owners and interface.** Codec owner supplies a reversible support/decoder proof for final `DialogCodec` windows; Pair-2 owner supplies `apply_step_forward`; walk owner supplies the divstep transition relation; λ owner parses, but does not restart, `.pi/continuations/EXP-P2-BZ-METRO.json`; evaluator owns any later full check.  Interface: reverse decode restores raw symbols before `apply_step_forward`; the same `s2` must drive the exact fold or a proof-derived zero specialization.
+
+**Invariant pair.** (A) forward compression and reverse decompression are mutual inverses for every reachable dialog history; (B) any removed `s2`-controlled cdouble/add is replaced by the identity only under an exact reachable-state predicate, with `sub`, `swp`, and `s2` consumption still matched.  Pair the support theorem with the replay inverse/phase-clean proof—no classical-only reachability argument is sufficient.
+
+**Proof obligations.** (1) First parse completed existing logs and verify arm hashes; if incomplete, remain `PARKED/METROLOGY`. (2) Build an exhaustive small-tail transition miter or a symbolic invariant from divstep state to decoded suffix. (3) Show the specialization flag changes ops and no opposite-direction/P1 call sites. (4) Run tail boundary selftests, four-check evaluation, Q census, and paired λ criteria before promotion.  The pre-existing campaign rule remains: SAFE iff upper CI `Δλ<+0.5`; a failed tail arm rejects that predicate/radius, not all codec/replay fusion.
+
+**Staged discriminator / bounded budget.** Zero new metrology: inspect only pre-existing continuation logs.  Then one symbolic/exhaustive suffix proof over at most final four steps; one default-off candidate build only if it proves a nonempty strict subrange.  Stop at one implementer-day; no new census/grind/evaluation authorization is implied.
+
+**Falsifier and reopening.** Falsify this card if the miter exhibits any reachable `s2=1` in each proposed removed fold, or if completed P2 λ gate refutes the exact same suffix/flag.  Reopen only with a different codec partition, a stricter proven predicate, or changed divstep geometry.  A P2 λ result must not be generalized to all tail codecs.
+
+**Single rollback unit.** One `TLM_CODEC_TAIL_REPLAY_SPECIALIZE` flag wraps decoder annotation plus Pair-2 specialization; default off preserves both artifact identities.
+
+### RFR-03 — Proof-carrying strip recovery bundled with square early-sum free (rank 3)
+
+**Mechanism / radius.** Preserve the verified `sum` lifetime win only if stream sensitivity is made explicit: first rebuild/validate the baseline miner, attribute the admission-1.0 cluster, and promote only exact (UNSAT/wire identity) candidate clusters to a provenance/certificate layer.  Then test the early sum move in an isolated worktree with a **fresh** altered-stream key table.  This is square allocation + shared arithmetic + final-stream strip, rather than a claim that the old 16,247 ordinal keys transfer.  Expected early-sum net after re-key remains the evidence-backed `-500..-800` executed range; certified exact clusters may add `-3k..-7.7k`. `ΔQ=0`; exact keys carry λ price 0, while statistical keys retain the independent risk/regrind budget.
+
+**Owners and interface.** Implementer owns the one square flag in `square.rs`; strip-census miner owns only the allowed tooling/table workflow; proof owner owns mitres; evaluator owns final stream and nonce binding.  Interface is final post-pass stream after all rewrites and before `apply_tail_nonce`; existing key interface is `(kind,c2,c1,target,c_condition,ordinal,occupancy)`.  `Op` has no provenance field (`src/circuit.rs:105-115`), and `set_op_trace_context` is trace-only (`point_add/mod.rs:45-85`), so a provenance-keyed runtime applier is a source design—not something already supplied by trace logs.
+
+**Invariant pair.** (A) `build_sum_hi_lo`/`unbuild_sum_hi_lo` remain an exact inverse around the only `sum` consumer (`c_prod`); (B) all a/b phases preserve their original `lambda`/`output_reg` interface and leave scratch/phase clean.  Pair that with strip invariants: exact and statistical sets are disjoint, and every statistical key is re-mined on precisely the candidate final stream rather than re-addressed by ordinal.
+
+**Proof obligations.** Baseline miner pilot must reproduce ≥90% of shipped keys and risk 1.239700 exactly before any altered table.  Each exact key needs a stored UNSAT/wire proof and must survive a four-check A/B.  Candidate needs 0 unexplained stale keys relative to its own table, Q census ≤1154, default hash/canonical identity when flag off, and a new candidate hash/strip counts when on.  No proof permits simply widening the 1.24 statistical budget.
+
+**Staged discriminator / bounded budget.** Authorization is currently absent, so this is a dependency not a launch request: (i) miner pilot gate, (ii) 100-gate provenance sample, (iii) ≤5 exact mitre classes (≤2 CPU-hours/class), (iv) only then a stream-specific SQ-01 re-mine.  One source-table commit/one `TLM_SQUARE_EARLY_SUM_UNBUILD` functional guard is the whole rollback boundary.
+
+**Falsifier and reopening.** Park if baseline key overlap <90%, risk cannot reproduce exactly, >10% of the admission-1.0 cluster fires at depth, or clustering disperses over >50 unrelated sites.  The square mechanism reopens when a valid re-miner or a source-indexed exact proof layer exists; it is not refuted by the old-table +6,799 stale-key measurement.
+
+**Single rollback unit.** One isolated candidate worktree containing the default-off square flag and one candidate `deep_strip_keys.rs` table commit; discard together.  Never edit root source in this lane.
+
+### RFR-04 — Pair-1/P2 fold-boundary cleanup co-design (rank 4; proof-first)
+
+**Mechanism / radius.** Reframe weak deferred reduction as a paired replay/state card: remove a mod-add clean only if the next `fused_double_cdouble` can consume the wider residual while the 256-bit cswap interface is unchanged.  It spans Pair-1 inverse apply (`apply_step_reverse`), Pair-2 replay (`apply_step_forward`) only insofar as they share fold primitives, fused arithmetic, λ model, and Q liveness.  It explicitly excludes the strong 257-bit cswap version, which remains refuted.  Predicted `ΔT=-5k..-8k`, `ΔQ=0..+1`, λ potentially positive; hence lower rank than exact work.
+
+**Owners and interface.** Pair owners own both apply directions in `gcd.rs:1738-1904`; shared primitive owner owns fused window; λ owner owns the carry-escape measurement.  Interface invariant is LSBS=53 fold width and 256-bit `(x_reg,y_reg)` cswap.  The clean's carry/condition state must be consumed by its inverse counterpart, not discarded.
+
+**Invariant pair / obligations.** (A) forward and inverse clean/fold edits are paired inverses, including phase-word discharge; (B) post-fold residual is strictly below `2^256-max(next cout addend)` before the next 256-bit adder.  Prove the bound (symbolically preferred; 1e6 classical samples only falsify), then require count-only clean removal greater than fold growth, Q census, full four checks, and λ SAFE gate.  The predeclared falsifier is any counterexample overflow, fold growth ≥ removal, Q+1 without >1,112 executed saving, or λ gate failure.
+
+**Staged discriminator / bounded budget.** First a static/value miter and phase-ledger accounting; only after proof, one default-off `TLM_DEFER_MOD_CLEAN` candidate and one count-only build.  Cap one falsification cycle, two implementer days; no current long-compute or grind approval.
+
+**Reopening / rollback.** Reopen only if LSBS/fold layout changes or a proof establishes ≥8 bits of residual headroom.  One `TLM_DEFER_MOD_CLEAN` flag wraps both directions; unset/discard one commit to revert.
+
+## Dependency and sequencing
+
+1. **Do not conflate gates.** Parse the pre-existing P2/BZ logs before changing its lifecycle; neither this read-only result nor a timeout gives SAFE/REFUTED.  The continuation says `launch_approved=false` and permits analysis only when all done markers exist.
+2. **Run RFR-01 trace attribution before functional reverse refits.** This is the least costly discriminator and directly tests whether the reverse premium is recoverable.
+3. **Run RFR-03 only after explicit long-compute/project-state approval.** Its pilot is a machine-checkable dependency: `overlap≥90% AND risk(shipped table)=1.239700 AND baseline effect=(12202 removed,4045 downgraded,0 stale)`.  Failure parks statistical re-mining and leaves exact proof clusters as the reopening path.
+4. **RFR-02 and RFR-04 share no approval with each other.** The former first consumes existing evidence; the latter is value-proof first.  Neither inherits safety from a local λ-neutral arithmetic label.
+
+## Residual risks
+
+- Current `Op` serialization does not retain trace provenance, so a runtime provenance-key strip requires a deliberate representation decision; claiming it exists would be incorrect.
+- Any non-baseline stream can lose strip credit through the occupancy tripwire.  Pre-strip CCX wins are not score evidence.
+- Q=1154 is still held at tape-free walk/square peaks; every candidate needs a three-window liveness census rather than an allocation-intuition claim.
+- The live λ baseline makes even small new classical risk costly in expected nonce work.  No nonce bound or grind approval is present.
+- The checked working tree had pre-existing `results.tsv` and `.pi/` changes; this task made no source or state edits.
+
+## Schema-v2 result
+
+```json
+{
+  "schema_version": 2,
+  "experiment_id": "DISCOVERY-REFRAMING",
+  "role": "cross-cell-reframer",
+  "status": "CHECKPOINTED",
+  "frontier_id": "2026-08-16-a2067dcf",
+  "candidate_ops_sha256": "6519bd01424d5513cd7f8232d4c15dfcbfe67561eb1b7f05b2cfec87c233a097",
+  "canonical_ops_sha256": "0a4a412c939b05f59fa4bc33c2410e5bc110b07c7faded5e6db5f6b5db3ed0b0",
+  "changed_paths": [],
+  "evidence": {
+    "findings_artifact": "/Users/makimakiver/.pi/agent/sessions/--Users-makimakiver-ecdsafail-challenge--/subagent-artifacts/outputs/cda7ee75-8787-4792-afe8-dee7db3a4300/reframing.md",
+    "source_paths_reviewed": [
+      "src/point_add/trailmix_ludicrous/gcd.rs",
+      "src/point_add/trailmix_ludicrous/codec.rs",
+      "src/point_add/trailmix_ludicrous/schedule.rs",
+      "src/point_add/trailmix_ludicrous/square.rs",
+      "src/point_add/trailmix_ludicrous/ec_add.rs",
+      "src/point_add/mod.rs"
+    ],
+    "ownership_check": "all proposed source paths are implementer-only; no paths edited",
+    "recovery_bundle": ".pi/campaigns/campaign-20260817t082219z/runs/reframing-20260817t082608z/recovery/reframing-final/DISCOVERY-REFRAMING-recovery.json"
+  },
+  "metrics": {
+    "baseline_average_executed_toffoli": 1283487.051,
+    "baseline_qubits": 1154,
+    "baseline_score": 1481143998,
+    "baseline_lambda": 17.62
+  },
+  "verification": {
+    "mode": "read-only discovery",
+    "full_evaluation_run": false,
+    "source_modified": false,
+    "scientific_claim": "none"
+  },
+  "nonce_env": "SUB4_TAIL_NONCE",
+  "nonce": 1337610097,
+  "commands": [
+    "read dispatch/checkpoint/terminal/frontier/state/findings/source/cards",
+    "PYTHONPATH=.pi python3 ownership_violations check for proposed source paths",
+    "python3 .pi/skills/circuit-evidence/scripts/emit_recovery_bundle.py --status CHECKPOINTED ..."
+  ],
+  "recovery": {
+    "status": "CHECKPOINTED",
+    "reason": "Read-only cross-cell reframing completed; no source mutation or authorized metrology."
+  },
+  "timestamp": "2026-08-17T08:27:25Z",
+  "run_id": "reframing-20260817t082608z",
+  "dispatch_ref": ".pi/campaigns/campaign-20260817t082219z/runs/reframing-20260817t082608z/dispatch.json",
+  "checkpoint_ref": ".pi/campaigns/campaign-20260817t082219z/runs/reframing-20260817t082608z/checkpoint.json",
+  "terminal_ref": ".pi/campaigns/campaign-20260817t082219z/runs/reframing-20260817t082608z/terminal.log",
+  "recovery_ref": ".pi/campaigns/campaign-20260817t082219z/runs/reframing-20260817t082608z/recovery/reframing-final",
+  "scientific_verdict": "SCOPED"
+}
+```

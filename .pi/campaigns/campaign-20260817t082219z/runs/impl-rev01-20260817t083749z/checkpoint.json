@@ -1,0 +1,26 @@
+{
+  "artifact_hashes": {
+    "worktree_ops_bin_trace_on": "6519bd01424d5513cd7f8232d4c15dfcbfe67561eb1b7f05b2cfec87c233a097"
+  },
+  "changed_paths": [
+    "src/point_add/trailmix_ludicrous/gcd.rs"
+  ],
+  "commands": [
+    "TRACE_TLM_REVERSE_STAGES=1 TRACE_TLM_CCX=1 TRACE_TLM_TOF=1 CARGO_TARGET_DIR=/Users/makimakiver/ecdsafail-wt/shared-target cargo run --release --bin build_circuit",
+    "shasum -a 256 ops.bin (trace-on still baseline: non-perturbation proof)"
+  ],
+  "evidence_paths": [
+    ".pi/campaigns/campaign-20260817t082219z/runs/impl-rev01-20260817t083749z/gate3-attribution-build.log",
+    ".pi/campaigns/campaign-20260817t082219z/runs/impl-rev01-20260817t083749z/attribution-ledger.md",
+    ".pi/campaigns/campaign-20260817t082219z/runs/impl-rev01-20260817t083749z/recovery/rev01-stage1.patch"
+  ],
+  "gate": "stage1-attribution-complete",
+  "remaining_obligations": [
+    "stage-2 decision recorded in ledger (trigger not met; skipped)",
+    "final recovery bundle",
+    "schema-v2 result"
+  ],
+  "run_id": "impl-rev01-20260817t083749z",
+  "schema_version": 1,
+  "timestamp": "2026-08-17T09:04:00Z"
+}

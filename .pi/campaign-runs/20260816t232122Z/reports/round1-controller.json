@@ -1,0 +1,250 @@
+{
+  "schema_version": 1,
+  "experiment_id": "ROUND1-CONTROLLER",
+  "role": "orchestrator-reviewer",
+  "status": "SCOPED",
+  "frontier_id": "2026-08-16-a2067dcf",
+  "candidate_ops_sha256": "6519bd01424d5513cd7f8232d4c15dfcbfe67561eb1b7f05b2cfec87c233a097",
+  "canonical_ops_sha256": "0a4a412c939b05f59fa4bc33c2410e5bc110b07c7faded5e6db5f6b5db3ed0b0",
+  "changed_paths": [],
+  "nonce_env": "SUB4_TAIL_NONCE",
+  "nonce": 1337610097,
+  "scientific_verdict": "SCOPED round plan only. No candidate was built, measured, adjudicated, evaluated, ground, certified, or promoted. Estimates are not scientific verdicts and no bounded search is a ceiling.",
+  "evidence": {
+    "report_kind": "controller-only bounded three-cheap-probe discovery plan",
+    "authoritative_binding": {
+      "frontier_file": ".pi/frontier.json",
+      "frontier_status": "PINNED/CURRENT for this read-only plan",
+      "frontier_commit": "a2067dcf3c991bcecfd51a4bf07cd7d1cc56c3a5",
+      "compressed_ops_sha256": "6519bd01424d5513cd7f8232d4c15dfcbfe67561eb1b7f05b2cfec87c233a097",
+      "canonical_ops_sha256": "0a4a412c939b05f59fa4bc33c2410e5bc110b07c7faded5e6db5f6b5db3ed0b0",
+      "baseline_metrics": {
+        "average_executed_toffoli": 1283487.051,
+        "rounded_toffoli": 1283487,
+        "qubits": 1154,
+        "score": 1481143998,
+        "lambda": "17.62 measured over 400 rounds x 64 lanes",
+        "baseline_nonce": 1337610097
+      },
+      "route": "point_add::build() -> trailmix_ludicrous::build_trailmix_ludicrous_ops() -> post-pass strip stack -> apply_tail_nonce(SUB4_TAIL_NONCE)",
+      "authority_note": "dispatch.json is parent-owned but authority-incomplete: it supplies neither run_id nor a frontier binding. Per supervisor decision, discovery cards bind directly to the current .pi/frontier.json. The parent must repair the receipt before any source-bound candidate dispatch."
+    },
+    "read_only_audit_scope": {
+      "read": [
+        "CAMPAIGN_FINDINGS.md",
+        ".pi/frontier.json",
+        ".pi/state/campaign.json",
+        ".pi/experiments/* current cards",
+        ".pi/continuations/EXP-P2-BZ-METRO.json",
+        ".pi/continuations/EXP-SM-01.json",
+        ".pi/schemas/result.schema.json",
+        ".pi/schemas/experiment-card.schema.json",
+        ".pi/harness/ownership.py",
+        ".pi/harness/constants.py",
+        ".pi/skills/circuit-evidence/SKILL.md"
+      ],
+      "not_performed": [
+        "No src/**, trusted-harness, main, frontier, campaign-state, continuation, card, staging, merge, or commit edit.",
+        "No build, lambda scan, full evaluator, nonce grind, certification, promotion, implementation, or dispatch.",
+        "No restart or parsing/adjudication of EXP-P2-BZ-METRO detached work; only its continuation manifest was observed.",
+        "No restart of EXP-SM-01; its pilot and full census remain unapproved."
+      ],
+      "repository_observation": "HEAD is a2067dcf3c991bcecfd51a4bf07cd7d1cc56c3a5; current status showed no staged paths and no src/point_add modification. Existing historical lane prose about a previously locked square.rs diff is not used as current authority."
+    },
+    "authorization_limits": {
+      "writer_authorization": false,
+      "dispatch_receipt_repair_required": "Parent must add run/frontier/commit/compressed/canonical binding before source-bound worker dispatch or candidate promotion.",
+      "scored_source_owner": "Only implementer may edit src/point_add/**; controller is read-only.",
+      "trusted_source": "Immutable for every role.",
+      "long_compute": "No long-compute approval is recorded.",
+      "grind": "No GRIND_APPROVED record exists; no candidate nonce may be searched.",
+      "continuations": {
+        "EXP-P2-BZ-METRO": "PARKED_PROVIDER_LIMIT_SCAN_CONTINUES; launch_approved=false; observe existing logs only, never restart.",
+        "EXP-SM-01": "PARKED_PROVIDER_LIMIT; launch_approved=false and long_compute_approved=false; neither pilot nor full census may start."
+      },
+      "sq01_guard": "EXP-SQ-01 root edit remains absent. Its rescue patch is only .pi/campaign-runs/20260816t232122Z/rescue/structural-sq01-early-sum/artifacts/square.rs.patch with SHA-256 a32dba36a39ef7112049d94e5d5f7335bf2e58bcc3d884eff6ad043afa611ca1; it may be used only after a later explicit isolated-worktree dispatch and stream-specific re-mine approval."
+    },
+    "portfolio": {
+      "round_budget_units": 10,
+      "allocation": {
+        "EXPLOITATION": 5,
+        "STRUCTURAL": 3,
+        "REFRAMING": 2
+      },
+      "allocation_percent": {
+        "EXPLOITATION": 50,
+        "STRUCTURAL": 30,
+        "REFRAMING": 20
+      },
+      "selection_rule": "All three discovery lanes are retained despite implementation readiness differing. They are independent read-heavy probes, but any source mutation, shared-state mutation, evaluation, metrology, grinding, or promotion is serialized and not authorized by this plan.",
+      "rank_order": [
+        "1: EXP-LTC-02 reframing stage attribution — largest measured upside but source-bound trace instrumentation prerequisite.",
+        "2: EXP-BZ-03 structural fill-entry sweep — bounded env-only exact-layout probe with no new persistent qubits.",
+        "3: EXP-STRIP-02 exploitation exact cancellation — implementation-ready rider only; never economical as a standalone regrind."
+      ]
+    },
+    "selected_preliminary_cards": [
+      {
+        "experiment ID": "EXP-STRIP-02",
+        "lane": "EXPLOITATION",
+        "rank": 3,
+        "resource_share": "5/10 round units (50%); one cheap probe only, with no evaluation or grind.",
+        "lifecycle state": "IDEA -> SCOPED (current) -> MODELED (existing strict-pair evidence) -> CHEAP_PROBE (only after parent authorization) -> CANDIDATE (only if all probe assertions hold).",
+        "frontier commit and compressed/canonical identities": "a2067dcf3c991bcecfd51a4bf07cd7d1cc56c3a5; compressed 6519bd01424d5513cd7f8232d4c15dfcbfe67561eb1b7f05b2cfec87c233a097; canonical 0a4a412c939b05f59fa4bc33c2410e5bc110b07c7faded5e6db5f6b5db3ed0b0.",
+        "search radius": "Exactly TLM_CCX_FINAL_CANCEL=1 on the live post-fanout final-cancel pass; exclude TLM_CCX_FINAL_STRADDLE because it is historically byte-identical. No source edit.",
+        "mechanism": "The shipped strict matcher removes one proven self-inverse CCX pair after M60/CCZ cancellation and before second fanout/deep strip. Existing card evidence reports pairs=1, removed_ccx=2, ten post-strip fanout passes, and zero stale deep-strip keys.",
+        "predicted direction of executed T, Q, score, and lambda": "Estimated executed T -2 at most; Q 0; estimated score -2,308 at Q=1,154 if rounded T falls by two; transform lambda 0 because the removed pair is an exact identity. The candidate stream still changes the Fiat-Shamir input and invalidates the baseline nonce; this is not a lambda/grind waiver.",
+        "emitted-to-executed discount assumptions": "Two removed CCX are charged only on classical admission. Use -2 as an optimistic upper bound, not a measured candidate delta; no universal emitted-to-executed multiplier is applied. Deterministic operation deletion must be priced only after identical-seed count/score evidence.",
+        "reversible invariant and proof obligation": "Each matched CCX pair has identical controls/target and clean or net-restored support between occurrences, so deletion is a unitary identity. Reprove live reachability, candidate hash, pair count, zero stale strip keys, preserved default compressed/canonical identities, phase-clean/ancilla-clean semantics, and later all four 9,024-shot checks before any certification claim.",
+        "cheapest discriminator": "One authorized private-worktree build under TLM_CCX_FINAL_CANCEL=1; require FINAL CCX log pairs=1 and removed_ccx=2, candidate compressed hash e6ae6b52b7a655369df6f14a44b9c9e5a8d6c7a3a13b4c0a77930bb995524d57, and deep-strip stale keys=0.",
+        "predeclared falsifier": "pairs=0; removed_ccx other than 2; candidate identity differs from the declared stream; any stale key is skipped; or default-off compressed/canonical identity drifts. Any later semantic, score, or four-check failure also stops the card; none is inferred from timeout or lack of budget.",
+        "evidence debt": "Measured: historical liveness/pair count/candidate compressed hash and zero-stale strip log. Estimate: executed saving is bounded but not freshly measured; no candidate canonical hash, lambda paired evidence, four-check evaluation, explicit grind approval, or candidate ground nonce exists.",
+        "trial/time/compute budget": "One private-worktree build, card estimate about 15 seconds; no lambda scan; no full evaluation; zero nonce draws. Stop after this one discriminator.",
+        "source owner and allowed paths": "No source path is permitted or needed for the probe. If any scored change later becomes necessary, implementer alone owns src/point_add/**; controller owns none.",
+        "serialization dependencies": "After repaired parent dispatch and clean frontier binding; serialize after any upstream stream-changing producer because tuple/ordinal evidence must be re-established. It may ride only with a separately approved regrind-forcing candidate; no standalone grind.",
+        "rollback unit": "Unset TLM_CCX_FINAL_CANCEL; no source commit/table/artifact may be retained.",
+        "unresolved directions": "Whether a different stream leaves this strict pair intact; whether a proof-carrying generalization of the matcher has value. Do not revive the historically no-op straddle refinement.",
+        "reopening trigger": "An upstream candidate changes the final operation stream or invalidates the recorded candidate hash; rerun only this bounded discriminator on that exact stream.",
+        "exact reproduction commands": [
+          "cd /Users/makimakiver/ecdsafail-challenge && CARGO_TARGET_DIR=/tmp/round1-strip02-target TLM_CCX_FINAL_CANCEL=1 cargo run --release --bin build_circuit 2>&1 | grep -E 'FINAL CCX|deep-strip'",
+          "cd /Users/makimakiver/ecdsafail-challenge && shasum -a 256 ops.bin",
+          "cd /Users/makimakiver/ecdsafail-challenge && CARGO_TARGET_DIR=/tmp/round1-strip02-target cargo run --release --bin build_circuit && shasum -a 256 ops.bin"
+        ]
+      },
+      {
+        "experiment ID": "EXP-BZ-03",
+        "lane": "STRUCTURAL",
+        "rank": 2,
+        "resource_share": "3/10 round units (30%); one bounded seven-arm environment sweep, no source edit in the probe stage.",
+        "lifecycle state": "IDEA -> SCOPED (current) -> MODELED (existing widened-tail fill hypothesis) -> CHEAP_PROBE (authorized env sweep) -> CANDIDATE (only for a strictly improving, live override set).",
+        "frontier commit and compressed/canonical identities": "a2067dcf3c991bcecfd51a4bf07cd7d1cc56c3a5; compressed 6519bd01424d5513cd7f8232d4c15dfcbfe67561eb1b7f05b2cfec87c233a097; canonical 0a4a412c939b05f59fa4bc33c2410e5bc110b07c7faded5e6db5f6b5db3ed0b0.",
+        "search radius": "Only the four widened schedule fill calls APPLY_COUT_K {258,259,262,263}; sweep override k in {22,25,31,45,60,90,138}. Hold FOLD_SCHED, FFG_G, GAP/CMP windows, ITERS=261, and all tail-skip predicates unchanged.",
+        "mechanism": "BAKED_ITERS=258 but ITERS=261 leaves tail fill entries inherited at k=138 while terminal SCHED_J2 widths are 12..9. Smaller exact hybrid-adder layouts may reduce the affected four apply register calls without changing arithmetic or replay symbols.",
+        "predicted direction of executed T, Q, score, and lambda": "Estimated executed T -300..-1,500 if a fill value beats k=138; Q 0 expected; estimated score -346,200..-1,731,000 at unchanged Q; lambda 0 expected for an exact layout refit, but not SAFE until semantic/candidate evidence. The cheap probe itself makes no score claim.",
+        "emitted-to-executed discount assumptions": "Use live apply-register discount 7.9-8.2% (executed approximately 0.918-0.921 times emitted CCX-family delta) rather than raw emitted counts. This is an estimate inherited from the frontier profiler; candidate-specific post-strip executed T remains unmeasured.",
+        "reversible invariant and proof obligation": "Forward/reverse replay must consume the same positional schedule slots and retain the exact add/cout unitary; no s2 conditionality, tape symbol, or cmp window may change. Prove each knob is live by changed artifact/count; prove default-off compressed/canonical identities; then require targeted schedule accessor agreement, replay/selftests, phase/ancilla clean, Q <=1154, and four green checks before EVALUATED.",
+        "cheapest discriminator": "Seven private-worktree TRACE_TLM_TOF builds, one per listed k, reading only tlm_apply_*_register and TOTAL. A candidate needs a distinct hash, a negative affected phase delta, no unexpected stale-key tax, and an unchanged max referenced qubit id.",
+        "predeclared falsifier": "All seven arms are flat within plus/minus 20 emitted CCX in the affected register phase, any arm is byte-identical (knob-noop), any arm regresses, Q rises, or stale-key loss erases the modeled benefit. These falsify this fill-entry basin only; they do not bound other adder representations.",
+        "evidence debt": "Measured: BAKED_ITERS/ITERS mismatch and existing schedule fill geometry. Estimate: T range, Q neutrality, and lambda neutrality. Unpaid: exact candidate hashes/canonical identities, post-strip executed score, semantic checks, paired lambda evidence if canonical stream changes, and any candidate nonce.",
+        "trial/time/compute budget": "At most seven release builds in an isolated target directory, capped at 30 minutes wall; no scan, evaluator, or grind. Stop at the first predeclared falsifier or after all seven arms.",
+        "source owner and allowed paths": "Probe has no source edit. If a winning override is later baked, implementer alone may edit src/point_add/trailmix_ludicrous/schedule.rs; no other src path is allowed by this card.",
+        "serialization dependencies": "Requires repaired parent dispatch/frontier binding and a clean isolated worktree. Runs before any source bake. Serialize with EXP-P2/BZ metrology observation: do not alter or restart EXP-P2-BZ-METRO, and do not combine streams with its arms. Any winner must pass deterministic score/strip gate before lambda triage.",
+        "rollback unit": "Unset TLM_COUT_K_CALL_OVERRIDES and discard the private artifact; a later bake is one implementer schedule.rs commit.",
+        "unresolved directions": "FOLD_SCHED/FFG_G tail fills, which are outside this one-variable sweep; shared-primitives dispatcher changes; and whether a future ITERS change creates a new fill basin.",
+        "reopening trigger": "ITERS changes beyond 261, a shared-primitives adder dispatch change, or a future exact candidate whose altered schedule recreates tail fill entries.",
+        "exact reproduction commands": [
+          "cd /Users/makimakiver/ecdsafail-challenge && for k in 22 25 31 45 60 90 138; do CARGO_TARGET_DIR=/tmp/round1-bz03-target TLM_COUT_K_CALL_OVERRIDES=\"258:${k},259:${k},262:${k},263:${k}\" TRACE_TLM_TOF=1 cargo run --release --bin build_circuit 2>&1 | grep -E 'TLM_TOF (phase=tlm_apply.*register|TOTAL)|deep-strip'; done",
+          "cd /Users/makimakiver/ecdsafail-challenge && shasum -a 256 ops.bin",
+          "cd /Users/makimakiver/ecdsafail-challenge && CARGO_TARGET_DIR=/tmp/round1-bz03-target cargo run --release --bin build_circuit && shasum -a 256 ops.bin"
+        ]
+      },
+      {
+        "experiment ID": "EXP-LTC-02",
+        "lane": "REFRAMING",
+        "rank": 1,
+        "resource_share": "2/10 round units (20%); one source-bound TRACE-only attribution gate after explicit writer dispatch, then no refit in this round.",
+        "lifecycle state": "IDEA -> SCOPED (current) -> MODELED (measured reverse premium) -> CHEAP_PROBE (TRACE-only attribution after authorized implementer edit) -> CANDIDATE (only after one dominant recoverable mechanism is isolated).",
+        "frontier commit and compressed/canonical identities": "a2067dcf3c991bcecfd51a4bf07cd7d1cc56c3a5; compressed 6519bd01424d5513cd7d1cc56c3a5 is NOT an identity and is intentionally not used; correct compressed identity is 6519bd01424d5513cd7f8232d4c15dfcbfe67561eb1b7f05b2cfec87c233a097; canonical identity is 0a4a412c939b05f59fa4bc33c2410e5bc110b07c7faded5e6db5f6b5db3ed0b0.",
+        "search radius": "TRACE-only counters within reverse_gcd_jump body boundaries, partitioning controlled_add_active, cswap ladder, and swap_decision_uncompute_vented against matching forward phases. Explicitly no k/CMP/GAP/s2/refit in this round.",
+        "mechanism": "Existing TRACE_TLM_TOF evidence reports reverse traversal premium about +59,242 executed T across two reverse traversals, independent of apply/vent placement. Attribution distinguishes comparator uncompute intrinsic cost from recoverable reverse adder-fit or predicate-transfer cost.",
+        "predicted direction of executed T, Q, score, and lambda": "The TRACE-only probe must have T/Q/score/lambda delta 0. A later, not-yet-authorized one-mechanism exact refit is estimated -10,000..-40,000 executed T, Q 0, score -11,540,000..-46,160,000, and lambda 0 target; these are modeled opportunity estimates, not probe evidence.",
+        "emitted-to-executed discount assumptions": "Measured premium is executed-T ledger evidence. Attribution must separately report emitted CCX and executed expectation because reverse comparator chains may be condition-discounted while swaps are full-price; no global emitted-to-executed conversion may price a follow-up.",
+        "reversible invariant and proof obligation": "TRACE code must be default-off and observational: no operation stream, allocation, condition-stack, or phase word change. A later refit must preserve forward/reverse positional schedule pairing, s=SCHED_J2[i]-cmp_window(i), full s2 conditionality in both directions, dialog decoding, clean scratch, and Q <=1154. Prove default compressed/canonical identity for tracing, then candidate liveness and semantic obligations before lambda/evaluation gates.",
+        "cheapest discriminator": "One implementer-owned TRACE_TLM_STAGES=1 instrumentation build plus one default control build. Record per-stage CCX/executed counters and artifact hashes; the dominant mechanism is actionable only if recoverable add/cswap/predicate share is at least 5,000 emitted CCX.",
+        "predeclared falsifier": "At least 80% of the premium lies in swap_decision_uncompute_vented while the forward comparator is already at its proven window floor, leaving less than 5,000 recoverable emitted CCX; or trace-on changes either default identity. Then PARK this mechanism and hand no speculative refit to implementation. This does not refute other reverse representations.",
+        "evidence debt": "Measured: aggregate reverse premium. Estimate: stage decomposition, recoverable fraction, Q/lambda neutrality, and later score range. Unpaid: exact stage evidence, candidate stream identities, strip tax, semantic checks, paired lambda evidence, 9,024-shot evaluation, authorization, and nonce grounding.",
+        "trial/time/compute budget": "One trace-on and one trace-off release build, target 10 minutes, no refit sweep, no lambda scan, no evaluator, and no grinding. Stop after attribution.",
+        "source owner and allowed paths": "Implementer only; allowed path exactly src/point_add/trailmix_ludicrous/gcd.rs for a default-off TRACE_TLM_STAGES counter. No functional schedule/comparator/shared-primitive edit is in the cheap-probe unit.",
+        "serialization dependencies": "Blocked until parent repairs dispatch binding and explicitly dispatches implementer in an isolated worktree. Must not overlap any gcd.rs functional writer, P2/BZ lifecycle action, source table mutation, or promotion. Results route to cross-cell-reframer before any single-mechanism refit.",
+        "rollback unit": "One default-off TRACE_TLM_STAGES instrumentation commit in gcd.rs; rollback is discard that commit. No candidate flag or schedule change is authorized in this round.",
+        "unresolved directions": "Which of comparator uncompute, reverse adder k-fit, or fwd-dead=rev-predicate transfer dominates; whether any recovered stream survives occurrence-keyed deep strip; and whether exact refit remains lambda-neutral after a changed canonical stream.",
+        "reopening trigger": "A traversal reorder, a landing trace facility, or a new attribution showing a recoverable stage >=5,000 emitted CCX. A failed current attribution parks only this local decomposition.",
+        "exact reproduction commands": [
+          "cd /Users/makimakiver/ecdsafail-challenge && CARGO_TARGET_DIR=/tmp/round1-ltc02-target TRACE_TLM_STAGES=1 TRACE_TLM_TOF=1 TRACE_TLM_CCX=1 cargo run --release --bin build_circuit 2>&1 | grep -E 'TLM_(STAGES|TOF|CCX).*gcd_(forward|reverse)|deep-strip'",
+          "cd /Users/makimakiver/ecdsafail-challenge && shasum -a 256 ops.bin",
+          "cd /Users/makimakiver/ecdsafail-challenge && CARGO_TARGET_DIR=/tmp/round1-ltc02-target cargo run --release --bin build_circuit && shasum -a 256 ops.bin"
+        ]
+      }
+    ],
+    "gate_and_handoff_protocol": {
+      "admission_before_writer": [
+        "Parent repairs dispatch receipt with run ID, frontier ID, commit, compressed/canonical baseline identities, and authorization scope.",
+        "Validate candidate worker ownership through .pi/harness/ownership.py; only implementer may claim scored paths.",
+        "Confirm legal lifecycle transition from SCOPED to DISPATCHED to RUNNING to CHECKPOINTED; do not infer CANDIDATE/SAFE/GRIND_APPROVED.",
+        "Bind exact frontier and candidate stream; report default-off compressed and canonical identity independently.",
+        "EXP-SM-01 and P2/BZ continuations remain observe-only under their manifests."
+      ],
+      "candidate_ladder_after_any_positive_probe": [
+        "Candidate semantics/reversible proof and deterministic preliminary T/Q/score gate first. Stop on nonnegative score delta unless the card has a predeclared separate measured lambda objective.",
+        "Only then paired lambda triage; SAFE requires upper CI delta-lambda < +0.5 and REFUTED requires mean classical >30 per 9024-equivalent or any candidate round >2x baseline maximum.",
+        "Only then exact 9,024-shot four-check evaluation: correctness, reversibility, zero residual phase, and zero non-output ancilla all green.",
+        "Only then explicit stream-bound GRIND_APPROVED with positive bounded budget, a ground SUB4_TAIL_NONCE, both hashes, strict score improvement, independent CERTIFIED evidence, and PROMOTED."
+      ],
+      "deterministic_handoff_format": {
+        "required_result_schema_fields": [
+          "schema_version=2 when a run receipt is complete; experiment_id; role; status; frontier_id; run_id; dispatch_ref; checkpoint_ref; terminal_ref; recovery_ref; candidate_ops_sha256; canonical_ops_sha256; changed_paths; scientific_verdict; evidence"
+        ],
+        "required_evidence_fields": [
+          "frontier commit plus compressed/canonical identities; exact environment and command; source commit/worktree diff hash; default-off identity proof; candidate hash and operation/count delta; T/Q/score evidence tagged measured or estimate; lambda estimator/paired nonce-set/rounds/lanes/CI; all four evaluator counters and exact 9024 shots; stale-key and peak-Q logs; proof artifact path/hash; budget consumed; lifecycle checkpoint; recovery/continuation location"
+        ],
+        "result_status_rules": "Missing worker result is WORKER_LOST with scientific_verdict null and recovery fields, never scientific rejection. Timeout/provider limit is operational only. Every interrupted/parked handoff emits the recovery bundle before cleanup."
+      }
+    },
+    "closed_and_plateau_routing": {
+      "LOCAL_PLATEAU": [
+        "EXP-CODEC-02: local tape/Q ladder has two adverse refinements (tail codec cost/unchanged Q and cap ladder loss); route only to cross-cell tape-live binding redesign under EXP-ARCH-05 triggers.",
+        "EXP-PR-03: two bad band refinements show approximately linear lambda/T loss; local erase-cap band family is LOCAL_PLATEAU and closed, with no further bisection.",
+        "EXP-PR-05 and EXP-PR-06: micro-retune/no-op/vent basins are LOCAL_PLATEAU; reopen only on their recorded structural triggers.",
+        "EXP-BZ-02 strong form: locally falsified by required 257-bit cswap; weak paired representation form is handed to reframing as EXP-ARCH-03, not retried locally."
+      ],
+      "not_reopened": [
+        "EXP-SLOPE-01 delta-3 is REFUTED by measured lambda; EXP-SLOPE-04 is not admitted as a substitute without materially different safety evidence.",
+        "EXP-SQ-01 remains PARKED/REFUTED-AS-SHIPPED and cannot be applied in root; its only route is isolated stream-specific re-mine after approval.",
+        "No bounded card outcome is a global performance ceiling."
+      ]
+    },
+    "selection_decision": "Three cards are scoped for later independent results only; no lane decision is claimed, no worker is dispatched, and no status in campaign.json is changed.",
+    "artifact_paths": {
+      "this_report": "/Users/makimakiver/ecdsafail-challenge/.pi/campaign-runs/20260816t232122Z/reports/round1-controller.json",
+      "frontier": "/Users/makimakiver/ecdsafail-challenge/.pi/frontier.json",
+      "campaign_state": "/Users/makimakiver/ecdsafail-challenge/.pi/state/campaign.json",
+      "dispatch_receipt": "/Users/makimakiver/ecdsafail-challenge/.pi/campaign-runs/20260816t232122Z/dispatch.json",
+      "p2_bz_continuation": "/Users/makimakiver/ecdsafail-challenge/.pi/continuations/EXP-P2-BZ-METRO.json",
+      "sm01_continuation": "/Users/makimakiver/ecdsafail-challenge/.pi/continuations/EXP-SM-01.json"
+    }
+  },
+  "metrics": {
+    "baseline": {
+      "average_executed_toffoli": 1283487.051,
+      "rounded_toffoli": 1283487,
+      "qubits": 1154,
+      "score": 1481143998,
+      "lambda": 17.62
+    },
+    "round_measurements": "None: all proposed T/Q/score/lambda changes in evidence.selected_preliminary_cards are explicitly estimates or historical evidence, not new measurements."
+  },
+  "verification": {
+    "read_only": true,
+    "gates_completed": [
+      "Dynamic frontier/campaign/card/continuation/schema/ownership review",
+      "Portfolio balance and serialization audit",
+      "Controller report materialized"
+    ],
+    "gates_not_started": [
+      "Implementation",
+      "Candidate build",
+      "Lambda scan",
+      "9024-shot evaluation",
+      "Nonce grind",
+      "Certification",
+      "Promotion"
+    ],
+    "no_staged_files_observed": true
+  },
+  "commands": [
+    "git rev-parse HEAD",
+    "git status --short",
+    "git diff --cached --name-only",
+    "find src/point_add/memory/repro -type f -name '*.pyc' -exec shasum -a 256 {} \\; | sort"
+  ]
+}

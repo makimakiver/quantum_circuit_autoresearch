@@ -1,0 +1,28 @@
+{
+  "schema_version": 1,
+  "id": "EXP-SM-01",
+  "kind": "rebuild",
+  "snapshot_status": "PARKED_PROVIDER_LIMIT",
+  "base_path": ".",
+  "required_paths": [
+    ".pi/experiments/EXP-SM-01.md",
+    ".pi/experiments/EXP-SM-01-tooling/Cargo.toml",
+    ".pi/experiments/EXP-SM-01-tooling/README.md",
+    ".pi/experiments/EXP-SM-01-tooling/stream_census_main.rs"
+  ],
+  "done_markers": [],
+  "launch_approved": false,
+  "long_compute_approved": false,
+  "pilot_gate": {
+    "inputs": 10000000,
+    "minimum_shipped_key_overlap": 0.9,
+    "exact_risk": 1.2397
+  },
+  "full_census_gate": {
+    "inputs": 655000000,
+    "requires_pilot_pass": true,
+    "requires_explicit_long_compute_approval": true
+  },
+  "next_action": "Resume miner implementation only. Do not launch the pilot or full census without explicit project-state approval.",
+  "recovery_bundle": ".pi/skills/circuit-evidence/scripts/emit_recovery_bundle.py"
+}

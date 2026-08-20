@@ -1,0 +1,34 @@
+{
+  "schema_version": 1,
+  "id": "EXP-P2-BZ-METRO",
+  "kind": "detached-process",
+  "snapshot_status": "PARKED_PROVIDER_LIMIT_SCAN_CONTINUES",
+  "base_path": "/tmp/exp_p2_bz_metro",
+  "required_paths": [
+    "analyze.py",
+    "logs/armA_R400.log",
+    "logs/armA_R400b.log",
+    "logs/armB_R400.log",
+    "logs/armB_R400b.log",
+    "logs/armC_R400.log",
+    "logs/armC_R400b.log",
+    "armA/ops.bin",
+    "armB/ops.bin",
+    "armC/ops.bin"
+  ],
+  "done_markers": [
+    "logs/armA.done",
+    "logs/armB.done",
+    "logs/armC.done"
+  ],
+  "expected_artifact_sha256": {
+    "armA/ops.bin": "6519bd01424d5513cd7f8232d4c15dfcbfe67561eb1b7f05b2cfec87c233a097",
+    "armB/ops.bin": "9cb5010bc5f4a534d82a88a80e80cbd613889d8ce4de54e6487b6e9cb0f18d27",
+    "armC/ops.bin": "6aa87651da8396d876493d34c436eb56f24d7a8be443caf47988586b66bca17e"
+  },
+  "launch_approved": false,
+  "resume_command": null,
+  "analysis_command": "PYTHONPATH=.pi python3 -m harness.cli analyze-p2-bz",
+  "next_action": "If all markers are complete, parse existing logs only; evaluator/reviewer must adjudicate before changing lifecycle state.",
+  "recovery_bundle": ".pi/skills/circuit-evidence/scripts/emit_recovery_bundle.py"
+}

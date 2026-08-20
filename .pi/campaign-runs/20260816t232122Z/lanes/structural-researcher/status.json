@@ -1,0 +1,18 @@
+{
+  "checkpointPath": "checkpoint.json",
+  "dispatchPath": "dispatch.json",
+  "dispatchSha256": "3d00dbd321e733ab41aa4dacef02261b8db817c1e22bb60d8728fef8f1ce7543",
+  "experimentId": "EXP-BZ-02",
+  "lifecycleStatus": "PARKED",
+  "missingEvidence": [
+    "Child did not supply a terminal.log at this durable lane path; the parent workflow-events.jsonl and result.json are retained instead."
+  ],
+  "parentDisposition": "read-only result retained; no lifecycle transition applied by parent",
+  "resultPath": "result.json",
+  "resultSha256": "2a62cece0868d97e2d8e2f71d71b29d8487e9d1dba77ad13401e431599ed6916",
+  "role": "structural-researcher",
+  "schemaVersion": 1,
+  "scientific_verdict": "PARKED/LOCAL_PLATEAU for the local strong deferred-reduction form; the remaining weak form is representation-spanning and is already escalated as EXP-ARCH-03. This is not a global ceiling.",
+  "sourceEditsClaimed": [],
+  "terminalLog": null
+}

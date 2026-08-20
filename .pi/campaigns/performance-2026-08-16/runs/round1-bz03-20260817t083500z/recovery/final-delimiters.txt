@@ -1,0 +1,244 @@
+FLEET_RECOVERY_BUNDLE_BEGIN
+timestamp_utc=2026-08-17T08:31:11.532115+00:00
+repository=/Users/makimakiver/ecdsafail-challenge
+status=IMPLEMENTED
+reason=Completed default plus exactly seven authorized COUT override arms. Default reproduced both identities; all override arms are flat/non-improving, satisfying the predeclared LOCAL_PLATEAU falsifier. No source edit, evaluator, lambda, grind, certification, or promotion.
+experiment_id=EXP-BZ-03
+source_commit=a2067dcf3c991bcecfd51a4bf07cd7d1cc56c3a5
+--- REPRODUCTION COMMANDS ---
+command[1]=cd /tmp/ecdsafail-round1-bz03 && env -u TLM_COUT_K_CALL_OVERRIDES CARGO_TARGET_DIR=/tmp/round1-bz03-target TRACE_TLM_TOF=1 cargo run --release --bin build_circuit
+command[2]=cd /tmp/ecdsafail-round1-bz03 && for k in 22 25 31 45 60 90 138; do CARGO_TARGET_DIR=/tmp/round1-bz03-target TLM_COUT_K_CALL_OVERRIDES="258:${k},259:${k},262:${k},263:${k}" TRACE_TLM_TOF=1 cargo run --release --bin build_circuit; done
+command[3]=PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=/tmp/ecdsafail-round1-bz03/src/point_add/memory/repro python3 -B -c "from artifact_io import fingerprint; ..." <copied per-arm ops.bin>
+--- GIT STATUS ---
+ M results.tsv
+?? .pi/
+?? AGENTS.md
+?? CAMPAIGN_FINDINGS.md
+--- GIT DIFF ---
+diff --git a/results.tsv b/results.tsv
+index 22b9f18..0ccae93 100644
+--- a/results.tsv
++++ b/results.tsv
+@@ -6,3 +6,6 @@ timestamp	commit	toffoli	clifford	qubits	ops	correct	notes
+ 1780024119	935dc1f	3962753.000	22627113.285	2715	28697222	OK	
+ 1780047641	750fdf9	3962753.000	22627113.285	2715	28697222	OK	
+ 1780052385	196206e	3962753.000	22627113.285	2715	28697222	OK	
++1786907851	a2067dc	1283487.051	5299506.551	1154	8958690	OK	
++1786915207	bb23789	1283487.051	5299506.551	1154	8958690	OK	
++1786915310	bb23789	1283487.051	5299506.551	1154	8958690	OK	
+--- GIT DIFF CACHED ---
+
+--- FILE results.tsv ---
+timestamp	commit	toffoli	clifford	qubits	ops	correct	notes
+1780021974	fa473ea	3942753.000	22627118.169	2715	28677221	OK	
+1780022568	935dc1f	3942753.000	22627118.169	2715	28677221	OK	
+1780023874	935dc1f	3942753.000	22627118.169	2715	28677221	OK	
+1780023900	935dc1f	3962753.000	22627113.285	2715	28697222	OK	
+1780024119	935dc1f	3962753.000	22627113.285	2715	28697222	OK	
+1780047641	750fdf9	3962753.000	22627113.285	2715	28697222	OK	
+1780052385	196206e	3962753.000	22627113.285	2715	28697222	OK	
+1786907851	a2067dc	1283487.051	5299506.551	1154	8958690	OK	
+1786915207	bb23789	1283487.051	5299506.551	1154	8958690	OK	
+1786915310	bb23789	1283487.051	5299506.551	1154	8958690	OK	
+--- FILE score.json ---
+{
+  "score": 1481143998,
+  "metrics": {
+    "toffoli": 1283487,
+    "qubits": 1154
+  }
+}
+--- FILE .pi/experiments/EXP-BZ-03.json ---
+.pi/experiments/EXP-BZ-03.json: MISSING
+--- FILE .pi/experiments/EXP-BZ-03.md ---
+# EXP-BZ-03 — Widened-tail schedule re-fit: APPLY_COUT_K / FOLD_SCHED / FFG_G fill entries (TUNING)
+
+Pinned: commit a2067dcf, ops.bin 6519bd01…; schedule.rs:9 BAKED_ITERS=258 vs ITERS=261; widen_sched_blocks (tlm mod.rs:327-362).
+
+1. **experiment_id**: EXP-BZ-03
+2. **search_radius**: re-fit only the 3 fill entries per block created by `widen_sched_blocks` for the divsteps that did
+   not exist in the baked search: `APPLY_COUT_K` calls {258,259} (fwd pass tail; call 260 is consumed but unused — the
+   i=260 add is skipped) and {262,263} (rev pass, divsteps 259,258); `FOLD_SCHED` calls 257-259 and 260-262 (fill nv=53);
+   `FFG_G` calls at the same tail indices (fill 53, capped 47 by TLM_FFG_MAX_G). Sweep via existing env hooks
+   `TLM_COUT_K_CALL_OVERRIDES`, `TLM_FOLD_DELTA`/reserve tables, `TLM_FFG_DELTA` — no source edit needed to probe.
+3. **mechanism**: the fill value for forward blocks is the block's last fitted entry (APPLY_COUT_K k=138 — the widest
+   lookahead) and for reverse blocks the first. But divsteps 258-260 run at terminal walk width (SCHED_J2=12..9) where
+   the interior fitted analogue (the mid-region dip, k=22-31 at APPLY_COUT_K[206..260]) suggests much smaller k is
+   optimal. Smaller k selects a cheaper hybrid layout (`controlled_hybrid_add_cout_refs_impl` dispatch, gidney.rs:1982+).
+   Similarly nv=53 (fully-clean fold) at the widened calls may exceed what Q-pressure actually requires.
+4. **predicted direction**: T −300..−1,500 executed (4 adder calls x ~100-250 CCX layout delta + fold/ffg trims);
+   Q unchanged or −0..1 (fold nv caps interact with TLM_TARGET_Q headroom); lambda unchanged (layout choice is exact —
+   no probabilistic assumption touched).
+5. **cheapest_discriminator**: `CARGO_TARGET_DIR=/tmp/<t> TLM_COUT_K_CALL_OVERRIDES='258:30,259:30,262:30,263:30' TRACE_TLM_TOF=1 cargo run --release --bin build_circuit`
+   — read `tlm_apply_forward_mod_add_register` expected delta; require ops.bin sha != 6519bd01… (knob-liveness).
+6. **predeclared_falsifier**: sweeping k over {22,25,31,45,60,90,138} at those four calls shows the register-phase
+   expected-executed is flat within ±20 CCX (layout already optimal at fill) — kills the card before any source change.
+7. **evidence_debt**: none structural; promotion gate is just four-checks-green + S strictly lower on a full run; the
+   probe ladder (count-only → TRACE_TLM_TOF) already covers attribution.
+8. **trial_budget / time_budget**: 30 min of env-sweep probes; implementer time only if a winning override set is found
+   (then bake into schedule.rs via the existing fit tables).
+9. **unresolved_directions**: does not re-mine the interior 516 fitted entries (that was the original search's job and
+   is closed unless the objective function changes); does not touch CMP_K fills (walk-side, other cell).
+10. **reopening_trigger**: any ITERS bump (261→262+) re-widens blocks and re-creates un-fitted fill entries — rerun the
+    sweep; also reopening if the adder layout dispatch gains a new branch (shared-primitives change).
+11. **reproduction_commands**: baseline as EXP-BZ-01; probe:
+    `CARGO_TARGET_DIR=/tmp/bezout-scout-target TLM_COUT_K_CALL_OVERRIDES='258:30,259:30,262:30,263:30' TRACE_TLM_TOF=1 cargo run --release --bin build_circuit 2>&1 | grep -E 'TLM_TOF (phase=tlm_apply.*register|TOTAL)'`
+12. **classification**: TUNING.
+--- BINARY ops.bin ---
+ops.bin: size=29461502 sha256=6519bd01424d5513cd7f8232d4c15dfcbfe67561eb1b7f05b2cfec87c233a097
+--- BINARY .pi/campaigns/performance-2026-08-16/runs/round1-bz03-20260817t083500z/artifact-manifest.json ---
+.pi/campaigns/performance-2026-08-16/runs/round1-bz03-20260817t083500z/artifact-manifest.json: size=2843 sha256=94fefc4f6172bf97422252829566d81b13ef72725165c688d9cb7745976f1345
+--- BINARY .pi/campaigns/performance-2026-08-16/runs/round1-bz03-20260817t083500z/sweep-summary.json ---
+.pi/campaigns/performance-2026-08-16/runs/round1-bz03-20260817t083500z/sweep-summary.json: size=11866 sha256=06c6ee18ede6da0b9693b5bba6403f048969bb4bf1405678cf9c407aad4ac9a6
+--- BINARY .pi/campaigns/performance-2026-08-16/runs/round1-bz03-20260817t083500z/result.json ---
+.pi/campaigns/performance-2026-08-16/runs/round1-bz03-20260817t083500z/result.json: size=5005 sha256=1556a5e9833e856dcebf166b22a104ce4b9b13310b9e81f42e83e9f4e248ea26
+--- LOG TAIL .pi/campaigns/performance-2026-08-16/runs/round1-bz03-20260817t083500z/logs/arm-completion.tsv ---
+label	overrides	completed_utc
+default	<unset-default>	2026-08-17T08:28:23Z
+k-22	258:22,259:22,262:22,263:22	2026-08-17T08:28:38Z
+k-25	258:25,259:25,262:25,263:25	2026-08-17T08:28:53Z
+k-31	258:31,259:31,262:31,263:31	2026-08-17T08:29:08Z
+k-45	258:45,259:45,262:45,263:45	2026-08-17T08:29:24Z
+k-60	258:60,259:60,262:60,263:60	2026-08-17T08:29:38Z
+k-90	258:90,259:90,262:90,263:90	2026-08-17T08:29:53Z
+k-138	258:138,259:138,262:138,263:138	2026-08-17T08:30:09Z
+--- LOG TAIL .pi/campaigns/performance-2026-08-16/runs/round1-bz03-20260817t083500z/result-schema-validation.log ---
+schema validation: PASS
+FLEET_RECOVERY_BUNDLE_END
+--- PARENT RUN ENVELOPE ---
+--- FILE .pi/campaigns/performance-2026-08-16/runs/round1-bz03-20260817t083500z/dispatch.json ---
+{
+  "agent": "implementer",
+  "base_identity": {
+    "repository_commit": "a2067dcf3c991bcecfd51a4bf07cd7d1cc56c3a5",
+    "scored_source_tree_sha256": "7ae7eabe20bc5459d902d2f4c921bb7ea53f48f9c82ae88d9a7f93c2bbefd7f9",
+    "trusted_source_tree_sha256": "fdd8fe31d933f8861d24d9ffc474a21899de22874ec41ff5579a3c138f320562"
+  },
+  "budget": {
+    "arms": 7,
+    "evaluation": false,
+    "grinding": false,
+    "kind": "cheap env-only sweep",
+    "lambda": false,
+    "source_edits": false,
+    "wall_seconds": 1800
+  },
+  "campaign_id": "performance-2026-08-16",
+  "commands": [
+    "CARGO_TARGET_DIR=/tmp/round1-bz03-target TLM_COUT_K_CALL_OVERRIDES=<four calls> TRACE_TLM_TOF=1 cargo run --release --bin build_circuit",
+    "fingerprint compressed and canonical artifact identities",
+    "no source edit or lifecycle promotion"
+  ],
+  "control_plane_sha256": "0987fc5c2974c3f943170b150e926405869d6535ba444d2bcf10ba6c3a5f56fb",
+  "expected_result": ".pi/campaigns/performance-2026-08-16/runs/round1-bz03-20260817t083500z/result.json",
+  "experiment_id": "EXP-BZ-03",
+  "frontier_id": "2026-08-16-a2067dcf",
+  "lane": "STRUCTURAL",
+  "owner": "implementer",
+  "run_id": "round1-bz03-20260817t083500z",
+  "schema_version": 1,
+  "soft_deadlines": {
+    "checkpoint": 0.8,
+    "finalize": 0.9,
+    "grace": 0.95
+  },
+  "task": "Authorized bounded cheap-probe-only environment sweep: EXP-BZ-03. No source edits, no lambda/evaluator/grind/certification/promotion. Use isolated worktree /tmp/ecdsafail-round1-bz03 from exact frontier. Seven TLM_COUT_K_CALL_OVERRIDES arms only; preserve defaults and report hashes, Q, postpass stale logs, TRACE TLM TOF. Persist artifacts/logs/recovery in this envelope.",
+  "timeout_seconds": 2700,
+  "worktree": "/tmp/ecdsafail-round1-bz03"
+}
+--- FILE .pi/campaigns/performance-2026-08-16/runs/round1-bz03-20260817t083500z/checkpoint.json ---
+{
+  "artifact_hashes": {},
+  "changed_paths": [],
+  "commands": [
+    "CARGO_TARGET_DIR=/tmp/round1-bz03-target TLM_COUT_K_CALL_OVERRIDES=<four calls> TRACE_TLM_TOF=1 cargo run --release --bin build_circuit",
+    "fingerprint compressed and canonical artifact identities",
+    "no source edit or lifecycle promotion"
+  ],
+  "evidence_paths": [],
+  "gate": "DISPATCHED",
+  "remaining_obligations": [
+    "worker gate checkpoints",
+    "schema-v2 result",
+    "terminal recovery"
+  ],
+  "run_id": "round1-bz03-20260817t083500z",
+  "schema_version": 1,
+  "timestamp": "2026-08-17T08:25:57Z"
+}
+--- FILE .pi/campaigns/performance-2026-08-16/runs/round1-bz03-20260817t083500z/result.json ---
+{
+  "schema_version": 2,
+  "experiment_id": "EXP-BZ-03",
+  "role": "implementer",
+  "status": "IMPLEMENTED",
+  "frontier_id": "2026-08-16-a2067dcf",
+  "candidate_ops_sha256": "6519bd01424d5513cd7f8232d4c15dfcbfe67561eb1b7f05b2cfec87c233a097",
+  "canonical_ops_sha256": "0a4a412c939b05f59fa4bc33c2410e5bc110b07c7faded5e6db5f6b5db3ed0b0",
+  "changed_paths": [],
+  "evidence": {
+    "dispatch_bound_scope": "Default plus exactly seven environment-only override arms; no source edit, evaluator, lambda, grind, certification, or promotion.",
+    "default_identity": {
+      "compressed_ops_sha256": "6519bd01424d5513cd7f8232d4c15dfcbfe67561eb1b7f05b2cfec87c233a097",
+      "canonical_ops_sha256": "0a4a412c939b05f59fa4bc33c2410e5bc110b07c7faded5e6db5f6b5db3ed0b0",
+      "reproduced": true
+    },
+    "sweep_summary_ref": ".pi/campaigns/performance-2026-08-16/runs/round1-bz03-20260817t083500z/sweep-summary.json",
+    "sweep_summary_sha256": "06c6ee18ede6da0b9693b5bba6403f048969bb4bf1405678cf9c407aad4ac9a6",
+    "artifact_manifest_ref": ".pi/campaigns/performance-2026-08-16/runs/round1-bz03-20260817t083500z/artifact-manifest.json",
+    "artifact_manifest_sha256": "94fefc4f6172bf97422252829566d81b13ef72725165c688d9cb7745976f1345",
+    "source_cleanliness_ref": ".pi/campaigns/performance-2026-08-16/runs/round1-bz03-20260817t083500z/post-sweep-source-cleanliness.txt",
+    "pyc_audits_ref": ".pi/campaigns/performance-2026-08-16/runs/round1-bz03-20260817t083500z/audits",
+    "negative_evidence": "Every override k=22,25,31,45,60,90,138 produced the exact default compressed and canonical identities, Q=1154, forward-register expected=147799.0, inverse-register expected=148392.5, total expected=1299076.0, and deep-strip stale_keys_skipped=0. No arm is improving or even live at artifact/TRACE resolution.",
+    "falsifier": "The predeclared ±20-CCX flat-register falsifier is met exactly across all seven arms.",
+    "routing": "LOCAL_PLATEAU: route this fill-entry schedule family to cross-cell reframing; do not construe this bounded local falsifier as a global ceiling.",
+    "recovery_pre_runner_failure_ref": ".pi/campaigns/performance-2026-08-16/runs/round1-bz03-20260817t083500z/recovery/pre-runner-failure",
+    "recovery_runner_audit_failure_ref": ".pi/campaigns/performance-2026-08-16/runs/round1-bz03-20260817t083500z/recovery/runner-audit-failure"
+  },
+  "metrics": {
+    "arms_total": 8,
+    "override_arms": 7,
+    "emitted_operations_each": 8958690,
+    "qubits_each": 1154,
+    "max_referenced_qubit_id_each": 1153,
+    "forward_register_expected_each": 147799.0,
+    "inverse_register_expected_each": 148392.5,
+    "total_expected_toffoli_each": 1299076.0,
+    "total_emitted_toffoli_each": 1352434,
+    "deep_strip_stale_keys_each": 0
+  },
+  "verification": {
+    "source_clean": true,
+    "staged_files": [],
+    "ops_bin_removed_from_worktree": true,
+    "tracked_artifact_io_pyc_sha256": "016debdfcfe5a6f7827bfb1610344ed98bfe0d1720a7458618ecb94faddffe89",
+    "tracked_artifact_io_pyc_clean_before_and_after_each_fingerprint": true,
+    "evaluator": "not run (dispatch budget evaluation=false)",
+    "lambda": "not run (dispatch budget lambda=false)",
+    "grind": "not run (dispatch budget grinding=false)",
+    "certification": "not run",
+    "promotion": "not run"
+  },
+  "commands": [
+    "cd /tmp/ecdsafail-round1-bz03 && env -u TLM_COUT_K_CALL_OVERRIDES CARGO_TARGET_DIR=/tmp/round1-bz03-target TRACE_TLM_TOF=1 cargo run --release --bin build_circuit",
+    "cd /tmp/ecdsafail-round1-bz03 && CARGO_TARGET_DIR=/tmp/round1-bz03-target TLM_COUT_K_CALL_OVERRIDES='258:k,259:k,262:k,263:k' TRACE_TLM_TOF=1 cargo run --release --bin build_circuit, for k in 22 25 31 45 60 90 138",
+    "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=/tmp/ecdsafail-round1-bz03/src/point_add/memory/repro python3 -B -c 'from artifact_io import fingerprint; ...' <copied per-arm ops.bin>",
+    "git -C /tmp/ecdsafail-round1-bz03 status --short; git -C /tmp/ecdsafail-round1-bz03 diff --cached --name-only"
+  ],
+  "recovery": {
+    "status": "IMPLEMENTED",
+    "reason": "Bounded environment sweep completed with LOCAL_PLATEAU negative evidence; no lifecycle change or promotion applied.",
+    "bundle_ref": ".pi/campaigns/performance-2026-08-16/runs/round1-bz03-20260817t083500z/recovery/final"
+  },
+  "timestamp": "2026-08-17T08:31:00Z",
+  "run_id": "round1-bz03-20260817t083500z",
+  "dispatch_ref": ".pi/campaigns/performance-2026-08-16/runs/round1-bz03-20260817t083500z/dispatch.json",
+  "checkpoint_ref": ".pi/campaigns/performance-2026-08-16/runs/round1-bz03-20260817t083500z/checkpoint.json",
+  "terminal_ref": ".pi/campaigns/performance-2026-08-16/runs/round1-bz03-20260817t083500z/terminal.log",
+  "recovery_ref": ".pi/campaigns/performance-2026-08-16/runs/round1-bz03-20260817t083500z/recovery/final",
+  "scientific_verdict": "LOCAL_PLATEAU: all seven authorized fill-value arms are artifact-identical and TRACE-identical to default; route to cross-cell reframing, not a global-ceiling conclusion."
+}
+--- FILE .pi/campaigns/performance-2026-08-16/runs/round1-bz03-20260817t083500z/terminal.log ---
+
+--- BINARY .pi/campaigns/performance-2026-08-16/runs/round1-bz03-20260817t083500z/recovery/worktree.patch ---
+.pi/campaigns/performance-2026-08-16/runs/round1-bz03-20260817t083500z/recovery/worktree.patch: MISSING

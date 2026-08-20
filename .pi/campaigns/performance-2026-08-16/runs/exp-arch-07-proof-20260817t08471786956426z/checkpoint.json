@@ -1,0 +1,50 @@
+{
+  "artifact_hashes": {
+    ".pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/artifacts/commands.txt": "d2e17a8e1ca74f47c6c7528d644ffe3e724f5388c594a36f4fb7aea22fa569d0",
+    ".pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/artifacts/d0-extraction-map.json": "1f19fbf5e57062f9d95e560400c8a51121a09c5ad99ee29460c5aa1cda0c6f64",
+    ".pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/artifacts/d0.stdout.log": "20e358a2eb1c26a9cf9e08f134e2e79a8da4970516f8dd42f08b6a34d198474e",
+    ".pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/artifacts/d1.json": "7a413dc9bcb23ab6ee2bf72dfc09805d48e552a16f6366b75ced03facb7c9162",
+    ".pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/artifacts/d1.stdout.log": "8358f27cbb2b754c0396cf97765142d7b3306aeacbab3b834e6e6a23b1154f23",
+    ".pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/artifacts/exp_arch07_miter.py": "c302afb370b9785f23bb15955e8e5dc821434c066aca37da3b66070364c5344c",
+    ".pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/artifacts/recovery-context.json": "30f158f3379913391d41e71be70071cc4d76b25821bc30e8e7b3d108530b7629",
+    ".pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/artifacts/replay.json": "72add013ab3de9baf4645dcdb50c18fe9cb0bb10e09e00fa188929436f593c42",
+    ".pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/artifacts/replay.stdout.log": "6f4e94037519abf8f748aaae15b2810b1dce25ac25fc720a31e3fd64a51454aa",
+    ".pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/proof-agent-output.json": "1d24d8c534c32942d3e2a904e0b0df51673aa522f7f4c56378048a4cab16ef51"
+  },
+  "changed_paths": [
+    ".pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/artifacts/exp_arch07_miter.py",
+    ".pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/artifacts/d0-extraction-map.json",
+    ".pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/artifacts/d0.stdout.log",
+    ".pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/artifacts/d1.json",
+    ".pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/artifacts/d1.stdout.log",
+    ".pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/artifacts/replay.json",
+    ".pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/artifacts/replay.stdout.log",
+    ".pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/artifacts/commands.txt",
+    ".pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/artifacts/recovery-context.json",
+    ".pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/proof-agent-output.json"
+  ],
+  "commands": [
+    "PYTHONDONTWRITEBYTECODE=1 python3 -B .pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/artifacts/exp_arch07_miter.py --source-root /Users/makimakiver/ecdsafail-challenge --d0 --emit .pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/artifacts/d0-extraction-map.json",
+    "PYTHONDONTWRITEBYTECODE=1 python3 -B .pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/artifacts/exp_arch07_miter.py --source-root /Users/makimakiver/ecdsafail-challenge --d1 --emit .pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/artifacts/d1.json",
+    "PYTHONDONTWRITEBYTECODE=1 python3 -B .pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/artifacts/exp_arch07_miter.py --source-root /Users/makimakiver/ecdsafail-challenge --replay .pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/artifacts/d1.json --emit .pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/artifacts/replay.json"
+  ],
+  "evidence_paths": [
+    ".pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/artifacts/exp_arch07_miter.py",
+    ".pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/artifacts/d0-extraction-map.json",
+    ".pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/artifacts/d0.stdout.log",
+    ".pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/artifacts/d1.json",
+    ".pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/artifacts/d1.stdout.log",
+    ".pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/artifacts/replay.json",
+    ".pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/artifacts/replay.stdout.log",
+    ".pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/artifacts/commands.txt",
+    ".pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/artifacts/recovery-context.json",
+    ".pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/proof-agent-output.json"
+  ],
+  "gate": "RECOVERY_READY",
+  "remaining_obligations": [
+    "No source candidate exists. Reopen only with a different term/extraction/restoration boundary or an exact source certificate excluding the local witness."
+  ],
+  "run_id": "exp-arch-07-proof-20260817t08471786956426z",
+  "schema_version": 1,
+  "timestamp": "2026-08-17T08:51:30.592279+00:00"
+}

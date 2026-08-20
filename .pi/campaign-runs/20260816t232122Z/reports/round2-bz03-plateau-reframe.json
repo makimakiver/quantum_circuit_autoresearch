@@ -1,0 +1,247 @@
+{
+  "schema_version": 2,
+  "experiment_id": "EXP-R2-BZ03-ARCH-07",
+  "role": "cross-cell-reframer",
+  "status": "SCOPED",
+  "frontier_id": "2026-08-16-a2067dcf",
+  "candidate_ops_sha256": "6519bd01424d5513cd7f8232d4c15dfcbfe67561eb1b7f05b2cfec87c233a097",
+  "canonical_ops_sha256": "0a4a412c939b05f59fa4bc33c2410e5bc110b07c7faded5e6db5f6b5db3ed0b0",
+  "changed_paths": [],
+  "nonce_env": "SUB4_TAIL_NONCE",
+  "nonce": 1337610097,
+  "run_id": "20260816t232122Z",
+  "dispatch_ref": ".pi/campaigns/performance-2026-08-16/runs/20260816t232122Z/dispatch.json",
+  "checkpoint_ref": ".pi/campaigns/performance-2026-08-16/runs/20260816t232122Z/checkpoint.json",
+  "terminal_ref": ".pi/campaigns/performance-2026-08-16/runs/20260816t232122Z/terminal.log",
+  "recovery_ref": ".pi/campaigns/performance-2026-08-16/runs/20260816t232122Z/recovery/round2-bz03-plateau-reframe",
+  "scientific_verdict": "SCOPED: EXP-BZ-03 establishes a bounded LOCAL_PLATEAU only for its seven APPLY_COUT_K fill-value overrides. This card accepts that no-op evidence and tests a distinct paired carry-state representation across the tail add/fold/replay interface. It makes no global ceiling claim.",
+  "timestamp": "2026-08-17T08:31:00Z",
+  "commands": [
+    "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=.pi python3 -B -c \"from harness.ownership import ownership_violations; ...\"",
+    "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=.pi python3 -B -m harness.cli validate",
+    "PYTHONDONTWRITEBYTECODE=1 python3 -B .pi/skills/circuit-evidence/scripts/validate_fleet.py",
+    "PYTHONDONTWRITEBYTECODE=1 python3 -B -m jsonschema -i .pi/campaign-runs/20260816t232122Z/reports/round2-bz03-plateau-reframe.json .pi/schemas/result.schema.json"
+  ],
+  "metrics": {
+    "frontier": {
+      "source_commit": "a2067dcf3c991bcecfd51a4bf07cd7d1cc56c3a5",
+      "compressed_ops_sha256": "6519bd01424d5513cd7f8232d4c15dfcbfe67561eb1b7f05b2cfec87c233a097",
+      "canonical_ops_sha256": "0a4a412c939b05f59fa4bc33c2410e5bc110b07c7faded5e6db5f6b5db3ed0b0",
+      "average_executed_toffoli": 1283487.051,
+      "rounded_toffoli": 1283487,
+      "qubits": 1154,
+      "score": 1481143998,
+      "lambda": 17.62,
+      "lambda_basis": "400 deterministic rounds x 64 lanes; frontier measurement"
+    },
+    "candidate_prediction_not_measurement": {
+      "radius": "Only the four widened-tail APPLY_COUT_K call positions tested by EXP-BZ-03 (258,259,262,263), but changes the carry-state handoff to their existing adjacent apply fold and paired inverse cleanup; no schedule-table k refit, no ITERS/JUMP/SCHED_J2 change, no tape-width change, no traversal-count change, and no strip-table edit.",
+      "mechanism": "Replace local layout selection with a paired deferred-reduction representation: the existing modular-add carry/reduction state is consumed by the adjacent fused fold rather than immediately materialized and cleaned at each selected tail apply. The inverse side reconstructs/consumes the same state in reverse order. This seeks net deletion of clean/carry work, not a cheaper value of k.",
+      "emitted_toffoli_delta": "-600 to -3600 predicted only; zero is a valid outcome",
+      "executed_toffoli_delta": "-300 to -1800 predicted only after phase-local and post-strip accounting",
+      "qubit_delta": "0 required; any peak >1154 falsifies before lambda work",
+      "score_delta": "-346200 to -2077200 only if Q=1154 and round(T) falls by the predicted amount",
+      "lambda_delta": "0 target only under an exact paired semantic/phase proof; otherwise unmeasured and lambda-gated against 17.62",
+      "emitted_to_executed_discount": "The removed tail clean may be condition-discounted (up to about 50%); fold/carry work is priced at its own TRACE_TLM_TOF phase ratio and not granted a generic discount. Final pricing subtracts any deep-strip loss. Therefore emitted deletion is only a discriminator, never the score proof."
+    }
+  },
+  "verification": {
+    "read_only": true,
+    "performed": [
+      "Read the bound cross-cell dispatch/checkpoint, CAMPAIGN_FINDINGS.md, frontier, campaign state, both continuations, result/card schemas, EXP-BZ-03 result, and relevant BZ/ARCH/SQ/codec/strip cards and source interfaces.",
+      "Accepted EXP-BZ-03 exact no-op evidence: default plus seven overrides k=22,25,31,45,60,90,138 all retained compressed/canonical frontier identities, Q=1154, identical register expected counts, and zero stale keys.",
+      "Ran the ownership audit for all proposed seams: implementer accepted; cross-cell-reframer source ownership rejected as required."
+    ],
+    "not_performed": [
+      "No source/control-plane/state edit other than this required report artifact; no build, lambda scan, evaluator, nonce grind, census, continuation start/restart, promotion, stage, merge, or commit.",
+      "No candidate operation stream exists. Schema-required candidate hashes are the pinned baseline anchors, not a claim of candidate liveness."
+    ],
+    "schema_path_note": "Actual bound receipts are .pi/campaign-runs/20260816t232122Z/lanes/cross-cell-reframer/{dispatch,checkpoint}.json. The schema-required .pi/campaigns references are compatibility aliases only."
+  },
+  "evidence": {
+    "review_findings": [
+      "INFO: .pi/campaigns/performance-2026-08-16/runs/round1-bz03-20260817t083500z/result.json proves the authorized fill-value sweep was flat at artifact and TRACE resolution; this is the predeclared local falsifier for BZ-03 only.",
+      "INFO: src/point_add/trailmix_ludicrous/mod.rs::widen_sched_blocks fills terminal forward blocks from the last baked entry and reverse blocks from the first, preserving pass/divstep anchoring. The reframe must not alter that positional contract.",
+      "HIGH: src/point_add/trailmix_ludicrous/gcd.rs::apply_step_forward and apply_step_reverse are paired around s2 and swap ordering. A one-sided carry deferral can dirty the phase word or desynchronize Bezout replay.",
+      "HIGH: the final deep strip is tuple-occupancy/occurrence-ordinal coupled. EXP-SQ-01 proves a real pre-strip saving can become a final regression; no predicted deletion is promoted before exact-stream occupancy evidence.",
+      "INFO: EXP-CODEC-02 and EXP-ITX-00 show Q=1154 is held at tape-free apply and square plateaus. This card therefore requires delta-Q=0 and claims no codec/local-liveness Q benefit."
+    ],
+    "accepted_local_noop": {
+      "experiment": "EXP-BZ-03",
+      "result_path": ".pi/campaigns/performance-2026-08-16/runs/round1-bz03-20260817t083500z/result.json",
+      "searched_arms": [
+        "22",
+        "25",
+        "31",
+        "45",
+        "60",
+        "90",
+        "138"
+      ],
+      "call_override_scope": "TLM_COUT_K_CALL_OVERRIDES=258:k,259:k,262:k,263:k",
+      "observed": "All arms equal baseline compressed hash 6519bd... and canonical hash 0a4a41..., Q=1154, total expected=1299076.0, and stale_keys_skipped=0.",
+      "disposition": "LOCAL_PLATEAU for scalar APPLY_COUT_K tail-fill overrides. This does not refute a representation change that alters the carry/fold interface, shared primitive use, or source-certified strip proof."
+    },
+    "composite_card": {
+      "id": "EXP-R2-BZ03-ARCH-07",
+      "title": "Tail carry-state fold/replay co-design",
+      "lane": "REFRAMING",
+      "status": "SCOPED",
+      "frontier_identity": {
+        "frontier_id": "2026-08-16-a2067dcf",
+        "commit": "a2067dcf3c991bcecfd51a4bf07cd7d1cc56c3a5",
+        "compressed_ops_sha256": "6519bd01424d5513cd7f8232d4c15dfcbfe67561eb1b7f05b2cfec87c233a097",
+        "canonical_ops_sha256": "0a4a412c939b05f59fa4bc33c2410e5bc110b07c7faded5e6db5f6b5db3ed0b0",
+        "T": 1283487.051,
+        "Q": 1154,
+        "score": 1481143998,
+        "lambda": 17.62
+      },
+      "search_radius": "The existing carry ancilla/reduction state between controlled_mod_add_k or controlled_mod_sub_vented and fused_double_cdouble/fused_double_cdouble_reverse at the four widened tail calls. It explicitly excludes k-table retuning, comparator windows, codec encoding/width, ITERS, SCHED_J2, traversal count, early-sum lifetime changes, and any global strip-table re-mine.",
+      "mechanism": "At each selected tail call, schedule k only selects a hybrid-adder layout; BZ-03 shows that choice does not make a live stream difference. Instead, represent the modular reduction carry as pending fold metadata already required by the next double/cdouble, consume it in the fold, and undo that representation at the matching inverse apply boundary. The candidate must delete a clean/carry pair or source-prove a downgrade. It is not permitted to merely move equal work, retain a new persistent register, add a tape symbol, or widen a cswap.",
+      "interfaces": [
+        {
+          "owner": "apply/B3",
+          "path": "src/point_add/trailmix_ludicrous/gcd.rs",
+          "interface": "apply_step_forward -> controlled_mod_add_k -> fused_double_cdouble and reverse counterpart apply_step_reverse -> controlled_mod_sub_vented; the selected carry state is consumed in the same pass and restored in exact inverse order."
+        },
+        {
+          "owner": "shared primitive/P",
+          "path": "src/point_add/trailmix_ludicrous/fused.rs and src/point_add/trailmix_ludicrous/gidney.rs",
+          "interface": "The 53-bit fold window and hybrid-add cout contract are unchanged; the carry representation must fit existing LSBS/chunk boundaries and may not change adder layout selection by scalar k."
+        },
+        {
+          "owner": "walk/codec/replay",
+          "path": "src/point_add/trailmix_ludicrous/gcd.rs and src/point_add/trailmix_ludicrous/codec.rs",
+          "interface": "Dialog tape stays 609 qubits and positional forward/reverse consumption stays identical. s2-controlled walk and replay retain their existing paired branches."
+        },
+        {
+          "owner": "strip/postpass",
+          "path": "src/point_add/mod.rs and src/point_add/deep_strip_keys.rs",
+          "interface": "Deep-strip tuple/ordinal occupancy is an exact-stream input. Source-certified deletions may be attributed by site; all other changed ordinal keys are dropped or re-mined only after approval."
+        }
+      ],
+      "invariant_pairs": [
+        {
+          "pair": "forward add/fold <-> reverse unfold/sub",
+          "invariant": "The forward pending-carry representation is reconstructed then consumed by the exact reverse counterpart, so the composed transform is identity on all non-output state and carries no residual phase.",
+          "proof": "Algebraic reversible miter over the selected add/fold/unfold/sub region plus phase-word/ancilla selftest; four-check evaluation remains later required."
+        },
+        {
+          "pair": "walk s2 <-> Bezout replay s2",
+          "invariant": "s2 conditionality, cswap order, and s=SCHED_J2[i]-cmp_window(i) are unchanged in both directions. The representation is selected only after the same existing control and cannot cross a one-sided branch.",
+          "proof": "Per-call trace witness records pass, divstep, s2 control, carry source, fold consumer, and reverse restoration; mismatch or any new tape/predicate use falsifies."
+        },
+        {
+          "pair": "value bound <-> next cout input",
+          "invariant": "After the widened fold, the next 256-bit cout input remains below 2^256 minus its maximal addend; no 257-bit cswap or extra live overflow bit is introduced.",
+          "proof": "Symbolic bound with fixed LSBS=53 plus deterministic classical boundary corpus; a sampled corpus is discriminator evidence, not a replacement for the bound."
+        },
+        {
+          "pair": "source certificate <-> ordinal strip key",
+          "invariant": "A source proof identifies every deleted/downgraded operation independently of ordinal. The final stream reports occupancy honestly; unproven stale statistical keys receive no credit.",
+          "proof": "Source bit-use/affine or UNSAT certificate per claimed site, candidate tripwire log, and approved exact-stream re-mine only if remaining keys are needed for final T."
+        },
+        {
+          "pair": "local tail lifetime <-> global Q",
+          "invariant": "No new carry/control/tape qubit survives into any 1154-q tape-free apply or square plateau.",
+          "proof": "TRACE_TLM_PROFILE and B0 windows at early apply, late walk, and square; artifact max referenced qubit id must remain 1153."
+        }
+      ],
+      "owners_and_paths": {
+        "implementer_only_source_paths": [
+          "src/point_add/trailmix_ludicrous/gcd.rs",
+          "src/point_add/trailmix_ludicrous/fused.rs",
+          "src/point_add/trailmix_ludicrous/gidney.rs",
+          "src/point_add/trailmix_ludicrous/ec_add.rs",
+          "src/point_add/trailmix_ludicrous/codec.rs"
+        ],
+        "cross_cell_reframer": "Read-only design/review only; ownership.py correctly rejects every scored-source seam for this role.",
+        "strip_census_miner": "Only .pi/experiments/EXP-SM-01-tooling/**, and only after the existing approval gates; no strip source/table edit belongs to this rollback unit.",
+        "lambda_metrologist_evaluator_nonce_grinder": "Serialized evidence consumers only after a live, semantically gated candidate; none is authorized now."
+      },
+      "staged_discriminators": [
+        {
+          "stage": "D0 model",
+          "owner": "implementer + cross-cell review",
+          "gate": "Write a per-tail-call state map from cout carry to fold consumer and reverse restoration; prove all calls are matched by pass/divstep rather than bare sequential position.",
+          "falsifier": "No existing fold consumer can encode the carry without a new qubit/tape/control or the source map finds a one-sided replay use."
+        },
+        {
+          "stage": "D1 trace-only",
+          "owner": "implementer in a dispatched isolated worktree",
+          "gate": "Default-off TLM_TAIL_CARRY_FOLD_TRACE=0 must reproduce both frontier hashes. Trace-on maps phase-local emitted/executed counts, s2 control, and carry lifetime without functional stream change.",
+          "falsifier": "Default identity drifts or the map exposes a predicate/dialog/phase use outside the paired region."
+        },
+        {
+          "stage": "D2 one paired candidate",
+          "owner": "implementer",
+          "gate": "One default-off TLM_TAIL_CARRY_FOLD=1 wraps all four matched forward/reverse changes. Require changed compressed and canonical hashes, no new max qubit id, and >=600 emitted CCX net deletion before any selftest.",
+          "falsifier": "Hash is unchanged, emitted deletion is <600, Q rises, or the change requires an unequal one-sided patch."
+        },
+        {
+          "stage": "D3 semantic/occupancy",
+          "owner": "implementer then strip reviewer",
+          "gate": "Value-bound proof, bounded straddle/selftests, phase inspection, B0/Q windows, and exact candidate deep-strip line. If stale keys exist, retain only source-certified deletion and park final strip pricing without approval.",
+          "falsifier": "Miter/bound/selftest/phase failure, stale loss >= local deletion without source certificate, or Q>1154."
+        },
+        {
+          "stage": "D4 later gates",
+          "owner": "lambda-metrologist -> evaluator-certifier -> nonce-grinder",
+          "gate": "Paired lambda n>=12 with campaign SAFE rule (upper CI delta <+0.5), 9024-shot four checks, strictly lower exact S, explicit GRIND_APPROVED bound to changed hashes, then a ground candidate-stream SUB4_TAIL_NONCE.",
+          "falsifier": "Any required lambda/four-check/score/grind gate fails; do not relabel a budget stop or timeout as refutation."
+        }
+      ],
+      "cheapest_discriminator": "D0 plus one trace-only, default-off build. It is positive only with an existing paired fold carrier, no prohibited branch/dialog/phase use, and a phase-local projected net deletion >=600 emitted CCX. It runs no evaluator, lambda scan, census, grind, or continuation.",
+      "predeclared_falsifier": "This card alone is REFUTED if the carry cannot be transported through an existing paired fold/replay carrier; if it needs extra persistent state/tape/a 257-bit cswap; if the algebra/bound/miter or phase check fails; if D2 deletes <600 emitted CCX; or if final unproven stale-key loss cancels the local deletion. Such a result refutes only the stated tail carry-state transport, never all tail optimization, all shared primitives, or all representation changes.",
+      "evidence_debt": [
+        "No candidate, state map, bound proof, phase trace, candidate hashes, B0 census, or count exists for this card.",
+        "The T prediction is a range derived from clean/carry surfaces, not an observed saving; its final discount and strip tax are unknown.",
+        "Candidate lambda, correctness, reversibility, phase cleanliness, ancilla cleanliness, Q, score, nonce binding, and strict improvement remain unpaid.",
+        "EXP-SM-01 is PARKED with launch_approved=false and long_compute_approved=false. A stream-specific re-mine is not authorized and a missing re-mine is PARKED evidence, not a scientific negative verdict."
+      ],
+      "budget": {
+        "now": "Read-only review: zero builds/compute spent.",
+        "D0_D2_after_dispatch": "One half-day model, one default identity build, one trace-only build, and at most two one-mechanism candidate builds; stop at first falsifier.",
+        "D3": "At most one implementer day cumulative; no long census.",
+        "D4": "Not authorized by this card; lambda/evaluator/grind require their independent campaign gates and approvals."
+      },
+      "serialization": [
+        "Do not restart EXP-P2-BZ-METRO. It remains a separately owned observation/adjudication path; its result cannot be silently bundled with this stream.",
+        "Do not restart EXP-SM-01 or launch pilot/full census. Certificate-only accounting is required until explicit state approval serializes pilot parity -> candidate-stream census.",
+        "Run D1/D2 alone in an isolated worktree. Do not combine with EXP-SQ-01 early-sum, BZ tail skip, deferred-reduction ARCH-03, codec change, schedule change, or strip-table edit because each alters the final ordinal stream.",
+        "If D3 is positive, serialize source proof -> strip occupancy decision -> lambda -> full evaluation -> exact-artifact grind. A new nonce is mandatory for any changed stream."
+      ],
+      "rollback_unit": "One isolated-worktree implementer commit behind TLM_TAIL_CARRY_FOLD=0 by default. It contains all four matching forward/reverse tail changes and no deep-strip table, schedule, codec-width, nonce, or SQ-01 patch. Trace-only instrumentation uses separate TLM_TAIL_CARRY_FOLD_TRACE and a separate commit. Rollback is unset the candidate flag/discard that one candidate commit.",
+      "unresolved_directions": [
+        "Whether the selected carry can be represented in the existing LSBS=53 fold without changing the next cout bound.",
+        "Whether source-certified strip deletions alone provide enough final benefit if ordinal keys go stale.",
+        "Whether a broader all-iteration deferred reduction is viable remains EXP-ARCH-03, separately \u03bb-exposed and not bundled here.",
+        "Codec-local Q tuning, separate apply deferral, and traversal-count reduction remain scoped local findings with their recorded reopening triggers; none supplies a global ceiling."
+      ],
+      "reopen_trigger": "After a direct falsifier, reopen only on a changed interface: a new fold primitive that accepts the carry representation, an LSBS/fold-window bound with extra proven headroom, a schedule change that creates a matched existing carrier while preserving s2 pairing, or an approved exact-stream strip proof/re-mine. Do not reopen because a local k sweep was flat, a budget expired, or a timeout occurred.",
+      "reproduction": [
+        "# D0 source map, to be run only after an isolated implementer dispatch\nrg -n 'apply_step_forward|apply_step_reverse|controlled_mod_sub_vented|controlled_add_active_cout|fused_double_cdouble|fused_double_cdouble_reverse|next_cout_k' src/point_add/trailmix_ludicrous/{gcd.rs,fused.rs,gidney.rs,mod.rs}",
+        "# D1 default identity after trace-only implementation\ncd /tmp/r2-bz03-carry && env -u TLM_TAIL_CARRY_FOLD -u TLM_TAIL_CARRY_FOLD_TRACE CARGO_TARGET_DIR=/tmp/r2-bz03-carry-target cargo run --release --bin build_circuit && sha256sum ops.bin && PYTHONDONTWRITEBYTECODE=1 python3 -B src/point_add/memory/repro/artifact_io.py ops.bin",
+        "# D1 trace-only discriminator\ncd /tmp/r2-bz03-carry && TLM_TAIL_CARRY_FOLD_TRACE=1 TRACE_TLM_TOF=1 TRACE_TLM_CCX=1 CARGO_TARGET_DIR=/tmp/r2-bz03-carry-target cargo run --release --bin build_circuit 2>&1 | tee /tmp/r2-bz03-carry-trace.log",
+        "# D2 single rollback unit, only if D1 is positive\ncd /tmp/r2-bz03-carry && TLM_TAIL_CARRY_FOLD=1 TRACE_TLM_TOF=1 TRACE_TLM_CCX=1 CARGO_TARGET_DIR=/tmp/r2-bz03-carry-target cargo run --release --bin build_circuit 2>&1 | tee /tmp/r2-bz03-carry-candidate.log; sha256sum ops.bin",
+        "# D3 light semantic/Q/strip gate, only if D2 hash differs\ncd /tmp/r2-bz03-carry && TLM_TAIL_CARRY_FOLD=1 TLM_STRADDLE_VERIFY=64 TRACE_TLM_PROFILE=1 B0_WIN_LO=25940 B0_WIN_HI=26010 CARGO_TARGET_DIR=/tmp/r2-bz03-carry-target cargo run --release --bin build_circuit 2>&1 | tee /tmp/r2-bz03-carry-gate.log",
+        "# Observe, never silently start, continuations\nPYTHONDONTWRITEBYTECODE=1 PYTHONPATH=.pi python3 -B -m harness.cli continuations"
+      ]
+    },
+    "residual_risks": [
+      "High: a delayed carry lifetime can raise Q at the apply plateau even if it removes gates; D2 must reject Q>1154.",
+      "High: a syntactically paired edit can still break phase cleanup; the proof/miter and four-check gate are mandatory.",
+      "High: stream-order coupling can erase raw savings; no final score projection is valid until occupancy/source certificate evidence.",
+      "Medium: the 17.62 frontier lambda makes small positive lambda movement economically expensive; zero is a target, not evidence.",
+      "Operational: pending P2/BZ metrology and SM-01 are not authorization to continue or to claim results."
+    ],
+    "no_global_ceiling": "Explicitly none. The bounded BZ-03 no-op rejects only scalar schedule fill values at four calls. This independently scoped carry-state/card can be refuted or parked without excluding other tail, shared-primitive, codec, square, or representation families."
+  },
+  "recovery": {
+    "status": "SCOPED",
+    "reason": "Read-only round-2 BZ-03 plateau reframe completed; no source or lifecycle action was taken.",
+    "bundle_directory": "/tmp/exp-r2-bz03-arch07-recovery",
+    "exact_reproduction_command": "cd /tmp/r2-bz03-carry && TLM_TAIL_CARRY_FOLD_TRACE=1 TRACE_TLM_TOF=1 TRACE_TLM_CCX=1 CARGO_TARGET_DIR=/tmp/r2-bz03-carry-target cargo run --release --bin build_circuit 2>&1 | tee /tmp/r2-bz03-carry-trace.log"
+  }
+}

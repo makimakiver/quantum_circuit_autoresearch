@@ -1,0 +1,5 @@
+Workflow completed with 4 child run(s). Return: [
+  {
+    "key": "frontier",
+    "runId": "40e798b8",
+    "output": "{\n  \"candidate_ops_sha256\": \"6519bd01424d5513cd7f8232d4c15dfcbfe67561eb1b7f05b2cfec87c233a097\",\n  \"canonical_ops_sha256\": \"0a4a412c939b05f59fa4bc33c2410e5bc110b07c7faded5e6db5f6b5db3ed0b0\",\n  \"changed_paths\": [],\n  \"commands\": [\n    \"set -euo pipefail; git rev-parse HEAD; git status --porcelain=v1 --untracked-files=all -- src Cargo.toml Cargo.lock build.rs rust-toolchain rust-toolchain.toml .cargo; git diff --binary -- src/point_add | shasum -a 256; git diff --name-only -- src/point_add; PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=.pi python3 - <<'PY' ... artifact_io.fingerprint(Path('ops.bin')); tree_digest(Path.cwd(), SCORED_PREFIXES); tree_digest(Path.cwd(), TRUSTED_PREFIXES) ... PY; PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=.pi python3 - <<'PY' ... ownership_violations('frontier-auditor', []) ... PY\",\n    \"python3 .pi/skills/circuit-evidence/scripts/emit_recovery_bundle.py --status PARKED --reason 'Read-o Trace: 8 event(s).

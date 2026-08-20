@@ -1,0 +1,23 @@
+{
+  "authority": "parent-only",
+  "campaign": "one bounded Fleet v3 optimization selection",
+  "createdUtc": "2026-08-16T23:18:54Z",
+  "kind": "parent-owned-dispatch-receipt",
+  "notAuthorized": [
+    "implementer",
+    "lambda-metrologist",
+    "evaluator-certifier",
+    "nonce-grinder",
+    "strip-census-miner"
+  ],
+  "plannedRoles": [
+    "frontier-auditor",
+    "exploitation-tuner",
+    "structural-researcher",
+    "cross-cell-reframer"
+  ],
+  "preflightRequired": true,
+  "repository": "/Users/makimakiver/ecdsafail-challenge",
+  "schemaVersion": 1,
+  "writerAuthorization": false
+}

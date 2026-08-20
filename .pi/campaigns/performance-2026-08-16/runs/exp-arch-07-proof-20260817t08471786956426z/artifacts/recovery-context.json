@@ -1,0 +1,51 @@
+{
+  "artifact_hashes": {
+    ".pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/artifacts/commands.txt": "d2e17a8e1ca74f47c6c7528d644ffe3e724f5388c594a36f4fb7aea22fa569d0",
+    ".pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/artifacts/d0-extraction-map.json": "1f19fbf5e57062f9d95e560400c8a51121a09c5ad99ee29460c5aa1cda0c6f64",
+    ".pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/artifacts/d0.stdout.log": "20e358a2eb1c26a9cf9e08f134e2e79a8da4970516f8dd42f08b6a34d198474e",
+    ".pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/artifacts/d1.json": "7a413dc9bcb23ab6ee2bf72dfc09805d48e552a16f6366b75ced03facb7c9162",
+    ".pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/artifacts/d1.stdout.log": "8358f27cbb2b754c0396cf97765142d7b3306aeacbab3b834e6e6a23b1154f23",
+    ".pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/artifacts/exp_arch07_miter.py": "c302afb370b9785f23bb15955e8e5dc821434c066aca37da3b66070364c5344c",
+    ".pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/artifacts/replay.json": "72add013ab3de9baf4645dcdb50c18fe9cb0bb10e09e00fa188929436f593c42",
+    ".pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/artifacts/replay.stdout.log": "6f4e94037519abf8f748aaae15b2810b1dce25ac25fc720a31e3fd64a51454aa"
+  },
+  "changed_paths": [
+    ".pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/artifacts/exp_arch07_miter.py",
+    ".pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/artifacts/d0-extraction-map.json",
+    ".pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/artifacts/d0.stdout.log",
+    ".pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/artifacts/d1.json",
+    ".pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/artifacts/d1.stdout.log",
+    ".pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/artifacts/replay.json",
+    ".pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/artifacts/replay.stdout.log",
+    ".pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/artifacts/commands.txt",
+    ".pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/proof-agent-output.json"
+  ],
+  "commands_ref": ".pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/artifacts/commands.txt",
+  "experiment_id": "EXP-ARCH-07",
+  "gates": {
+    "D0_extraction_map": "passed",
+    "D1_integer_miter": "witness",
+    "D2_bv_query": "skipped because D1 witness is verified",
+    "independent_replay": "passed"
+  },
+  "partial_result_json_ref": ".pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/proof-agent-output.json",
+  "partial_result_json_sha256": "1d24d8c534c32942d3e2a904e0b0df51673aa522f7f4c56378048a4cab16ef51",
+  "proof_result": {
+    "D0": "PASSED",
+    "D1": "VERIFIED_WITNESS (28/28)",
+    "D2": "NOT_RUN_PRECONDITION_FALSE",
+    "replay": "INDEPENDENT_INTEGER_REPLAY_PASSED"
+  },
+  "reason": "D0 exact extraction passed; D1 found all 28 finite-corpus local-cone mismatches; first witness independently replayed by exact integer miter. D2 was not run because its D1-no-witness precondition was false.",
+  "remaining_obligations": [
+    "No source candidate exists. Any different term/extraction/restoration boundary needs a new dispatched proof; this finding does not address later source uses, paired restoration, phase/ancilla, Q, strip occupancy, lambda, or four-check evaluation."
+  ],
+  "reopening_trigger": "a different transported term, extraction map, restoration boundary, or exact source certificate restricting this local witness outside the candidate domain",
+  "run_id": "exp-arch-07-proof-20260817t08471786956426z",
+  "scientific_verdict": "REFUTED_DIRECT_NO_CARRIER_TERM_TRANSPORT",
+  "status": "REFUTED",
+  "unsat_certificate": null,
+  "witness_ref": ".pi/campaigns/performance-2026-08-16/runs/exp-arch-07-proof-20260817t08471786956426z/artifacts/replay.json",
+  "worktree_patch": "none",
+  "worktree_patch_sha256": null
+}

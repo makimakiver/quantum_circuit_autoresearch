@@ -1,0 +1,41 @@
+{
+  "artifacts": [
+    {
+      "exists": true,
+      "path": "/Users/makimakiver/ecdsafail-challenge/.pi/campaigns/campaign-20260817t082219z/runs/impl-rev01-20260817t083749z/attribution-ledger.md",
+      "resolved_path": "/Users/makimakiver/ecdsafail-challenge/.pi/campaigns/campaign-20260817t082219z/runs/impl-rev01-20260817t083749z/attribution-ledger.md",
+      "sha256": "2519d6040dc63c52c7514d3a242d9f4804f8675e989bb62815338f52a115fa84",
+      "size": 4821
+    },
+    {
+      "exists": true,
+      "path": "/Users/makimakiver/ecdsafail-challenge/.pi/campaigns/campaign-20260817t082219z/runs/impl-rev01-20260817t083749z/recovery/rev01-stage1.patch",
+      "resolved_path": "/Users/makimakiver/ecdsafail-challenge/.pi/campaigns/campaign-20260817t082219z/runs/impl-rev01-20260817t083749z/recovery/rev01-stage1.patch",
+      "sha256": "77ced77b1c3526424628f648af52842097a0d0753473f4f1492996a51ec5ee56",
+      "size": 5317
+    }
+  ],
+  "commands": [
+    "cd /Users/makimakiver/ecdsafail-wt/rev01 && TRACE_TLM_REVERSE_STAGES=1 TRACE_TLM_CCX=1 TRACE_TLM_TOF=1 CARGO_TARGET_DIR=/Users/makimakiver/ecdsafail-wt/shared-target cargo run --release --bin build_circuit"
+  ],
+  "continuation": null,
+  "experiment_id": "EXP-REV-01",
+  "logs": [
+    {
+      "exists": true,
+      "path": "/Users/makimakiver/ecdsafail-challenge/.pi/campaigns/campaign-20260817t082219z/runs/impl-rev01-20260817t083749z/terminal.log",
+      "resolved_path": "/Users/makimakiver/ecdsafail-challenge/.pi/campaigns/campaign-20260817t082219z/runs/impl-rev01-20260817t083749z/terminal.log",
+      "size": 225,
+      "tail": [
+        "[08:48:34Z] gates 1-2 complete: ownership OK, default-off compressed+canonical identities pinned",
+        "[08:53:44Z] gate 3 complete: attribution ledger written; stage-2 trigger NOT met (add/cswap premium 0 net); verdict UNSUPPORTED"
+      ]
+    }
+  ],
+  "reason": "Stage-1 attribution complete; stage-2 trigger not met (no positive reverse premium under matched boundaries); no functional change shipped",
+  "repository": "/Users/makimakiver/ecdsafail-challenge",
+  "schema_version": 1,
+  "source_commit": "a2067dcf3c991bcecfd51a4bf07cd7d1cc56c3a5",
+  "status": "IMPLEMENTED",
+  "timestamp_utc": "2026-08-17T08:53:54.388918+00:00"
+}

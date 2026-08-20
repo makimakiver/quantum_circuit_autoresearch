@@ -1,0 +1,50 @@
+{
+  "schema_version": 2,
+  "experiment_id": "DISCOVERY-LAMBDA",
+  "role": "lambda-metrologist",
+  "status": "INCONCLUSIVE",
+  "frontier_id": "2026-08-16-a2067dcf",
+  "candidate_ops_sha256": "9cb5010bc5f4a534d82a88a80e80cbd613889d8ce4de54e6487b6e9cb0f18d27",
+  "changed_paths": [],
+  "evidence": {
+    "continuation": ".pi/continuations/EXP-P2-BZ-METRO.json",
+    "findings_ref": ".pi/campaigns/campaign-20260817t082219z/runs/lambda-20260817t082608z/findings.md",
+    "analysis": "read-only existing-log parse; arm B and C INCONCLUSIVE",
+    "arm_hashes_verified": true,
+    "final_stream_mismatch": true,
+    "round_max_coverage": "32/400"
+  },
+  "metrics": {
+    "rounds": 400,
+    "lanes_per_round": 64,
+    "armB_delta_lambda": 4.5825,
+    "armB_ci95": [
+      1.8464534645192434,
+      7.318546535480756
+    ],
+    "armC_delta_lambda": 0.705,
+    "armC_ci95": [
+      -1.1553337076731687,
+      2.565333707673169
+    ]
+  },
+  "verification": {
+    "lifecycle_mutated": false,
+    "full_evaluation_run": false,
+    "driver_restarted": false,
+    "source_edited": false
+  },
+  "nonce_env": "SUB4_TAIL_NONCE",
+  "nonce": 1337610097,
+  "commands": [
+    "PYTHONPATH=.pi python3 -m harness.cli continuations",
+    "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=.pi python3 -B -m harness.cli analyze-p2-bz",
+    "shasum -a 256 /tmp/exp_p2_bz_metro/armA/ops.bin /tmp/exp_p2_bz_metro/armB/ops.bin /tmp/exp_p2_bz_metro/armC/ops.bin"
+  ],
+  "run_id": "lambda-20260817t082608z",
+  "dispatch_ref": ".pi/campaigns/campaign-20260817t082219z/runs/lambda-20260817t082608z/dispatch.json",
+  "checkpoint_ref": ".pi/campaigns/campaign-20260817t082219z/runs/lambda-20260817t082608z/checkpoint.json",
+  "terminal_ref": ".pi/campaigns/campaign-20260817t082219z/runs/lambda-20260817t082608z/terminal.log",
+  "recovery_ref": ".pi/campaigns/campaign-20260817t082219z/runs/lambda-20260817t082608z/recovery/metrology-audit",
+  "scientific_verdict": "INCONCLUSIVE"
+}

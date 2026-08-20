@@ -1,0 +1,7 @@
+preflight timestamp=2026-08-17T08:26:44Z
+worktree:
+a2067dcf3c991bcecfd51a4bf07cd7d1cc56c3a5
+status:
+root pyc:
+016debdfcfe5a6f7827bfb1610344ed98bfe0d1720a7458618ecb94faddffe89  /Users/makimakiver/ecdsafail-challenge/src/point_add/memory/repro/__pycache__/artifact_io.cpython-313.pyc
+root pyc status:

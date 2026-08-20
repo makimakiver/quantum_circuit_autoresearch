@@ -1,0 +1,100 @@
+{
+  "candidate_ops_sha256": "0e2afb690e0a6e01865e1962a850ed146f29a3112bf8c790c9ca7e3c64766dbc",
+  "changed_paths": [],
+  "commands": [
+    "TLM_SQUARE_ADDSUB_LOCAL=1 TRACE_TLM_TOF=1 CARGO_TARGET_DIR=/tmp/fleet-v3-square-addsub-local-20260816t233502Z/target-tof cargo run --release --bin build_circuit"
+  ],
+  "evidence": {
+    "artifact": {
+      "bytes": 29379214,
+      "path": "/tmp/fleet-v3-square-addsub-local-20260816t233502Z/ops.bin",
+      "sha256": "0e2afb690e0a6e01865e1962a850ed146f29a3112bf8c790c9ca7e3c64766dbc"
+    },
+    "artifact_identity_matches_receipt": true,
+    "discovery_card": {
+      "budget": "Consumed exactly one authorized TRACE_TLM_TOF build; no remaining build/evaluation/metrology authority in this receipt.",
+      "cheapest_discriminator": "A separately authorized matched baseline/candidate pricing gate that reports final post-strip emitted-Toffoli-family delta and independently establishes candidate Q; only if its margin can plausibly exceed the 5,538 rounded-executed-T penalty should bounded lambda metrology/evaluation be considered.",
+      "evidence_debt": [
+        "no matched baseline TRACE_TLM_TOF delta",
+        "no final post-strip emitted-Toffoli-family count",
+        "no independently measured Q (1159 is task-stated only)",
+        "no executed-Toffoli measurement",
+        "no correctness/reversibility/phase/ancilla evaluation",
+        "no paired lambda evidence"
+      ],
+      "falsifier": "Any authorized executed-T measurement with round(T) > 1,277,949 at Q=1159 falsifies score improvement; equivalently, an executed reduction below 5,538 from the frontier rounded T cannot win.",
+      "mechanism": "Local square add/sub scheduling candidate, priced only through TRACE_TLM_TOF emitted/expected phase totals and post-strip emitted-operation diagnostics.",
+      "predicted_signs": {
+        "Q": "+5 versus frontier, stated candidate Q=1159",
+        "emitted_toffoli": "candidate hypothesis is favorable locally, but this one-sided trace establishes no delta",
+        "executed_toffoli": "unknown; emitted/expected counts are not executed T",
+        "lambda": "unknown; not measured"
+      },
+      "reopening_trigger": "Parent authorizes a bounded paired pricing/metrology gate after resolving the 1,742 stale deep-strip keys and after a plausible executed-T margin over the 5,538 threshold is demonstrated.",
+      "search_radius": "One parent-authorized candidate build, TLM_SQUARE_ADDSUB_LOCAL=1; no baseline/on-off paired run."
+    },
+    "dispatch_receipt": ".pi/campaign-runs/20260816t232122Z/rescue/square-addsub-local-tof-profile/dispatch.json",
+    "recovery_manifest": "/tmp/fleet-v3-square-addsub-local-20260816t233502Z-recovery/RESCUE-SQUARE-ADDSUB-LOCAL-recovery.json",
+    "recovery_terminal_log": "/tmp/fleet-v3-square-addsub-local-20260816t233502Z/recovery-terminal.log",
+    "sandbox": "/tmp/fleet-v3-square-addsub-local-20260816t233502Z",
+    "scope": {
+      "authorized_builds_completed": 1,
+      "census_run": false,
+      "control_plane_changes_by_lane": [
+        "mandated result.json only"
+      ],
+      "evaluation_run": false,
+      "metrology_run": false,
+      "nonce_grind_run": false,
+      "source_changed_by_lane": false,
+      "staged_files_in_sandbox": []
+    },
+    "source_commit_reported_by_recovery": "a2067dcf3c991bcecfd51a4bf07cd7d1cc56c3a5",
+    "terminal_log": "/tmp/fleet-v3-square-addsub-local-20260816t233502Z/terminal.log"
+  },
+  "experiment_id": "RESCUE-SQUARE-ADDSUB-LOCAL",
+  "frontier_id": "2026-08-16-a2067dcf",
+  "metrics": {
+    "Q_provenance": "Task statement; TRACE_TLM_TOF output did not emit a Q metric, so Q was not independently measured.",
+    "break_even": {
+      "formula": "round(T_candidate) * 1159 < 1481143998",
+      "maximum_winning_rounded_executed_T": 1277949,
+      "required_reduction_from_frontier_rounded_executed_T": 5538,
+      "score_at_maximum_winning_T": 1481142891,
+      "score_at_next_integer_T": 1481144050
+    },
+    "executed_score_conversion": "NOT PERFORMED: trace emitted/expected counts were not converted to executed T or score.",
+    "frontier": {
+      "Q": 1154,
+      "rounded_executed_T": 1283487,
+      "score": 1481143998
+    },
+    "post_strip": {
+      "deep_strip_dead_denominator": 12202,
+      "deep_strip_dead_removed": 11134,
+      "deep_strip_downgrade_denominator": 4045,
+      "deep_strip_downgraded": 3371,
+      "deep_strip_stale_keys_skipped": 1742,
+      "emitted_operations": 8839187,
+      "post_strip_target_fanout_passes": 10
+    },
+    "stated_candidate_Q": 1159,
+    "trace_tof_total": {
+      "discount": 0.0379,
+      "emitted": 1407600,
+      "expected": 1354242.0
+    }
+  },
+  "nonce_env": "SUB4_TAIL_NONCE",
+  "role": "exploitation-tuner",
+  "schema_version": 1,
+  "scientific_verdict": "INCONCLUSIVE: exact candidate artifact was reproduced, but emitted TRACE_TLM_TOF evidence cannot price executed T and does not clear the Q=1159 break-even gate.",
+  "status": "INCONCLUSIVE",
+  "verification": {
+    "build_exit": "success",
+    "build_terminal_marker": "=== build_circuit OK ===",
+    "directional_gate_decision": "NOT JUSTIFIED",
+    "directional_gate_reason": "The one-sided emitted trace provides no baseline delta or executed-T evidence, and it reports 1,742 stale deep-strip keys. With Q stated at 1159, a candidate must reduce rounded executed T by at least 5,538; this trace cannot show that condition. No later bounded metrology/evaluation gate is justified from this evidence alone.",
+    "no_evaluation_or_metrology_claim": true
+  }
+}

@@ -1,0 +1,73 @@
+{
+  "schema_version": 2,
+  "experiment_id": "EXP-REV-01",
+  "role": "implementer",
+  "status": "IMPLEMENTED",
+  "frontier_id": "2026-08-16-a2067dcf",
+  "candidate_ops_sha256": "6519bd01424d5513cd7f8232d4c15dfcbfe67561eb1b7f05b2cfec87c233a097",
+  "canonical_ops_sha256": "0a4a412c939b05f59fa4bc33c2410e5bc110b07c7faded5e6db5f6b5db3ed0b0",
+  "changed_paths": [
+    "src/point_add/trailmix_ludicrous/gcd.rs"
+  ],
+  "evidence": {
+    "attribution_ledger_ref": ".pi/campaigns/campaign-20260817t082219z/runs/impl-rev01-20260817t083749z/attribution-ledger.md",
+    "trace_build_log_ref": ".pi/campaigns/campaign-20260817t082219z/runs/impl-rev01-20260817t083749z/gate3-attribution-build.log",
+    "default_build_log_ref": ".pi/campaigns/campaign-20260817t082219z/runs/impl-rev01-20260817t083749z/gate2-default-build.log",
+    "patch_ref": ".pi/campaigns/campaign-20260817t082219z/runs/impl-rev01-20260817t083749z/recovery/rev01-stage1.patch",
+    "patch_sha256": "77ced77b1c3526424628f648af52842097a0d0753473f4f1492996a51ec5ee56",
+    "worktree_commit": "eb63629",
+    "worktree": "/Users/makimakiver/ecdsafail-wt/rev01",
+    "knob_liveness": "TRACE_TLM_REVERSE_STAGES=1 produced 16 rt_* per-stage phase rows in TLM_CCX/TLM_TOF output; ops.bin remained baseline-identical (non-perturbing instrumentation)",
+    "attribution_summary": "matched-boundary reverse premium is NEGATIVE (mr-mf -1068.5, ir-if -9313.0 executed); claimed +59,242 decomposes as 2x34,899 shift-boundary artifact - 10,555.5 comparator condition-stack discount + 174 codec delta (residual 0.29%)",
+    "stage2_decision": "trigger NOT met: add/cswap mutable-bucket premium 0 emitted CCX net; stage 2 skipped per card gate",
+    "new_direction_recorded": "per-pass add k-fit asymmetry (69,549 vs 73,468 executed in mirrored pairs; ~-7,838 potential) recorded as separate exploitation card candidate, out of EXP-REV-01 scope"
+  },
+  "metrics": {
+    "prepostpass_emitted_toffoli": 1352434,
+    "prepostpass_expected_executed": 1299076.0,
+    "prepostpass_discount": 0.0395,
+    "walk_totals_executed": {
+      "multiply_forward": 150892.0,
+      "multiply_reverse": 149823.5,
+      "inverse_forward": 155082.0,
+      "inverse_reverse": 145769.0
+    },
+    "matched_boundary_reverse_premium_combined": -10381.5,
+    "delta_T": 0,
+    "delta_Q": 0,
+    "delta_score": 0
+  },
+  "verification": {
+    "gate1_ownership": "changed only src/point_add/trailmix_ludicrous/gcd.rs; harness ownership_violations NONE",
+    "gate2_default_identity": "clean-env build reproduced ops sha 6519bd...a097 and canonical 0a4a41...ed0b0 (harness verify-default); emitted_ops 8,958,690; Q 1154",
+    "gate3_antinoop": "trace-enabled knob is live via ledger rows and provably non-perturbing (ops hash unchanged); stage-2 functional candidate intentionally not produced (trigger not met)",
+    "gate4_selftest": "build_circuit in-build selftests green on both builds; byte-identity A/B (clean vs trace env) is the semantic obligation for a trace-only change",
+    "gate5_schedule_audit": "not applicable: no schedule accessor touched",
+    "gate6_score_projection": "no functional change: dT=0 dQ=0 dS=0 vs S=1481143998",
+    "gate7_schedule_semantic": "not applicable: instrumentation only",
+    "build_count_used": 2,
+    "build_budget_max": 5,
+    "full_evaluation_run": false,
+    "nonce_grind": false
+  },
+  "nonce_env": "SUB4_TAIL_NONCE",
+  "nonce": 1337610097,
+  "commands": [
+    "cd /Users/makimakiver/ecdsafail-wt/rev01 && git worktree at a2067dcf; commit eb63629",
+    "env -i PATH HOME CARGO_TARGET_DIR=/Users/makimakiver/ecdsafail-wt/shared-target cargo run --release --bin build_circuit",
+    "TRACE_TLM_REVERSE_STAGES=1 TRACE_TLM_CCX=1 TRACE_TLM_TOF=1 CARGO_TARGET_DIR=/Users/makimakiver/ecdsafail-wt/shared-target cargo run --release --bin build_circuit",
+    "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=.pi python3 -B -m harness.cli verify-default --ops /Users/makimakiver/ecdsafail-wt/rev01/ops.bin"
+  ],
+  "recovery": {
+    "status": "IMPLEMENTED",
+    "reason": "stage-1 attribution complete; stage-2 skipped per predeclared trigger",
+    "bundle_ref": ".pi/campaigns/campaign-20260817t082219z/runs/impl-rev01-20260817t083749z/recovery/final"
+  },
+  "timestamp": "2026-08-17T08:56:30Z",
+  "run_id": "impl-rev01-20260817t083749z",
+  "dispatch_ref": ".pi/campaigns/campaign-20260817t082219z/runs/impl-rev01-20260817t083749z/dispatch.json",
+  "checkpoint_ref": ".pi/campaigns/campaign-20260817t082219z/runs/impl-rev01-20260817t083749z/checkpoint.json",
+  "terminal_ref": ".pi/campaigns/campaign-20260817t082219z/runs/impl-rev01-20260817t083749z/terminal.log",
+  "recovery_ref": ".pi/campaigns/campaign-20260817t082219z/runs/impl-rev01-20260817t083749z/recovery/final",
+  "scientific_verdict": "UNSUPPORTED"
+}

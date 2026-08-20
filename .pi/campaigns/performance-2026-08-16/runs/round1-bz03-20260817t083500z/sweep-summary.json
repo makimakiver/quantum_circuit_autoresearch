@@ -1,0 +1,293 @@
+{
+  "all_arms_flat_and_non_improving": true,
+  "arms": [
+    {
+      "artifact_ref": ".pi/campaigns/performance-2026-08-16/runs/round1-bz03-20260817t083500z/artifacts/default/ops.bin",
+      "build_log_ref": ".pi/campaigns/performance-2026-08-16/runs/round1-bz03-20260817t083500z/logs/default.log",
+      "canonical_ops_sha256": "0a4a412c939b05f59fa4bc33c2410e5bc110b07c7faded5e6db5f6b5db3ed0b0",
+      "compressed_ops_sha256": "6519bd01424d5513cd7f8232d4c15dfcbfe67561eb1b7f05b2cfec87c233a097",
+      "deep_strip": {
+        "dead_removed": 12202,
+        "dead_total": 12202,
+        "downgrade_total": 4045,
+        "downgraded": 4045,
+        "stale_keys_skipped": 0
+      },
+      "emitted_ops": 8958690,
+      "fingerprint_ref": ".pi/campaigns/performance-2026-08-16/runs/round1-bz03-20260817t083500z/artifacts/default/fingerprint.json",
+      "label": "default",
+      "max_referenced_qubit_id": 1153,
+      "overrides": null,
+      "qubits": 1154,
+      "tof": {
+        "forward_register": {
+          "emitted": 160495,
+          "expected": 147799.0
+        },
+        "inverse_register": {
+          "emitted": 161682,
+          "expected": 148392.5
+        },
+        "total": {
+          "discount": 0.0395,
+          "emitted": 1352434,
+          "expected": 1299076.0
+        }
+      },
+      "trace_ref": ".pi/campaigns/performance-2026-08-16/runs/round1-bz03-20260817t083500z/artifacts/default/trace-and-strip.txt"
+    },
+    {
+      "artifact_ref": ".pi/campaigns/performance-2026-08-16/runs/round1-bz03-20260817t083500z/artifacts/k-22/ops.bin",
+      "build_log_ref": ".pi/campaigns/performance-2026-08-16/runs/round1-bz03-20260817t083500z/logs/k-22.log",
+      "canonical_ops_sha256": "0a4a412c939b05f59fa4bc33c2410e5bc110b07c7faded5e6db5f6b5db3ed0b0",
+      "compressed_ops_sha256": "6519bd01424d5513cd7f8232d4c15dfcbfe67561eb1b7f05b2cfec87c233a097",
+      "deep_strip": {
+        "dead_removed": 12202,
+        "dead_total": 12202,
+        "downgrade_total": 4045,
+        "downgraded": 4045,
+        "stale_keys_skipped": 0
+      },
+      "emitted_ops": 8958690,
+      "fingerprint_ref": ".pi/campaigns/performance-2026-08-16/runs/round1-bz03-20260817t083500z/artifacts/k-22/fingerprint.json",
+      "label": "k-22",
+      "max_referenced_qubit_id": 1153,
+      "overrides": "258:22,259:22,262:22,263:22",
+      "qubits": 1154,
+      "tof": {
+        "forward_register": {
+          "emitted": 160495,
+          "expected": 147799.0
+        },
+        "inverse_register": {
+          "emitted": 161682,
+          "expected": 148392.5
+        },
+        "total": {
+          "discount": 0.0395,
+          "emitted": 1352434,
+          "expected": 1299076.0
+        }
+      },
+      "trace_ref": ".pi/campaigns/performance-2026-08-16/runs/round1-bz03-20260817t083500z/artifacts/k-22/trace-and-strip.txt"
+    },
+    {
+      "artifact_ref": ".pi/campaigns/performance-2026-08-16/runs/round1-bz03-20260817t083500z/artifacts/k-25/ops.bin",
+      "build_log_ref": ".pi/campaigns/performance-2026-08-16/runs/round1-bz03-20260817t083500z/logs/k-25.log",
+      "canonical_ops_sha256": "0a4a412c939b05f59fa4bc33c2410e5bc110b07c7faded5e6db5f6b5db3ed0b0",
+      "compressed_ops_sha256": "6519bd01424d5513cd7f8232d4c15dfcbfe67561eb1b7f05b2cfec87c233a097",
+      "deep_strip": {
+        "dead_removed": 12202,
+        "dead_total": 12202,
+        "downgrade_total": 4045,
+        "downgraded": 4045,
+        "stale_keys_skipped": 0
+      },
+      "emitted_ops": 8958690,
+      "fingerprint_ref": ".pi/campaigns/performance-2026-08-16/runs/round1-bz03-20260817t083500z/artifacts/k-25/fingerprint.json",
+      "label": "k-25",
+      "max_referenced_qubit_id": 1153,
+      "overrides": "258:25,259:25,262:25,263:25",
+      "qubits": 1154,
+      "tof": {
+        "forward_register": {
+          "emitted": 160495,
+          "expected": 147799.0
+        },
+        "inverse_register": {
+          "emitted": 161682,
+          "expected": 148392.5
+        },
+        "total": {
+          "discount": 0.0395,
+          "emitted": 1352434,
+          "expected": 1299076.0
+        }
+      },
+      "trace_ref": ".pi/campaigns/performance-2026-08-16/runs/round1-bz03-20260817t083500z/artifacts/k-25/trace-and-strip.txt"
+    },
+    {
+      "artifact_ref": ".pi/campaigns/performance-2026-08-16/runs/round1-bz03-20260817t083500z/artifacts/k-31/ops.bin",
+      "build_log_ref": ".pi/campaigns/performance-2026-08-16/runs/round1-bz03-20260817t083500z/logs/k-31.log",
+      "canonical_ops_sha256": "0a4a412c939b05f59fa4bc33c2410e5bc110b07c7faded5e6db5f6b5db3ed0b0",
+      "compressed_ops_sha256": "6519bd01424d5513cd7f8232d4c15dfcbfe67561eb1b7f05b2cfec87c233a097",
+      "deep_strip": {
+        "dead_removed": 12202,
+        "dead_total": 12202,
+        "downgrade_total": 4045,
+        "downgraded": 4045,
+        "stale_keys_skipped": 0
+      },
+      "emitted_ops": 8958690,
+      "fingerprint_ref": ".pi/campaigns/performance-2026-08-16/runs/round1-bz03-20260817t083500z/artifacts/k-31/fingerprint.json",
+      "label": "k-31",
+      "max_referenced_qubit_id": 1153,
+      "overrides": "258:31,259:31,262:31,263:31",
+      "qubits": 1154,
+      "tof": {
+        "forward_register": {
+          "emitted": 160495,
+          "expected": 147799.0
+        },
+        "inverse_register": {
+          "emitted": 161682,
+          "expected": 148392.5
+        },
+        "total": {
+          "discount": 0.0395,
+          "emitted": 1352434,
+          "expected": 1299076.0
+        }
+      },
+      "trace_ref": ".pi/campaigns/performance-2026-08-16/runs/round1-bz03-20260817t083500z/artifacts/k-31/trace-and-strip.txt"
+    },
+    {
+      "artifact_ref": ".pi/campaigns/performance-2026-08-16/runs/round1-bz03-20260817t083500z/artifacts/k-45/ops.bin",
+      "build_log_ref": ".pi/campaigns/performance-2026-08-16/runs/round1-bz03-20260817t083500z/logs/k-45.log",
+      "canonical_ops_sha256": "0a4a412c939b05f59fa4bc33c2410e5bc110b07c7faded5e6db5f6b5db3ed0b0",
+      "compressed_ops_sha256": "6519bd01424d5513cd7f8232d4c15dfcbfe67561eb1b7f05b2cfec87c233a097",
+      "deep_strip": {
+        "dead_removed": 12202,
+        "dead_total": 12202,
+        "downgrade_total": 4045,
+        "downgraded": 4045,
+        "stale_keys_skipped": 0
+      },
+      "emitted_ops": 8958690,
+      "fingerprint_ref": ".pi/campaigns/performance-2026-08-16/runs/round1-bz03-20260817t083500z/artifacts/k-45/fingerprint.json",
+      "label": "k-45",
+      "max_referenced_qubit_id": 1153,
+      "overrides": "258:45,259:45,262:45,263:45",
+      "qubits": 1154,
+      "tof": {
+        "forward_register": {
+          "emitted": 160495,
+          "expected": 147799.0
+        },
+        "inverse_register": {
+          "emitted": 161682,
+          "expected": 148392.5
+        },
+        "total": {
+          "discount": 0.0395,
+          "emitted": 1352434,
+          "expected": 1299076.0
+        }
+      },
+      "trace_ref": ".pi/campaigns/performance-2026-08-16/runs/round1-bz03-20260817t083500z/artifacts/k-45/trace-and-strip.txt"
+    },
+    {
+      "artifact_ref": ".pi/campaigns/performance-2026-08-16/runs/round1-bz03-20260817t083500z/artifacts/k-60/ops.bin",
+      "build_log_ref": ".pi/campaigns/performance-2026-08-16/runs/round1-bz03-20260817t083500z/logs/k-60.log",
+      "canonical_ops_sha256": "0a4a412c939b05f59fa4bc33c2410e5bc110b07c7faded5e6db5f6b5db3ed0b0",
+      "compressed_ops_sha256": "6519bd01424d5513cd7f8232d4c15dfcbfe67561eb1b7f05b2cfec87c233a097",
+      "deep_strip": {
+        "dead_removed": 12202,
+        "dead_total": 12202,
+        "downgrade_total": 4045,
+        "downgraded": 4045,
+        "stale_keys_skipped": 0
+      },
+      "emitted_ops": 8958690,
+      "fingerprint_ref": ".pi/campaigns/performance-2026-08-16/runs/round1-bz03-20260817t083500z/artifacts/k-60/fingerprint.json",
+      "label": "k-60",
+      "max_referenced_qubit_id": 1153,
+      "overrides": "258:60,259:60,262:60,263:60",
+      "qubits": 1154,
+      "tof": {
+        "forward_register": {
+          "emitted": 160495,
+          "expected": 147799.0
+        },
+        "inverse_register": {
+          "emitted": 161682,
+          "expected": 148392.5
+        },
+        "total": {
+          "discount": 0.0395,
+          "emitted": 1352434,
+          "expected": 1299076.0
+        }
+      },
+      "trace_ref": ".pi/campaigns/performance-2026-08-16/runs/round1-bz03-20260817t083500z/artifacts/k-60/trace-and-strip.txt"
+    },
+    {
+      "artifact_ref": ".pi/campaigns/performance-2026-08-16/runs/round1-bz03-20260817t083500z/artifacts/k-90/ops.bin",
+      "build_log_ref": ".pi/campaigns/performance-2026-08-16/runs/round1-bz03-20260817t083500z/logs/k-90.log",
+      "canonical_ops_sha256": "0a4a412c939b05f59fa4bc33c2410e5bc110b07c7faded5e6db5f6b5db3ed0b0",
+      "compressed_ops_sha256": "6519bd01424d5513cd7f8232d4c15dfcbfe67561eb1b7f05b2cfec87c233a097",
+      "deep_strip": {
+        "dead_removed": 12202,
+        "dead_total": 12202,
+        "downgrade_total": 4045,
+        "downgraded": 4045,
+        "stale_keys_skipped": 0
+      },
+      "emitted_ops": 8958690,
+      "fingerprint_ref": ".pi/campaigns/performance-2026-08-16/runs/round1-bz03-20260817t083500z/artifacts/k-90/fingerprint.json",
+      "label": "k-90",
+      "max_referenced_qubit_id": 1153,
+      "overrides": "258:90,259:90,262:90,263:90",
+      "qubits": 1154,
+      "tof": {
+        "forward_register": {
+          "emitted": 160495,
+          "expected": 147799.0
+        },
+        "inverse_register": {
+          "emitted": 161682,
+          "expected": 148392.5
+        },
+        "total": {
+          "discount": 0.0395,
+          "emitted": 1352434,
+          "expected": 1299076.0
+        }
+      },
+      "trace_ref": ".pi/campaigns/performance-2026-08-16/runs/round1-bz03-20260817t083500z/artifacts/k-90/trace-and-strip.txt"
+    },
+    {
+      "artifact_ref": ".pi/campaigns/performance-2026-08-16/runs/round1-bz03-20260817t083500z/artifacts/k-138/ops.bin",
+      "build_log_ref": ".pi/campaigns/performance-2026-08-16/runs/round1-bz03-20260817t083500z/logs/k-138.log",
+      "canonical_ops_sha256": "0a4a412c939b05f59fa4bc33c2410e5bc110b07c7faded5e6db5f6b5db3ed0b0",
+      "compressed_ops_sha256": "6519bd01424d5513cd7f8232d4c15dfcbfe67561eb1b7f05b2cfec87c233a097",
+      "deep_strip": {
+        "dead_removed": 12202,
+        "dead_total": 12202,
+        "downgrade_total": 4045,
+        "downgraded": 4045,
+        "stale_keys_skipped": 0
+      },
+      "emitted_ops": 8958690,
+      "fingerprint_ref": ".pi/campaigns/performance-2026-08-16/runs/round1-bz03-20260817t083500z/artifacts/k-138/fingerprint.json",
+      "label": "k-138",
+      "max_referenced_qubit_id": 1153,
+      "overrides": "258:138,259:138,262:138,263:138",
+      "qubits": 1154,
+      "tof": {
+        "forward_register": {
+          "emitted": 160495,
+          "expected": 147799.0
+        },
+        "inverse_register": {
+          "emitted": 161682,
+          "expected": 148392.5
+        },
+        "total": {
+          "discount": 0.0395,
+          "emitted": 1352434,
+          "expected": 1299076.0
+        }
+      },
+      "trace_ref": ".pi/campaigns/performance-2026-08-16/runs/round1-bz03-20260817t083500z/artifacts/k-138/trace-and-strip.txt"
+    }
+  ],
+  "classification": "LOCAL_PLATEAU",
+  "default_identity_reproduced": true,
+  "experiment_id": "EXP-BZ-03",
+  "falsifier_outcome": "MET: all seven arms exactly match the default forward register expected 147799.0, inverse register expected 148392.5, total expected 1299076.0, identities, Q, and deep-strip stale-key count.",
+  "predeclared_falsifier": "All seven k arms are flat within \u00b120 CCX in the forward register expected-executed measure.",
+  "routing": "Route to cross-cell reframing; this bounded fill-entry sweep is not a global ceiling.",
+  "run_id": "round1-bz03-20260817t083500z",
+  "source_commit": "a2067dcf3c991bcecfd51a4bf07cd7d1cc56c3a5"
+}

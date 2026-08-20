@@ -1,0 +1,19 @@
+{
+  "artifact_hashes": {},
+  "changed_paths": [],
+  "commands": [
+    "derive implementation and geometry from source",
+    "read-only coverage ledger and falsifiable cards",
+    "no source mutation, full evaluation, metrology expansion, nonce grind, or promotion"
+  ],
+  "evidence_paths": [],
+  "gate": "DISPATCHED",
+  "remaining_obligations": [
+    "worker gate checkpoints",
+    "schema-v2 result",
+    "terminal recovery"
+  ],
+  "run_id": "lambda-20260817t082608z",
+  "schema_version": 1,
+  "timestamp": "2026-08-17T08:26:09Z"
+}

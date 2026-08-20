@@ -1,0 +1,44 @@
+{
+  "algebra": {
+    "expected": -4294968273,
+    "naf_sum": -4294968273,
+    "term_semantics": "selected source path subtracts (b_prod << 32) modulo p; high bits receive the source correction loop"
+  },
+  "interface": {
+    "codec": "raw=[subtracted,swp,s2], Step0 encoded=[t1 xor subtracted,s2], decoder restores raw and t1",
+    "controls": "Step0 t1=!v0; shift; s2=!v0; shift; subtracted=v0; swp=subtracted",
+    "square": "hi=lambda[128..256]; b_prod=hi^2 (256-bit raw product); selected term is b_hi_f_32_sub",
+    "walk": "post-square x2 is passed as xv to Direction::Forward -> forward_gcd_jump"
+  },
+  "passed": true,
+  "required_textual_anchors": {
+    "b_hi_f_sub_call": true,
+    "b_prod_is_square_of_hi": true,
+    "encoder_s2_pair": true,
+    "forward_walk": true,
+    "full_width_path": true,
+    "high_bit_correction_sub": true,
+    "selected_hi_term_helper": true,
+    "selected_naf_32_sub": true,
+    "shifted_low_sub": true,
+    "square_then_forward": true,
+    "step0_decode": true,
+    "step0_encode": true,
+    "step0_raw": true,
+    "step0_s2_shift": true,
+    "step0_sub": true,
+    "step0_t1_shift": true
+  },
+  "selected_term": {
+    "naf_op": "Sub",
+    "name": "b_hi_f_32_sub",
+    "outer_op": "Sub",
+    "shift": 32
+  },
+  "source_hashes": {
+    "src/point_add/trailmix_ludicrous/codec.rs": "42bf73b74ef193baa3cc090ac496beea951bcf4bdd066ad69e1193aa39201834",
+    "src/point_add/trailmix_ludicrous/ec_add.rs": "de8dee33cac85d4afdac0f1c460649f19cfabebde53b70ad6d191a375fbd4d3c",
+    "src/point_add/trailmix_ludicrous/gcd.rs": "87722e3471242aaf4c6c0dcc01f1c38fd03f783f3a17139f72f9cc093012b401",
+    "src/point_add/trailmix_ludicrous/square.rs": "04c025e275d52c4717a560bc2f2ff2f385e6896cb009380444b276f9bb1c4834"
+  }
+}

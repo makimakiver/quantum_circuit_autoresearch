@@ -1,0 +1,12 @@
+{
+  "experimentId": "EXP-ARCH-04",
+  "missingObligations": [
+    "Child did not supply a terminal.log at this durable lane path; the parent workflow-events.jsonl and result.json are retained instead."
+  ],
+  "recoveryEvidence": null,
+  "resultSha256": "975dd4653d376fb3155e2098ac3be70f7e18ff7ff611e71649e3dd43646ad35d",
+  "role": "cross-cell-reframer",
+  "schemaVersion": 1,
+  "scientific_verdict": "PARKED: the strip-key lifecycle composite is blocked before its predeclared pilot gates; no new claim or measurement is made.",
+  "status": "PARKED"
+}

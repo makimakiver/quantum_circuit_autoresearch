@@ -1,0 +1,776 @@
+{
+  "runId": "95aab693-7a74-4e51-9177-73ee6ab8fb2f",
+  "toolCallId": "call_4KyadIxIrSps8ciHF3soehE0|fc_09988aa093818c7e016a824602e1a4819c8e64349d43321b4d",
+  "sessionId": "/Users/makimakiver/.pi/agent/sessions/--Users-makimakiver-Documents-Codex-2026-08-16-what-work-ecdsafail-pi-fleet--/2026-08-16T21-18-09-528Z_01a00c70-6c78-7285-ad0e-691ff671830b.jsonl",
+  "mode": "workflow",
+  "state": "complete",
+  "startedAt": 1786922504299,
+  "lastUpdate": 1786922643357,
+  "cwd": "/Users/makimakiver/ecdsafail-challenge",
+  "pid": 73273,
+  "steps": [
+    {
+      "agent": "frontier-auditor",
+      "label": "frontier",
+      "workflowKey": "frontier",
+      "parentWorkflowRunId": "95aab693-7a74-4e51-9177-73ee6ab8fb2f",
+      "status": "completed",
+      "startedAt": 1786922504315,
+      "sessionFile": "/Users/makimakiver/.pi/agent/sessions/--Users-makimakiver-Documents-Codex-2026-08-16-what-work-ecdsafail-pi-fleet--/2026-08-16T21-18-09-528Z_01a00c70-6c78-7285-ad0e-691ff671830b/40e798b8/run-0/session.jsonl",
+      "async": false,
+      "lastActivityAt": 1786922643324,
+      "recentTools": [
+        {
+          "tool": "read",
+          "args": "/Users/makimakiver/ecdsafail-challenge/src/point_add/trai...",
+          "endMs": 1786922534806
+        },
+        {
+          "tool": "ls",
+          "args": "/Users/makimakiver/ecdsafail-challenge/src/point_add/memo...",
+          "endMs": 1786922534806
+        },
+        {
+          "tool": "grep",
+          "args": "/Users/makimakiver/ecdsafail-challenge/src/point_add/trai...",
+          "endMs": 1786922534807
+        },
+        {
+          "tool": "grep",
+          "args": "/Users/makimakiver/ecdsafail-challenge/src/point_add",
+          "endMs": 1786922534808
+        },
+        {
+          "tool": "read",
+          "args": "/Users/makimakiver/ecdsafail-challenge/src/point_add/memo...",
+          "endMs": 1786922539304
+        },
+        {
+          "tool": "read",
+          "args": "/Users/makimakiver/ecdsafail-challenge/.pi/harness/consta...",
+          "endMs": 1786922539305
+        },
+        {
+          "tool": "read",
+          "args": "/Users/makimakiver/ecdsafail-challenge/src/point_add/trai...",
+          "endMs": 1786922539306
+        },
+        {
+          "tool": "read",
+          "args": "/Users/makimakiver/ecdsafail-challenge/.pi/campaign-runs/...",
+          "endMs": 1786922539307
+        },
+        {
+          "tool": "read",
+          "args": "/Users/makimakiver/ecdsafail-challenge/src/point_add/trai...",
+          "endMs": 1786922539307
+        },
+        {
+          "tool": "read",
+          "args": "/Users/makimakiver/ecdsafail-challenge/src/point_add/trai...",
+          "endMs": 1786922539308
+        },
+        {
+          "tool": "read",
+          "args": "/Users/makimakiver/ecdsafail-challenge/src/point_add/trai...",
+          "endMs": 1786922539309
+        },
+        {
+          "tool": "bash",
+          "args": "set -euo pipefail printf '%s\\n' '== revision-and-protecte...",
+          "endMs": 1786922548352
+        },
+        {
+          "tool": "read",
+          "args": "/Users/makimakiver/ecdsafail-challenge/src/bin/eval_circu...",
+          "endMs": 1786922552353
+        },
+        {
+          "tool": "read",
+          "args": "/Users/makimakiver/ecdsafail-challenge/.pi/campaign-runs/...",
+          "endMs": 1786922552354
+        },
+        {
+          "tool": "grep",
+          "args": "/Users/makimakiver/ecdsafail-challenge/src/point_add/mod.rs",
+          "endMs": 1786922552356
+        },
+        {
+          "tool": "grep",
+          "args": "/Users/makimakiver/ecdsafail-challenge/.pi/campaign-runs/...",
+          "endMs": 1786922552357
+        },
+        {
+          "tool": "grep",
+          "args": "/Users/makimakiver/ecdsafail-challenge/src/point_add/trai...",
+          "endMs": 1786922552358
+        },
+        {
+          "tool": "read",
+          "args": "/Users/makimakiver/ecdsafail-challenge/.pi/agents/frontie...",
+          "endMs": 1786922566042
+        },
+        {
+          "tool": "grep",
+          "args": "/Users/makimakiver/ecdsafail-challenge/.pi/harness",
+          "endMs": 1786922566047
+        },
+        {
+          "tool": "grep",
+          "args": "/Users/makimakiver/ecdsafail-challenge/.pi",
+          "endMs": 1786922566048
+        },
+        {
+          "tool": "grep",
+          "args": "/Users/makimakiver/ecdsafail-challenge/.pi/campaign-runs",
+          "endMs": 1786922566049
+        },
+        {
+          "tool": "find",
+          "args": "/Users/makimakiver/ecdsafail-challenge/.pi/campaign-runs",
+          "endMs": 1786922566056
+        },
+        {
+          "tool": "read",
+          "args": "/Users/makimakiver/ecdsafail-challenge/.pi/campaign-runs/...",
+          "endMs": 1786922568030
+        },
+        {
+          "tool": "read",
+          "args": "/Users/makimakiver/ecdsafail-challenge/.pi/campaign-runs/...",
+          "endMs": 1786922568033
+        },
+        {
+          "tool": "read",
+          "args": "/Users/makimakiver/ecdsafail-challenge/.pi/campaign-runs/...",
+          "endMs": 1786922568035
+        },
+        {
+          "tool": "read",
+          "args": "/Users/makimakiver/ecdsafail-challenge/.pi/skills/circuit...",
+          "endMs": 1786922570796
+        },
+        {
+          "tool": "bash",
+          "args": "set -o pipefail python3 .pi/skills/circuit-evidence/scrip...",
+          "endMs": 1786922590325
+        },
+        {
+          "tool": "read",
+          "args": "/Users/makimakiver/ecdsafail-challenge/src/point_add/trai...",
+          "endMs": 1786922592746
+        },
+        {
+          "tool": "grep",
+          "args": "/Users/makimakiver/ecdsafail-challenge/src/point_add/trai...",
+          "endMs": 1786922594936
+        },
+        {
+          "tool": "bash",
+          "args": "set -euo pipefail terminal_sha256=$(shasum -a 256 .pi/cam...",
+          "endMs": 1786922621421
+        },
+        {
+          "tool": "grep",
+          "args": "/Users/makimakiver/ecdsafail-challenge/.pi/harness",
+          "endMs": 1786922627618
+        },
+        {
+          "tool": "bash",
+          "args": "set -euo pipefail PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=.p...",
+          "endMs": 1786922630795
+        }
+      ],
+      "recentOutput": [
+        "  \"noStagedFiles\": true,",
+        "  \"diffSummary\": \"No project/source/control-plane changes. Only required lane result and recovery terminal log were written.\",",
+        "  \"reviewFindings\": [",
+        "    \"blocker: src/point_add/trailmix_ludicrous/square.rs - locked uncommitted diff 30be19... matches campaign policy but makes .pi/harness/frontier.py schema-v3 clean-worktree binding fail; result disposition is STALE-for-v3, not a re-pin.\",",
+        "    \"info: ops.bin - compressed/canonical identities, 8,958,690 emitted operations, and Q=1,154 exactly match the schema-v2 pinned frontier.\",",
+        "    \"warning: score.json; results.tsv; .pi/frontier.json - retained summaries reconcile T/Q/S and declared 9,024-shot checks, but raw evaluator stdout was not located.\"",
+        "  ],",
+        "  \"manualNotes\": \"The authoritative schema-v2 baseline remains PINNED at 1,481,143,998. The audit result is schema-valid PARKED with scientific verdict STALE specifically for a schema-v3 proposal; it makes no global-ceiling or promotion claim.\"",
+        "}",
+        "```"
+      ],
+      "turnCount": 20,
+      "toolCount": 65,
+      "model": "gpt-5.6-terra",
+      "thinking": "high",
+      "runId": "40e798b8",
+      "durationMs": 139037
+    },
+    {
+      "agent": "exploitation-tuner",
+      "label": "tuning",
+      "workflowKey": "tuning",
+      "parentWorkflowRunId": "95aab693-7a74-4e51-9177-73ee6ab8fb2f",
+      "status": "completed",
+      "startedAt": 1786922504382,
+      "sessionFile": "/Users/makimakiver/.pi/agent/sessions/--Users-makimakiver-Documents-Codex-2026-08-16-what-work-ecdsafail-pi-fleet--/2026-08-16T21-18-09-528Z_01a00c70-6c78-7285-ad0e-691ff671830b/5641ef70/run-0/session.jsonl",
+      "async": false,
+      "lastActivityAt": 1786922560526,
+      "recentTools": [
+        {
+          "tool": "read",
+          "args": "/Users/makimakiver/ecdsafail-challenge/.pi/skills/circuit...",
+          "endMs": 1786922508361
+        },
+        {
+          "tool": "read",
+          "args": "/Users/makimakiver/ecdsafail-challenge/.pi/schemas/result...",
+          "endMs": 1786922508361
+        },
+        {
+          "tool": "read",
+          "args": "/Users/makimakiver/ecdsafail-challenge/.pi/campaign-runs/...",
+          "endMs": 1786922508362
+        },
+        {
+          "tool": "read",
+          "args": "/Users/makimakiver/ecdsafail-challenge/CAMPAIGN_FINDINGS.md",
+          "endMs": 1786922508363
+        },
+        {
+          "tool": "read",
+          "args": "/Users/makimakiver/ecdsafail-challenge/.pi/frontier.json",
+          "endMs": 1786922508363
+        },
+        {
+          "tool": "read",
+          "args": "/Users/makimakiver/ecdsafail-challenge/.pi/state/campaign...",
+          "endMs": 1786922508364
+        },
+        {
+          "tool": "read",
+          "args": "/Users/makimakiver/ecdsafail-challenge/.pi/experiments/EX...",
+          "endMs": 1786922512526
+        },
+        {
+          "tool": "read",
+          "args": "/Users/makimakiver/ecdsafail-challenge/.pi/experiments/EX...",
+          "endMs": 1786922512527
+        },
+        {
+          "tool": "read",
+          "args": "/Users/makimakiver/ecdsafail-challenge/.pi/experiments/EX...",
+          "endMs": 1786922512528
+        },
+        {
+          "tool": "read",
+          "args": "/Users/makimakiver/ecdsafail-challenge/.pi/continuations/...",
+          "endMs": 1786922512528
+        },
+        {
+          "tool": "grep",
+          "args": "/Users/makimakiver/ecdsafail-challenge/src/point_add",
+          "endMs": 1786922512539
+        },
+        {
+          "tool": "grep",
+          "args": "/Users/makimakiver/ecdsafail-challenge/src/point_add",
+          "endMs": 1786922512539
+        },
+        {
+          "tool": "grep",
+          "args": "/Users/makimakiver/ecdsafail-challenge/src/point_add",
+          "endMs": 1786922512540
+        },
+        {
+          "tool": "read",
+          "args": "/Users/makimakiver/ecdsafail-challenge/src/point_add/trai...",
+          "endMs": 1786922517695
+        },
+        {
+          "tool": "read",
+          "args": "/Users/makimakiver/ecdsafail-challenge/src/point_add/trai...",
+          "endMs": 1786922517697
+        },
+        {
+          "tool": "read",
+          "args": "/Users/makimakiver/ecdsafail-challenge/.pi/harness/owners...",
+          "endMs": 1786922517698
+        },
+        {
+          "tool": "read",
+          "args": "/Users/makimakiver/ecdsafail-challenge/src/point_add/mod.rs",
+          "endMs": 1786922517699
+        },
+        {
+          "tool": "read",
+          "args": "/Users/makimakiver/ecdsafail-challenge/.pi/skills/circuit...",
+          "endMs": 1786922517700
+        },
+        {
+          "tool": "find",
+          "args": "/Users/makimakiver/ecdsafail-challenge/.pi/campaign-runs/...",
+          "endMs": 1786922517701
+        },
+        {
+          "tool": "bash",
+          "args": "set -euo pipefail python3 - <<'PY' import sys sys.path.in...",
+          "endMs": 1786922524523
+        },
+        {
+          "tool": "bash",
+          "args": "set -euo pipefail result='/Users/makimakiver/ecdsafail-ch...",
+          "endMs": 1786922549093
+        }
+      ],
+      "recentOutput": [
+        "  \"noStagedFiles\": true,",
+        "  \"diffSummary\": \"No project/source/control-plane changes. Only the required lane result artifact was written.\",",
+        "  \"reviewFindings\": [",
+        "    \"info: src/point_add/trailmix_ludicrous/constprop.rs:1126-1147 - final cancel is live and explicitly default-off.\",",
+        "    \"info: src/point_add/mod.rs:2351-2398 - final cancel precedes the ordinal-sensitive deep strip, making zero stale keys mandatory.\",",
+        "    \"risk: .pi/experiments/EXP-STRIP-02.md - the candidate stream differs from baseline and cannot reuse the baseline ground nonce.\"",
+        "  ],",
+        "  \"manualNotes\": \"No build, evaluation, metrology, grind, promotion, lifecycle change, or source edit was performed.\"",
+        "}",
+        "```"
+      ],
+      "turnCount": 6,
+      "toolCount": 21,
+      "model": "gpt-5.6-terra",
+      "thinking": "high",
+      "runId": "5641ef70",
+      "durationMs": 56165
+    },
+    {
+      "agent": "structural-researcher",
+      "label": "structural",
+      "workflowKey": "structural",
+      "parentWorkflowRunId": "95aab693-7a74-4e51-9177-73ee6ab8fb2f",
+      "status": "completed",
+      "startedAt": 1786922504401,
+      "sessionFile": "/Users/makimakiver/.pi/agent/sessions/--Users-makimakiver-Documents-Codex-2026-08-16-what-work-ecdsafail-pi-fleet--/2026-08-16T21-18-09-528Z_01a00c70-6c78-7285-ad0e-691ff671830b/464be560/run-0/session.jsonl",
+      "async": false,
+      "lastActivityAt": 1786922623796,
+      "recentTools": [
+        {
+          "tool": "read",
+          "args": "/Users/makimakiver/ecdsafail-challenge/CAMPAIGN_FINDINGS.md",
+          "endMs": 1786922512473
+        },
+        {
+          "tool": "read",
+          "args": "/Users/makimakiver/ecdsafail-challenge/.pi/frontier.json",
+          "endMs": 1786922512474
+        },
+        {
+          "tool": "read",
+          "args": "/Users/makimakiver/ecdsafail-challenge/.pi/state/campaign...",
+          "endMs": 1786922512475
+        },
+        {
+          "tool": "read",
+          "args": "/Users/makimakiver/ecdsafail-challenge/.pi/schemas/result...",
+          "endMs": 1786922512475
+        },
+        {
+          "tool": "read",
+          "args": "/Users/makimakiver/ecdsafail-challenge/.pi/harness/owners...",
+          "endMs": 1786922512476
+        },
+        {
+          "tool": "read",
+          "args": "/Users/makimakiver/ecdsafail-challenge/src/point_add/memo...",
+          "endMs": 1786922512477
+        },
+        {
+          "tool": "read",
+          "args": "/Users/makimakiver/ecdsafail-challenge/src/point_add/memo...",
+          "endMs": 1786922512478
+        },
+        {
+          "tool": "read",
+          "args": "/Users/makimakiver/ecdsafail-challenge/.pi/experiments/EX...",
+          "endMs": 1786922515503
+        },
+        {
+          "tool": "read",
+          "args": "/Users/makimakiver/ecdsafail-challenge/.pi/experiments/EX...",
+          "endMs": 1786922515504
+        },
+        {
+          "tool": "read",
+          "args": "/Users/makimakiver/ecdsafail-challenge/.pi/experiments/EX...",
+          "endMs": 1786922515505
+        },
+        {
+          "tool": "read",
+          "args": "/Users/makimakiver/ecdsafail-challenge/.pi/experiments/EX...",
+          "endMs": 1786922515505
+        },
+        {
+          "tool": "read",
+          "args": "/Users/makimakiver/ecdsafail-challenge/.pi/experiments/EX...",
+          "endMs": 1786922515506
+        },
+        {
+          "tool": "read",
+          "args": "/Users/makimakiver/ecdsafail-challenge/.pi/experiments/EX...",
+          "endMs": 1786922515507
+        },
+        {
+          "tool": "read",
+          "args": "/Users/makimakiver/ecdsafail-challenge/.pi/experiments/EX...",
+          "endMs": 1786922515508
+        },
+        {
+          "tool": "find",
+          "args": "/Users/makimakiver/ecdsafail-challenge",
+          "endMs": 1786922515508
+        },
+        {
+          "tool": "grep",
+          "args": "/Users/makimakiver/ecdsafail-challenge/src/point_add/trai...",
+          "endMs": 1786922520152
+        },
+        {
+          "tool": "grep",
+          "args": "/Users/makimakiver/ecdsafail-challenge/src/point_add/trai...",
+          "endMs": 1786922520153
+        },
+        {
+          "tool": "grep",
+          "args": "/Users/makimakiver/ecdsafail-challenge/src/point_add/trai...",
+          "endMs": 1786922520154
+        },
+        {
+          "tool": "grep",
+          "args": "/Users/makimakiver/ecdsafail-challenge/src/point_add/trai...",
+          "endMs": 1786922520155
+        },
+        {
+          "tool": "read",
+          "args": "/Users/makimakiver/ecdsafail-challenge/.pi/notes/07-pi-ag...",
+          "endMs": 1786922520155
+        },
+        {
+          "tool": "grep",
+          "args": "/Users/makimakiver/ecdsafail-challenge/src/point_add/mod.rs",
+          "endMs": 1786922520156
+        },
+        {
+          "tool": "grep",
+          "args": "/Users/makimakiver/ecdsafail-challenge/src/point_add/trai...",
+          "endMs": 1786922520157
+        },
+        {
+          "tool": "bash",
+          "args": "python3 .pi/harness/ownership.py 2>&1; python3 - <<'PY' f...",
+          "endMs": 1786922559000
+        },
+        {
+          "tool": "read",
+          "args": "/Users/makimakiver/ecdsafail-challenge/src/point_add/trai...",
+          "endMs": 1786922561867
+        },
+        {
+          "tool": "read",
+          "args": "/Users/makimakiver/ecdsafail-challenge/src/point_add/trai...",
+          "endMs": 1786922561869
+        },
+        {
+          "tool": "read",
+          "args": "/Users/makimakiver/ecdsafail-challenge/.pi/continuations/...",
+          "endMs": 1786922561870
+        },
+        {
+          "tool": "read",
+          "args": "/Users/makimakiver/ecdsafail-challenge/src/point_add/trai...",
+          "endMs": 1786922561871
+        },
+        {
+          "tool": "read",
+          "args": "/Users/makimakiver/ecdsafail-challenge/src/point_add/trai...",
+          "endMs": 1786922561872
+        },
+        {
+          "tool": "bash",
+          "args": "mkdir -p .pi/campaign-runs/20260816t232122Z/lanes/structu...",
+          "endMs": 1786922601215
+        },
+        {
+          "tool": "bash",
+          "args": "python3 .pi/skills/circuit-evidence/scripts/emit_recovery...",
+          "endMs": 1786922603670
+        },
+        {
+          "tool": "ls",
+          "args": "/Users/makimakiver/ecdsafail-challenge/.pi/campaigns",
+          "endMs": 1786922606868
+        },
+        {
+          "tool": "bash",
+          "args": "python3 - <<'PY' import json from pathlib import Path try...",
+          "endMs": 1786922616217
+        }
+      ],
+      "recentOutput": [
+        "  \"noStagedFiles\": true,",
+        "  \"diffSummary\": \"No source or control-plane changes. Wrote the required lane result only.\",",
+        "  \"reviewFindings\": [",
+        "    \"medium: src/point_add/trailmix_ludicrous/gcd.rs:1738-1823 - forward/reverse replay changes must remain paired; one-sided cleanup deferral breaks inverse/phase obligations.\",",
+        "    \"medium: src/point_add/trailmix_ludicrous/fused.rs:1865-1961 and arith.rs:450-454 - wider-addend fold requires a strict post-fold value bound within the LSBS=53 layout and preserved hi/hi2 cleanup.\",",
+        "    \"high: CAMPAIGN_FINDINGS.md:2.2 and 3.2 - altered stream order can invalidate occurrence-keyed deep strips; pre-strip savings cannot be treated as final executed savings.\"",
+        "  ],",
+        "  \"manualNotes\": \"The result is a schema-valid PARKED EXP-BZ-02 card. Its schema-required candidate hash is explicitly identified inside the result as the pinned baseline anchor, not an altered candidate artifact.\"",
+        "}",
+        "```"
+      ],
+      "turnCount": 12,
+      "toolCount": 35,
+      "model": "gpt-5.6-terra",
+      "thinking": "high",
+      "runId": "464be560",
+      "durationMs": 119429
+    },
+    {
+      "agent": "cross-cell-reframer",
+      "label": "reframe",
+      "workflowKey": "reframe",
+      "parentWorkflowRunId": "95aab693-7a74-4e51-9177-73ee6ab8fb2f",
+      "status": "completed",
+      "startedAt": 1786922504425,
+      "sessionFile": "/Users/makimakiver/.pi/agent/sessions/--Users-makimakiver-Documents-Codex-2026-08-16-what-work-ecdsafail-pi-fleet--/2026-08-16T21-18-09-528Z_01a00c70-6c78-7285-ad0e-691ff671830b/96c7c556/run-0/session.jsonl",
+      "async": false,
+      "lastActivityAt": 1786922572846,
+      "recentTools": [
+        {
+          "tool": "read",
+          "args": "/Users/makimakiver/ecdsafail-challenge/.pi/skills/circuit...",
+          "endMs": 1786922509112
+        },
+        {
+          "tool": "read",
+          "args": "/Users/makimakiver/ecdsafail-challenge/CAMPAIGN_FINDINGS.md",
+          "endMs": 1786922509113
+        },
+        {
+          "tool": "read",
+          "args": "/Users/makimakiver/ecdsafail-challenge/.pi/state/campaign...",
+          "endMs": 1786922509114
+        },
+        {
+          "tool": "read",
+          "args": "/Users/makimakiver/ecdsafail-challenge/.pi/frontier.json",
+          "endMs": 1786922509114
+        },
+        {
+          "tool": "read",
+          "args": "/Users/makimakiver/ecdsafail-challenge/.pi/campaign-runs/...",
+          "endMs": 1786922509115
+        },
+        {
+          "tool": "read",
+          "args": "/Users/makimakiver/ecdsafail-challenge/.pi/schemas/result...",
+          "endMs": 1786922509116
+        },
+        {
+          "tool": "read",
+          "args": "/Users/makimakiver/ecdsafail-challenge/.pi/harness/owners...",
+          "endMs": 1786922509117
+        },
+        {
+          "tool": "read",
+          "args": "/Users/makimakiver/ecdsafail-challenge/.pi/experiments/EX...",
+          "endMs": 1786922514699
+        },
+        {
+          "tool": "read",
+          "args": "/Users/makimakiver/ecdsafail-challenge/.pi/continuations/...",
+          "endMs": 1786922514701
+        },
+        {
+          "tool": "read",
+          "args": "/Users/makimakiver/ecdsafail-challenge/.pi/experiments/EX...",
+          "endMs": 1786922514704
+        },
+        {
+          "tool": "read",
+          "args": "/Users/makimakiver/ecdsafail-challenge/.pi/experiments/EX...",
+          "endMs": 1786922514706
+        },
+        {
+          "tool": "find",
+          "args": "/Users/makimakiver/ecdsafail-challenge/.pi/campaign-runs/...",
+          "endMs": 1786922514711
+        },
+        {
+          "tool": "find",
+          "args": "/Users/makimakiver/ecdsafail-challenge/.pi/experiments",
+          "endMs": 1786922514712
+        },
+        {
+          "tool": "bash",
+          "args": "python3 - <<'PY' import sys sys.path.insert(0, '.pi') fro...",
+          "endMs": 1786922529202
+        },
+        {
+          "tool": "bash",
+          "args": "python3 - <<'PY' import json from pathlib import Path res...",
+          "endMs": 1786922560679
+        },
+        {
+          "tool": "bash",
+          "args": "python3 - <<'PY' import json from pathlib import Path pat...",
+          "endMs": 1786922564997
+        }
+      ],
+      "recentOutput": [
+        "  \"noStagedFiles\": true,",
+        "  \"diffSummary\": \"Created only the required lane result artifact; no project source or control-plane files were changed.\",",
+        "  \"reviewFindings\": [",
+        "    \"blocker: .pi/continuations/EXP-SM-01.json - launch_approved=false and long_compute_approved=false prohibit the first pilot discriminator.\",",
+        "    \"high: .pi/experiments/EXP-SQ-01.md - 6,799 stale keys and +5,806 final CCX require a variant-stream re-mine before reopening.\",",
+        "    \"high: .pi/experiments/EXP-SM-01.md - any B sweep is unpriceable until Risk=1.239700 is reproduced exactly.\"",
+        "  ],",
+        "  \"manualNotes\": \"The submitted card is operationally PARKED, not refuted; no predeclared falsifier has fired in this read-only review.\"",
+        "}",
+        "```"
+      ],
+      "turnCount": 6,
+      "toolCount": 16,
+      "model": "gpt-5.6-terra",
+      "thinking": "high",
+      "runId": "96c7c556",
+      "durationMs": 68454
+    }
+  ],
+  "workflow": {
+    "value": [
+      {
+        "key": "frontier",
+        "runId": "40e798b8",
+        "output": "{\n  \"candidate_ops_sha256\": \"6519bd01424d5513cd7f8232d4c15dfcbfe67561eb1b7f05b2cfec87c233a097\",\n  \"canonical_ops_sha256\": \"0a4a412c939b05f59fa4bc33c2410e5bc110b07c7faded5e6db5f6b5db3ed0b0\",\n  \"changed_paths\": [],\n  \"commands\": [\n    \"set -euo pipefail; git rev-parse HEAD; git status --porcelain=v1 --untracked-files=all -- src Cargo.toml Cargo.lock build.rs rust-toolchain rust-toolchain.toml .cargo; git diff --binary -- src/point_add | shasum -a 256; git diff --name-only -- src/point_add; PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=.pi python3 - <<'PY' ... artifact_io.fingerprint(Path('ops.bin')); tree_digest(Path.cwd(), SCORED_PREFIXES); tree_digest(Path.cwd(), TRUSTED_PREFIXES) ... PY; PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=.pi python3 - <<'PY' ... ownership_violations('frontier-auditor', []) ... PY\",\n    \"python3 .pi/skills/circuit-evidence/scripts/emit_recovery_bundle.py --status PARKED --reason 'Read-only frontier audit found a schema-v3 binding blocker: the protected scored source has the locked but uncommitted square.rs diff, so no v3 proposal can truthfully bind this worktree; artifacts and v2 frontier identities otherwise match.' --experiment-id FRONTIER-AUDIT --command 'PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=.pi python3 - <<'\\\"'\\\"'PY'\\\"'\\\"' ... artifact_io.fingerprint(Path(\\\"ops.bin\\\")); tree_digest(Path.cwd(), SCORED_PREFIXES); tree_digest(Path.cwd(), TRUSTED_PREFIXES) ... PY' --artifact ops.bin --artifact score.json | tee .pi/campaign-runs/20260816t232122Z/lanes/frontier-auditor/terminal.log\"\n  ],\n  \"evidence\": {\n    \"artifact_identity\": {\n      \"canonical_semantic_sha256\": \"0a4a412c939b05f59fa4bc33c2410e5bc110b07c7faded5e6db5f6b5db3ed0b0\",\n      \"compressed_ops_sha256\": \"6519bd01424d5513cd7f8232d4c15dfcbfe67561eb1b7f05b2cfec87c233a097\",\n      \"emitted_ops\": 8958690,\n      \"fingerprint_tool\": \"src/point_add/memory/repro/artifact_io.py::fingerprint\",\n      \"identity_binding\": \"Both observed hashes equal CAMPAIGN_FINDINGS.md section 1, .pi/frontier.json artifact, and AGENTS.md.\",\n      \"max_referenced_qubit_id\": 1153,\n      \"ops_bytes\": 29461502,\n      \"path\": \"ops.bin\",\n      \"qubits\": 1154\n    },\n    \"authority\": {\n      \"campaign_snapshot\": \"CAMPAIGN_FINDINGS.md\",\n      \"campaign_state\": \".pi/state/campaign.json\",\n      \"dispatch\": \".pi/campaign-runs/20260816t232122Z/lanes/frontier-auditor/dispatch.json\",\n      \"frontier\": \".pi/frontier.json\",\n      \"frontier_schema\": \".pi/schemas/frontier.schema.json\",\n      \"result_schema\": \".pi/schemas/result.schema.json\"\n    },\n    \"live_route_and_geometry\": {\n      \"dialog_tape\": \"gcd.rs:86 n3_for_iters(261)=87; codec.rs:495-532 reduces this to 86 triples plus one Step0 and one Pair with TLM_TAIL4_TOP32 unset/default-off (codec.rs:68-70), yielding 609 qubits; forward/reverse assert tape length against dialog_tape_qubits at gcd.rs:1431 and :1439-1442.\",\n      \"engine_definition\": \"src/point_add/trailmix_ludicrous/mod.rs:453\",\n      \"forward_reverse\": \"src/point_add/trailmix_ludicrous/gcd.rs:1182 forward_gcd_jump and :1435 reverse_gcd_jump; call sites :1906/:1910 and :1915/:1920.\",\n      \"geometry\": \"src/point_add/trailmix_ludicrous/schedule.rs:2 JUMP=2, :4 ITERS=261, :12 BAKED_ITERS=258; gcd.rs imports and indexes SCHED_J2/GAP_J2 on both forward and reverse walks.\",\n      \"route\": \"src/point_add/mod.rs:2007 build() -> mod.rs:2302 trailmix_ludicrous::build_trailmix_ludicrous_ops() -> first fanout -> apply_m60_dead_t10 -> ccz_self_inverse_cancel -> constprop::ccx_final_cancel -> second fanout -> apply_deep_strip_identity -> post-strip fanout -> apply_tail_nonce.\"\n    },\n    \"metric_binding\": {\n      \"average_executed_toffoli\": 1283487.051,\n      \"hash_binding\": \"The T/Q/score and emitted-op count are bound to compressed SHA-256 6519bd... and canonical semantic SHA-256 0a4a... above.\",\n      \"qubits\": 1154,\n      \"results_row\": \"results.tsv:8 (epoch 1786907851, commit a2067dc, T=1283487.051, Q=1154, ops=8958690, correct=OK)\",\n      \"rounded_toffoli\": 1283487,\n      \"score\": 1481143998,\n      \"score_formula_check\": \"1283487 * 1154 = 1481143998\",\n      \"score_json_path\": \"score.json\",\n      \"score_json_sha256\": \"b22776904513b4cc5b4c484854f7862c9c0300039313664240cfcc864a8e3e2c\"\n    },\n    \"nonce\": {\n      \"application\": \"src/point_add/mod.rs:2414 applies after the complete post-pass stack; apply_tail_nonce at mod.rs:1790 rewrites the final 96-op identity X-pair tail.\",\n      \"env\": \"SUB4_TAIL_NONCE\",\n      \"frontier_binding\": \".pi/frontier.json nonce.default=1337610097 and CAMPAIGN_FINDINGS.md section 1 agree.\",\n      \"ground_nonce_status\": \"Historical pinned baseline nonce only; this audit found no candidate stream and neither granted nor used grind authority.\",\n      \"source_read\": \"src/point_add/mod.rs:2410-2413 parses override and defaults to 1337610097.\"\n    },\n    \"recovery\": {\n      \"delimiters_verified\": true,\n      \"status\": \"PARKED\",\n      \"terminal_log\": \".pi/campaign-runs/20260816t232122Z/lanes/frontier-auditor/terminal.log\",\n      \"terminal_log_sha256\": \"820b877167241ed3a5d34d146283bb3dbcdf5b77c62fcf20fb7723a4c0ec13cc\"\n    },\n    \"residual_risks\": [\n      \"A new schema-v3 binding remains blocked until the protected scored-source worktree is clean; only the parent/authorized lifecycle can decide how to serialize or preserve the parked SQ-01 edit.\",\n      \"The default artifact matching from this read-only fingerprint does not substitute for an authorized rebuild/evaluation after source or environment changes.\",\n      \"The raw 9,024-shot evaluator transcript is not locally retained; future certification should archive it with both artifact identities.\",\n      \"No claim is made about a global performance ceiling.\"\n    ],\n    \"retained_9024_evidence\": {\n      \"declared_checks\": \".pi/frontier.json verification: shots=9024; all 9024 green; classical mismatches=0; phase-garbage batches=0; ancilla-garbage batches=0.\",\n      \"independent_summary\": \"CAMPAIGN_FINDINGS.md section 1 and .pi/experiments/FRONTIER-AUDIT.json checks.measurements both state 9024/9024 green and the same T/Q/S/operation identities.\",\n      \"on_disk_summary\": \"score.json agrees on rounded T/Q/S; results.tsv retains the a2067dc average-T/ops/OK row.\",\n      \"raw_transcript_status\": \"No raw eval_circuit stdout transcript with individual four-check counters was found by this read-only audit; the retained evidence is the control-plane declaration plus score/results summaries.\"\n    },\n    \"review_findings\": [\n      {\n        \"finding\": \"The only protected source delta is the locked, uncommitted EXP-SQ-01 default-off edit. Its SHA-256 matches the campaign lock, but it makes a clean-worktree schema-v3 binding fail; disposition is STALE, not a silent re-pin.\",\n        \"path\": \"src/point_add/trailmix_ludicrous/square.rs\",\n        \"severity\": \"blocker\"\n      },\n      {\n        \"finding\": \"Observed compressed hash, canonical semantic hash, emitted operations, and max qubit all match the pinned frontier exactly.\",\n        \"path\": \"ops.bin\",\n        \"severity\": \"info\"\n      },\n      {\n        \"finding\": \"The audited live route is trailmix_ludicrous followed by the strip stack and post-stack SUB4_TAIL_NONCE application; legacy dialog routing is not used by this call chain.\",\n        \"path\": \"src/point_add/mod.rs:2302-2414\",\n        \"severity\": \"info\"\n      },\n      {\n        \"finding\": \"Summary artifacts reconcile score/T/Q and the control plane declares all four 9024-shot checks, but a raw evaluator stdout transcript is not retained at a discovered path.\",\n        \"path\": \"score.json; results.tsv; .pi/frontier.json\",\n        \"severity\": \"warning\"\n      }\n    ],\n    \"schema_v3_disposition\": {\n      \"exact_drift\": [\n        \"git status --porcelain over protected paths reports M src/point_add/trailmix_ludicrous/square.rs.\",\n        \"git diff --binary -- src/point_add SHA-256 is 30be19a685b8969824de1ed0784e340d30da583bc484b4d77b4b0d6e217034b6, which equals .pi/state/campaign.json policy.working_tree_lock.scored_diff_sha256 and contains only the allowed locked EXP-SQ-01 path.\",\n        \".pi/harness/frontier.py::bind_proposed_frontier rejects any protected-source git-status output before it accepts source_identity. Therefore a schema-v3 proposal cannot truthfully bind this dirty worktree, even though its default artifact matches.\",\n        \"The authoritative frontier is schema_version 2 and intentionally lacks source_identity; no frontier or campaign-state file was changed or re-pinned.\"\n      ],\n      \"non_drift_reconciliation\": \"HEAD, locked scored diff, trusted-source digest, both artifact identities, emitted count, Q, score.json, results.tsv historical a2067dc row, nonce default/read path, and geometry agree with the schema-v2 pinned frontier.\",\n      \"proposal_emitted\": false,\n      \"state\": \"STALE\"\n    },\n    \"source_identity\": {\n      \"frontier_source_commit\": \"a2067dcf3c991bcecfd51a4bf07cd7d1cc56c3a5\",\n      \"head\": \"a2067dcf3c991bcecfd51a4bf07cd7d1cc56c3a5\",\n      \"locked_scored_diff_path\": \"src/point_add/trailmix_ludicrous/square.rs\",\n      \"locked_scored_diff_sha256\": \"30be19a685b8969824de1ed0784e340d30da583bc484b4d77b4b0d6e217034b6\",\n      \"ownership_check\": \"ownership_violations('frontier-auditor', []) returned []\",\n      \"scored_source_tree_sha256_current\": \"8d90f8235b4a3688722ac3233e975a4ae6fffad73835a37e73ba7838a164ac2a\",\n      \"trusted_source_tree_sha256_current\": \"fdd8fe31d933f8861d24d9ffc474a21899de22874ec41ff5579a3c138f320562\",\n      \"trusted_source_tree_sha256_expected\": \"fdd8fe31d933f8861d24d9ffc474a21899de22874ec41ff5579a3c138f320562\",\n      \"trusted_status\": \"clean for protected trusted paths in the audit command\"\n    }\n  },\n  \"experiment_id\": \"FRONTIER-AUDIT\",\n  \"frontier_id\": \"2026-08-16-a2067dcf\",\n  \"metrics\": {\n    \"audit_measurements\": \"No build, evaluation, metrology, census, grind, or promotion was run.\",\n    \"baseline\": {\n      \"average_executed_toffoli\": 1283487.051,\n      \"emitted_ops\": 8958690,\n      \"lambda\": 17.62,\n      \"qubits\": 1154,\n      \"rounded_toffoli\": 1283487,\n      \"score\": 1481143998\n    }\n  },\n  \"nonce\": 1337610097,\n  \"nonce_env\": \"SUB4_TAIL_NONCE\",\n  \"role\": \"frontier-auditor\",\n  \"schema_version\": 1,\n  \"scientific_verdict\": \"STALE for a schema-v3 frontier proposal: the live worktree is not clean because the locked, default-off EXP-SQ-01 scored-source diff remains in square.rs. The authoritative schema-v2 baseline itself is reconciled and remains PINNED at score 1481143998; this audit makes no promotion or global-ceiling claim.\",\n  \"status\": \"PARKED\",\n  \"verification\": {\n    \"not_performed\": [\n      \"No source, artifact, frontier, card, trusted-evaluator, or lifecycle edit.\",\n      \"No build, evaluator, metrology, nonce grind, promotion, commit, merge, push, or submission.\"\n    ],\n    \"performed\": [\n      \"Read dispatch receipt first.\",\n      \"Read campaign snapshot, frontier, campaign state, schemas, live source, score.json, results.tsv, historical audit, and terminal evidence.\",\n      \"Computed only read-only source/artifact fingerprints and checked empty changed-path ownership.\",\n      \"Emitted a PARKED recovery bundle with terminal delimiters.\"\n    ],\n    \"read_only\": true,\n    \"v3_frontier_proposal\": \"not emitted: STALE clean-worktree prerequisite described in evidence.schema_v3_disposition\"\n  }\n}",
+        "artifactPaths": [
+          "/Users/makimakiver/ecdsafail-challenge/.pi/campaign-runs/20260816t232122Z/lanes/frontier-auditor/result.json",
+          "/Users/makimakiver/.pi/agent/sessions/--Users-makimakiver-Documents-Codex-2026-08-16-what-work-ecdsafail-pi-fleet--/2026-08-16T21-18-09-528Z_01a00c70-6c78-7285-ad0e-691ff671830b/40e798b8/run-0/session.jsonl"
+        ]
+      },
+      {
+        "key": "tuning",
+        "runId": "5641ef70",
+        "output": "{\n  \"schema_version\": 1,\n  \"experiment_id\": \"EXP-STRIP-02\",\n  \"role\": \"exploitation-tuner\",\n  \"status\": \"SCOPED\",\n  \"frontier_id\": \"2026-08-16-a2067dcf\",\n  \"candidate_ops_sha256\": \"e6ae6b52b7a655369df6f14a44b9c9e5a8d6c7a3a13b4c0a77930bb995524d57\",\n  \"changed_paths\": [],\n  \"scientific_verdict\": \"SCOPED: one bounded, exact local cancellation is reachable and live on the pinned stream; it is not a certification or global-ceiling claim.\",\n  \"evidence\": {\n    \"card\": {\n      \"id\": \"EXP-STRIP-02\",\n      \"classification\": \"STRIP / exact / zero-lambda\",\n      \"search_radius\": \"One existing default-off environment control, TLM_CCX_FINAL_CANCEL=1; optional TLM_CCX_FINAL_STRADDLE=1 is already evidenced byte-identical and excluded from the card. No source edit.\",\n      \"mechanism\": \"Enable the already-shipped final strict self-inverse CCX matcher. It removes the one returned pair only after the first fanout fixpoint, M60 pass, and CCZ cancellation, then before the second fanout and identity-keyed deep strip.\",\n      \"implementation_instruction\": \"Implementer changes no source. Build the exact environment-only candidate only when authorized: TLM_CCX_FINAL_CANCEL=1. Preserve the default-off path and treat any candidate stream as nonce-distinct.\",\n      \"predicted_signs\": {\n        \"executed_T\": \"negative; existing live probe reports one pair / two CCX removed, priced at approximately -2 executed Toffoli (bounded magnitude <=2 pending exact candidate evaluation)\",\n        \"Q\": \"zero; a local deletion cannot increase referenced maximum and the card records no peak-live-set change\",\n        \"lambda\": \"zero from the transform itself because each matched pair is a proven identity; candidate-stream Fiat-Shamir reseeding nevertheless invalidates the baseline ground nonce and requires the ordinary candidate-stream gates\"\n      },\n      \"existing_probe\": {\n        \"candidate_ops_sha256\": \"e6ae6b52b7a655369df6f14a44b9c9e5a8d6c7a3a13b4c0a77930bb995524d57\",\n        \"expected_log\": \"[FINAL CCX cancel] straddle=false pairs=1 straddle_extra=0 removed_ccx=2 -> 8970900 ops\",\n        \"deep_strip_result\": \"12,202/12,202 removals and 4,045/4,045 downgrades; zero stale keys; post-strip fanout ten passes\",\n        \"default_control\": \"TLM_CCX_FINAL_CANCEL is unset by source and constprop.rs returns its input unless its value is exactly 1\"\n      },\n      \"anti_noop_reachability\": [\n        \"src/point_add/mod.rs:2351-2354 places constprop::ccx_final_cancel after apply_m60_dead_t10 and ccz_self_inverse_cancel and before the second fanout/deep-strip sequence, on point_add::build()'s live route documented in .pi/frontier.json:reachability.\",\n        \"src/point_add/trailmix_ludicrous/constprop.rs:1126-1147 gates the pass on TLM_CCX_FINAL_CANCEL=1, invokes find_inverse_pairs, deletes both operations in every matched pair, and prints the pair/removal count; unset/default path returns ops exactly.\",\n        \".pi/experiments/EXP-STRIP-02.md:2-5 records the prior candidate hash, pair count, two-CCX deletion, zero stale strip keys, and byte-identical straddle control. This lane performed no new probe or build.\"\n      ],\n      \"cheapest_discriminator\": \"Authorized one-build liveness/strip check only: TLM_CCX_FINAL_CANCEL=1 cargo run --release --bin build_circuit 2>&1 | grep -E 'FINAL CCX|deep-strip'. Require pairs=1, removed_ccx=2, candidate SHA-256 e6ae6b52b7a655369df6f14a44b9c9e5a8d6c7a3a13b4c0a77930bb995524d57, and zero stale keys. This lane did not run it.\",\n      \"falsifier\": \"pairs=0 on the candidate's actual upstream stream; any nonzero stale-key skip; a candidate artifact hash different from the declared stream; or any required later four-check/score gate failure. Any of these stops this exact two-CCX card rather than extrapolating it.\",\n      \"budget\": \"One authorized build (card estimate 15 seconds) to re-establish liveness after an upstream stream change; zero additional lambda scan for the exact transform; no standalone evaluation or nonce grind. Bundle only with a separately authorized regrind-forcing candidate because this deletion reseeds inputs for marginal benefit of at most two executed Toffoli.\",\n      \"evidence_debt\": \"The exact admission weight/executed contribution of the two removed CCX has not been independently remeasured in this read-only lane; -2 is an estimate, upper-bounded by two. Candidate compressed/canonical identities, 9,024-shot checks, candidate-stream lambda adjudication if required by policy, explicit GRIND_APPROVED, and a stream-bound ground SUB4_TAIL_NONCE remain unfulfilled.\",\n      \"reopening_trigger\": \"Any upstream operation-stream change, including a bundled candidate, invalidates occurrence-sensitive strip evidence. Re-run only the stated one-build discriminator on that exact stream; do not infer pair survival from the pinned-stream probe.\",\n      \"no_global_ceiling_claim\": \"This is a single exact local card. It does not bound schedules, comparator gaps, truncation, arithmetic, replay, or other stream transforms.\"\n    },\n    \"frontier_binding\": {\n      \"frontier_file\": \".pi/frontier.json\",\n      \"source_commit\": \"a2067dcf3c991bcecfd51a4bf07cd7d1cc56c3a5\",\n      \"baseline_ops_sha256\": \"6519bd01424d5513cd7f8232d4c15dfcbfe67561eb1b7f05b2cfec87c233a097\",\n      \"baseline_canonical_ops_sha256\": \"0a4a412c939b05f59fa4bc33c2410e5bc110b07c7faded5e6db5f6b5db3ed0b0\",\n      \"baseline_T_Q_score\": \"T=1283487.051 (round 1283487), Q=1154, S=1481143998\",\n      \"baseline_lambda\": \"17.62 over 400x64 lanes\"\n    },\n    \"closed_family_guard\": \"No slope delta-3 card is proposed or revived. CAMPAIGN_FINDINGS.md section 3.1 records EXP-SLOPE-01 as lambda-refuted (delta-lambda +5252, 95% CI [4887,5617]); its stated reopening condition is a materially different proof/model.\",\n    \"ownership_check\": \"python3 import of .pi/harness/ownership.py: ownership_violations('exploitation-tuner', []) returned []. No source or state path is claimed changed.\",\n    \"recovery\": {\n      \"status\": \"SCOPED\",\n      \"bundle_command\": \"python3 .pi/skills/circuit-evidence/scripts/emit_recovery_bundle.py --status SCOPED --reason 'Read-only existing-evidence card; no build, metrology, or source edit was authorized.' --experiment-id EXP-STRIP-02 --command 'TLM_CCX_FINAL_CANCEL=1 cargo run --release --bin build_circuit 2>&1 | grep -E \\\"FINAL CCX|deep-strip\\\"'\",\n      \"bundle_output\": \"/tmp/exploitation-tuner-EXP-STRIP-02-recovery.txt\",\n      \"bundle_sha256\": \"36097c0dada0f97325b19a11e9b609d98a41ba33adb0b7d400f3d66dc3c45095\",\n      \"bundle_delimiters_verified\": true\n    },\n    \"review_findings\": [\n      \"info: src/point_add/trailmix_ludicrous/constprop.rs:1126-1147 - final cancel is genuinely live but default-off; the source enforces an exact value gate and reports its own removal count.\",\n      \"info: src/point_add/mod.rs:2351-2398 - placement is before the ordinal-sensitive deep strip, so zero stale-key evidence is mandatory and is the cheapest anti-regression condition.\",\n      \"risk: .pi/experiments/EXP-STRIP-02.md - candidate stream hash differs from baseline; the default ground nonce cannot be reused, making standalone promotion uneconomic despite an exact local T saving.\"\n    ],\n    \"residual_risks\": [\n      \"Existing measurements are historical card evidence only; this lane was prohibited from rebuilding or metrology and therefore did not independently reconfirm the candidate hash/log.\",\n      \"The two-gate deletion may be consumed or cause stale ordinal keys after any upstream stream change; its cardinality must be re-probed per candidate stream.\",\n      \"No certification conclusion follows without all policy gates, especially candidate-stream nonce grounding.\"\n    ]\n  },\n  \"metrics\": {\n    \"baseline\": {\n      \"average_executed_toffoli\": 1283487.051,\n      \"qubits\": 1154,\n      \"score\": 1481143998,\n      \"lambda\": 17.62\n    },\n    \"candidate_prediction\": {\n      \"executed_toffoli_delta_estimate\": -2,\n      \"executed_toffoli_delta_lower_bound\": -2,\n      \"executed_toffoli_delta_upper_bound\": 0,\n      \"qubits_delta\": 0,\n      \"score_delta_estimate\": -2308,\n      \"lambda_delta_transform\": 0\n    }\n  },\n  \"verification\": {\n    \"read_only_lane\": true,\n    \"performed\": [\n      \"Read immutable dispatch receipt, campaign findings, frontier, campaign state, existing card, continuation, and live source reachability only.\",\n      \"Ran ownership check with empty changed path set.\",\n      \"Emitted read-only recovery bundle to /tmp before handoff.\"\n    ],\n    \"not_performed\": [\n      \"No source/control-plane edits or lifecycle changes.\",\n      \"No build, evaluator, metrology, grind, promotion, or submission.\",\n      \"No new candidate compressed/canonical identity, full evaluation, or nonce evidence.\"\n    ]\n  },\n  \"commands\": [\n    \"python3 -c import harness.ownership; ownership_violations('exploitation-tuner', [])\",\n    \"python3 .pi/skills/circuit-evidence/scripts/emit_recovery_bundle.py --status SCOPED --reason 'Read-only existing-evidence card; no build, metrology, or source edit was authorized.' --experiment-id EXP-STRIP-02 --command 'TLM_CCX_FINAL_CANCEL=1 cargo run --release --bin build_circuit 2>&1 | grep -E \\\"FINAL CCX|deep-strip\\\"'\"\n  ]\n}",
+        "artifactPaths": [
+          "/Users/makimakiver/ecdsafail-challenge/.pi/campaign-runs/20260816t232122Z/lanes/exploitation-tuner/result.json",
+          "/Users/makimakiver/.pi/agent/sessions/--Users-makimakiver-Documents-Codex-2026-08-16-what-work-ecdsafail-pi-fleet--/2026-08-16T21-18-09-528Z_01a00c70-6c78-7285-ad0e-691ff671830b/5641ef70/run-0/session.jsonl"
+        ]
+      },
+      {
+        "key": "structural",
+        "runId": "464be560",
+        "output": "{\n  \"schema_version\": 1,\n  \"experiment_id\": \"EXP-BZ-02\",\n  \"role\": \"structural-researcher\",\n  \"status\": \"PARKED\",\n  \"frontier_id\": \"2026-08-16-a2067dcf\",\n  \"candidate_ops_sha256\": \"6519bd01424d5513cd7f8232d4c15dfcbfe67561eb1b7f05b2cfec87c233a097\",\n  \"canonical_ops_sha256\": \"0a4a412c939b05f59fa4bc33c2410e5bc110b07c7faded5e6db5f6b5db3ed0b0\",\n  \"changed_paths\": [],\n  \"nonce_env\": \"SUB4_TAIL_NONCE\",\n  \"nonce\": 1337610097,\n  \"scientific_verdict\": \"PARKED/LOCAL_PLATEAU for the local strong deferred-reduction form; the remaining weak form is representation-spanning and is already escalated as EXP-ARCH-03. This is not a global ceiling.\",\n  \"commands\": [\n    \"python3 - <<'PY' ... ownership_violations(\\\"structural-researcher\\\", [\\\"src/point_add/trailmix_ludicrous/gcd.rs\\\", \\\"src/point_add/trailmix_ludicrous/fused.rs\\\", \\\"src/point_add/trailmix_ludicrous/arith.rs\\\"]) ... PY (read-only ownership check; returned three implementer-only violations)\",\n    \"python3 -m json.tool .pi/campaign-runs/20260816t232122Z/lanes/structural-researcher/result.json\"\n  ],\n  \"metrics\": {\n    \"baseline\": {\n      \"T_executed\": 1283487.051,\n      \"T_rounded\": 1283487,\n      \"Q\": 1154,\n      \"score\": 1481143998,\n      \"lambda_total\": 17.62\n    },\n    \"weak_deferred_clean_hypothesis\": {\n      \"T_executed_sign\": \"negative only if fold growth is smaller than the two removed clean phases; scoped estimate -5000 to -8000 executed Toffoli\",\n      \"score_sign_at_Q1154\": \"negative; estimated -5770000 to -9232000 only before lambda, strip, and Q-guard adjudication\",\n      \"Q_sign\": \"nominally 0 because fused_double_cdouble already allocates hi and hi2; unresolved +1 plateau risk must be rejected by B0 owner census\",\n      \"lambda_sign\": \"positive risk +0.5 to +2.5 lambda from the wider fold/carry-escape exposure; this multiplies expected grind work by exp(0.5) to exp(2.5), and no paired candidate measurement exists\",\n      \"emitted_to_executed_note\": \"each clean target is 4943 emitted and 2471.5 expected-executed (50% discount); do not price its emitted count as an executed saving\"\n    },\n    \"strong_defer_add_fold_form\": {\n      \"verdict\": \"locally falsified at scout pricing\",\n      \"reason\": \"the cswap between add and doubling must widen from 256 to 257 bits, adding +256 full-price Toffoli per iteration per direction, which exceeds the approximately 66.7 saved per relevant operation\"\n    }\n  },\n  \"verification\": {\n    \"current_candidate_status\": \"No candidate source stream was implemented or built by this read-only lane. candidate_ops_sha256 and canonical_ops_sha256 are schema-required pinned-baseline anchors, not a claim that an altered candidate artifact exists.\",\n    \"baseline_identity\": \"compressed 6519bd01424d5513cd7f8232d4c15dfcbfe67561eb1b7f05b2cfec87c233a097; canonical 0a4a412c939b05f59fa4bc33c2410e5bc110b07c7faded5e6db5f6b5db3ed0b0; 9024/9024 four checks green as recorded in .pi/frontier.json\",\n    \"required_before_reopen\": [\n      \"default-off compressed and canonical identity proof\",\n      \"knob liveness via changed operation identity/count\",\n      \"value-bounds proof that the widened post-fold residual remains below 2^256 minus the next cout-addend bound\",\n      \"paired forward/reverse reversible replay with phase word clean and all allocations freed\",\n      \"B0 plateau-owner census at every affected window showing Q <= 1154\",\n      \"paired dirty-scan lambda adjudication: SAFE only if upper CI(delta lambda) < +0.5\",\n      \"post-strip occupancy/stale-key audit and, if it changes stream order, a stream-specific strip re-mine before any full evaluation\"\n    ],\n    \"not_run_by_lane\": [\n      \"build_circuit\",\n      \"eval_circuit\",\n      \"TRACE_TLM_TOF\",\n      \"TRACE_TLM_PROFILE\",\n      \"TLM_DIRTY_SCAN\",\n      \"full metrology\",\n      \"nonce grind\"\n    ]\n  },\n  \"evidence\": {\n    \"card_type\": \"single-cell B3 Bezout-apply structural card, parked at its local boundary; weak continuation crosses B3/P/lambda/strip and is owned for reframing by EXP-ARCH-03\",\n    \"dispatch_receipt\": \".pi/campaign-runs/20260816t232122Z/lanes/structural-researcher/dispatch.json\",\n    \"authoritative_campaign_state\": [\n      \"CAMPAIGN_FINDINGS.md:3.4\",\n      \".pi/frontier.json\",\n      \".pi/state/campaign.json:records[id=EXP-BZ-02]\",\n      \".pi/experiments/EXP-BZ-02.md\"\n    ],\n    \"invocation_and_dependency_evidence\": [\n      \"src/point_add/trailmix_ludicrous/gcd.rs:1558-1570 invokes apply_step_forward during forward replay; gcd.rs:1327-1339 invokes apply_step_reverse during reverse replay.\",\n      \"src/point_add/trailmix_ludicrous/gcd.rs:1738-1783 orders forward controlled_mod_add_k -> 256-bit cswap -> fused_double_cdouble; the reduction clean to be deferred is inside arith::controlled_mod_add_k.\",\n      \"src/point_add/trailmix_ludicrous/gcd.rs:1786-1823 orders reverse fused_double_cdouble_reverse -> 256-bit cswap -> controlled_mod_sub_vented, giving the required inverse-side paired edit.\",\n      \"src/point_add/trailmix_ludicrous/arith.rs:1503-1536 shows controlled_mod_add_k emits fold then tlm_apply_forward_mod_add_clean / controlled_lt_msbs_conditional; gcd.rs:1826-1860 supplies the inverse fold and clean path.\",\n      \"src/point_add/trailmix_ludicrous/fused.rs:1865-1903 and :1921-1961 show the paired fused fold calls, existing transient hi/hi2 allocation, their cleanup, and LSBS-indexed borrow window.\",\n      \"src/point_add/trailmix_ludicrous/arith.rs:450-454 sets PAD=19 and LSBS=20+F_BITLEN (53); therefore the claimed wider addend must stay within the existing fold-window layout, not merely fit an arithmetic integer.\"\n    ],\n    \"reversible_and_phase_invariants\": [\n      \"Pair-1/Pair-2 directionality: apply_step_forward and apply_step_reverse must change as a mathematical inverse pair; changing only the forward clean leaves the M^-T replay unmatched and can dirty the phase word.\",\n      \"The deferred clean is a width-growth guard. The proof obligation is stronger than functional equality: before the next 256-bit cout adder, post-fold residual < 2^256 - max(next-cout-addend); otherwise overflow changes value and/or cleanup.\",\n      \"The strong form cannot move the full add fold through the interposed cswap without changing the swap operand lifetime/width to 257 bits; its full-price +256 Toffoli/iteration/direction falsifies the local saving estimate.\",\n      \"fused_double_cdouble and reverse explicitly zero_and_free hi and hi2; any weak rewrite must preserve these allocation lifetimes, clean all conditional/Hmr scratch, and leave zero residual phase. Final ancilla=0 alone is insufficient because reset laundering can surface as phase.\",\n      \"s2 remains the control for fused_double_cdouble in both directions. No s2 conditionality may be weakened, re-ordered, or paired asymmetrically.\"\n    ],\n    \"strip_and_replay_constraints\": [\n      \"The current deep-strip table is tuple/occurrence/occupancy keyed and has zero stale keys at baseline (CAMPAIGN_FINDINGS.md:2.2). Any edit reorders the stream, so pre-strip arithmetic savings are not final executed savings.\",\n      \"EXP-SQ-01 demonstrates the relevant failure mode: -1086 pre-strip CCX became +5806 final CCX after 6799 stale keys. A BZ-02 candidate requires post-strip occupancy evidence or a stream-specific re-mine, not transferred keys.\",\n      \"The engine is tape-recorded/replayed JUMP=2 binary extended Euclid; this card changes replay reduction, not the walk/tape symbols. Replaying applies must consume precisely the existing symbol interpretation.\"\n    ],\n    \"falsifier\": [\n      \"FOLD COST: count-only/TRACE evidence shows aggregate affected fold growth >= removal of tlm_apply_forward_mod_add_clean plus tlm_apply_inverse_mod_sub_clean.\",\n      \"VALUE/REVERSIBILITY: a symbolic bound or classical counterexample permits post-fold residual >= 2^256 before the next cout adder, or any four-check/phase failure occurs.\",\n      \"LAMBDA: paired dirty scan upper CI(delta lambda) >= +0.5 (not SAFE); immediate REFUTED if mean classical >30 per 9024-equivalent or any candidate round exceeds twice the baseline maximum.\",\n      \"Q/STRIP: B0 owner census exceeds Q=1154, or stream perturbation has stale-key/occupancy suppression large enough to erase the pre-strip saving.\"\n    ],\n    \"cheapest_discriminator\": {\n      \"action\": \"First execute the value-bound proof/emulation without source mutation; only if it establishes margin, implementer adds one default-off paired TLM_DEFER_MOD_CLEAN flag and runs POINT_ADD_COUNT_ONLY plus TRACE_TLM_TOF.\",\n      \"future_command_not_run\": \"CARGO_TARGET_DIR=/tmp/w1scout-target TLM_DEFER_MOD_CLEAN=1 POINT_ADD_COUNT_ONLY=1 TRACE_TLM_TOF=1 cargo run --release --bin build_circuit\",\n      \"acceptance_observation\": \"both clean phases approximately zero and affected fold growth strictly less than 4943 expected-executed total clean removal; artifact identity must differ while default-off preserves both pinned hashes.\"\n    },\n    \"source_ownership_scope\": {\n      \"proposed_edit_paths\": [\n        \"src/point_add/trailmix_ludicrous/gcd.rs\",\n        \"src/point_add/trailmix_ludicrous/fused.rs\",\n        \"src/point_add/trailmix_ludicrous/arith.rs\"\n      ],\n      \"ownership_check\": \".pi/harness/ownership.py returned only implementer may edit scored circuit source for each proposed path\",\n      \"disposition\": \"This lane made no edits. Because the weak continuation couples B3 replay to shared fold representation, lambda, and stream strip economics, it must remain with cross-cell reframing/implementer serialization, not this read-only structural lane.\"\n    },\n    \"budget\": {\n      \"local_budget_remaining\": \"No experiment budget consumed by this lane; use existing EXP-BZ-02 cap if reopened.\",\n      \"predeclared_cap\": \"0.5-1 day value proof, then at most 2 implementer-days for one paired default-off restructure and 1 hour probes; one falsification cycle only.\",\n      \"forbidden_without_authorization\": [\n        \"dirty-scan/metrology\",\n        \"9024-shot evaluation\",\n        \"strip re-mine\",\n        \"nonce grind\"\n      ]\n    },\n    \"rollback_unit\": \"One default-off TLM_DEFER_MOD_CLEAN flag wrapping both forward and reverse edits; rollback is unset flag or discard the single implementer commit. No persistent table may be reused across altered stream order.\",\n    \"unresolved_directions\": [\n      \"Whether a proof can establish the necessary post-fold headroom; no measured tail distribution is retained for this card.\",\n      \"Whether an asymmetric inverse cleanup substitution has a strictly smaller exact form; it is a separate card only if the count probe exposes a gap.\",\n      \"Whether folding the f-addend into the low adder chunk can avoid representation/lambda debt; this belongs to shared primitives/cross-cell reframing.\",\n      \"Whether the weak form preserves Q and survives the deep-strip occupancy tax is unmeasured.\"\n    ],\n    \"reopening_trigger\": [\n      \"A source-level value proof or measured distribution establishes at least eight bits of headroom below 2^256 for the relevant post-fold residual.\",\n      \"An LSBS/fold-window implementation change re-prices the wider-addend layout.\",\n      \"A cross-cell reframer accepts the B3/P/lambda/strip dependency bundle and provides a stream-specific strip plan plus a paired-lambda budget.\"\n    ],\n    \"severity\": \"medium: the local strong form is economically falsified; the weak form has material estimated T upside but unclosed correctness, phase, lambda, Q, and strip obligations.\"\n  }\n}",
+        "artifactPaths": [
+          "/Users/makimakiver/ecdsafail-challenge/.pi/campaign-runs/20260816t232122Z/lanes/structural-researcher/result.json",
+          "/Users/makimakiver/.pi/agent/sessions/--Users-makimakiver-Documents-Codex-2026-08-16-what-work-ecdsafail-pi-fleet--/2026-08-16T21-18-09-528Z_01a00c70-6c78-7285-ad0e-691ff671830b/464be560/run-0/session.jsonl"
+        ]
+      },
+      {
+        "key": "reframe",
+        "runId": "96c7c556",
+        "output": "{\n  \"schema_version\": 1,\n  \"experiment_id\": \"EXP-ARCH-04\",\n  \"role\": \"cross-cell-reframer\",\n  \"status\": \"PARKED\",\n  \"frontier_id\": \"2026-08-16-a2067dcf\",\n  \"candidate_ops_sha256\": \"6519bd01424d5513cd7f8232d4c15dfcbfe67561eb1b7f05b2cfec87c233a097\",\n  \"canonical_ops_sha256\": \"0a4a412c939b05f59fa4bc33c2410e5bc110b07c7faded5e6db5f6b5db3ed0b0\",\n  \"changed_paths\": [],\n  \"scientific_verdict\": \"PARKED: the strip-key lifecycle composite is blocked before its predeclared pilot gates; no new claim or measurement is made.\",\n  \"nonce_env\": \"SUB4_TAIL_NONCE\",\n  \"commands\": [\n    \"python3 - <<'PY' ... ownership_violations(...) for proposed owner/path seams ... PY\",\n    \"python3 .pi/skills/circuit-evidence/scripts/emit_recovery_bundle.py --status PARKED --reason 'EXP-ARCH-04 remains blocked by the predeclared EXP-SM-01 pilot and risk-reproduction gates; no source or metrology action was performed.' --experiment-id EXP-ARCH-04 --command 'SUB4_APPLY_STRIP=0 CARGO_TARGET_DIR=/tmp/sqscout-target /tmp/sqscout-target/release/build_circuit'\"\n  ],\n  \"evidence\": {\n    \"card_type\": \"one distinct cross-cell composite card: strip-key lifecycle / exact-synthesis boundary (EXP-ARCH-04)\",\n    \"authority\": {\n      \"dispatch\": \".pi/campaign-runs/20260816t232122Z/lanes/cross-cell-reframer/dispatch.json\",\n      \"frontier\": \".pi/frontier.json\",\n      \"campaign_state\": \".pi/state/campaign.json\",\n      \"findings\": \"CAMPAIGN_FINDINGS.md\",\n      \"existing_card\": \".pi/experiments/EXP-ARCH-04.md\"\n    },\n    \"park_basis\": {\n      \"severity\": \"blocker\",\n      \"existing_evidence\": [\n        \".pi/state/campaign.json records EXP-SM-01 as PARKED with no long-compute approval.\",\n        \".pi/continuations/EXP-SM-01.json sets launch_approved=false and long_compute_approved=false; its next action forbids even the pilot until explicit project-state approval.\",\n        \".pi/experiments/EXP-SM-01.md records that the miner rebuild was not started because of provider limit and makes pilot overlap/risk reproduction mandatory before a census or table change.\"\n      ],\n      \"disposition_reason\": \"This is an operational park, not a falsification and not a conclusion about the global search space.\"\n    },\n    \"affected_cell_map\": [\n      {\n        \"cell\": \"stream/strip applier\",\n        \"interface\": \"final post-pass operation stream -> (kind, controls, target, condition, occurrence ordinal, tuple occupancy) key lookup\",\n        \"paths\": [\n          \"src/point_add/deep_strip_keys.rs\",\n          \"src/point_add/mod.rs\"\n        ],\n        \"effect\": \"A stream perturbation can stale ordinal/occupancy-addressed keys; baseline evidence is 12,202 removals plus 4,045 downgrades with 0 stale keys.\"\n      },\n      {\n        \"cell\": \"census/miner\",\n        \"interface\": \"strip-off final stream -> event/fire counts -> greedy E/S key classification -> regenerated table\",\n        \"paths\": [\n          \".pi/experiments/EXP-SM-01-tooling/Cargo.toml\",\n          \".pi/experiments/EXP-SM-01-tooling/stream_census_main.rs\"\n        ],\n        \"effect\": \"The missing v5 reconstruction must establish table/risk self-consistency before it can price any statistical key.\"\n      },\n      {\n        \"cell\": \"square/coordinate scheduling\",\n        \"interface\": \"SQ-01 early sum release changes allocation order before the final strip stage\",\n        \"paths\": [\n          \"src/point_add/trailmix_ludicrous/square.rs\"\n        ],\n        \"effect\": \"Existing SQ-01 evidence shows a real pre-strip gain but 6,799 stale strip keys and +5,806 final CCX; it is a consumer of a fresh variant-stream re-mine, never a transferable baseline table.\"\n      },\n      {\n        \"cell\": \"walk/codec/replay and future geometry cards\",\n        \"interface\": \"any walk/codec/replay operation-order change -> mandatory stream-specific tripwire/re-mine before final T pricing\",\n        \"paths\": [\n          \"src/point_add/trailmix_ludicrous/gcd.rs\",\n          \"src/point_add/trailmix_ludicrous/codec.rs\"\n        ],\n        \"effect\": \"The rule applies even where no edit is proposed here: order-sensitive strip keys cannot be re-addressed across changed streams.\"\n      },\n      {\n        \"cell\": \"tail/regrind\",\n        \"interface\": \"post-strip stream -> apply_tail_nonce(SUB4_TAIL_NONCE)\",\n        \"paths\": [\n          \"src/point_add/mod.rs\"\n        ],\n        \"effect\": \"E keys require exact proof; S keys consume classical-risk/regrind budget. Neither can bypass a candidate-stream ground nonce at promotion.\"\n      }\n    ],\n    \"source_ownership_seams\": {\n      \"ownership_check\": \"ownership_violations() returned [] for the declared implementer source paths, [] for the strip-census-miner tooling paths, and [] for this role with changed_paths=[].\",\n      \"owners\": [\n        \"implementer only: src/point_add/deep_strip_keys.rs, src/point_add/mod.rs, and src/point_add/trailmix_ludicrous/square.rs\",\n        \"strip-census-miner only: .pi/experiments/EXP-SM-01-tooling/**\",\n        \"cross-cell-reframer: read-only; no owned mutation in this card\"\n      ],\n      \"seam_rule\": \"A generated strip table and SUB4_STRIP_RISK_BUDGET, if authorized, are one serialized implementation unit; square or walk changes are separate producer units and must deliver their own changed-stream census substrate.\"\n    },\n    \"invariant_pairs\": [\n      {\n        \"pair\": \"stream identity <-> key identity\",\n        \"invariant\": \"A table is valid only for the exact final post-pass stream whose tuple occurrence ordinal and occupancy created it; strip remains last before nonce.\",\n        \"proof_obligation\": \"On unchanged baseline, regenerated table must reproduce 12,202/12,202 removals, 4,045/4,045 downgrades, and 0 stale keys before any changed-stream mining.\"\n      },\n      {\n        \"pair\": \"E exact key <-> proof artifact\",\n        \"invariant\": \"E and S partitions are exclusive and exhaustive over admitted new keys; an E key carries an UNSAT mitre, wire equality, or bit-exact identity rather than census risk.\",\n        \"proof_obligation\": \"Per-cluster machine-checkable UNSAT/source-identity artifact and four green checks on its certified A/B.\"\n      },\n      {\n        \"pair\": \"S statistical key <-> risk/regrind accounting\",\n        \"invariant\": \"Only S keys contribute census risk; no E credit may be counted as S risk headroom.\",\n        \"proof_obligation\": \"Reconstructed evaluator reproduces shipped Risk=1.239700 bit-for-bit; paired lambda evidence and later ground-seed/regrind evidence bind the candidate stream.\"\n      },\n      {\n        \"pair\": \"producer perturbation <-> consumer re-mine\",\n        \"invariant\": \"SQ-01 or any walk/codec/replay geometry change cannot reuse baseline table keys or final T estimates.\",\n        \"proof_obligation\": \"Build-side stale-key tripwire followed by a fresh census on that exact candidate stream; only then price final strip credit.\"\n      }\n    ],\n    \"staged_cheap_gates\": [\n      {\n        \"stage\": 0,\n        \"gate\": \"Authorization\",\n        \"required\": \"Explicit state approval to resume the parked miner; no pilot/full compute is authorized now.\"\n      },\n      {\n        \"stage\": 1,\n        \"gate\": \"Pilot discriminator\",\n        \"required\": \"1e7-input baseline strip-off pilot must overlap at least 90% of shipped 16,247 keys and reproduce Risk=1.239700 exactly.\",\n        \"falsifier\": \"overlap <90% or no exact risk-functional reproduction\"\n      },\n      {\n        \"stage\": 2,\n        \"gate\": \"Baseline self-consistency\",\n        \"required\": \"Regenerated B=1.24 baseline table reproduces the shipped removal/downgrade counts at 0 stale keys before re-cut or variant work.\"\n      },\n      {\n        \"stage\": 3,\n        \"gate\": \"Attribution split\",\n        \"required\": \"A 100-gate stratified attribution sample has >70% inside no more than five routines; then issue per-cluster E proofs before admitting E credit.\",\n        \"falsifier\": \"stable new statistical pool <300 gates at the declared deep-census gate, or the >70%/five-routine clustering test fails\"\n      },\n      {\n        \"stage\": 4,\n        \"gate\": \"Candidate-specific re-mine and bounded S sweep\",\n        \"required\": \"For SQ-01 or another producer stream, mine the exact candidate stream; sweep B only over residual S keys after E removal.\"\n      },\n      {\n        \"stage\": 5,\n        \"gate\": \"Promotion ladder\",\n        \"required\": \"Default identity where applicable, paired lambda for S, 9,024-shot four-check evaluation, explicit grind approval, candidate-stream SUB4_TAIL_NONCE ground seed, both hashes, and strictly lower score.\"\n      }\n    ],\n    \"explicit_falsifier\": \"Reject only this composite premise if its existing predeclared pilot conditions fire: key overlap below 90%, inability to reproduce Risk=1.239700 exactly, baseline effect mismatch, a stable deep-census pool below 300 gates, attribution failing the >70% within <=5 routines test, or a certified A/B failing any of four checks. None has fired in this read-only review.\",\n    \"reopening_trigger\": [\n      \"Explicit project-state approval to resume the EXP-SM-01 miner and launch its pilot.\",\n      \"Any accepted final-stream perturbation reporting stale strip keys; this triggers a candidate-specific re-mine rather than transfer of the baseline table.\",\n      \"A lambda decomposition that establishes census-risk headroom at least twice the current budget.\"\n    ],\n    \"serialized_rollback_unit\": {\n      \"unit\": \"one regenerated src/point_add/deep_strip_keys.rs table plus one default-parity SUB4_STRIP_RISK_BUDGET setting (1.24)\",\n      \"rollback\": \"restore the prior table and unset/return the budget to shipped parity as one atomic rollback; proof artifacts are additive and have no runtime effect.\",\n      \"producer_boundary\": \"Do not include square.rs, gcd.rs, or codec.rs in this unit: those producer changes must be independently rollbackable and need a fresh census before this unit is rebuilt.\"\n    },\n    \"budget\": {\n      \"authorized_now\": \"read-only review only; no pilot, metrology, build/evaluation, nonce grind, or source mutation\",\n      \"after_approval\": \"pilot: 1e7 inputs (~25-43 minutes); full shared pool: 6.55e8 inputs, estimated 28-80 hours on 8 threads; certificate attribution: <=5 mitre classes x 2 CPU-hours; hard composite cap: 3 working days plus one nohup weekend.\",\n      \"risk_budget\": \"shipped statistical budget B=1.24; candidate B sweep is 2.0, 3.0, 5.0 only after exact baseline reproduction; E keys price at zero only with proof.\"\n    },\n    \"review_findings\": [\n      {\n        \"severity\": \"blocker\",\n        \"path\": \".pi/continuations/EXP-SM-01.json\",\n        \"finding\": \"launch_approved=false and long_compute_approved=false prohibit the pilot that is the first composite discriminator.\"\n      },\n      {\n        \"severity\": \"high\",\n        \"path\": \".pi/experiments/EXP-SQ-01.md\",\n        \"finding\": \"The parked square variant cannot be priced from its pre-strip saving: it has 6,799 stale strip keys and +5,806 final CCX as shipped; only a stream-specific re-mine may reopen it.\"\n      },\n      {\n        \"severity\": \"high\",\n        \"path\": \".pi/experiments/EXP-SM-01.md\",\n        \"finding\": \"The v5 risk functional remains a reconstruction target; without exact reproduction of Risk=1.239700, any B sweep is unpriceable.\"\n      }\n    ],\n    \"residual_risks\": [\n      \"The expected T ranges are scoped estimates, not score or correctness evidence.\",\n      \"A correct E/S partition does not itself provide a candidate-stream nonce or satisfy the 9,024-shot gate.\",\n      \"Source-indexed versus ordinal-based certificate encoding remains unresolved and must be fixed before E proof credit is merged.\",\n      \"This card makes no global-ceiling claim.\"\n    ]\n  },\n  \"metrics\": {\n    \"baseline\": {\n      \"average_executed_toffoli\": 1283487.051,\n      \"qubits\": 1154,\n      \"score\": 1481143998,\n      \"baseline_lambda\": 17.62\n    },\n    \"scope_only\": {\n      \"exact_E_potential_executed_toffoli\": \"-3000 to -7700\",\n      \"statistical_S_potential_executed_toffoli\": \"-2000 to -5000\",\n      \"square_consumer_after_fresh_remine_estimate\": \"-500 to -800\",\n      \"qualification\": \"Existing-card estimates only; no composite candidate artifact or measurement was produced.\"\n    }\n  },\n  \"verification\": {\n    \"performed\": \"Read-only evidence review and ownership seam check only; no build, evaluation, metrology, pilot, full census, nonce grind, or lifecycle action was run.\",\n    \"recovery_bundle\": \"FLEET_RECOVERY_BUNDLE emitted for PARKED / EXP-ARCH-04 before completion.\",\n    \"four_checks\": \"not run for this parked composite; prerequisite remains candidate construction after gates.\"\n  }\n}",
+        "artifactPaths": [
+          "/Users/makimakiver/ecdsafail-challenge/.pi/campaign-runs/20260816t232122Z/lanes/cross-cell-reframer/result.json",
+          "/Users/makimakiver/.pi/agent/sessions/--Users-makimakiver-Documents-Codex-2026-08-16-what-work-ecdsafail-pi-fleet--/2026-08-16T21-18-09-528Z_01a00c70-6c78-7285-ad0e-691ff671830b/96c7c556/run-0/session.jsonl"
+        ]
+      }
+    ],
+    "trace": [
+      {
+        "operation": "run",
+        "key": "frontier",
+        "state": "started",
+        "phase": "Audit",
+        "label": "Pinned live frontier audit",
+        "agent": "frontier-auditor"
+      },
+      {
+        "operation": "run",
+        "key": "tuning",
+        "state": "started",
+        "phase": "Discovery",
+        "label": "Bounded tuning discovery",
+        "agent": "exploitation-tuner"
+      },
+      {
+        "operation": "run",
+        "key": "structural",
+        "state": "started",
+        "phase": "Discovery",
+        "label": "Single-cell structural discovery",
+        "agent": "structural-researcher"
+      },
+      {
+        "operation": "run",
+        "key": "reframe",
+        "state": "started",
+        "phase": "Discovery",
+        "label": "Cross-cell reframing discovery",
+        "agent": "cross-cell-reframer"
+      },
+      {
+        "operation": "run",
+        "key": "tuning",
+        "state": "completed",
+        "durationMs": 56165,
+        "phase": "Discovery",
+        "label": "Bounded tuning discovery",
+        "agent": "exploitation-tuner",
+        "runId": "5641ef70"
+      },
+      {
+        "operation": "run",
+        "key": "reframe",
+        "state": "completed",
+        "durationMs": 68454,
+        "phase": "Discovery",
+        "label": "Cross-cell reframing discovery",
+        "agent": "cross-cell-reframer",
+        "runId": "96c7c556"
+      },
+      {
+        "operation": "run",
+        "key": "structural",
+        "state": "completed",
+        "durationMs": 119429,
+        "phase": "Discovery",
+        "label": "Single-cell structural discovery",
+        "agent": "structural-researcher",
+        "runId": "464be560"
+      },
+      {
+        "operation": "run",
+        "key": "frontier",
+        "state": "completed",
+        "durationMs": 139037,
+        "phase": "Audit",
+        "label": "Pinned live frontier audit",
+        "agent": "frontier-auditor",
+        "runId": "40e798b8"
+      }
+    ],
+    "emits": [],
+    "console": []
+  },
+  "runFanoutBudget": {
+    "used": 4,
+    "limit": 64,
+    "remaining": 60
+  },
+  "turnCount": 44,
+  "toolCount": 137,
+  "endedAt": 1786922643355,
+  "totalTokens": {
+    "input": 132,
+    "output": 37041,
+    "total": 37173
+  },
+  "totalCost": {
+    "inputTokens": 132,
+    "outputTokens": 37041,
+    "costUsd": 1.3728606
+  }
+}

@@ -1,0 +1,111 @@
+{
+  "candidate_ops_sha256": "0e2afb690e0a6e01865e1962a850ed146f29a3112bf8c790c9ca7e3c64766dbc",
+  "canonical_ops_sha256": "7836c7eed55c14213715554cd1f88bcef0856f6ab418785412a3f658dea9ba6e",
+  "changed_paths": [],
+  "commands": [
+    "cd /tmp/fleet-v3-square-addsub-local-20260816t233502Z && TLM_SQUARE_ADDSUB_LOCAL=1 CARGO_TARGET_DIR=/tmp/fleet-v3-square-addsub-local-20260816t233502Z/target cargo run --release --bin build_circuit"
+  ],
+  "evidence": {
+    "artifact_fingerprint_tool": "src/point_add/memory/repro/artifact_io.py::fingerprint",
+    "baseline_artifact": {
+      "canonical_semantic_sha256": "0a4a412c939b05f59fa4bc33c2410e5bc110b07c7faded5e6db5f6b5db3ed0b0",
+      "compressed_sha256": "6519bd01424d5513cd7f8232d4c15dfcbfe67561eb1b7f05b2cfec87c233a097",
+      "emitted_ops": 8958690,
+      "qubits": 1154
+    },
+    "budget": "One authorized build consumed; no additional builds or measurements performed.",
+    "candidate_artifact": {
+      "bytes": 29379214,
+      "canonical_semantic_sha256": "7836c7eed55c14213715554cd1f88bcef0856f6ab418785412a3f658dea9ba6e",
+      "compressed_sha256": "0e2afb690e0a6e01865e1962a850ed146f29a3112bf8c790c9ca7e3c64766dbc",
+      "emitted_ops": 8839187,
+      "identity_vs_baseline": "changed",
+      "max_referenced_qubit_id": 1158,
+      "path": ".pi/campaign-runs/20260816t232122Z/rescue/square-addsub-local/artifacts/ops.bin",
+      "qubits": 1159
+    },
+    "cheapest_discriminator": "The authorized single flag-on build plus artifact fingerprint; it falsifies knob-noop because both compressed and canonical identities differ from the pinned baseline.",
+    "dispatch": {
+      "authority": "one isolated flag-on build only",
+      "path": ".pi/campaign-runs/20260816t232122Z/rescue/square-addsub-local/dispatch.json",
+      "read_before_build": true,
+      "sha256": "9c1f6f13d7667a56b13a68d0a894978d59499eca86ce43becde855202d357e58"
+    },
+    "evidence_debt": [
+      "No TRACE_TLM_PROFILE/TRACE_TLM_CCX/TRACE_TLM_TOF/TRACE_PHASE_ACTIVE data were authorized or collected.",
+      "No executed T pricing, lambda scan, selftest, or 9024-shot four-check evaluation.",
+      "The changed stream has a Q regression and stream-order-coupled deep-strip stale-key warning; a fresh stream-specific census would be required before treating pre-strip economics as final."
+    ],
+    "falsifier": "Per immutable dispatch: build failure or byte-identical candidate is a scoped probe result, not a global ceiling. Neither occurred; changed stream is not a certification result.",
+    "logs": {
+      "recovery_bundle_log": ".pi/campaign-runs/20260816t232122Z/rescue/square-addsub-local/recovery-bundle.log",
+      "recovery_bundle_log_sha256": "65f16dd2d9ea1a3f76abe2a7329191ceb4f53f117e88c2506d6a3ca1c14bceb7",
+      "terminal_log": ".pi/campaign-runs/20260816t232122Z/rescue/square-addsub-local/terminal.log",
+      "terminal_log_sha256": "fc51afc1b8e054cbb6f6657a1c50aac62fd67cbdd1f2c0639adb874b82373eb5"
+    },
+    "mechanism": "The live flag is reachable in src/point_add/trailmix_ludicrous/square.rs:145 and selects square_addsub_local_inverse at square.rs:165 instead of square_addsub_vented_inverse during the reverse square path. The selected local inverse is implemented at src/point_add/arith/multiply.rs:2153.",
+    "ownership": {
+      "candidate_source_ownership_check": "ownership_violations(implementer, [candidate source path]) returned []; the pre-existing scored-source candidate remains implementer-owned, not lane-edited.",
+      "candidate_source_path": "src/point_add/trailmix_ludicrous/square.rs",
+      "lane_changed_paths": [],
+      "ownership_check": "harness.ownership.ownership_violations(exploitation-tuner, []) returned []; no source/control-plane path was edited by this lane."
+    },
+    "poststrip": {
+      "ccz": "W018 CCZ straddle: total_ccz=4792; same_triple_candidates=0; cancelled_pairs=0; removed_ccz=0.",
+      "constprop": "TOTAL iters=16; dropped=2930; folded_cx=29; folded_x=0; inverse_pairs=155; aff_drop=9; aff_fold=3; toffoli removed=3281.",
+      "deep_strip": "Removed 11134/12202 dead; downgraded 3371/4045; 1742 stale keys skipped because tuple occupancy changed.",
+      "fanout": "Initial SINGLE_CCX_FANOUT STOP after 809 passes (8851140 -> 8850331 ops); POST_STRIP_TARGET_FANOUT_DONE passes=10.",
+      "severity": "high: 1742 stale keys show the candidate stream is not directly covered by the baseline deep-strip census."
+    },
+    "predicted_signs": {
+      "Q": "positive, observed +5 (1154 -> 1159)",
+      "emitted_operation_count": "negative, observed -119503",
+      "executed_T": "unknown; emitted operation delta is not executed-Toffoli evidence",
+      "lambda": "unknown; no paired dirty-scan evidence"
+    },
+    "recovery": {
+      "emitted": true,
+      "note": "Recovery output recorded a modified tracked __pycache__ file caused by the initial parent artifact-tool import. No source logic was intentionally edited; this lane did not mutate it.",
+      "reason": "A post-build ownership-check command had an incorrect PYTHONPATH and failed after the successful build/artifact copy; recovery was emitted before retry. The corrected ownership check passed.",
+      "status": "PARKED"
+    },
+    "reopening_trigger": "Parent authorization for the next gate (candidate selftests, T/Q profiling, paired lambda metrology, and only then full evaluation); no reopening of the closed slope delta-3 family is implicated.",
+    "residual_risks": [
+      "Correctness, reversibility, phase cleanliness, and ancilla cleanliness are untested for this changed stream.",
+      "Executed Toffoli and lambda are unknown; no score or grind claim is valid.",
+      "The root recovery bundle notes an incidental tracked __pycache__ modification from the initial fingerprint import; it must not be confused with an intentional circuit-source change."
+    ],
+    "review_findings": [
+      "high: Q increased by five referenced qubits, so the large emitted-op reduction cannot be interpreted as score improvement without executed-T measurement.",
+      "high: 1742 deep-strip keys were skipped on this stream; baseline strip economics are stream-order-coupled and incomplete for this candidate.",
+      "info: candidate identity differs from both pinned compressed and canonical identities, proving flag reachability/non-noop only."
+    ],
+    "search_radius": "Exactly one flag-on build in /tmp/fleet-v3-square-addsub-local-20260816t233502Z using TLM_SQUARE_ADDSUB_LOCAL=1; no parameter sweep, eval, dirty scan, nonce grind, or promotion."
+  },
+  "experiment_id": "RESCUE-SQUARE-ADDSUB-LOCAL",
+  "frontier_id": "2026-08-16-a2067dcf",
+  "metrics": {
+    "baseline_emitted_ops": 8958690,
+    "baseline_qubits": 1154,
+    "build_exit_code": 0,
+    "candidate_emitted_ops": 8839187,
+    "candidate_qubits": 1159,
+    "emitted_ops_delta": -119503,
+    "executed_toffoli": null,
+    "lambda": null,
+    "qubit_delta": 5
+  },
+  "nonce_env": "SUB4_TAIL_NONCE",
+  "role": "exploitation-tuner",
+  "schema_version": 1,
+  "scientific_verdict": "LIVE_CANDIDATE only: the flag-on stream changed, but this one-build receipt does not measure executed T or lambda and does not certify correctness.",
+  "status": "INCONCLUSIVE",
+  "timestamp": "2026-08-16T23:38:01.700586+00:00",
+  "verification": {
+    "build_circuit": "passed (exit code 0)",
+    "certification": "not attempted and not supported by this receipt",
+    "full_evaluation": "not run; expressly out of scope",
+    "metrology": "not run; expressly out of scope",
+    "selftests": "not run; the exact authorized command did not enable card selftests"
+  }
+}

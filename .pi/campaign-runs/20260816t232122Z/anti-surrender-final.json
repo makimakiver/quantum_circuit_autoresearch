@@ -1,0 +1,103 @@
+{
+  "antiSurrenderOutcome": "Authorized cheap campaign budget consumed on five distinct executable gates; no promotion claim. Further source-affecting work is blocked by a tracked protected pyc integrity drift outside any implementer receipt.",
+  "attempts": [
+    {
+      "experimentId": "EXP-STRIP-02",
+      "lane": "exploitation-strip02-live",
+      "resultPath": "rescue/exploitation-strip02-live/result.json",
+      "resultSha256": "b90b949d656232ce6ebccbc27450f20952757a3425184ad9305128cf7265f423",
+      "role": "exploitation-tuner",
+      "scientificVerdict": "LIVE_CANDIDATE",
+      "status": "IMPLEMENTED"
+    },
+    {
+      "experimentId": "EXP-SQ-01",
+      "lane": "structural-sq01-early-sum",
+      "resultPath": "rescue/structural-sq01-early-sum/result.json",
+      "resultSha256": "d0ba7e90c445d3bdbb52352eccf404ba394c69fe22c61de2cafc4e270769b3b4",
+      "role": "implementer",
+      "scientificVerdict": "IMPLEMENTED: default-off identities match the receipt and flag-on is live; no score, lambda, or correctness verdict was attempted.",
+      "status": "IMPLEMENTED"
+    },
+    {
+      "experimentId": "RESCUE-CONSTPROP-STRADDLE",
+      "lane": "constprop-straddle",
+      "resultPath": "rescue/constprop-straddle/result.json",
+      "resultSha256": "de44362ae78e1ebd70141503a8654a735885df70cd1125aae0cdef928575bb03",
+      "role": "exploitation-tuner",
+      "scientificVerdict": "REFUTED_CONFIGURATION: the single authorized TLM_CONSTPROP_STRADDLE=1 build was byte-identical to the pinned stream; the flag reached CONSTPROP but added zero straddle inverse pairs.",
+      "status": "REFUTED"
+    },
+    {
+      "experimentId": "RESCUE-SQUARE-ADDSUB-LOCAL",
+      "lane": "square-addsub-local",
+      "resultPath": "rescue/square-addsub-local/result.json",
+      "resultSha256": "3afcf354d92265344c4ed8ecb3fb810bcf38d0d0b0d3d0a044f3cea3bb15e26b",
+      "role": "exploitation-tuner",
+      "scientificVerdict": "LIVE_CANDIDATE only: the flag-on stream changed, but this one-build receipt does not measure executed T or lambda and does not certify correctness.",
+      "status": "INCONCLUSIVE"
+    },
+    {
+      "experimentId": "RESCUE-SQUARE-ADDSUB-LOCAL",
+      "lane": "square-addsub-local-selftest",
+      "resultPath": "rescue/square-addsub-local-selftest/result.json",
+      "resultSha256": "7da4dbb5c5093a6c96587e23c83eef6eb90052abc504c88a6dde06d1bacb6194",
+      "role": "exploitation-tuner",
+      "scientificVerdict": "LIVE_CANDIDATE_SEMANTIC_GATE",
+      "status": "SCOPED"
+    },
+    {
+      "experimentId": "RESCUE-SQUARE-ADDSUB-LOCAL",
+      "lane": "square-addsub-local-tof-profile",
+      "resultPath": "rescue/square-addsub-local-tof-profile/result.json",
+      "resultSha256": "b6c5f24bff928f67acc37c5239e192f9a5ff6d28dc64dcab1b01c706e60ecc05",
+      "role": "exploitation-tuner",
+      "scientificVerdict": "INCONCLUSIVE: exact candidate artifact was reproduced, but emitted TRACE_TLM_TOF evidence cannot price executed T and does not clear the Q=1159 break-even gate.",
+      "status": "INCONCLUSIVE"
+    }
+  ],
+  "campaignStatus": "CAMPAIGN_COMPLETE",
+  "candidateQueue": [
+    {
+      "evidence": "one pair/two CCX removed, zero stale keys, exact candidate hash e6ae...",
+      "id": "EXP-STRIP-02",
+      "mechanism": "strict final CCX self-inverse cancellation",
+      "next": "bundle with a regrind-forcing candidate only; no standalone full evaluation",
+      "state": "LIVE_CANDIDATE"
+    },
+    {
+      "evidence": "selftest/default identity green but candidate +12036 emitted ops and 6799 stale strip keys",
+      "id": "EXP-SQ-01",
+      "mechanism": "early sum unbuild to release square vents",
+      "reopening": "only a stream-specific re-mine/postpass-aware redesign, not the same configuration",
+      "state": "REFUTED_CONFIGURATION"
+    },
+    {
+      "evidence": "zero extra pairs and byte-identical compressed/canonical artifacts",
+      "id": "RESCUE-CONSTPROP-STRADDLE",
+      "mechanism": "straddling inverse CCX matcher",
+      "reopening": "a different stream that creates nonzero extra pair matches",
+      "state": "REFUTED_CONFIGURATION"
+    },
+    {
+      "evidence": "candidate -119503 emitted ops but Q=1159 (+5), semantic selftest passed, 1742 stale keys, executed T/lambda unknown",
+      "id": "RESCUE-SQUARE-ADDSUB-LOCAL",
+      "mechanism": "local square add/sub inverse",
+      "next": "after protected-source integrity restoration, run matched final post-strip candidate pricing/census; only pursue metrology/eval if measured T plausibly clears 5538 rounded-T break-even",
+      "state": "INCONCLUSIVE_LIVE_CANDIDATE"
+    }
+  ],
+  "hardBlocker": {
+    "detail": "tracked pyc bytecode changed by a child artifact-tool import outside its sandbox; parent did not restore it because orchestrator authority does not permit source edits.",
+    "kind": "protected-source-integrity-violation",
+    "path": "src/point_add/memory/repro/__pycache__/artifact_io.cpython-313.pyc",
+    "scientific_verdict": null
+  },
+  "schemaVersion": 1,
+  "scientific_verdict": null,
+  "unresolvedObligations": [
+    "Restore or otherwise authoritatively reconcile the tracked artifact_io.cpython-313.pyc bytecode drift before another source-bound campaign or promotion.",
+    "Preserve and review the high-upside TLM_SQUARE_ADDSUB_LOCAL candidate after integrity restoration; it is not refuted.",
+    "No 9024-shot evaluator, lambda metrology, nonce grind, certification, or promotion has occurred."
+  ]
+}

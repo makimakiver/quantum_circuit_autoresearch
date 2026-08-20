@@ -1,0 +1,110 @@
+{
+  "schema_version": 1,
+  "experiment_id": "EXP-BZ-03",
+  "record_type": "probe-measurements",
+  "timestamp": "2026-08-17T09:01:06Z",
+  "baseline": {
+    "ops_sha256": "6519bd01424d5513cd7f8232d4c15dfcbfe67561eb1b7f05b2cfec87c233a097",
+    "canonical_ops_sha256": "0a4a412c939b05f59fa4bc33c2410e5bc110b07c7faded5e6db5f6b5db3ed0b0",
+    "emitted_ops": 8958690,
+    "expected_executed_tof": 1299076.0,
+    "emitted_ccx_total": 1347642,
+    "Q": 1154
+  },
+  "falsifier": "fired: every reachable candidate has nonnegative (positive) score projection round(dT)*1154 with dQ=0",
+  "rows": [
+    {
+      "probe": "A0-baseline",
+      "k": null,
+      "emitted_ops": 8958690,
+      "ops_sha256": "6519bd01424d5513cd7f8232d4c15dfcbfe67561eb1b7f05b2cfec87c233a097",
+      "expected_executed_tof": 1299076.0,
+      "stale_strip_keys": 0,
+      "delta_T": 0.0,
+      "delta_S_projection": 0
+    },
+    {
+      "probe": "K6-boundary",
+      "k": 6,
+      "emitted_ops": 8948637,
+      "ops_sha256": "46a74339d298bcf69bac35f48368518bdc04a33a8a1baf476987523ce0d019a9",
+      "expected_executed_tof": 1299251.0,
+      "stale_strip_keys": 1958,
+      "delta_T": 175.0,
+      "delta_S_projection": 201950
+    },
+    {
+      "probe": "K7",
+      "k": 7,
+      "emitted_ops": 8949526,
+      "ops_sha256": "a451eafdc221874b7f25221877e9be96a448f5a93271ea266a36785dd9e44033",
+      "canonical_ops_sha256": "c735d1d66c5e99768af1c93813880754fa5d47874f7dd5721f28a89cf03d7fc9",
+      "max_referenced_qubit_id": 1153,
+      "expected_executed_tof": 1299289.0,
+      "stale_strip_keys": 1772,
+      "delta_T": 213.0,
+      "delta_S_projection": 245802
+    },
+    {
+      "probe": "K9",
+      "k": 9,
+      "emitted_ops": 8950315,
+      "ops_sha256": "ab4fb8b1dbe8f093809f0d5062a5558641a1dc635b9c2dbc3515e68f0a2add50",
+      "expected_executed_tof": 1299271.0,
+      "stale_strip_keys": 1463,
+      "delta_T": 195.0,
+      "delta_S_projection": 225030
+    },
+    {
+      "probe": "K12",
+      "k": 12,
+      "emitted_ops": 8952602,
+      "ops_sha256": "db1145fa9808d112d6d3aec42e5497ae8360efaee41673a7f50bfaaae756e740",
+      "expected_executed_tof": 1299229.0,
+      "stale_strip_keys": 1517,
+      "delta_T": 153.0,
+      "delta_S_projection": 176562
+    },
+    {
+      "probe": "K14",
+      "k": 14,
+      "emitted_ops": 8954395,
+      "ops_sha256": "23acf93a39d1aac7819569c3ce58a470cd6d7e065bb30dfdd005692e10b8e1ed",
+      "expected_executed_tof": 1299191.0,
+      "stale_strip_keys": 1418,
+      "delta_T": 115.0,
+      "delta_S_projection": 132710
+    },
+    {
+      "probe": "K16",
+      "k": 16,
+      "emitted_ops": 8956314,
+      "ops_sha256": "d2eaa31bbf7cac8700ba92bc8475692435fa5e90ca5b4a2261c006d4c9d6640c",
+      "expected_executed_tof": 1299145.0,
+      "stale_strip_keys": 1122,
+      "delta_T": 69.0,
+      "delta_S_projection": 79626
+    },
+    {
+      "probe": "K18",
+      "k": 18,
+      "emitted_ops": 8958505,
+      "ops_sha256": "7d88bdb805e531cb73ec662b9995d2d381fc88e5585dede817d7f97218b396c6",
+      "expected_executed_tof": 1299091.0,
+      "stale_strip_keys": 793,
+      "delta_T": 15.0,
+      "delta_S_projection": 17310
+    },
+    {
+      "probe": "K19-noop",
+      "k": 19,
+      "emitted_ops": 8958690,
+      "ops_sha256": "6519bd01424d5513cd7f8232d4c15dfcbfe67561eb1b7f05b2cfec87c233a097",
+      "expected_executed_tof": 1299076.0,
+      "stale_strip_keys": 0,
+      "delta_T": 0.0,
+      "delta_S_projection": 0,
+      "note": "byte-identical to baseline: effective k already capped at 19/18 by TLM_TARGET_Q headroom; all k>=20 provably no-op"
+    }
+  ]
+}

@@ -1,0 +1,5 @@
+timestamp_utc=2026-08-17T08:29:08Z
+path=/Users/makimakiver/ecdsafail-challenge/src/point_add/memory/repro/__pycache__/artifact_io.cpython-313.pyc
+016debdfcfe5a6f7827bfb1610344ed98bfe0d1720a7458618ecb94faddffe89  /Users/makimakiver/ecdsafail-challenge/src/point_add/memory/repro/__pycache__/artifact_io.cpython-313.pyc
+git_status_begin
+git_status_end

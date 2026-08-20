@@ -1,0 +1,19 @@
+{
+  "artifact_hashes": {},
+  "changed_paths": [],
+  "commands": [
+    "PYTHONDONTWRITEBYTECODE=1 python3 -B .pi/skills/circuit-evidence/scripts/validate_fleet.py",
+    "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=.pi python3 -B -m harness.cli validate",
+    "read-only source/artifact/identity reconciliation; no build, evaluator, metrology, grind, promotion, or source mutation"
+  ],
+  "evidence_paths": [],
+  "gate": "DISPATCHED",
+  "remaining_obligations": [
+    "worker gate checkpoints",
+    "schema-v2 result",
+    "terminal recovery"
+  ],
+  "run_id": "frontier-audit-20260817t08211786954877z",
+  "schema_version": 1,
+  "timestamp": "2026-08-17T08:21:30Z"
+}
