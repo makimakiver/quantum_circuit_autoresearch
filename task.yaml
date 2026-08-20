@@ -75,6 +75,7 @@ grader:
   max_pending_per_agent: 1
 
 agents:
+  max_turns: 50
   # Mixed CORAL fleet: Pi-hosted OpenAI/GLM/DeepSeek plus Claude Code.
   # Bindings live in ~/.config/coral/agents.yaml:
   #   pi-gpt56     -> runtime pi,          model openai/gpt-5.6-terra
